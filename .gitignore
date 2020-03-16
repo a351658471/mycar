@@ -1,4 +1,5 @@
 .idea/*
+doc/.idea/*
 doc/_book/*
 api.tar.gz
 
