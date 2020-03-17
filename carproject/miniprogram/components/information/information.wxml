@@ -1,0 +1,12 @@
+<!--component/information/information.wxml-->
+<view class="information">
+  <slot></slot>
+  <view class="searchs">
+      <view class="search">
+          <image class="dian" src="../../assets/img/transform.png"></image>{{num}}</view>
+      <view class="search">
+          <image class="dian" src="../../assets/img/common.png"></image>{{num1}}</view>
+      <view class="search" catchtap="dian" data-index="{{index}}">
+          <image class="dian" src="../../assets/img/dian{{num2?'_on':''}}.png" />{{num2}}</view>
+      </view>
+</view>

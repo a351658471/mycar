@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "infors": "../../components/information/information"
+  }
+}

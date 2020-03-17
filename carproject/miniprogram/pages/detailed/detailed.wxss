@@ -1,0 +1,99 @@
+/* pages/detailed/detailed.wxss */
+Page{
+  background-color: rgb(245, 245, 245);
+}
+.swiper{
+  margin-top: 30rpx;
+}
+.swiper_container .swiper-box{
+  width: 100%;
+}
+.message{
+  background: white;
+  box-sizing: border-box;
+  padding: 30rpx;
+  margin-top: 40rpx;
+} 
+.message .mesup{
+  display: flex;
+  flex-direction: row;
+}
+.message .mesup .name{
+  font-size: 25rpx;
+  flex: 1;
+}
+.message .mesup .state{
+  font-size: 25rpx;
+}
+.message .mesdown{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 30rpx;
+}
+.message .mesdown .tips{
+  display: flex;
+}
+.message .mesdown .tip{
+  font-size: 25rpx;
+  color: red;
+  border-radius: 10rpx;
+  border: 1px solid red;
+  padding: 0 10rpx;
+  margin-right: 30rpx;
+}
+.message .mesdown .price{
+  font-size: 25rpx;
+  color: red;
+  font-weight: bold;
+}
+.tab{
+  background: white;
+  margin-top: 30rpx;
+  display: flex;
+  justify-content: space-around;
+  padding: 40rpx 0;
+  font-size: 28rpx;
+}
+.detail{
+  background: white;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20rpx 0 60rpx 0;
+  height: 40vh;
+}
+.detail .videos{
+  width: 80%;
+  height: 350rpx;
+}
+.contains .parameters{
+  background: white;
+  padding: 0 70rpx;
+  height: 40vh;
+}
+.contains .parameters .parameter{
+  display: flex;
+  border-top: 1rpx solid rgb(221, 220, 220);
+  padding: 20rpx 0;
+  font-size: 28rpx;
+}
+.contains .parameters .parameter .para-tips{
+  margin-left: 20%;
+}
+.process{
+  height: 40vh;
+  background: white;
+}
+.process .buyprocess{
+  width: 80%;
+  height: 400rpx;
+  background: rgb(190, 189, 189);
+  border:1rpx solid #333;
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: 20rpx;
+  text-align: center;
+  line-height: 400rpx;
+}

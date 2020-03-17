@@ -1,0 +1,10 @@
+{
+  "navigationBarBackgroundColor": "#FF5151",
+  "backgroundColor": "#FF5151",
+  "navigationBarTextStyle": "white",
+  "navigationBarTitleText": "",
+  "usingComponents": {
+    "phone":"../../components/phone/phone"
+  }
+  
+}

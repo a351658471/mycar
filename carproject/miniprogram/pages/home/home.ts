@@ -1,0 +1,11 @@
+Page({
+  data:{
+      src:"",
+      name:"张张总",
+      iconSrc:"../../assets/img/huang.png",
+      trends:0,
+      follow:0,
+      fans:0,
+      integral:100
+  }
+})

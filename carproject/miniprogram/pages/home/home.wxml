@@ -1,0 +1,40 @@
+<!--miniprogram/pages/home/home.wxml-->
+<view class="wrap">
+  <view class="heads">
+    <view class="head">
+        <image class="headImg">{{src}}</image>
+        <text class="name">{{name}}</text>
+        <image class="headIcon" src="{{iconSrc}}"></image>
+    </view>
+     <view class="infors">
+      <view class="infor">动态 {{trends}}</view>
+      <view class="infor">关注 {{follow}}</view>
+      <view class="infor">粉丝 {{fans}}</view>
+    </view>
+  </view>
+  <view class="contain">
+    <view class="sign">积分 <text class="signword">{{integral}}</text></view>
+    <button class="signBtn" size="mini">签到</button>
+  </view>
+  <view class="myserve">
+    <view class="serve">我的服务</view>
+    <view class="personal">
+      <view class="person">
+        <image class="Imgs" src="../../assets/img/message.png"></image>
+        <view class="tx">个人信息</view>
+      </view>
+      <view class="person">
+        <image class="Imgs" src="../../assets/img/gift.png"></image>
+        <view class="tx">积分奖励</view>
+      </view>
+      <view class="person">
+        <image class="Imgs" src="../../assets/img/xin.png"></image>
+        <view class="tx">建议反馈</view>
+      </view>
+    </view>
+    <view class="introduces">
+      <view class="introduce">简介</view>
+    </view>
+  </view>
+  <phone />
+</view>

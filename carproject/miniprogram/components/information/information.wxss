@@ -1,0 +1,26 @@
+/* component/information/information.wxss */
+.information{
+  width: 100%;
+  padding: 0 35rpx;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.information .time{
+  font-size: 25rpx;
+}
+.information .searchs{
+  display: flex;
+}
+.information .searchs .search{
+  display: flex;
+  align-items: center;
+  margin-left: 20rpx;
+  font-size: 25rpx;
+}
+.information .searchs .search .dian{
+  width: 28rpx;
+  height: 28rpx;
+  padding: 0 8rpx;
+}

@@ -1,0 +1,103 @@
+/* miniprogram/pages/home/home.wxss */
+.wrap{
+  background-color: rgb(245, 245, 245);
+}
+.heads{
+  background: #FF5151;
+
+}
+.head{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.head .headImg{
+  width: 110rpx;
+  height: 110rpx;
+  border-radius: 50%;
+  background-color: white;
+  margin-left: 70rpx;
+}
+.head .name{
+  font-size: 40rpx;
+  color: white;
+  font-family: "黑体";
+}
+.head .headIcon{
+  width: 55rpx;
+  height: 55rpx;
+}
+.head .headImg,.head .name{
+  margin-right: 20rpx;
+}
+.heads .infors{
+  display: flex;
+  font-size: 28rpx;
+  padding: 45rpx 75rpx;
+}
+.heads .infors .infor {
+  margin-right: 37rpx;
+}
+.contain{
+  width: 100%;
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 30rpx;
+}
+.contain .sign{
+  margin-left: 40rpx;
+  flex: 1;
+}
+.contain .sign .signword{
+  font-weight: bold;
+  margin-left: 20rpx;
+}
+.contain .signBtn{
+  background-color: rgba(221, 29, 29, 0.979);
+  color: white;
+  font-weight: normal;
+}
+.myserve{
+  background-color: white;
+  margin-top: 20rpx;
+}
+.myserve .serve{
+  font-size: 34rpx;
+  font-family: "黑体";
+  padding: 40rpx 30rpx;
+  
+}
+.myserve .personal{
+  display: flex;
+  justify-content: space-around;
+}
+.myserve .personal .person{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.myserve .personal .person .tx{
+  margin-top: 30rpx;
+  font-size: 30rpx;
+  color: #666;
+}
+.myserve .personal .Imgs{
+  width: 70rpx;
+  height: 70rpx;
+}
+.myserve .introduces{
+  width: 100%;
+  padding:30rpx 0;
+}
+.myserve .introduce{
+  width: 80%;
+  height: 400rpx;
+  background: rgb(226, 225, 225);
+  border: 1px solid #777;
+  margin: 60rpx auto;
+  text-align: center;
+  line-height: 400rpx;
+}
