@@ -1,8 +1,0 @@
-/* component/phone/phone.wxss */
-.phoneImg{
-  width: 80rpx;
-  height: 80rpx;
-  position: fixed;
-  bottom: 20rpx;
-  right: 20rpx;
-}

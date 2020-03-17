@@ -1,7 +1,0 @@
-{
-  "navigationBarTitleText": "",
-  "usingComponents": {
-    "w_swiper": "../../components/w_swiper/w_swiper",
-    "phone": "../../components/phone/phone"
-  }
-}

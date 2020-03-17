@@ -1,2 +1,0 @@
-<!--component/phone/phone.wxml-->
-  <image catchtap="phone" class="phoneImg" src="../../assets/img/phone.png"></image>
