@@ -10,7 +10,7 @@ Page({
     requestResult: ''
   },
 
-  onLoad: function() {
+  onLoad: function () {
     if (!wx.cloud) {
       wx.redirectTo({
         url: '../chooseLib/chooseLib',
@@ -25,10 +25,7 @@ Page({
           // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
           wx.getUserInfo({
             success: res => {
-              this.setData({
-                avatarUrl: res.userInfo.avatarUrl,
-                userInfo: res.userInfo
-              })
+              this.toLogin(res.userInfo)
             }
           })
         }
@@ -36,35 +33,179 @@ Page({
     })
   },
 
-  onGetUserInfo: function(e) {
+  onGetUserInfo: function (e) {
     if (!this.data.logged && e.detail.userInfo) {
-      this.setData({
-        logged: true,
-        avatarUrl: e.detail.userInfo.avatarUrl,
-        userInfo: e.detail.userInfo
-      })
+      this.toLogin(e.detail.userInfo)
     }
   },
+  toLogin: function (userInfo) {
+    console.log(userInfo)
+    this.setData({
+      logged: true,
+      avatarUrl: userInfo.avatarUrl,
+      userInfo: userInfo
+    })
 
-  onGetOpenid: function() {
     // 调用云函数
     wx.cloud.callFunction({
       name: 'login',
-      data: {},
+      data: {
+        wxUserInfo: userInfo
+      },
       success: res => {
-        console.log('[云函数] [login] user openid: ', res.result.openid)
-        app.globalData.openid = res.result.openid
-        wx.navigateTo({
-          url: '../userConsole/userConsole',
-        })
+        console.log('[云函数] [login] : ', res.result)
       },
       fail: err => {
         console.error('[云函数] [login] 调用失败', err)
-        wx.navigateTo({
-          url: '../deployFunctions/deployFunctions',
-        })
       }
     })
+  },
+  onGetOpenid: function () {
+
+
+
+    // // 调用云函数
+    // wx.cloud.callFunction({
+    //   name: 'shop',
+    //   data: {
+    //     action: "itemList",
+    //     shopid: "f841fd285e71d6900011f3b713c5a83f",
+    //     page: 1,
+    //     perpage: 5,
+    //     istotal: 1
+    //   },
+    //   success: res => {
+    //     console.log('[云函数] [shop] : ', res.result)
+    //   },
+    //   fail: err => {
+    //     console.error('[云函数] [shop] 调用失败', err)
+    //   }
+    // })
+
+    
+    //  // 调用云函数
+    //  wx.cloud.callFunction({
+    //   name: 'shop',
+    //   data: {
+    //     action: "userQuery",
+    //     shopid: "f841fd285e71d6900011f3b713c5a83f",
+    //     keyWord: "五"
+    //   },
+    //   success: res => {
+    //     console.log('[云函数] [shop] : ', res.result)
+    //   },
+    //   fail: err => {
+    //     console.error('[云函数] [shop] 调用失败', err)
+    //   }
+    // })
+    
+    
+    // 调用云函数
+    //  wx.cloud.callFunction({
+    //   name: 'shop',
+    //   data: {
+    //     action: "swiperEdit",
+    //     shopid: "f841fd285e71d6900011f3b713c5a83f",
+    //     swipers: ["1","3"]
+    //   },
+    //   success: res => {
+    //     console.log('[云函数] [shop] : ', res.result)
+    //   },
+    //   fail: err => {
+    //     console.error('[云函数] [shop] 调用失败', err)
+    //   }
+    // })
+
+
+    // // 调用云函数
+    // wx.cloud.callFunction({
+    //   name: 'shop',
+    //   data: {
+    //     action: "masterAdd",
+    //     shopid: "f841fd285e71d6900011f3b713c5a83f",
+    //     openid: "oGsi55es4lZjF5SC2Ldx4ELxNnz0"
+    //   },
+    //   success: res => {
+    //     console.log('[云函数] [shop] : ', res.result)
+    //   },
+    //   fail: err => {
+    //     console.error('[云函数] [shop] 调用失败', err)
+    //   }
+    // })
+
+    // // 调用云函数
+    // wx.cloud.callFunction({
+    //   name: 'shop',
+    //   data: {
+    //     action:"masterList",
+    //     shopid: "f841fd285e71d6900011f3b713c5a83f",
+    //   },
+    //   success: res => {
+    //     console.log('[云函数] [shop] : ', res.result)
+    //   },
+    //   fail: err => {
+    //     console.error('[云函数] [shop] 调用失败', err)
+    //   }
+    // })
+
+    // // 调用云函数
+    // wx.cloud.callFunction({
+    //   name: 'shop',
+    //   data: {
+    //     action:"shopList",
+    //   },
+    //   success: res => {
+    //     console.log('[云函数] [shop] : ', res.result)
+    //   },
+    //   fail: err => {
+    //     console.error('[云函数] [shop] 调用失败', err)
+    //   }
+    // })
+
+
+    // // 调用云函数
+    // wx.cloud.callFunction({
+    //   name: 'shop_query',
+    //   data: {
+    //     data:{
+    //       own:0
+    //     }
+    //   },
+    //   success: res => {
+    //     console.log('[云函数] [shop_add] shopid: ', res.result)
+    //   },
+    //   fail: err => {
+    //     console.error('[云函数] [shop_add] 调用失败', err)
+    //   }
+    // })
+
+    // // 调用云函数
+    // wx.cloud.callFunction({
+    //   name: 'shop_add',
+    //   data: {
+    //     shopInfo:{
+    //       name: "汽车俱乐部"
+    //     }
+    //   },
+    //   success: res => {
+    //     console.log('[云函数] [shop_add] shopid: ', res.result.shopid)
+    //   },
+    //   fail: err => {
+    //     console.error('[云函数] [shop_add] 调用失败', err)
+    //   }
+    // })
+
+    // // 调用云函数
+    // wx.cloud.callFunction({
+    //   name: 'login',
+    //   data: {},
+    //   success: res => {
+    //     console.log('[云函数] [login] : ', res.result)
+    //   },
+    //   fail: err => {
+    //     console.error('[云函数] [login] 调用失败', err)
+    //   }
+    // })
   },
 
   // 上传图片
@@ -81,7 +222,7 @@ Page({
         })
 
         const filePath = res.tempFilePaths[0]
-        
+
         // 上传图片
         const cloudPath = 'my-image' + filePath.match(/\.[^.]+?$/)[0]
         wx.cloud.uploadFile({
@@ -93,7 +234,7 @@ Page({
             app.globalData.fileID = res.fileID
             app.globalData.cloudPath = cloudPath
             app.globalData.imagePath = filePath
-            
+
             wx.navigateTo({
               url: '../storageConsole/storageConsole'
             })
