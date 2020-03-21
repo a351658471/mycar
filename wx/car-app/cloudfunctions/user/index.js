@@ -9,6 +9,8 @@ cloud.init({
   env: cloud.DYNAMIC_CURRENT_ENV
 })
 
+const db = cloud.database()
+
 /**
  * 这个示例将经自动鉴权过的小程序用户 openid 返回给小程序端
  * 
@@ -16,13 +18,26 @@ cloud.init({
  * 
  */
 exports.main = (event, context) => {
-  // 获取 WX Context (微信调用上下文)，包括 OPENID、APPID、及 UNIONID（需满足 UNIONID 获取条件）等信息
+  switch (event.action) {
+    case 'userLogin': {
+      return userLogin(event)
+    }
+    case 'userQuery': {
+      return userQuery(event)
+    }
+    default: {
+      return
+    }
+  }
+}
+
+// 用户登录
+async function userLogin(event) {
   let {
-    userInfo,
-    wxUserInfo, // 商店信息
+    wxUserInfo, // 微信端用户信息
   } = event
   const wxContext = cloud.getWXContext()
-  const db = cloud.database()
+ 
   let data = {
     nickName: wxUserInfo.nickName,
     avatarUrl: wxUserInfo.avatarUrl,
@@ -69,3 +84,15 @@ exports.main = (event, context) => {
   })
 }
 
+// 用户查询
+async function userQuery(event) {
+  let { keyWord } = event
+  return db.collection('user').where({
+    nickName: {
+      $regex: ".*" + keyWord + ".*",
+      $options: 'i'
+    }
+  }).get().then(res => {
+    return res
+  })
+}

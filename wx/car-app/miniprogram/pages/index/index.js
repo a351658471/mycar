@@ -48,44 +48,116 @@ Page({
 
     // 调用云函数
     wx.cloud.callFunction({
-      name: 'login',
+      name: 'user',
       data: {
+        action: "userLogin",
         wxUserInfo: userInfo
       },
       success: res => {
-        console.log('[云函数] [login] : ', res.result)
+        console.log('[云函数] [user.userLogin] : ', res.result)
       },
       fail: err => {
-        console.error('[云函数] [login] 调用失败', err)
+        console.error('[云函数] [user.userLogin] 调用失败', err)
       }
     })
   },
   onGetOpenid: function () {
 
-
-
     // // 调用云函数
     // wx.cloud.callFunction({
-    //   name: 'shop',
+    //   name: 'item',
     //   data: {
     //     action: "itemList",
-    //     shopid: "f841fd285e71d6900011f3b713c5a83f",
+    //     istotal: 0,   //  返回总数
+    //     // 查询条件
+    //     condition:{
+    //       shopId: "f841fd285e71d6900011f3b713c5a83f",
+    //       // 名称模糊搜素
+    //       // name: {
+    //       //   $regex: ".*13.*",
+    //       //   $options: 'i'
+    //       // }
+    //     },
+    //     // status:[0,1,2],    // 商品状态 在售 已售 未上架 
+    //     // 分页
     //     page: 1,
     //     perpage: 5,
-    //     istotal: 1
+    //     // 是否排序
+    //     order:0
     //   },
     //   success: res => {
-    //     console.log('[云函数] [shop] : ', res.result)
+    //     console.log('[云函数] [item.itemList] : ', res.result)
     //   },
     //   fail: err => {
-    //     console.error('[云函数] [shop] 调用失败', err)
+    //     console.error('[云函数] [item.itemList] 调用失败', err)
     //   }
     // })
 
-    
+    // // 调用云函数
+    // wx.cloud.callFunction({
+    //   name: 'item',
+    //   data: {
+    //     action: "itemRemove",
+    //     shopid: "f841fd285e71d6900011f3b713c5a83f",
+    //     ids: ["ae7e55b35e758c9600135dd8065f1744"],
+    //   },
+    //   success: res => {
+    //     console.log('[云函数] [item.itemRemove] : ', res.result)
+    //   },
+    //   fail: err => {
+    //     console.error('[云函数] [item.itemRemove] 调用失败', err)
+    //   }
+    // })
+
+
+    //  // 调用云函数
+    // wx.cloud.callFunction({
+    //   name: 'item',
+    //   data: {
+    //     action: "itemEdit",
+    //     shopid: "f841fd285e71d6900011f3b713c5a83f",
+    //     item: {
+    //       _id:"ae7e55b35e758c9600135dd8065f1744",
+    //       name: "911",    // 商品名
+    //       price: 666666,   // 价格
+    //       stock: 1,   // 库存
+    //       data: "{}",     // 数据
+    //     }
+    //   },
+    //   success: res => {
+    //     console.log('[云函数] [item.itemEdit] : ', res.result)
+    //   },
+    //   fail: err => {
+    //     console.error('[云函数] [item.itemEdit] 调用失败', err)
+    //   }
+    // })
+
+    // // 调用云函数
+    // wx.cloud.callFunction({
+    //   name: 'item',
+    //   data: {
+    //     action: "itemAdd",
+    //     shopid: "f841fd285e71d6900011f3b713c5a83f",
+    //     item: {
+    //       name: "911",    // 商品名
+    //       price: 888888,  // 价格
+    //       stock: 1,       // 库存
+    //       sort:1002,      // 排序 值越大排越前面
+    //       data: "{}",     // 数据
+    //     }
+    //   },
+    //   success: res => {
+    //     console.log('[云函数] [item.itemAdd] : ', res.result)
+    //   },
+    //   fail: err => {
+    //     console.error('[云函数] [item.itemAdd] 调用失败', err)
+    //   }
+    // })
+
+
     //  // 调用云函数
     //  wx.cloud.callFunction({
-    //   name: 'shop',
+    //   name: 'user',
     //   data: {
     //     action: "userQuery",
     //     shopid: "f841fd285e71d6900011f3b713c5a83f",
@@ -98,8 +170,8 @@ Page({
     //     console.error('[云函数] [shop] 调用失败', err)
     //   }
     // })
-    
-    
+
+
     // 调用云函数
     //  wx.cloud.callFunction({
     //   name: 'shop',

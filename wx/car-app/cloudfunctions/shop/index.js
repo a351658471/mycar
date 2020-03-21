@@ -20,9 +20,6 @@ exports.main = async (event, context) => {
     case 'masterRemove': {
       return superMaster(event)
     }
-    case 'userQuery': {
-      return superMaster(event)
-    }
     case 'swiperEdit': {
       return swiperEdit(event)
     }
@@ -76,9 +73,6 @@ async function superMaster(event) {
       case 'masterRemove': {
         return masterRemove(event, shop)
       }
-      case 'userQuery': {
-        return userQuery(event)
-      }
       default: {
         return
       }
@@ -130,19 +124,6 @@ async function masterRemove(event, shop) {
       return res
     })
   }
-}
-
-// 用户查询
-async function userQuery(event) {
-  let { keyWord } = event
-  return db.collection('user').where({
-    nickName: {
-      $regex: ".*" + keyWord + ".*",
-      $options: 'i'
-    }
-  }).get().then(res => {
-    return res
-  })
 }
 
 // 轮播图编辑
