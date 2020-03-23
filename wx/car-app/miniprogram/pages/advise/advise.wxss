@@ -11,6 +11,15 @@
     background: #FFFFFF;
     padding: 40rpx 36rpx;  
 }
-.advisemessage textarea ::placeholder{
-    color: #CCCCCC;
+.adviseBtn{
+  width: 100%;
+  position: absolute;
+  bottom: 44rpx;
+}
+.btn{
+    height: 88rpx;
+    color: #FFFFFF;
+    font-size: 36rpx;
+    font-weight: normal;
+    background: linear-gradient(to right,#FD7493,#FE2A45)
 }

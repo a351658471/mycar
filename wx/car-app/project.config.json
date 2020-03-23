@@ -45,15 +45,26 @@
 				},
 				{
 					"id": -1,
+<<<<<<< HEAD
 					"name": "pages/userManage/userManage",
 					"pathName": "pages/userManage/userManage",
+=======
+					"name": "pages/index/index",
+					"pathName": "pages/index/index",
+>>>>>>> ea74f43b4a1a2b4871bcacc3f3ee55f02685d483
 					"query": "",
 					"scene": null
 				},
 				{
+<<<<<<< HEAD
 					"id": -1,
 					"name": "pages/index/index",
 					"pathName": "pages/index/index",
+=======
+					"id": 2,
+					"name": "pages/mypage/mypage",
+					"pathName": "pages/mypage/mypage",
+>>>>>>> ea74f43b4a1a2b4871bcacc3f3ee55f02685d483
 					"query": "",
 					"scene": null
 				},
@@ -61,6 +72,17 @@
 					"id": -1,
 					"name": "pages/demo/demo",
 					"pathName": "pages/demo/demo",
+<<<<<<< HEAD
+=======
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/advise/advise",
+					"pathName": "pages/advise/advise",
+					"query": "",
+>>>>>>> ea74f43b4a1a2b4871bcacc3f3ee55f02685d483
 					"scene": null
 				}
 			]
