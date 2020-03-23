@@ -40,11 +40,7 @@ Page({
   },
   toLogin: function (userInfo) {
     console.log(userInfo)
-    this.setData({
-      logged: true,
-      avatarUrl: userInfo.avatarUrl,
-      userInfo: userInfo
-    })
+   
 
     // 调用云函数
     wx.cloud.callFunction({
@@ -54,6 +50,11 @@ Page({
         wxUserInfo: userInfo
       },
       success: res => {
+        this.setData({
+          logged: true,
+          avatarUrl: userInfo.avatarUrl,
+          userInfo: userInfo
+        })
         console.log('[云函数] [user.userLogin] : ', res.result)
       },
       fail: err => {

@@ -5,6 +5,9 @@ Page({
    * 页面的初始数据
    */
   data: {
+    avatarUrl: '../../assets/mypage/mypage-head.png',
+    userInfo: {},
+    logged: false,
     signNum:100,
     control:false
 
@@ -20,7 +23,54 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    // 获取用户信息
+    wx.getSetting({
+      success: res => {
+        if (res.authSetting['scope.userInfo']) {
+          // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
+          wx.getUserInfo({
+            success: res => {
+              this.toLogin(res.userInfo)
+            }
+          })
+        }
+      }
+    })
+  },
+  onGetUserInfo: function (e) {
+    if (!this.data.logged && e.detail.userInfo) {
+      this.toLogin(e.detail.userInfo)
+    }
+  },
+  toLogin: function (userInfo) {
+    console.log(userInfo)
 
+
+    // 调用云函数
+    wx.cloud.callFunction({
+      name: 'user',
+      data: {
+        action: "userLogin",
+        wxUserInfo: userInfo
+      },
+      success: res => {
+        console.log('[云函数] [user.userLogin] : ', res.result)
+        this.setData({
+          logged: true,
+          avatarUrl: userInfo.avatarUrl,
+          userInfo: res.result.data
+        })
+        
+      },
+      fail: err => {
+        console.error('[云函数] [user.userLogin] 调用失败', err)
+      }
+    })
+  },
+  adviseBtn:function(){
+      wx.navigateTo({
+        url: '/pages/advise/advise',
+      })
   },
 
   /**

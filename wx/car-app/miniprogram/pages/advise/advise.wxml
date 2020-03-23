@@ -3,6 +3,10 @@
   <text>反馈信息</text>
 </view>
 <view class="advisemessage">
-  <textarea placeholder="请填写反馈信息"></textarea>
+  <textarea placeholder="请填写反馈信息" 
+            placeholder-style="color:#CCCCCC;" 
+            focus="true"></textarea>
 </view>
-<button></button>
+<view class="adviseBtn">
+  <button style="width:680rpx" class="btn">确定</button>
+</view>
