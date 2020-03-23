@@ -1,5 +1,7 @@
 {
   "pages": [
+    "pages/advise/advise",
+    "pages/mypage/mypage",
     "pages/index/index",
     "pages/openapi/openapi",
     "pages/openapi/serverapi/serverapi",

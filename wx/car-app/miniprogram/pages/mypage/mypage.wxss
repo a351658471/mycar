@@ -1,0 +1,106 @@
+/* mypage.wxss */
+.wrap{
+    display: flex;
+    flex-direction: column;
+}
+.header{
+    background: #FA4154;
+    box-sizing: border-box;
+}
+.header .head{
+    display: flex;
+    align-items: center;
+}
+.header .head .headImg{
+    width: 100rpx;
+    height: 100rpx;
+    margin-left: 62rpx;
+}
+.header .head .headName{
+    font-size: 36rpx;
+    color: #FFFFFF;
+    margin-left: 28rpx;
+}
+.header .head .headIcon{
+    width: 44rpx;
+    height: 34rpx;
+    margin-left: 14rpx;
+}
+.header .infors{
+    display: flex;
+    font-size: 24rpx;
+    box-sizing: border-box;
+    padding: 48rpx 0 48rpx 62rpx;
+}
+.header .infors .infor{
+    margin-right: 18rpx;
+}
+.header .infors .infor text{
+    margin-right: 8rpx;
+}
+.signcontain{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 36rpx 20rpx 36rpx 62rpx;
+    font-size: 28rpx;
+    background-color: #FFFFFF;
+}
+.signcontain .sign{
+    flex: 1;
+}
+.signcontain .sign .signNum{
+    font-weight: bold;
+    margin-left: 18rpx;
+}
+.signcontain button{
+    width: 120rpx;
+    height: 60rpx;
+    background-color: #EA5750;
+    font-size: 28rpx;
+    color: #FFFFFF;
+    font-weight: normal;
+}
+.middleline{
+    width: 100%;
+    height: 16rpx;
+    background: rgba(247,247,247,1);
+}
+.myserve{
+    background: #FFFFFF;
+    
+}
+.myserve .myservetitle{
+    font-size: 32rpx;
+    color: #333333;
+    font-weight: bold;
+    padding: 46rpx 30rpx;
+}
+.myserve .myserveItem{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+.myserve .myserveItem .Item{
+    width: 33.3%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.myserve .myserveItem .Item image{
+    width: 50rpx;
+    height: 50rpx;
+}
+.myserve .myserveItem .Item text{
+    font-size: 28rpx;
+    color: #686666;
+    padding: 38rpx 0;
+}
+.phoneImg{
+    width: 76rpx;
+    height: 76rpx;
+    position: fixed;
+    bottom: 50rpx;
+    right: 26rpx;
+}

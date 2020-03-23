@@ -1,0 +1,64 @@
+<view class="wrap">
+<!-- 头部 -->
+  <view class="header">
+    <view class="head">
+        <image class="headImg" src="../../images/mypage-head.png" mode="false"></image>
+        <text class="headName">张依然</text>
+        <image class="headIcon" src="../../images/mypage-vipicon.png"/>
+    </view>
+    <view class="infors">
+      <view class="infor">
+        <text>动态</text>
+        <text>10</text>
+      </view>
+      <view class="infor">
+        <text>关注</text>
+        <text>12</text>
+      </view>
+      <view class="infor">
+        <text>粉丝</text>
+        <text>3</text>
+      </view>
+    </view>
+  </view>
+  <!-- 签到积分 -->
+  <view class="signcontain">
+    <view class="sign">
+      <text>积分</text>
+      <text class="signNum">{{signNum}}</text>
+    </view>
+    <button size="mini" disabled="{{control}}" catchtap="signButton">签到</button>
+  </view>
+  <view class="middleline"></view>
+  <!-- 我的服务 -->
+  <view class="myserve">
+      <view class="myservetitle">我的服务</view>
+      <view class="myserveItem">
+          <view class="Item">
+              <image src="../../images/mypage-personal.png" />
+              <text>个人信息</text>
+          </view>
+          <view class="Item">
+              <image src="../../images/mypage-personal.png" />
+              <text>积分奖励</text>
+          </view>
+          <view class="Item">
+              <image src="../../images/mypage-personal.png" />
+              <text>建议反馈</text>
+          </view>
+          <view class="Item">
+              <image src="../../images/mypage-personal.png" />
+              <text>车辆管理</text>
+          </view>
+          <view class="Item">
+              <image src="../../images/mypage-personal.png" />
+              <text>首页动图</text>
+          </view>
+          <view class="Item">
+              <image src="../../images/mypage-personal.png" />
+              <text>账号管理</text>
+          </view>
+      </view>
+  </view>
+  <image class="phoneImg" catchtap="phone"  src="../../images/mypage-phone.png"></image>
+</view>
