@@ -1,0 +1,8 @@
+<!--pages/advise/advise.wxml-->
+<view class="advisetitle">
+  <text>反馈信息</text>
+</view>
+<view class="advisemessage">
+  <textarea placeholder="请填写反馈信息"></textarea>
+</view>
+<button></button>

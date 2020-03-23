@@ -1,0 +1,40 @@
+{
+  "pages": [
+    "pages/advise/advise",
+    "pages/mypage/mypage",
+    "pages/index/index",
+    "pages/index/carDetail/carDetail",
+    "pages/demo/demo",
+    "pages/openapi/openapi",
+    "pages/openapi/serverapi/serverapi",
+    "pages/openapi/callback/callback",
+    "pages/openapi/cloudid/cloudid",
+    "pages/im/im",
+    "pages/im/room/room"
+  ],
+  "window": {
+    "backgroundColor": "#F6F6F6",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#F6F6F6",
+    "navigationBarTitleText": "车之居",
+    "navigationBarTextStyle": "black"
+  },
+"tabBar": {
+  "list": [
+    {
+    "pagePath": "pages/index/index",
+    "text": "买车",
+    "iconPath": "/assets/car.png",
+    "selectedIconPath": "/assets/car_active.png"
+  },
+  {
+    "pagePath":"pages/demo/demo",
+    "text":"我的",
+    "iconPath":"/assets/me.png",
+    "selectedIconPath": "/assets/me_active.png"
+  }
+  ]
+},
+  "sitemapLocation": "sitemap.json",
+  "style": "v2"
+}

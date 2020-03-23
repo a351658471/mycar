@@ -1,0 +1,14 @@
+<view class='outBox'>
+  <scroll-view class='crollView'> 
+
+  <!-- 轮播图 -->
+  <view>
+    <my-swiper imgList="{{imgList}}" isDots="{{true}}"></my-swiper>
+  </view>
+    <!-- tab -->
+  <my-ltab bind:tabClick="tabClick"></my-ltab>
+
+    <!-- 车列表 -->
+  <my-carslist carData="{{isNew?newcar:oldcar}}" bind:caritemClick="caritemClick"></my-carslist>
+  </scroll-view>
+</view>

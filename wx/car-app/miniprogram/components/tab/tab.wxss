@@ -1,0 +1,27 @@
+.myTabCtrl{
+  position: relative;
+  padding-top:1.2rem;
+  margin: 1rem auto 0 auto;
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  font-size: 16px;
+}
+.detail{
+  height:4rem;
+  background: #fff;
+}
+.active{
+  position: relative;
+}
+.active::after{
+  position:absolute;
+  content:'';
+  width:30px;
+  height:4px;
+  background:red;
+  bottom:-0.5rem;
+  left:1rem;
+  border-radius:25%
+  
+}

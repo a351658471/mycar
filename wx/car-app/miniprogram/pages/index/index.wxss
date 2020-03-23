@@ -1,0 +1,31 @@
+page{
+  background: #F5F5F5;
+}
+.topNavigate{
+  padding-left: 1rem;
+  display: flex;
+  height:2.5rem;
+  justify-content: space-around;
+  line-height: 2rem;
+  width:60%
+
+}
+.top{
+  text-align: center;
+}
+
+
+/* .current text{
+  font-size: 16px;
+  font-weight: bolder;
+  border-bottom: 3px solid red
+  
+} */
+/* .current ::before{
+  content: '';
+  display: block;
+  width: 6px;
+  height:3px;
+  background: red;
+  border-radius: 10px;
+} */
