@@ -70,5 +70,10 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  jumpToUserMg(){
+    wx.navigateTo({
+      url: '/pages/userManage/userManage',
+    })
   }
 })
