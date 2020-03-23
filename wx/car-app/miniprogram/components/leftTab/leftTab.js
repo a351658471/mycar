@@ -31,13 +31,12 @@ Component({
   * 组件的方法列表
   */
   methods: {
-    tabClick: function (e){
+    tabClick(e){
       this.setData({
         tabCurrent: e.currentTarget.dataset.index
       })
-
-      this.triggerEvent('tabClick', {
-        tabCurrent: this.data.tabCurrent
+      this.triggerEvent('tabClick',{
+        tabCurrent:this.data.tabCurrent
       })
     }
   }

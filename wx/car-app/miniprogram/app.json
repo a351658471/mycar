@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/advise/advise",
     "pages/mypage/mypage",
+    "pages/advise/advise",
     "pages/index/index",
     "pages/index/carDetail/carDetail",
     "pages/demo/demo",
@@ -10,7 +10,8 @@
     "pages/openapi/callback/callback",
     "pages/openapi/cloudid/cloudid",
     "pages/im/im",
-    "pages/im/room/room"
+    "pages/im/room/room",
+    "pages/userManage/userManage"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
@@ -19,22 +20,22 @@
     "navigationBarTitleText": "车之居",
     "navigationBarTextStyle": "black"
   },
-"tabBar": {
-  "list": [
-    {
-    "pagePath": "pages/index/index",
-    "text": "买车",
-    "iconPath": "/assets/car.png",
-    "selectedIconPath": "/assets/car_active.png"
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "买车",
+        "iconPath": "/assets/car.png",
+        "selectedIconPath": "/assets/car_active.png"
+      },
+      {
+        "pagePath": "pages/demo/demo",
+        "text": "我的",
+        "iconPath": "/assets/me.png",
+        "selectedIconPath": "/assets/me_active.png"
+      }
+    ]
   },
-  {
-    "pagePath":"pages/mypage/mypage",
-    "text":"我的",
-    "iconPath":"/assets/me.png",
-    "selectedIconPath": "/assets/me_active.png"
-  }
-  ]
-},
   "sitemapLocation": "sitemap.json",
   "style": "v2"
 }
