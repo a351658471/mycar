@@ -32,10 +32,17 @@
     color: #FFFFFF;
     margin-left: 28rpx;
 }
-.header .head .headIcon{
+/* .header .head .headIcon{
     width: 44rpx;
     height: 34rpx;
     margin-left: 14rpx;
+} */
+.header .head .noregist{
+    border: 1rpx solid #ffffff;
+    border-radius: 15rpx;
+    padding: 10rpx;
+    color: #ffffff;
+    font-size: 25rpx;
 }
 .header .infors{
     display: flex;

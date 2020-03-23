@@ -8,9 +8,12 @@ Page({
     avatarUrl: '../../assets/mypage/mypage-head.png',
     userInfo: {},
     logged: false,
-    signNum:100,
-    control:false
-
+    signNum:0,
+    control:false,
+    isregist:false,
+    trends:'-',
+    follow: '-',
+    fans: '-'
   },
 
   signButton:function(){
@@ -58,7 +61,12 @@ Page({
         this.setData({
           logged: true,
           avatarUrl: userInfo.avatarUrl,
-          userInfo: res.result.data
+          userInfo: res.result.data,
+          isregist:true,
+          trends: '0',
+          follow: '0',
+          fans: '0',
+          signNum: this.data.signNum + 10
         })
         
       },
