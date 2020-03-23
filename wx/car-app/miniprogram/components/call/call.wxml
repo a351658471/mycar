@@ -1,0 +1,6 @@
+<view class="callBox" bindtap="call">
+  <view class="icon">
+     <image src="{{callIcon}}" mode="scaleToFill"></image>
+  </view>
+    
+</view>

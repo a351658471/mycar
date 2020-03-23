@@ -1,0 +1,37 @@
+{
+  "id": "1653281",
+  "name": "weixinTest",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "1166151",
+      "name": "方向盘",
+      "font_class": "iconfontzhizuobiaozhun023150",
+      "unicode": "e698",
+      "unicode_decimal": 59032
+    },
+    {
+      "icon_id": "1314475",
+      "name": "我的",
+      "font_class": "daohanglan-05",
+      "unicode": "e639",
+      "unicode_decimal": 58937
+    },
+    {
+      "icon_id": "1820724",
+      "name": "车牌",
+      "font_class": "chepai",
+      "unicode": "e630",
+      "unicode_decimal": 58928
+    },
+    {
+      "icon_id": "6880620",
+      "name": "消息",
+      "font_class": "xiaoxi",
+      "unicode": "e61d",
+      "unicode_decimal": 58909
+    }
+  ]
+}

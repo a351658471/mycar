@@ -1,0 +1,71 @@
+<!--pages/home/home.wxml-->
+<view class='outbox'>
+
+<scroll-view scroll-y style='height:100%'>
+  <!-- 轮播图组件 -->
+  <my-swiper imgList="{{carData.imgList}}" isMyDots="{{true}}"></my-swiper>
+
+  <!-- 报价 -->
+  <view class='carDetail'>
+    <view class='detail-heard'>
+        <view class="heard-name">{{currentCar.carName}}</view>
+        <view class="heard-right">{{currentCar.isnew?'全新':'二手'}}</view>
+    </view>
+    <view class='detail-body'>
+      <view class='body-left'>
+          <block wx:for="{{currentCar.carParams}}">
+              <view class='left-item'>{{item}}</view>
+          </block>
+      </view>
+      <view class='body-right' style='color:#D0435A'>
+        ￥{{currentCar.price}}
+      </view>
+    </view>
+  </view>
+
+  <!-- tab -->
+  <my-tab tabList="{{tabList}}" bind:tabClick="tabClick"></my-tab>
+
+  <!-- detail -->
+  <view class="bottomBox">
+  <view wx:if="{{currentIndex == 0}}" style='background:#fff; width:100%'>
+    <view style='width:90%; height:170px; margin:0 auto'>
+      <image src='{{currentCar.describe}}' mode="scaleToFill" style='width:100%; height:170px'></image>
+    </view>
+    <view style='width:90%; margin:1rem auto; font-size:14px'>
+    {{currentCar.textDescribe}}
+    </view>
+  </view>
+
+
+    <view wx:elif="{{currentIndex == 1}}" style='width:100%; background:#fff'>
+    <view style='width:90%; margin:0 auto;border-top:1px solid #E8E5E9'>
+      <view wx:for="{{currentCar.carParams}}"  style='padding:0.5rem 0; border-bottom:1px solid #E8E5E9; font-size:14px;display: flex;'>
+            <view style='width:5rem'>
+              {{paramName[index]}}
+            </view>
+            <view>
+              {{item}}
+            </view>
+       </view>
+    </view>
+  </view>
+
+  <view wx:elif="{{currentIndex == 2}}" style='background:#fff; width:100%'>
+    <image src="{{currentCar.buyCarProcess}}"  mode="scaleToFill" style='width:100%; height:170px'></image>
+  </view>
+  </view>
+  </scroll-view>
+  <my-call class="callIcon" bind:call="call"></my-call>
+
+  <!-- call -->
+  <view class="backgournd" bindtap='chooseShare' wx:if="{{hideShare}}">
+    <view class="binner">
+      <view bind:tap="copyEvent" hover-class="hoverClass" hover-stay-time="100" style="height:15vw;line-height:15vw;border-bottom:1rpx solid #E9E6EA;border-radius:10px 10px 0 0;text-align:center">
+        186-5088-3333(微信同号)<i class="iconfont icon-ai-copy" style="margin-left:2vw"></i>
+      </view>
+      <view bind:tap="callEvent" hover-class="hoverClass" hover-stay-time="100" class="bitem"  style="border-bottom:1.5vw solid #E9E6EA">呼叫</view>
+      <view bindtap="backEvent" hover-class="hoverClass" hover-stay-time="100" class="bitem" >取消</view>
+    </view>
+</view>
+</view>
