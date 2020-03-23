@@ -1,0 +1,12 @@
+  <view class='detail'>
+    <view class='myTabCtrl'>
+       <block wx:for="{{tabList}}">
+        <view class="{{currentIndex == index? 'active' :''}}" bindtap='tabClick' data-index="{{index}}">{{item}}</view>
+       </block>
+    </view>
+    <view>
+      <!-- <block wx:for="{{msg}}">
+        <view>{{item}}</view>
+      </block> -->
+    </view>
+  </view>

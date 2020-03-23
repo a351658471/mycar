@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "my-swiper": "/components/mySwiper/mySwiper",
+    "my-tab": "/components/tab/tab",
+    "my-call":"/components/call/call"
+  }
+}

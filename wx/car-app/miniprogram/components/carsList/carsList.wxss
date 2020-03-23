@@ -1,0 +1,35 @@
+/* components/carsList/carsList.wxss */
+
+.carItem{
+  width: 100%;
+  background: #fff;
+  margin-bottom: 1rem;
+  display: flex;
+  border-radius: 15px
+}
+
+.carImg{
+  position: relative;
+  width: 60%;
+  height:140px;
+}
+
+.carImg image{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%)
+}
+
+.carMsg{
+  padding: 1rem 0.5rem;
+  width: 40%
+}
+
+.itemCars{
+  color: #DA3A4E;
+  border-radius: 5px;
+  border: 1.5px solid #DA3A4E;
+  padding: 1px 2.5px;
+  margin-right: 0.5rem;
+  font-weight: bolder
+}
