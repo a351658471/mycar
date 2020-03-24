@@ -61,12 +61,11 @@ App({
           },
           success: res => {
             console.log('[云函数] [shop] : ', res.result)
+            app.globalData.addListener(app.globalData.eventShopUpdate, ()=>{
+              console.log("获取商店信息", app.globalData.shop )
+            })
             app.globalData.shop = res.result.data[0]
             app.globalData.dispatchEvent(app.globalData.eventShopUpdate)
-
-            // app.globalData.addListener(app.globalData.eventShopUpdate, ()=>{
-            //   console.log("aaaaaaaaa")
-            // })
           },
           fail: err => {
             console.error('[云函数] [shop] 调用失败', err)
