@@ -156,20 +156,24 @@ Page({
     // })
 
 
-    //  // 调用云函数
-    //  wx.cloud.callFunction({
-    //   name: 'user',
-    //   data: {
-    //     action: "userQuery",
-    //     keyWord: "1596"
-    //   },
-    //   success: res => {
-    //     console.log('[云函数] [shop] : ', res.result)
-    //   },
-    //   fail: err => {
-    //     console.error('[云函数] [shop] 调用失败', err)
-    //   }
-    // })
+     // 调用云函数
+     wx.cloud.callFunction({
+      name: 'user',
+      data: {
+        action: "userQuery",
+        keyWord: "1596",
+                // 分页
+        page: 1,
+        perpage: 5,
+        shopid: "f841fd285e71d6900011f3b713c5a83f",
+      },
+      success: res => {
+        console.log('[云函数] [shop] : ', res.result)
+      },
+      fail: err => {
+        console.error('[云函数] [shop] 调用失败', err)
+      }
+    })
 
     // // 调用云函数
     // wx.cloud.callFunction({

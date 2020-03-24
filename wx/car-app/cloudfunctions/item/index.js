@@ -155,6 +155,7 @@ async function itemAdd(event) {
   //   stock: number,   // 库存
   //   data:string,     // 数据
   // }
+  item.creatime = Date.parse(new Date())
   return db.collection('item').add({
     data: item
   }).then(res => {
@@ -180,6 +181,7 @@ async function itemEdit(event) {
   // }
   let itemId = item._id
   delete item._id
+  item.updatetime = Date.parse(new Date())
   return db.collection('item').doc(itemId).update({
     data: item
   }).then(res => {
