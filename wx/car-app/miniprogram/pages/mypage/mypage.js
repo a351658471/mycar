@@ -8,8 +8,8 @@ Page({
     avatarUrl: '../../assets/mypage/mypage-head.png',
     userInfo: {},
     logged: false,
-    signNum:0,
-    control:false,
+    signNum:'-',
+    control:true,
     isregist:false,
     trends:'-',
     follow: '-',
@@ -63,10 +63,11 @@ Page({
           avatarUrl: userInfo.avatarUrl,
           userInfo: res.result.data,
           isregist:true,
+          control: false,
           trends: '0',
           follow: '0',
           fans: '0',
-          signNum: this.data.signNum + 10
+          signNum: '0'
         })
         
       },

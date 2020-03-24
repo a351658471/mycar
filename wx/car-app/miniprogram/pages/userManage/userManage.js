@@ -31,8 +31,8 @@ Page({
       }
     ],
     admin:[],
-    user:[]
-
+    user:[],
+    search:''
   },
 
   /**
@@ -41,11 +41,36 @@ Page({
   onLoad: function (options) {
     
   },
-
+  inputBind:function(e){
+      this.data.search = e.detail.value
+  },
+  search:function(e){
+    let i = this.data.search
+    // 调用云函数
+    wx.cloud.callFunction({
+      name: 'user',
+      data: {
+        action: "userQuery",
+        shopid: "f841fd285e71d6900011f3b713c5a83f",
+        keyWord: i
+        
+      },
+      success: res => {
+        console.log('[云函数] [shop] : ', res.result);
+        this.setData({
+            
+        })
+      },
+      fail: err => {
+        console.error('[云函数] [shop] 调用失败', err)
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
+     
     
     // // 调用云函数
     // wx.cloud.callFunction({
