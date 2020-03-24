@@ -11,7 +11,7 @@ Page({
     avatarUrl: '../../assets/mypage/mypage-head.png',
     userInfo: {},
     logged: false,
-    signNum: '-',
+    signNum: 0,
     control: true,
     isregist: false,
     trends: '-',
@@ -20,7 +20,6 @@ Page({
     menu_personal: {
       name: "个人信息",
       icon: "mypage-personal.png",
-      link: "111"
     },
     menu_reward: {
       name: "积分奖励",
@@ -133,7 +132,7 @@ Page({
           trends: '0',
           follow: '0',
           fans: '0',
-          signNum: '0'
+          signNum: 0
         })
 
       },

@@ -38,7 +38,7 @@ App({
             callbacks.splice(idx, 1)
           }
         }
-       
+
       },
       dispatchEvent:function(event){
         let callbacks = app.globalData.event[event]

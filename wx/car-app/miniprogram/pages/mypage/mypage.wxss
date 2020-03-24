@@ -37,12 +37,15 @@
     height: 34rpx;
     margin-left: 14rpx;
 } */
-.header .head .noregist{
+.header .head .noregist button{
+    width: 140rpx;
+    height: 65rpx;
+    padding: 5rpx;
     border: 1rpx solid #ffffff;
     border-radius: 15rpx;
-    padding: 10rpx;
     color: #ffffff;
     font-size: 25rpx;
+    line-height: 50rpx;
 }
 .header .infors{
     display: flex;
@@ -95,8 +98,7 @@
 }
 .myserve .myserveItem{
     width: 100%;
-    display: flex;
-    justify-content: space-around;
+    display: flex; 
     flex-wrap: wrap;
 }
 .myserve .myserveItem .Item{
@@ -106,13 +108,13 @@
     align-items: center;
 }
 .myserve .myserveItem .Item image{
-    width: 50rpx;
-    height: 50rpx;
+    width: 65rpx;
+    height: 65rpx;
 }
 .myserve .myserveItem .Item text{
     font-size: 28rpx;
     color: #686666;
-    padding: 38rpx 0;
+    padding: 38rpx 0 80rpx 0;
 }
 .phoneImg{
     width: 76rpx;
