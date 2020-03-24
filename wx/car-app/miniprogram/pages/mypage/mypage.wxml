@@ -2,10 +2,15 @@
 	<!-- 头部 -->
 	<view class="header">
 		<view class="head">
-			<button open-type="getUserInfo" bindgetuserinfo="onGetUserInfo" class="userinfo-avatar" style="background-image: url({{avatarUrl}})" size="default"></button>
+          <button open-type="getUserInfo" 
+                  bindgetuserinfo="onGetUserInfo" 
+                  class="userinfo-avatar" 
+                  style="background-image: url({{avatarUrl}})" 
+                  size="default">
+    </button>
 			<text class="headName">{{userInfo.nickName}}</text>
 			<view class="noregist" hidden="{{isregist}}">
-				<text>登录/注册</text>
+				 <button open-type="getUserInfo" bindgetuserinfo="onGetUserInfo" size="mini" hover-class="none">登录/注册</button>
 			</view>
 			<!-- <image class="headIcon" src="../../assets/mypage/mypage-vipicon.png"/> -->
 		</view>

@@ -56,10 +56,10 @@ Page({
         action: "userQuery",
         shopid: appShop.globalData.shop._id,
         keyWord: i,
-        
       },
       success: res => {
-        console.log('[云函数] [shop] : ', res.result);      
+        console.log('[云函数] [shop] : ', res.result);
+        
         this.setData({
           
         })

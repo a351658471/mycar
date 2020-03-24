@@ -11,8 +11,7 @@
     "pages/openapi/cloudid/cloudid",
     "pages/im/im",
     "pages/im/room/room",
-    "pages/userManage/userManage",
-    "pages/userManage/userSearch/userSearch"
+    "pages/userManage/userManage"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
@@ -22,18 +21,22 @@
     "navigationBarTextStyle": "black"
   },
   "tabBar": {
+      "backgroundColor": "#fff",
+      "borderStyle": "white",
+      "selectedColor": "#FE2945",
+      "color": "#999999",
     "list": [
       {
         "pagePath": "pages/index/index",
         "text": "买车",
-        "iconPath": "/assets/car.png",
-        "selectedIconPath": "/assets/car_active.png"
+        "iconPath": "/assets/car1.png",
+        "selectedIconPath": "/assets/car1_active.png"
       },
       {
         "pagePath": "pages/mypage/mypage",
         "text": "我的",
-        "iconPath": "/assets/me.png",
-        "selectedIconPath": "/assets/me_active.png"
+        "iconPath": "/assets/my.png",
+        "selectedIconPath": "/assets/my_active.png"
       }
     ]
   },
