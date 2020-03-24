@@ -161,14 +161,28 @@ Page({
     //   name: 'user',
     //   data: {
     //     action: "userQuery",
-    //     shopid: "f841fd285e71d6900011f3b713c5a83f",
-    //     keyWord: "五"
+    //     keyWord: "1596"
     //   },
     //   success: res => {
     //     console.log('[云函数] [shop] : ', res.result)
     //   },
     //   fail: err => {
     //     console.error('[云函数] [shop] 调用失败', err)
+    //   }
+    // })
+
+    // // 调用云函数
+    // wx.cloud.callFunction({
+    //   name: 'user',
+    //   data: {
+    //     action: "userBindPhone",
+    //     phone: "15960836449"
+    //   },
+    //   success: res => {
+    //     console.log('[云函数] [user.userBindPhone] : ', res.result)
+    //   },
+    //   fail: err => {
+    //     console.error('[云函数] [user.userBindPhone] 调用失败', err)
     //   }
     // })
 

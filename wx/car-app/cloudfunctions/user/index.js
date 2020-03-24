@@ -25,6 +25,9 @@ exports.main = (event, context) => {
     case 'userQuery': {
       return userQuery(event)
     }
+    case 'userBindPhone':{
+      return userBindPhone(event)
+    }
     default: {
       return
     }
@@ -37,7 +40,7 @@ async function userLogin(event) {
     wxUserInfo, // 微信端用户信息
   } = event
   const wxContext = cloud.getWXContext()
- 
+
   let data = {
     nickName: wxUserInfo.nickName,
     avatarUrl: wxUserInfo.avatarUrl,
@@ -84,15 +87,54 @@ async function userLogin(event) {
   })
 }
 
+// 绑定手机
+async function userBindPhone(event) {
+  let {
+    phone,
+  } = event
+  const wxContext = cloud.getWXContext()
+  return db.collection('user').where({ _openid: wxContext.OPENID }).get().then(res => {
+    if (res.data.length == 0) {
+      return "user is not login"
+    }
+    else {
+      let record = res.data[0]
+      return db.collection('user').doc(record._id).update({
+        data: {
+          phone: phone
+        }
+      }).then(res => {
+        record.phone = phone
+        return {
+          data: record,
+          msg: res
+        }
+      }
+      )
+    }
+  })
+}
+
+
 // 用户查询
 async function userQuery(event) {
   let { keyWord } = event
-  return db.collection('user').where({
-    nickName: {
-      $regex: ".*" + keyWord + ".*",
-      $options: 'i'
-    }
-  }).get().then(res => {
+  return db.collection('user').where(
+    db.command.or([
+      {
+        nickName: {
+          $regex: ".*" + keyWord + ".*",
+          $options: 'i'
+        }
+      },
+      {
+        phone: {
+          $regex: ".*" + keyWord + ".*",
+          $options: 'i'
+        }
+      },
+    ])
+  ).get().then(res => {
     return res
   })
 }
