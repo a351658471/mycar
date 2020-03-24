@@ -1,7 +1,7 @@
 //app.js
 App({
   onLaunch: function () {
-    
+
     if (!wx.cloud) {
       console.error('请使用 2.2.3 或以上的基础库以使用云能力')
     } else {
@@ -15,6 +15,65 @@ App({
       })
     }
 
-    this.globalData = {}
+    let app = this;
+    this.globalData = {
+      eventShopUpdate:"eventShopUpdate",
+      event:{
+      },
+      addListener:function(event, callback){
+        let callbacks = app.globalData.event[event]
+        if(!callbacks){
+          callbacks = []
+          app.globalData.event[event] = callbacks
+        }
+        if(callbacks.indexOf(callback) == -1){
+          callbacks.push(callback)
+        }
+      },
+      removeListener:function(event, callback){
+        let callbacks = app.globalData.event[event]
+        if(callbacks){
+          var idx = callbacks.indexOf(callback)
+          if(idx != -1){
+            callbacks.splice(idx, 1)
+          }
+        }
+       
+      },
+      dispatchEvent:function(event){
+        let callbacks = app.globalData.event[event]
+        if(callbacks){
+         for (let index = 0; index < callbacks.length; index++) {
+           const element = callbacks[index];
+           element.call()
+         }
+        }
+      },
+      shop: {} //  商店信息
+    }
+    this.globalFunc = {
+      getShopInfo: function () {
+        // 调用云函数
+        wx.cloud.callFunction({
+          name: 'shop',
+          data: {
+            action: "shopList",
+          },
+          success: res => {
+            console.log('[云函数] [shop] : ', res.result)
+            app.globalData.shop = res.result.data[0]
+            app.globalData.dispatchEvent(app.globalData.eventShopUpdate)
+
+            // app.globalData.addListener(app.globalData.eventShopUpdate, ()=>{
+            //   console.log("aaaaaaaaa")
+            // })
+          },
+          fail: err => {
+            console.error('[云函数] [shop] 调用失败', err)
+          }
+        })
+      }
+    }
+    this.globalFunc.getShopInfo();
   }
 })
