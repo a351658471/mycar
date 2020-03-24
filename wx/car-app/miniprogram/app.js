@@ -61,9 +61,11 @@ App({
           },
           success: res => {
             console.log('[云函数] [shop] : ', res.result)
-            app.globalData.addListener(app.globalData.eventShopUpdate, ()=>{
+            let onShopInfo = ()=>{
               console.log("获取商店信息", app.globalData.shop )
-            })
+              app.globalData.removeListener(app.globalData.eventShopUpdate, onShopInfo)
+            }
+            app.globalData.addListener(app.globalData.eventShopUpdate, onShopInfo)
             app.globalData.shop = res.result.data[0]
             app.globalData.dispatchEvent(app.globalData.eventShopUpdate)
           },
