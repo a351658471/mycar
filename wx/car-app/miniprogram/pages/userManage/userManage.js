@@ -5,159 +5,133 @@ Page({
    * 页面的初始数据
    */
   data: {
-    tabList:['管理员','普通用户'],
-    isAdmin:true,
-    allMan:[
-      {
-        name:'张三',
-        tel:18065416541,
-        isAdmin:true
-      },
-      {
-        name: '李四',
-        tel: 18065416541,
-        isAdmin: false
-      },
-  
-      {
-        name: '王五',
-        tel: 18065416541,
-        isAdmin: true
-      },
-      {
-        name: '李六',
-        tel: 18065416541,
-        isAdmin: false
-      }
-    ],
-    admin:[],
-    user:[],
-    isSearch:false,
-    search:'',
+    tabList: ['管理员', '普通用户'],
+    isAdmin: true,
+    userList: [],
+    search: '',
+    curPage: 1,
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-    
+  onShow: function () {
+    this.userQuery()
   },
-  inputBind:function(e){
-    this.data.search = e.detail.value 
+  inputBind: function (e) {
+    this.data.search = e.detail.value
   },
-  search:function(e){
-    let i = this.data.search;
-    let appShop = getApp()
-    console.log(appShop.globalData.shop);
+  bindTapMore: function (e) {
+    this.userQuery()
+  },
+  search: function (e) {
+    this.data.userList.length = 0
+    this.setData(this.data)
+    this.userQuery()
+  },
+
+  // 查询用户
+  userQuery: function (paging = true) {
+
+    let queryData = {
+      action: "userQuery",
+      shopid: getApp().globalData.shop._id
+    }
+    if (paging) {
+      const PER_PAFE = 10
+      queryData.page = Math.ceil((this.data.userList.length + 1) / PER_PAFE)
+      queryData.perpage = PER_PAFE
+    }
+    let isAdmin = this.data.isAdmin
+    if (isAdmin) {
+      queryData.manager = 1
+    }
+    if (this.data.search && this.data.search.length > 0) {
+      queryData.keyWord = this.data.search
+    }
+    // console.log("queryData", queryData)
+    let that = this
     // 调用云函数
     wx.cloud.callFunction({
       name: 'user',
-      data: {
-        action: "userQuery",
-        shopid: appShop.globalData.shop._id,
-        keyWord: i,
-      },
+      data: queryData,
       success: res => {
-        console.log('[云函数] [shop] : ', res.result);
-        
-        this.setData({
-          
-        })
+        console.log('[云函数] [user.userQuery] : ', res.result)
+        for (let index = 0; index < res.result.data.length; index++) {
+          const element = res.result.data[index];
+          that.addUser(element)
+
+        }
+        that.setData(that.data)
       },
       fail: err => {
-        console.error('[云函数] [shop] 调用失败', err)
+        console.error('[云函数] [user.userQuery] 调用失败', err)
       }
     })
   },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-     
-    this.dataInit()
-  },  
-
-
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  },
-
-  dataInit(){
-    let arr1 = [];
-    let arr2 = []
-    this.data.allMan.forEach(item => {
-      if (item.isAdmin) {
-
-        arr1.push(item)
-
-      } else {
-
-        arr2.push(item)
-
+  addUser(user) {
+    let list = this.data.userList
+    for (let index = 0; index < list.length; index++) {
+      const element = list[index];
+      if (element._id == user._id) {
+        list[index] = user
+        return
       }
-    })
-    this.setData({
-      user: arr2,
-      admin: arr1
-    })
+    }
+    list.push(user)
   },
-
-  tabClick(e){
-    if(e.detail.tabCurrent == 0){
-       this.setData({
-         isAdmin:true
-       })
-    }else{
-      this.setData({
-        isAdmin: false
+  removeUser(user){
+    let list = this.data.userList
+    for (let index = 0; index < list.length; index++) {
+      const element = list[index];
+      if (element._id == user._id) {
+        list.splice(index, 1)
+        break
+      }
+    }
+    this.setData(this.data)
+  },
+  tabClick(e) {
+    this.data.userList.length = 0
+    this.data.isAdmin = e.detail.tabCurrent == 0
+    this.setData(this.data)
+    this.userQuery()
+  },
+  serMg(e) {
+    let user = e.currentTarget.dataset.src
+    let that = this
+    if (!this.data.isAdmin) {
+      // 调用云函数
+      wx.cloud.callFunction({
+        name: 'shop',
+        data: {
+          action: "masterAdd",
+          shopid: getApp().globalData.shop._id,
+          openid: user._openid
+        },
+        success: res => {
+          console.log('[云函数] [shop.masterAdd] : ', res.result)
+          that.removeUser(user)
+        },
+        fail: err => {
+          console.error('[云函数] [shop.masterAdd] 调用失败', err)
+        }
       })
     }
-  },
-  serMg(e){
-    let index = e.currentTarget.dataset.index
-    let list = "allMan["+index+"].isAdmin"
-   this.setData({
-     [list]:!this.data.allMan[index].isAdmin
-   })
-   this.dataInit()
+    else{
+      // 调用云函数
+      wx.cloud.callFunction({
+        name: 'shop',
+        data: {
+          action: "masterRemove",
+          shopid: getApp().globalData.shop._id,
+          openid: user._openid
+        },
+        success: res => {
+          console.log('[云函数] [shop.masterRemove] : ', res.result)
+          that.removeUser(user)
+        },
+        fail: err => {
+          console.error('[云函数] [shop.masterRemove] 调用失败', err)
+        }
+      })
+    }
   }
 })

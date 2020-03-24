@@ -25,7 +25,7 @@ exports.main = (event, context) => {
     case 'userQuery': {
       return userQuery(event)
     }
-    case 'userBindPhone':{
+    case 'userBindPhone': {
       return userBindPhone(event)
     }
     default: {
@@ -55,6 +55,7 @@ async function userLogin(event) {
     let dbdata = res.data
     if (dbdata.length == 0) {
       data._openid = wxContext.OPENID
+      data.creatime = Date.parse(new Date())
       return db.collection('user').add({
         data: data
       }).then(res => {
@@ -67,6 +68,7 @@ async function userLogin(event) {
     }
     else {
       let record = dbdata[0]
+      data.updatetime = Date.parse(new Date())
       return db.collection('user').doc(record._id).update({
         data: data
       }).then(res => {
@@ -118,23 +120,79 @@ async function userBindPhone(event) {
 
 // 用户查询
 async function userQuery(event) {
-  let { keyWord } = event
-  return db.collection('user').where(
-    db.command.or([
-      {
-        nickName: {
-          $regex: ".*" + keyWord + ".*",
-          $options: 'i'
-        }
-      },
-      {
-        phone: {
-          $regex: ".*" + keyWord + ".*",
-          $options: 'i'
-        }
-      },
-    ])
-  ).get().then(res => {
-    return res
+  let {
+    keyWord,
+    page,
+    perpage,
+    shopid,     // 有shopid说明要查管理员
+    manager,
+  } = event
+
+
+  let condition = {}
+  await db.collection('shop').doc(shopid).get().then(res => {
+    condition._openid = manager ? db.command.in(res.data.managers) : db.command.nin(res.data.managers)
   })
+  if (keyWord) {
+    if (!condition) {
+      condition = db.command.or([
+        {
+          nickName: {
+            $regex: ".*" + keyWord + ".*",
+            $options: 'i'
+          }
+        },
+        {
+          phone: {
+            $regex: ".*" + keyWord + ".*",
+            $options: 'i'
+          }
+        },
+      ])
+    }
+    else {
+      condition = db.command.or([
+        {
+          nickName: {
+            $regex: ".*" + keyWord + ".*",
+            $options: 'i'
+          }
+        },
+        {
+          phone: {
+            $regex: ".*" + keyWord + ".*",
+            $options: 'i'
+          }
+        },
+      ]).and(condition)
+    }
+  }
+  if (page != null && perpage != null) {
+    let idx = page - 1
+    if (idx < 0) {
+      idx = 0
+    }
+    if (condition) {
+      return db.collection('user').where(condition).orderBy('creatime', 'desc').skip(idx * perpage).limit(perpage).get().then(res => {
+        return res
+      })
+    }
+    else {
+      return db.collection('user').orderBy('creatime', 'desc').skip(idx * perpage).limit(perpage).get().then(res => {
+        return res
+      })
+    }
+  }
+  else {
+    if (condition) {
+      return db.collection('user').where(condition).orderBy('creatime', 'desc').get().then(res => {
+        return res
+      })
+    }
+    else {
+      return db.collection('user').orderBy('creatime', 'desc').get().then(res => {
+        return res
+      })
+    }
+  }
 }

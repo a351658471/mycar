@@ -1,0 +1,177 @@
+page{
+  background: #F5F5F5;
+  height: 100%;
+}
+.addCar{
+  height: 100%
+}
+.baseTitle,.labelTitle,.labelAdd{
+  padding: 3vw;
+  font-size: 1rem;
+}
+.labelAdd{
+  font-size: 0.8rem;
+  color: #FE2A45
+}
+.baseContent{
+  color: #7B7575;
+  background: #FFFEFF;
+
+}
+.borderBottom{
+  width: 100%;
+  border-bottom: 1px solid #F8F6F7
+}
+.baseItem{
+  display: flex;
+  height: 13vw;
+  line-height: 13vw;
+  padding:0 3vw;
+}
+.inputItem{
+  display: flex;
+  align-items: center;
+  margin-left: 10vw
+}
+.radioItem{
+   margin-left: 10vw
+}
+.ItemName{
+  width:20vw;
+  text-align: right;
+}
+.radio{
+  margin-right: 5vw
+}
+radio .wx-radio-input{
+  width: 3vw;
+  height: 3vw
+}
+radio .wx-radio-input.wx-radio-input-checked{
+  background:#FE2A45;
+  border: 1px solid #A3A1A2
+}
+radio .wx-radio-input.wx-radio-input-checked::before{
+  content: '';
+  
+}
+.labelItem{
+  display: flex;
+  height:14vw;
+  align-items: center;
+  background: #FFFEFF;
+  font-size: 0.5rem;
+  padding:0 4vw;
+  color: #FE2A45;
+}
+.labelText{
+  border: 1px solid #FE2A45;
+  padding: 0.3vw 1.5vw;
+  border-radius: 5px;
+  width:12.5vw;
+   text-align: center;
+   text-overflow: ellipsis;
+   white-space: nowrap;
+   overflow: hidden
+
+}
+.deleteIcon{
+  height:1rem;
+  width: 1rem;
+  margin-left: 0.3rem;
+  border-radius: 50%;
+  border: 1px solid #FE2A45;
+  position: relative
+}
+.deleteIcon::after{
+  content: '';
+  width: 0.5rem;
+  height:1px;
+  background: #FE2A45;
+  position: absolute;
+  top: 50%;
+  left: 25%
+}
+.labelHeader{
+  display: flex;
+  justify-content: space-between;
+}
+.imgBox{
+  width: 100%
+}
+.addImgBox{
+  height:25vw;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  background: #fff;
+  align-items: center
+}
+.imgItem{
+  width:30%;
+  height:80%;
+  text-align: center;
+  position: relative
+  
+}
+.itemImg{
+  width: 100%;
+  height: 100%;
+  border: 1px solid #9A979B;
+  border-radius: 5px
+}
+.deleteImg{
+  width: 15%;
+  position: absolute;
+  right:0;
+  top: 0;
+  
+}
+.deleteImg image{
+  width: 100%;
+  background: #fff
+}
+.itemAdd{
+  width: 25%;
+  height:80%;
+  border: 1px dashed #B5B2B5;
+  text-align: center;
+  font-size: 14px;
+  color: #B5B2B5
+}
+.itemAdd image{
+  width:60%
+}
+.next{
+  width: 90%;
+  height:12vw;
+  text-align: center;
+  line-height: 12vw;
+  background: #FE2A46;
+  color: #fff;
+  border-radius: 10px;
+  margin: 5vw auto
+}
+
+.detailSave{
+  margin-right: 3vw;
+  display: flex;
+  width: 40%;
+  justify-content: space-between;
+  align-items: center
+}
+.rightItem{
+  height:7vw;
+  line-height: 7vw;
+  background: #FE2A46;
+  color: #fff;
+  width: 45%;
+  border-radius: 5px;
+  font-size: 13px;
+  text-align: center
+}
+.editorArea{
+  background:#fff;
+  width:100%;
+  
+}
