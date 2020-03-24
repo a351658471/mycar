@@ -32,7 +32,8 @@ Page({
     ],
     admin:[],
     user:[],
-    search:''
+    isSearch:false,
+    search:'',
   },
 
   /**
@@ -41,19 +42,30 @@ Page({
   onLoad: function (options) {
     
   },
+  // toSearch: function (e){
+  //   this.setData({
+  //     isSearch: true
+  //   })
+  // },
+  // leaveSearch:function(e){
+  //   this.setData({
+  //     isSearch:false
+  //   })
+  // },
   inputBind:function(e){
-      this.data.search = e.detail.value
+    this.data.search = e.detail.value 
   },
   search:function(e){
-    let i = this.data.search
+    let i = this.data.search;
+    let appShop = getApp()
+    console.log(appShop.globalData.shop);
     // 调用云函数
     wx.cloud.callFunction({
       name: 'user',
       data: {
         action: "userQuery",
-        shopid: "f841fd285e71d6900011f3b713c5a83f",
+        shopid: appShop.globalData.shop,
         keyWord: i
-        
       },
       success: res => {
         console.log('[云函数] [shop] : ', res.result);

@@ -9,7 +9,7 @@
          bindinput="inputBind">
   </input>
 </view>
-<view>
+<view hidden="{{isSearch}}">
   <my-tab tabList="{{tabList}}"  bind:tabClick="tabClick"></my-tab>
 
   <view class="userBox">
@@ -21,7 +21,7 @@
       <view class="setMg pd" bind:tap="serMg" data-index="{{index}}">
         {{isAdmin? "设为普通用户":"设为管理员"}}
       </view>
-   </view>
+    </view>
   </view>
   
 </view>
