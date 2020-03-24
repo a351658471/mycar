@@ -121,6 +121,12 @@ Page({
   onShareAppMessage: function () {
 
   },
+  jumpToCarMg(){
+    wx.switchTab({
+      url: '/pages/index/index',
+    })
+  },
+  
   jumpToUserMg(){
     wx.navigateTo({
       url: '/pages/userManage/userManage',

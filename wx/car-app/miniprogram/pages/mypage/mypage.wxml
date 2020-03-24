@@ -52,7 +52,7 @@
               <image src="../../assets/mypage/mypage-back.png" />
               <text>建议反馈</text>
           </view>
-          <view class="Item">
+          <view class="Item" catchtap="jumpToCarMg">
               <image src="../../assets/mypage/mypage-car.png" />
               <text>车辆管理</text>
           </view>
@@ -60,7 +60,7 @@
               <image src="../../assets/mypage/mypage-picture.png" />
               <text>首页动图</text>
           </view>
-          <view class="Item">
+          <view class="Item" bind:tap="jumpToUserMg">
               <image src="../../assets/mypage/mypage-safe.png" />
               <text>账号管理</text>
           </view>
