@@ -19,9 +19,8 @@
   content:'';
   width:30px;
   height:4px;
-  background:red;
+  background:#FE2A45;
   bottom:-0.5rem;
   left:1rem;
-  border-radius:25%
-  
+  border-radius:25%;
 }

@@ -1,5 +1,12 @@
-page{
- background: #F5F5F5;
+.inputBox{
+  background: #FFFFFF;
+  padding: 22rpx 28rpx;
+}
+.searchInput{
+  background: #F7F7F7;
+  text-align: center;
+  padding: 10rpx;
+  font-size: 30rpx;
 }
 .userBox{
   background: #FFFFFF;
@@ -12,13 +19,13 @@ page{
   height:25vw
 }
 .userInfo{
-  color: #7E7C7D;
-  font-size: 14px
+  color: #575454;
+  font-size: 28rpx;
 }
 .pd{
-  padding: 0 5vw
+  padding: 0 5vw;
 }
 .setMg{
-  font-size: 16px;
-  color: #EA455D
+  font-size: 30rpx;
+  color: #FE2A45;
 }

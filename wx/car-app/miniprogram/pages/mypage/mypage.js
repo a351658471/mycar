@@ -1,24 +1,55 @@
 // pages/home/home.js
+const app = getApp()
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    shop: {},
     avatarUrl: '../../assets/mypage/mypage-head.png',
     userInfo: {},
     logged: false,
-    signNum:0,
-    control:false,
-    isregist:false,
-    trends:'-',
+    signNum: '-',
+    control: true,
+    isregist: false,
+    trends: '-',
     follow: '-',
-    fans: '-'
+    fans: '-',
+    menu_personal: {
+      name: "个人信息",
+      icon: "mypage-personal.png",
+      link: "111"
+    },
+    menu_reward: {
+      name: "积分奖励",
+      icon: "mypage-reward.png"
+    },
+    menu_back: {
+      name: "建议反馈",
+      icon: "mypage-back.png"
+    },
+    menu_car: {
+      name: "车辆管理",
+      icon: "mypage-car.png"
+    },
+    menu_picture: {
+      name: "首页动图",
+      icon: "mypage-picture.png"
+    },
+    menu_safe: {
+      name: "账号管理",
+      icon: "mypage-safe.png",
+      link: "/pages/userManage/userManage"
+    },
+    menus: []
+
   },
 
-  signButton:function(){
+  signButton: function () {
     this.setData({
-      signNum:this.data.signNum + 10,
+      signNum: this.data.signNum + 10,
       control: true
     })
   },
@@ -26,6 +57,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.data.menus = [
+      this.data.menu_personal, this.data.menu_reward, this.data.menu_back
+    ]
     // 获取用户信息
     wx.getSetting({
       success: res => {
@@ -40,6 +74,38 @@ Page({
       }
     })
   },
+  onShow() {
+    app.globalData.addListener(app.globalData.eventShopUpdate, this.onUpdateShop)
+    app.globalFunc.getShopInfo()
+  },
+  onHide: function () {
+    app.globalData.removeListener(app.globalData.eventShopUpdate, this.onUpdateShop)
+  },
+  onUpdateShop: function () {
+    let shop = app.globalData.shop
+    this.data.shop = shop
+    if (shop.isOwner || shop.isAdmin) {
+      this.data.menus = [
+        this.data.menu_personal,
+        this.data.menu_reward,
+        this.data.menu_back,
+        this.data.menu_car,
+        this.data.menu_picture,
+        this.data.menu_safe
+      ]
+    }
+    else if (shop.isManagers) {
+      this.data.menus = [
+        this.data.menu_personal,
+        this.data.menu_reward,
+        this.data.menu_back,
+        this.data.menu_car,
+        this.data.menu_picture
+      ]
+    }
+    this.setData(this.data)
+  },
+
   onGetUserInfo: function (e) {
     if (!this.data.logged && e.detail.userInfo) {
       this.toLogin(e.detail.userInfo)
@@ -62,82 +128,22 @@ Page({
           logged: true,
           avatarUrl: userInfo.avatarUrl,
           userInfo: res.result.data,
-          isregist:true,
+          isregist: true,
+          control: false,
           trends: '0',
           follow: '0',
           fans: '0',
-          signNum: this.data.signNum + 10
+          signNum: '0'
         })
-        
+
       },
       fail: err => {
         console.error('[云函数] [user.userLogin] 调用失败', err)
       }
     })
   },
-  adviseBtn:function(){
-      wx.navigateTo({
-        url: '/pages/advise/advise',
-      })
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  },
-  jumpToCarMg(){
-    wx.switchTab({
-      url: '/pages/index/index',
-    })
-  },
-  
-  jumpToUserMg(){
-    wx.navigateTo({
-      url: '/pages/userManage/userManage',
-    })
+  bindtapMenu(event) {
+    var src = event.currentTarget.dataset.src
+    wx.navigateTo({ url: src.link })
   }
 })
