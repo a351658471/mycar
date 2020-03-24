@@ -10,20 +10,23 @@
           size="default"
         ></button>
         <text class="headName">{{userInfo.nickName}}</text>
-        <image class="headIcon" src="../../assets/mypage/mypage-vipicon.png"/>
+        <view class="noregist" hidden="{{isregist}}">
+          <text>登录/注册</text>
+        </view>
+        <!-- <image class="headIcon" src="../../assets/mypage/mypage-vipicon.png"/> -->
     </view>
     <view class="infors">
       <view class="infor">
         <text>动态</text>
-        <text>10</text>
+        <text>{{trends}}</text>
       </view>
       <view class="infor">
         <text>关注</text>
-        <text>12</text>
+        <text>{{follow}}</text>
       </view>
       <view class="infor">
         <text>粉丝</text>
-        <text>3</text>
+        <text>{{fans}}</text>
       </view>
     </view>
   </view>
