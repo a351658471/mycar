@@ -30,7 +30,7 @@
         "selectedIconPath": "/assets/car_active.png"
       },
       {
-        "pagePath": "pages/demo/demo",
+        "pagePath": "pages/mypage/mypage",
         "text": "我的",
         "iconPath": "/assets/me.png",
         "selectedIconPath": "/assets/me_active.png"

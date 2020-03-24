@@ -13,12 +13,12 @@
   <my-tab tabList="{{tabList}}"  bind:tabClick="tabClick"></my-tab>
 
   <view class="userBox">
-    <view class="userItem" wx:for="{{isAdmin? admin:user}}"  wx:key="key">
+    <view class="userItem" wx:for="{{userList}}"  wx:key="key">
       <view class="userInfo pd">
-        <view>{{item.name}}</view>
-        <view style="margin-top:3vw">{{item.tel}}</view>
+        <view>{{item.nickName}}</view>
+        <view style="margin-top:3vw">{{item.phone}}</view>
       </view>
-      <view class="setMg pd" bind:tap="serMg" data-index="{{index}}">
+      <view class="setMg pd" bind:tap="serMg" data-index="{{index}}" data-src="{{item}}">
         {{isAdmin? "设为普通用户":"设为管理员"}}
       </view>
     </view>

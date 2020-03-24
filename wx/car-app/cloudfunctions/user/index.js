@@ -125,16 +125,14 @@ async function userQuery(event) {
     page,
     perpage,
     shopid,     // 有shopid说明要查管理员
+    manager,
   } = event
 
 
-  let condition
-  if (shopid) {
-    await db.collection('shop').doc(shopid).get().then(res => {
-      condition = condition || {}
-      condition._openid = db.command.in(res.data.managers)
-    })
-  }
+  let condition = {}
+  await db.collection('shop').doc(shopid).get().then(res => {
+    condition._openid = manager ? db.command.in(res.data.managers) : db.command.nin(res.data.managers)
+  })
   if (keyWord) {
     if (!condition) {
       condition = db.command.or([
