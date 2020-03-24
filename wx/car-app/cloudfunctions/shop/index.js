@@ -36,14 +36,14 @@ async function shopList(event) {
     for (let i = 0; i < res.data.length; i++) {
       let shop = res.data[i]
       if (shop.owner == wxContext.OPENID) {
-        shop.isOwner = 1
+        shop.isOwner = true
       }
       else {
         if (shop.admins != null) {
-          shop.isAdmin = shop.admins.indexOf(wxContext.OPENID)
+          shop.isAdmin = shop.admins.indexOf(wxContext.OPENID) != -1
         }
         if (shop.managers != null) {
-          shop.isManagers = shop.managers.indexOf(wxContext.OPENID)
+          shop.isManagers = shop.managers.indexOf(wxContext.OPENID) != -1
         }
       }
       delete shop.owner
