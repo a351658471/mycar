@@ -1,5 +1,6 @@
 <view class="addCar">
-  <form>
+<scroll-view scroll-y style="height:100%" wx:if="{{!isNext}}">
+<!-- 基本信息 -->
     <view class="baseInfo">
         <view class="baseTitle">
           基本信息
@@ -29,7 +30,7 @@
           <view class="baseItem">
                 <view class="ItemName">品牌车型</view>
                 <view class="inputItem">
-                  <input type="text" name="cBrand" placeholder="必填" placeholder-style="color:#FE2A45;font-size:0.95rem;font-weight:bolder"></input>
+                  <input type="text" name="cBrand" bindblur="blurEvnet2" placeholder="必填" placeholder-style="color:#FE2A45;font-size:0.95rem;font-weight:bolder"></input>
                 </view>
             </view>
         </view>
@@ -38,7 +39,7 @@
           <view class="baseItem">
                 <view class="ItemName">表显里程</view>
                 <view class="inputItem">
-                  <input type="text" name="cmileage" placeholder="必填" placeholder-style="color:#FE2A45;font-size:0.95rem;font-weight:bolder"></input>
+                  <input type="text" name="cmileage"  bindblur="blurEvnet3" placeholder="必填" placeholder-style="color:#FE2A45;font-size:0.95rem;font-weight:bolder"></input>
                 </view>
             </view>
         </view>
@@ -47,7 +48,7 @@
           <view class="baseItem" wx:if="{{isOld}}">
                 <view class="ItemName">初次上牌</view>
                 <view class="inputItem">
-                  <input type="text" name="cFirst" placeholder="必填" placeholder-style="color:#FE2A45;font-size:0.95rem;font-weight:bolder"></input>
+                  <input type="text" name="cFirst" bindblur="blurEvnet4" placeholder="必填" placeholder-style="color:#FE2A45;font-size:0.95rem;font-weight:bolder"></input>
                 </view>
           </view>
         </view>
@@ -56,7 +57,7 @@
           <view class="baseItem">
                 <view class="ItemName">排放标准</view>
                 <view class="inputItem">
-                  <input type="text" name="cStandard" placeholder="请输入排放标准" placeholder-style="font-size:0.95rem"></input>
+                  <input type="text" name="cStandard" bindblur="blurEvnet5" placeholder="请输入排放标准" placeholder-style="font-size:0.95rem"></input>
                 </view>
           </view>
         </view>
@@ -64,7 +65,7 @@
           <view class="baseItem">
                 <view class="ItemName">发动机</view>
                 <view class="inputItem">
-                  <input type="text" name="cEngine" placeholder="请输入发动机信息" placeholder-style="font-size:0.95rem"></input>
+                  <input type="text" name="cEngine" bindblur="blurEvnet6" placeholder="请输入发动机信息" placeholder-style="font-size:0.95rem"></input>
                 </view>
           </view>
         </view>
@@ -73,13 +74,13 @@
           <view class="baseItem">
                 <view class="ItemName">马力</view>
                 <view class="inputItem">
-                  <input type="text" name="cHorse" placeholder="请输入马力" placeholder-style="font-size:0.95rem"></input>
+                  <input type="text" name="cHorse" bindblur="blurEvnet7" placeholder="请输入马力" placeholder-style="font-size:0.95rem"></input>
                 </view>
           </view>
         </view>
       </view>
     </view>
-
+    <!-- 标签 -->
     <view class="labelBox">
       <view class="label"> 
         <view class="labelHeader">
@@ -92,7 +93,7 @@
         </view>
           
         <view class="labelItem">
-          <view wx:for="{{labelList}}" style="display:flex;margin-right:1.5rem">
+          <view wx:for="{{reqData.labelList}}" style="display:flex;margin-right:1.5rem">
             <view class="labelText">{{item}}</view>
             <view class="deleteIcon" bindtap="deleteLabel" data-index="{{index}}"></view>
           </view>
@@ -103,6 +104,7 @@
       </view>
     </view>
 
+    <!-- 滚动图 -->
     <view class="imgBox">
           <view class="labelTitle">
                 滚动图
@@ -110,14 +112,14 @@
           <view style="width:100%; background:#fff">
           <view style="padding:0 5vw">
           <view class="addImgBox">
-            <view class="imgItem">
-              <image class="itemImg" src="/assets/1.jpg" mode="widthFix"></image>
-              <view class="deleteImg">
+            <view class="imgItem" wx:for="{{reqData.imgList}}">
+              <image class="itemImg" src="{{item}}" mode="aspectFill"></image>
+              <view class="deleteImg" bindtap="deleteImg" data-index="{{index}}">
                 <image src="/assets/删除.png" mode="widthFix"></image>
             </view>
             </view>
 
-            <view class="itemAdd">
+            <view class="itemAdd" bindtap="addImg" wx:if="{{reqData.imgList.length<3}}">
               <image src="/assets/图片.png" mode="widthFix"></image>
               <view>{{imgList.length==0 ?"添加图片":"继续添加"}}</view>
             </view>
@@ -126,6 +128,24 @@
           </view>
           </view>
     </view>
+    <view class="next" bindtap="next">
+      保存进入下一步
+    </view>
+</scroll-view>
 
-  </form>
+<!-- 详情介绍 -->
+<view wx:else>
+   <view class="labelHeader">
+      <view class="labelTitle">
+              详情介绍
+       </view>
+      <view class="detailSave" bindtap="addLabel">
+          <view class="rightItem">保存</view>
+          <view class="rightItem">上架</view>
+      </view>
+    </view>
+    <view class="editorArea">
+      <editor></editor>
+    </view>
+</view>
 </view>

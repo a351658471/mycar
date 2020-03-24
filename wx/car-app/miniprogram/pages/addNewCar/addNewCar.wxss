@@ -1,5 +1,9 @@
 page{
   background: #F5F5F5;
+  height: 100%;
+}
+.addCar{
+  height: 100%
 }
 .baseTitle,.labelTitle,.labelAdd{
   padding: 3vw;
@@ -105,12 +109,14 @@ radio .wx-radio-input.wx-radio-input-checked::before{
 }
 .imgItem{
   width:30%;
+  height:80%;
   text-align: center;
   position: relative
   
 }
 .itemImg{
   width: 100%;
+  height: 100%;
   border: 1px solid #9A979B;
   border-radius: 5px
 }
@@ -127,10 +133,45 @@ radio .wx-radio-input.wx-radio-input-checked::before{
 }
 .itemAdd{
   width: 25%;
-  height:90%;
+  height:80%;
   border: 1px dashed #B5B2B5;
   text-align: center;
+  font-size: 14px;
+  color: #B5B2B5
 }
 .itemAdd image{
   width:60%
+}
+.next{
+  width: 90%;
+  height:12vw;
+  text-align: center;
+  line-height: 12vw;
+  background: #FE2A46;
+  color: #fff;
+  border-radius: 10px;
+  margin: 5vw auto
+}
+
+.detailSave{
+  margin-right: 3vw;
+  display: flex;
+  width: 40%;
+  justify-content: space-between;
+  align-items: center
+}
+.rightItem{
+  height:7vw;
+  line-height: 7vw;
+  background: #FE2A46;
+  color: #fff;
+  width: 45%;
+  border-radius: 5px;
+  font-size: 13px;
+  text-align: center
+}
+.editorArea{
+  background:#fff;
+  width:100%;
+  
 }
