@@ -63,6 +63,22 @@ Page({
     })
   },
   onGetOpenid: function () {
+    
+    // 调用云函数
+    wx.cloud.callFunction({
+      name: 'user',
+      data: {
+        action: "userFeedbackRead",
+        ids:['42d70ff05e79fd0e000197d5096f5c88']
+      },
+      success: res => {
+        console.log('[云函数] [user.userFeedbackRead] : ', res.result)
+      },
+      fail: err => {
+        console.error('[云函数] [user.userFeedbackRead] 调用失败', err)
+      }
+    })
+
 
     // // 调用云函数
     // wx.cloud.callFunction({

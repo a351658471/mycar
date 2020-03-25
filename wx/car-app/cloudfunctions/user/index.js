@@ -34,6 +34,9 @@ exports.main = (event, context) => {
     case 'userFeedbackQuery': {
       return userFeedbackQuery(event)
     }
+    case 'userFeedbackRead':{
+      return userFeedbackRead(event)
+    }
     default: {
       return
     }
@@ -221,7 +224,23 @@ async function userFeedback(event) {
   )
 }
 
-// 建议反馈
+// 建议反馈标记已读
+async function userFeedbackRead(event) {
+  let {
+    ids,
+  } = event
+  return db.collection('feedback').where({_id:db.command.in(ids)}).update({
+    data: {
+      status: 1,
+      updatetime: Date.parse(new Date())
+    }
+  }).then(res => {
+    return res
+  }
+  )
+}
+
+// 建议反馈查询
 async function userFeedbackQuery(event) {
   let {
     condition,
