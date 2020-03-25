@@ -28,6 +28,15 @@ exports.main = (event, context) => {
     case 'userBindPhone': {
       return userBindPhone(event)
     }
+    case 'userFeedback': {
+      return userFeedback(event)
+    }
+    case 'userFeedbackQuery': {
+      return userFeedbackQuery(event)
+    }
+    case 'userFeedbackRead':{
+      return userFeedbackRead(event)
+    }
     default: {
       return
     }
@@ -191,6 +200,78 @@ async function userQuery(event) {
     }
     else {
       return db.collection('user').orderBy('creatime', 'desc').get().then(res => {
+        return res
+      })
+    }
+  }
+}
+
+// 建议反馈
+async function userFeedback(event) {
+  let {
+    value,
+  } = event
+  const wxContext = cloud.getWXContext()
+  return db.collection('feedback').add({
+    data: {
+      openid: wxContext.OPENID,
+      value: value,
+      creatime: Date.parse(new Date())
+    }
+  }).then(res => {
+    return res
+  }
+  )
+}
+
+// 建议反馈标记已读
+async function userFeedbackRead(event) {
+  let {
+    ids,
+  } = event
+  return db.collection('feedback').where({_id:db.command.in(ids)}).update({
+    data: {
+      status: 1,
+      updatetime: Date.parse(new Date())
+    }
+  }).then(res => {
+    return res
+  }
+  )
+}
+
+// 建议反馈查询
+async function userFeedbackQuery(event) {
+  let {
+    condition,
+    page,
+    perpage
+  } = event
+
+  if (page != null && perpage != null) {
+    let idx = page - 1
+    if (idx < 0) {
+      idx = 0
+    }
+    if (condition) {
+      return db.collection('feedback').where(condition).orderBy('creatime', 'desc').skip(idx * perpage).limit(perpage).get().then(res => {
+        return res
+      })
+    }
+    else {
+      return db.collection('feedback').orderBy('creatime', 'desc').skip(idx * perpage).limit(perpage).get().then(res => {
+        return res
+      })
+    }
+  }
+  else {
+    if (condition) {
+      return db.collection('feedback').where(condition).orderBy('creatime', 'desc').get().then(res => {
+        return res
+      })
+    }
+    else {
+      return db.collection('feedback').orderBy('creatime', 'desc').get().then(res => {
         return res
       })
     }

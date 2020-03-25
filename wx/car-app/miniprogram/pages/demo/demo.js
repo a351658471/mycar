@@ -40,7 +40,7 @@ Page({
   },
   toLogin: function (userInfo) {
     console.log(userInfo)
-   
+
 
     // 调用云函数
     wx.cloud.callFunction({
@@ -63,6 +63,61 @@ Page({
     })
   },
   onGetOpenid: function () {
+    
+    // 调用云函数
+    wx.cloud.callFunction({
+      name: 'user',
+      data: {
+        action: "userFeedbackRead",
+        ids:['42d70ff05e79fd0e000197d5096f5c88']
+      },
+      success: res => {
+        console.log('[云函数] [user.userFeedbackRead] : ', res.result)
+      },
+      fail: err => {
+        console.error('[云函数] [user.userFeedbackRead] 调用失败', err)
+      }
+    })
+
+
+    // // 调用云函数
+    // wx.cloud.callFunction({
+    //   name: 'user',
+    //   data: {
+    //     action: "userFeedbackQuery",
+    //     condition: {
+    //       // 模糊搜素
+    //       value: {
+    //         $regex: ".*13.*",
+    //         $options: 'i'
+    //       }
+    //     },
+    //     page: 1,
+    //     perpage: 2,
+    //   },
+    //   success: res => {
+    //     console.log('[云函数] [user.userFeedback] : ', res.result)
+    //   },
+    //   fail: err => {
+    //     console.error('[云函数] [user.userFeedback] 调用失败', err)
+    //   }
+    // })
+
+    //  // 调用云函数
+    //  wx.cloud.callFunction({
+    //   name: 'user',
+    //   data: {
+    //     action: "userFeedback",
+    //     value: "1596",
+    //   },
+    //   success: res => {
+    //     console.log('[云函数] [user.userFeedback] : ', res.result)
+    //   },
+    //   fail: err => {
+    //     console.error('[云函数] [user.userFeedback] 调用失败', err)
+    //   }
+    // })
+
 
     // // 调用云函数
     // wx.cloud.callFunction({
