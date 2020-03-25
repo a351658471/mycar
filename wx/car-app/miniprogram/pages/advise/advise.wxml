@@ -8,5 +8,5 @@
             focus="true"></textarea>
 </view>
 <view class="adviseBtn">
-  <button style="width:680rpx" class="btn">确定</button>
+  <button style="width:680rpx" class="btn" bindtap="commit" >确定</button>
 </view>

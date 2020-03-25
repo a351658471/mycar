@@ -49,7 +49,8 @@ App({
          }
         }
       },
-      shop: {} //  商店信息
+      shop: {}, //  商店信息
+      user:{} // 用户信息
     }
     this.globalFunc = {
       getShopInfo: function () {

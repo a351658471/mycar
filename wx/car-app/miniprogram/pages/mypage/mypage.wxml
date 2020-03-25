@@ -5,7 +5,7 @@
           <button open-type="getUserInfo" 
                   bindgetuserinfo="onGetUserInfo" 
                   class="userinfo-avatar" 
-                  style="background-image: url({{avatarUrl}})" 
+                  style="background-image: url({{userInfo.avatarUrl?userInfo.avatarUrl:'../../assets/mypage/mypage-head.png'}})" 
                   size="default">
     </button>
 			<text class="headName">{{userInfo.nickName}}</text>

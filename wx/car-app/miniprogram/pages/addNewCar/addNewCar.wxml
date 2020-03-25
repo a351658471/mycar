@@ -115,12 +115,12 @@
             <view class="imgItem" wx:for="{{reqData.imgList}}">
               <image class="itemImg" src="{{item}}" mode="aspectFill"></image>
               <view class="deleteImg" bindtap="deleteImg" data-index="{{index}}">
-                <image src="/assets/删除.png" mode="widthFix"></image>
+                <image src="/assets/delete.png" mode="widthFix"></image>
             </view>
             </view>
 
             <view class="itemAdd" bindtap="addImg" wx:if="{{reqData.imgList.length<3}}">
-              <image src="/assets/图片.png" mode="widthFix"></image>
+              <image src="/assets/picture.png" mode="widthFix"></image>
               <view>{{imgList.length==0 ?"添加图片":"继续添加"}}</view>
             </view>
 

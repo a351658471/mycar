@@ -1,6 +1,6 @@
 <!--components/carsList/carsList.wxml-->
 <view class='carList' style=' width:90%; margin:0 auto'>
-    <block wx:for="{{carData}}">
+    <block wx:for="{{carData}}" wx:key="*this">
       <view class='carItem' bind:tap="caritemClick" data-item='{{item}}'>
         <view class='carImg'>
           <image src='{{item.carImg}}' mode="scaleToFill" style='width:100%;height:80%'>

@@ -1,0 +1,40 @@
+/* pages/personal/personal.wxss */
+page{
+    box-sizing: border-box;
+}
+.personalTitle{
+    font-size: 32rpx;
+    color: #333333;
+    font-weight: bold;
+    margin: 28rpx 20rpx;
+}
+.personalMsg{
+    background: #ffffff;
+    padding: 26rpx;
+    border-bottom: 2rpx solid #F7F7F7;
+}
+.personalMsg .personalDetail{
+    display: flex;
+    justify-content: space-between;
+}
+.personalMsg .personalDetail button{
+    font-size: 30rpx;
+}
+
+.personalMsg .personalDetail text{
+    font-size: 32rpx;
+    font-weight: bold;
+    padding: 0 30rpx;
+}
+.personalBtn{
+    width: 100%;
+    position: absolute;
+    bottom: 44rpx;
+}
+.btn{
+    height: 88rpx;
+    color: #FFFFFF;
+    font-size: 36rpx;
+    font-weight: normal;
+    background: linear-gradient(to right,#FD7493,#FE2A45)
+}

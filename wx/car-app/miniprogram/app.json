@@ -1,6 +1,8 @@
 {
   "pages": [
     "pages/mypage/mypage",
+    "pages/personal/personal",
+    "pages/gif/gif",
     "pages/advise/advise",
     "pages/index/index",
     "pages/index/carDetail/carDetail",

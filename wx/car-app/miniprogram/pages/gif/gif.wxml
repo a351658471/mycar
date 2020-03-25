@@ -1,0 +1,17 @@
+<!--pages/gif/gif.wxml-->
+<view class="gifTitle">
+  <text>首页动图</text>
+</view>
+<view class="gifWrap">
+  <view class="gifMessage" wx:for="{{swipers}}" wx:key="*this">
+      <image class="gifImg" src="{{item}}" mode="aspectFit"></image>
+      <image class="closeicon" src="../../assets/delete.png" bindtap="close" data-index="index"></image>
+  </view>
+  <view class="gifAdd" bindtap="uploadImg">
+      <image src="../../assets/pic.png" mode="aspectFit"></image>
+      <text>继续添加</text>
+  </view>
+</view>
+<view class="gifBtn" bindtap="submit">
+  <button style="width:680rpx" class="btn">保存</button>
+</view>

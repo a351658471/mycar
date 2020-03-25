@@ -1,6 +1,6 @@
 <view class='mySwiper' style='width:100%'>
   <swiper autoplay='true' duration='1000' bindchange='changeCurrent' indicator-dots="{{isDots}}" style='width:90%;height:180px;margin:0 auto'>
-      <swiper-item wx:for="{{imgList}}">
+      <swiper-item wx:for="{{imgList}}" wx:key="*this">
         <image src='{{item}}' mode="scaleToFill" style='width:100%;height:100%'></image> 
       </swiper-item>
   </swiper>
