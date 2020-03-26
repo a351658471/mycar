@@ -114,14 +114,10 @@ Page({
     })
   },
   insertVideo() {
-    wx.chooseVideo({
-      sourceType: ['album', 'camera'],
-      maxDuration: 60,
-      camera: 'back',
-      success: (res) => {
-        console.log(res)
+    app.globalFunc.uploadVideo((r, res) => {
+      if (r) {
         let data = {
-          content: res.tempFilePath,
+          content: res.fileID,
           type: 'video'
         }
         if (this.data.textCache != null) {
@@ -135,6 +131,28 @@ Page({
         })
       }
     })
+
+    // wx.chooseVideo({
+    //   sourceType: ['album', 'camera'],
+    //   maxDuration: 60,
+    //   camera: 'back',
+    //   success: (res) => {
+    //     console.log(res)
+    //     let data = {
+    //       content: res.tempFilePath,
+    //       type: 'video'
+    //     }
+    //     if (this.data.textCache != null) {
+    //       this.data.dataList.push(this.data.textCache)
+    //     }
+    //     this.data.dataList.push(data)
+    //     this.setData({
+    //       dataList: this.data.dataList,
+    //       textValue: '',
+    //       textCache: null
+    //     })
+    //   }
+    // })
   },
   videoDelete(e) {
     let index = e.currentTarget.dataset.index;
