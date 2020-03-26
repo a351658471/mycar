@@ -140,7 +140,7 @@ radio .wx-radio-input.wx-radio-input-checked::before{
   color: #B5B2B5
 }
 .itemAdd image{
-  width:60%
+  width:60%;
 }
 .next{
   width: 90%;

@@ -1,0 +1,54 @@
+/* components/carsList/carsList.wxss */
+.area{
+  width:38vw;
+  height:100%;
+  margin-bottom: 0.5rem;
+}
+.mview{
+  width: 100vw;
+  height: 38vw;
+  z-index: 999;
+  background: #fff
+}
+.carItem{
+  width: 100%;
+  display: flex;
+}
+
+.carImg{
+  position: relative;
+  width: 60%;
+  height:140px;
+}
+
+.carImg image{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%)
+}
+
+.carMsg{
+
+  padding: 1rem 0.5rem;
+  width: 40%
+}
+
+.itemCars{
+  color: #DA3A4E;
+  border-radius: 5px;
+  border: 1.5px solid #DA3A4E;
+  padding: 1px 2.5px;
+  margin-right: 0.5rem;
+  font-weight: bolder
+}
+.menu{
+  display: flex;
+  height: 38vw;
+  width: 60vw;
+  line-height: 38vw
+}
+.menu-item{
+  width: 33.3%;
+  text-align: center;
+  color: #FFFAFF
+}

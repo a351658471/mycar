@@ -1,0 +1,8 @@
+/* miniprogram/pages/carManage/carManage.wxss */
+page{
+  background: #F5F5F5;
+}
+.rightBox{
+  color: #F92C48;
+  font-size: 0.95rem;
+}

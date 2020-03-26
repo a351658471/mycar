@@ -4,130 +4,16 @@ Page({
   */
   data: {
     // lastTapTime:0,
-
-    carData: {
-      imgList: ['/assets/1.jpg', '/assets/2.jpg', '/assets/3.jpg'],
-      situation: {
-        name: '兰博基尼-Huracan610',
-        isnew: '全新',
-        price: '200万',
-        cars: [
-          '2.0T-H4',
-          '250p',
-          '2门2座']
-      }
+    paramsEnum: {
+      0:'表显里程',
+      1:'初次上牌',
+      2:'排放标准',
+      3:'发动机',
+      4:'马力',
     },
-    tabList: ['详情介绍', '车辆参数', '购车流程'],
-    detailmsg: '兰博基尼是一家意大利汽车生厂商，全球顶尖跑车制造商及欧洲奢侈品标志之一，公司坐落于意大利亚加塔',
+    carData: [],
+    tabList: ['详情介绍', '车辆参数'],
     currentIndex: 0,
-    params: [
-      {
-        param: '发动机',
-        name: '2.0T-H4'
-      },
-      {
-        param: '马力',
-        name: '250P'
-      },
-      {
-        param: '座位',
-        name: '2门2座'
-      },
-    ],
-    allCarData: [
-      {
-        carId: 1,
-        isnew: false,
-        carName: '兰博基尼1',
-        price: '210万',
-        describe: '/assets/1.jpg', //图片或视频描述
-        textDescribe: '兰博基尼1是一家意大利汽车生厂商，全球顶尖跑车制造商及欧洲奢侈品标志之一，公司坐落于意大利亚加塔', //文字描述
-        buyCarProcess: '/assets/1.jpg',//购车流程图片描述
-        carParams: [
-
-          '2.0T-H4', //引擎
-          '260P', //马力
-          '2门2座', //座位
-        ]
-      },
-      {
-        carId: 2,
-        isnew: false,
-        carName: '兰博基尼2',
-        price: '220万',
-        describe: '/assets/1.jpg', //图片或视频描述
-        textDescribe: '兰博基尼2是一家意大利汽车生厂商，全球顶尖跑车制造商及欧洲奢侈品标志之一，公司坐落于意大利亚加塔', //文字描述
-        buyCarProcess: '/assets/1.jpg',//购车流程图片描述
-        carParams: [
-
-          '2.0T-H4', //引擎
-          '260P', //马力
-          '2门2座', //座位
-        ]
-      },
-      {
-        carId: 3,
-        isnew: false,
-        carName: '兰博基尼3',
-        price: '230万',
-        describe: '/assets/1.jpg', //图片或视频描述
-        textDescribe: '兰博基尼3是一家意大利汽车生厂商，全球顶尖跑车制造商及欧洲奢侈品标志之一，公司坐落于意大利亚加塔', //文字描述
-        buyCarProcess: '/assets/1.jpg',//购车流程图片描述
-        carParams: [
-
-          '2.0T-H4', //引擎
-          '260P', //马力
-          '2门2座', //座位
-        ]
-      },
-      {
-        carId: 4,
-        isnew: true,
-        carName: '兰博基尼4',
-        price: '240万',
-        describe: '/assets/1.jpg', //图片或视频描述
-        textDescribe: '兰博基尼4是一家意大利汽车生厂商，全球顶尖跑车制造商及欧洲奢侈品标志之一，公司坐落于意大利亚加塔', //文字描述
-        buyCarProcess: '/assets/1.jpg',//购车流程图片描述
-        carParams: [
-
-          '2.0T-H4', //引擎
-          '260P', //马力
-          '2门2座', //座位
-        ]
-      },
-      {
-        carId: 5,
-        isnew: true,
-        carName: '兰博基尼5',
-        price: '250万',
-        describe: '/assets/1.jpg', //图片或视频描述
-        textDescribe: '兰博基尼5是一家意大利汽车生厂商，全球顶尖跑车制造商及欧洲奢侈品标志之一，公司坐落于意大利亚加塔', //文字描述
-        buyCarProcess: '/assets/1.jpg',//购车流程图片描述
-        carParams: [
-
-          '2.0T-H4', //引擎
-          '260P', //马力
-          '2门2座', //座位
-        ]
-      },
-      {
-        carId: 6,
-        isnew: true,
-        carName: '兰博基尼6',
-        price: '260万',
-        describe: '/assets/1.jpg', //图片或视频描述
-        textDescribe: '兰博基尼6是一家意大利汽车生厂商，全球顶尖跑车制造商及欧洲奢侈品标志之一，公司坐落于意大利亚加塔', //文字描述
-        buyCarProcess: '/assets/1.jpg',//购车流程图片描述
-        carParams: [
-
-          '2.0T-H4', //引擎
-          '260P', //马力
-          '2门2座', //座位
-        ]
-      },
-
-    ],
-    paramName: ['发动机', '马力', '座位'],
     currentCar: {},
     hideShare: false
   },
@@ -136,15 +22,15 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options)
-    let cardata = this.data.allCarData.filter((item) => {
-      return options.carId == item.carId
-    })
-    this.setData({
-      currentCar: cardata[0]
-    })
-    console.log(this.data.currentCar)
-
+    // console.log(options)
+    // let cardata = this.data.allCarData.filter((item) => {
+    //   return options.carId == item.carId
+    // })
+    // this.setData({
+    //   currentCar: cardata[0]
+    // })
+    // console.log(this.data.currentCar)
+    this.getCarData(options.carId)
   },
 
   /**
@@ -195,10 +81,54 @@ Page({
   onShareAppMessage: function () {
 
   },
+  //根据id调用接口获取数据
+  getCarData(id) {
+    // 调用云函数  商品列表
+    wx.cloud.callFunction({
+      name: 'item',
+      data: {
+        action: "itemList",
+        istotal: 0,   //  返回总数
+        // 查询条件
+        condition: {
+          _id: id,
+          shopId: "f841fd285e71d6900011f3b713c5a83f",
+          // 名称模糊搜素
+          // name: {
+          //   $regex: ".*13.*",
+          //   $options: 'i'
+          // }
+        },
+        
+        // status:[2],    // 商品状态 在售 已售 未上架 
+        // oldlevel,
+        // 分页
+        page: 1,
+        perpage: 5,
+        // 是否排序
+        order: 0
+      },
+      success: res => {
+        console.log('[云函数] [item.itemList] : ', res.result)
+        res.result.data.forEach(item => {
+            item.data = JSON.parse(item.data)
+            this.data.carData.push(item)
+            this.setData({
+              carData: this.data.carData
+            })
 
+        })
+        console.log(this.data.carData)
+      },
+      fail: err => {
+        console.error('[云函数] [item.itemList] 调用失败', err)
+      }
+    })
+  },
   tabClick(e) {
+    console.log(e)
     this.setData({
-      currentIndex: e.detail.currentIndex
+      currentIndex: e.detail.tabCurrent
     })
   },
 

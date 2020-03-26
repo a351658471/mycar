@@ -1,60 +1,114 @@
-const app = getApp()
 Page({
   data: {
+
+      value1: '',
+      value2: '',
+      value3: '',
+      value4: '',
+      value5: '',
+      value6: '',
+      value7: '',
+
+    carData:[],
+    disabled:true,
     isOld: true,
-    typeValue:'',
+    typeValue: '',
     isEnter: false,
     showUpload: true,
-    priceValue:0,
-    isNext:false,
-    reqData:{
+    priceValue: 0,
+    isNext: false,
+    reqData: {
       imgList: [],
       labelList: ['2.0T-H4', '250P'],
-      params:[]
+      params: []
     },
-    oldlevel:{
-      newCar:0,
-      userdCar:1
+    oldlevel: {
+      newCar: 0,
+      userdCar: 1
     },
     dataList: [],
     textCache: null,
     textValue: ''
   },
-  onLoad() {
-    // const platform = wx.getSystemInfoSync().platform
-    // const isIOS = platform === 'ios'
-    // this.setData({ isIOS })
-    // const that = this
-    // this.updatePosition(0)
-    // let keyboardHeight = 0
-    // wx.onKeyboardHeightChange(res => {
-    //   console.log(res)
-    //   if (res.height === keyboardHeight) return
-    //   const duration = res.height > 0 ? res.duration * 1000 : 0
-    //   keyboardHeight = res.height
-    //   setTimeout(() => {
-    //     wx.pageScrollTo({
-    //       scrollTop: 0,
-    //       success() {
-    //         that.updatePosition(keyboardHeight)
-    //         that.editorCtx.scrollIntoView()
-    //       }
-    //     })
-    //   }, duration)
-    // })
+  onLoad(options) {
+    let id= options.id;
+    this.getCarData(id)
   },
-  // updatePosition(keyboardHeight) {
-  //   const toolbarHeight = 50
-  //   const { windowHeight, platform } = wx.getSystemInfoSync()
-  //   let editorHeight = keyboardHeight > 0 ? (windowHeight - keyboardHeight - toolbarHeight) : windowHeight
-  //   this.setData({ editorHeight, keyboardHeight })
-  // },
+  //根据id调用接口获取数据
+  getCarData(id) {
+    // 调用云函数  商品列表
+    wx.cloud.callFunction({
+      name: 'item',
+      data: {
+        action: "itemList",
+        istotal: 0,   //  返回总数
+        // 查询条件
+        condition: {
+          _id: id,
+          shopId: "f841fd285e71d6900011f3b713c5a83f",
+          // 名称模糊搜素
+          // name: {
+          //   $regex: ".*13.*",
+          //   $options: 'i'
+          // }
+        },
 
-  back(){
-    this.setData({
-      isNext:false
+        // status:[2],    // 商品状态 在售 已售 未上架 
+        // oldlevel,
+        // 分页
+        page: 1,
+        perpage: 5,
+        // 是否排序
+        order: 0
+      },
+      success: res => {
+        console.log('[云函数] [item.itemList] : ', res.result)
+        res.result.data.forEach(item => {
+          item.data = JSON.parse(item.data)
+          this.data.carData.push(item)
+        });
+        this.data.carData[0].data.params.forEach(item=>{
+          switch(item.type){
+            case 0:
+                this.setData({
+                  value3:item.content
+                });
+                break;
+            case 1:
+              this.setData({
+                value4: item.content
+              });
+              break;
+            case 2:
+              this.setData({
+                value5: item.content
+              });
+              break;
+            case 3:
+              this.setData({
+                value6: item.content
+              });
+              break;
+            case 4:
+              this.setData({
+                value7: item.content
+              });
+              break;
+          }
+        })
+        this.setData({
+          carData: this.data.carData,
+          value1: this.data.carData[0].price,
+          value2: this.data.carData[0].name,
+        })
+        console.log(this.data.carData)
+      },
+      fail: err => {
+        console.error('[云函数] [item.itemList] 调用失败', err)
+      }
     })
   },
+
   textBulr(e) {
     if (e.detail.value != "") {
       let data = {
@@ -68,13 +122,15 @@ Page({
 
   },
   insertImage() {
-    app.globalFunc.uploadImg((r, res) => {
-      if (r) {
+    wx.chooseImage({
+      count: 1,
+      success: (res) => {
         let data = {
-          content: res.fileID,
+          content: res.tempFilePaths[0],
           type: 'image'
         }
         if (this.data.textCache != null) {
+          console.log(1111111)
           this.data.dataList.push(this.data.textCache)
         }
         this.data.dataList.push(data)
@@ -85,25 +141,6 @@ Page({
         })
       }
     })
-    // wx.chooseImage({
-    //   count: 1,
-    //   success: (res) => {
-    //     let data = {
-    //       content: res.tempFilePaths[0],
-    //       type: 'image'
-    //     }
-    //     if (this.data.textCache != null) {
-    //       console.log(1111111)
-    //       this.data.dataList.push(this.data.textCache)
-    //     }
-    //     this.data.dataList.push(data)
-    //     this.setData({
-    //       dataList: this.data.dataList,
-    //       textValue: '',
-    //       textCache: null
-    //     })
-    //   }
-    // })
   },
   imgDelete(e) {
     console.log(e)
@@ -114,10 +151,14 @@ Page({
     })
   },
   insertVideo() {
-    app.globalFunc.uploadVideo((r, res) => {
-      if (r) {
+    wx.chooseVideo({
+      sourceType: ['album', 'camera'],
+      maxDuration: 60,
+      camera: 'back',
+      success: (res) => {
+        console.log(res)
         let data = {
-          content: res.fileID,
+          content: res.tempFilePath,
           type: 'video'
         }
         if (this.data.textCache != null) {
@@ -131,28 +172,6 @@ Page({
         })
       }
     })
-
-    // wx.chooseVideo({
-    //   sourceType: ['album', 'camera'],
-    //   maxDuration: 60,
-    //   camera: 'back',
-    //   success: (res) => {
-    //     console.log(res)
-    //     let data = {
-    //       content: res.tempFilePath,
-    //       type: 'video'
-    //     }
-    //     if (this.data.textCache != null) {
-    //       this.data.dataList.push(this.data.textCache)
-    //     }
-    //     this.data.dataList.push(data)
-    //     this.setData({
-    //       dataList: this.data.dataList,
-    //       textValue: '',
-    //       textCache: null
-    //     })
-    //   }
-    // })
   },
   videoDelete(e) {
     let index = e.currentTarget.dataset.index;
@@ -163,10 +182,10 @@ Page({
     })
   },
   saveEvent() {
-    let oldlevel=0
-    if (this.data.isOld){
+    let oldlevel = 0
+    if (this.data.isOld) {
       oldlevel = [this.data.oldlevel.userdCar]
-    }else{
+    } else {
       oldlevel = [this.data.oldlevel.newCar]
     }
     this.data.reqData.detail = this.data.dataList
@@ -176,10 +195,10 @@ Page({
       stock: 1,       // 库存
       sort: 1002,      // 排序 值越大排越前面
       data: JSON.stringify(this.data.reqData),     // 数据
-      status:2,
+      status: 2,
       oldlevel,
     }
-   //调用云函数
+    //调用云函数
     wx.cloud.callFunction({
       name: 'item',
       data: {
@@ -215,7 +234,7 @@ Page({
       })
     }
   },
-  blurEvnet1(e){
+  blurEvnet1(e) {
     this.data.priceValue = e.detail.value
   },
   blurEvnet2(e) {
@@ -223,8 +242,8 @@ Page({
   },
   //里程
   blurEvnet3(e) {
-    let param={
-      type:0,
+    let param = {
+      type: 0,
       content: e.detail.value
     }
     this.data.reqData.params.push(param)
@@ -301,10 +320,27 @@ Page({
         this.setData(this.data)
       }
     })
+    // let count = 3 - this.data.reqData.imgList.length
+    // wx.chooseImage({
+    //   count: count,
+    //   sizeType: ['compressed'],
+    //   sourceType: ['album', 'camera'],
+    //   success: (res) => {
+    //     let tempFilePaths = res.tempFilePaths;
+    //     tempFilePaths.forEach(item => {
+    //       this.data.reqData.imgList.push(item)
+    //     })
+    //     let imglist = "reqData.imgList"
+    //     this.setData({
+    //       [imglist]: this.data.reqData.imgList
+    //     })
+    //     console.log(this.data.reqData.imgList)
+    //   }
+    // })
   },
 
   //删除图片
-  deleteImg(e){
+  deleteImg(e) {
     let index = e.currentTarget.dataset.index;
     this.data.reqData.imgList.splice(index, 1);
     let imglist = "reqData.imgList"
@@ -313,10 +349,9 @@ Page({
     })
   },
 
-  next(){
+  edit() {
     this.setData({
-      isNext:true
+      disabled: false
     })
-   
   },
 })

@@ -32,7 +32,8 @@ Page({
     },
     menu_car: {
       name: "车辆管理",
-      icon: "mypage-car.png"
+      icon: "mypage-car.png",
+      link: "/pages/carManage/carManage"
     },
     menu_picture: {
       name: "首页动图",
@@ -165,6 +166,14 @@ Page({
   },
   bindtapMenu(event) {
     var src = event.currentTarget.dataset.src
-    wx.navigateTo({ url: src.link })
+    if(src.link ){
+      wx.navigateTo({ url: src.link })
+    }
+    else{
+      wx.showToast({
+        icon:"none",
+        title: '该功能暂未开放',
+      })
+    }
   }
 })
