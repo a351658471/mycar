@@ -17,9 +17,8 @@ Component({
   },
   methods: {
     caritemClick: function (e){
-      console.log(e)
       this.triggerEvent('caritemClick', {
-        itemData: e.currentTarget.dataset.item
+        itemData: e.currentTarget.dataset.item._id
       })
     }
   }

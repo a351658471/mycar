@@ -3,58 +3,58 @@
 
 <scroll-view scroll-y style='height:100%'>
   <!-- 轮播图组件 -->
-  <my-swiper imgList="{{carData.imgList}}" isMyDots="{{true}}"></my-swiper>
+  <my-swiper imgList="{{carData[0].data.imgList}}" isMyDots="{{true}}"></my-swiper>
 
   <!-- 报价 -->
   <view class='carDetail'>
     <view class='detail-heard'>
-        <view class="heard-name">{{currentCar.carName}}</view>
-        <view class="heard-right">{{currentCar.isnew?'全新':'二手'}}</view>
+        <view class="heard-name">{{carData[0].name}}</view>
+        <view class="heard-right">{{carData[0].oldlevel[0] ==0 ?'全新':'二手'}}</view>
     </view>
     <view class='detail-body'>
       <view class='body-left'>
-          <block wx:for="{{currentCar.carParams}}">
+          <block wx:for="{{carData[0].data.labelList}}">
               <view class='left-item'>{{item}}</view>
           </block>
       </view>
       <view class='body-right' style='color:#D0435A'>
-        ￥{{currentCar.price}}
+        ￥{{carData[0].price}}
       </view>
     </view>
   </view>
 
-  <!-- tab -->
-  <my-tab tabList="{{tabList}}" bind:tabClick="tabClick"></my-tab>
-
   <!-- detail -->
   <view class="bottomBox">
-  <view wx:if="{{currentIndex == 0}}" style='background:#fff; width:100%'>
-    <view style='width:90%; height:170px; margin:0 auto'>
-      <image src='{{currentCar.describe}}' mode="scaleToFill" style='width:100%; height:170px'></image>
-    </view>
-    <view style='width:90%; margin:1rem auto; font-size:14px'>
-    {{currentCar.textDescribe}}
-    </view>
+   <!-- tab -->
+  <my-tab tabList="{{tabList}}" bind:tabClick="tabClick"></my-tab>
+
+  <view wx:if="{{currentIndex == 0}}" style='background:#fff; width:100%;padding-top:2vw'>
+   <block wx:for="{{carData[0].data.detail}}">
+      <view style='width:90%; height:170px; margin:0 auto' wx:if="{{item.type == 'image'}}">
+         <image src='{{item.content}}' mode="scaleToFill" style='width:100%; height:170px'></image>
+      </view>
+      <view style='width:90%; margin:1vw auto; font-size:14px' wx:if="{{item.type == 'text'}}">
+         {{item.content}}
+      </view>
+   </block>
   </view>
 
 
     <view wx:elif="{{currentIndex == 1}}" style='width:100%; background:#fff'>
+
     <view style='width:90%; margin:0 auto;border-top:1px solid #E8E5E9'>
-      <view wx:for="{{currentCar.carParams}}"  style='padding:0.5rem 0; border-bottom:1px solid #E8E5E9; font-size:14px;display: flex;'>
+      <view wx:for="{{carData[0].data.params}}"  style='padding:0.5rem 0; border-bottom:1px solid #E8E5E9; font-size:14px;display: flex;'>
             <view style='width:5rem'>
-              {{paramName[index]}}
+              {{paramsEnum[item.type]}}
             </view>
             <view>
-              {{item}}
+              {{item.content}}
             </view>
        </view>
     </view>
+   </view>
   </view>
 
-  <view wx:elif="{{currentIndex == 2}}" style='background:#fff; width:100%'>
-    <image src="{{currentCar.buyCarProcess}}"  mode="scaleToFill" style='width:100%; height:170px'></image>
-  </view>
-  </view>
   </scroll-view>
   <my-call class="callIcon" bind:call="call"></my-call>
 

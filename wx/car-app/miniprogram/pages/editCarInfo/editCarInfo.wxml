@@ -1,5 +1,5 @@
 <view class="addCar">
-<scroll-view scroll-y style="height:100%" wx:if="{{!isNext}}">
+<scroll-view scroll-y style="height:100%">
 <!-- 基本信息 -->
     <view class="baseInfo">
         <view class="baseTitle">
@@ -10,10 +10,11 @@
             <view class="baseItem">
               <view class="ItemName">车辆类型</view>
               <view class="radioItem">
-              <radio-group bindchange="radioChange" name="cNew">
+              <!-- <radio-group bindchange="radioChange" name="cNew">
                <radio class="radio" value="oldcar" checked>二手车</radio>
                <radio class="radio" value="newcar">新车</radio>
-               </radio-group>
+               </radio-group> -->
+               
               </view>
              </view>
           </view>
@@ -21,7 +22,7 @@
           <view class="baseItem">
               <view class="ItemName">销售价格</view>
               <view class="inputItem">
-                <input type="text" name="cPrice" bindblur="blurEvnet1" placeholder="必填" placeholder-style="color:#FE2A45;font-size:0.95rem;font-weight:bolder"></input>
+                <input type="text" disabled="{{disabled}}" name="cPrice" bindblur="blurEvnet1" value="value1" placeholder="必填" placeholder-style="color:#FE2A45;font-size:0.95rem;font-weight:bolder"></input>
               </view>
           </view>
         </view>
@@ -30,7 +31,7 @@
           <view class="baseItem">
                 <view class="ItemName">品牌车型</view>
                 <view class="inputItem">
-                  <input type="text" name="cBrand" bindblur="blurEvnet2" placeholder="必填" placeholder-style="color:#FE2A45;font-size:0.95rem;font-weight:bolder"></input>
+                  <input type="text" name="cBrand" disabled="{{disabled}}" bindblur="blurEvnet2" value="value2" placeholder="必填" placeholder-style="color:#FE2A45;font-size:0.95rem;font-weight:bolder"></input>
                 </view>
             </view>
         </view>
@@ -39,7 +40,7 @@
           <view class="baseItem">
                 <view class="ItemName">表显里程</view>
                 <view class="inputItem">
-                  <input type="text" name="cmileage"  bindblur="blurEvnet3" placeholder="必填" placeholder-style="color:#FE2A45;font-size:0.95rem;font-weight:bolder"></input>
+                  <input type="text" name="cmileage" disabled="{{disabled}}"  bindblur="blurEvnet3" value="value3"placeholder="必填" placeholder-style="color:#FE2A45;font-size:0.95rem;font-weight:bolder"></input>
                 </view>
             </view>
         </view>
@@ -48,7 +49,7 @@
           <view class="baseItem" wx:if="{{isOld}}">
                 <view class="ItemName">初次上牌</view>
                 <view class="inputItem">
-                  <input type="text" name="cFirst" bindblur="blurEvnet4" placeholder="必填" placeholder-style="color:#FE2A45;font-size:0.95rem;font-weight:bolder"></input>
+                  <input type="text" name="cFirst" disabled="{{disabled}}" bindblur="blurEvnet4" value="value4" placeholder="必填" placeholder-style="color:#FE2A45;font-size:0.95rem;font-weight:bolder"></input>
                 </view>
           </view>
         </view>
@@ -57,7 +58,7 @@
           <view class="baseItem">
                 <view class="ItemName">排放标准</view>
                 <view class="inputItem">
-                  <input type="text" name="cStandard" bindblur="blurEvnet5" placeholder="请输入排放标准" placeholder-style="font-size:0.95rem"></input>
+                  <input type="text" name="cStandard" disabled="{{disabled}}" bindblur="blurEvnet5" value="value5" placeholder="请输入排放标准" placeholder-style="font-size:0.95rem"></input>
                 </view>
           </view>
         </view>
@@ -65,7 +66,7 @@
           <view class="baseItem">
                 <view class="ItemName">发动机</view>
                 <view class="inputItem">
-                  <input type="text" name="cEngine" bindblur="blurEvnet6" placeholder="请输入发动机信息" placeholder-style="font-size:0.95rem"></input>
+                  <input type="text" name="cEngine" disabled="{{disabled}}" bindblur="blurEvnet6" value="value6" placeholder="请输入发动机信息" placeholder-style="font-size:0.95rem"></input>
                 </view>
           </view>
         </view>
@@ -74,7 +75,7 @@
           <view class="baseItem">
                 <view class="ItemName">马力</view>
                 <view class="inputItem">
-                  <input type="text" name="cHorse" bindblur="blurEvnet7" placeholder="请输入马力" placeholder-style="font-size:0.95rem"></input>
+                  <input type="text" name="cHorse" disabled="{{disabled}}" bindblur="blurEvnet7" value="value7" placeholder="请输入马力" placeholder-style="font-size:0.95rem"></input>
                 </view>
           </view>
         </view>
@@ -87,7 +88,7 @@
           <view class="labelTitle">
               标签
           </view>
-          <view class="labelAdd" bindtap="addLabel">
+          <view class="labelAdd" bindtap="addLabel" wx:if="{{!disabled}}">
             添加
           </view>
         </view>
@@ -119,7 +120,7 @@
             </view>
             </view>
 
-            <view class="itemAdd" bindtap="addImg" wx:if="{{reqData.imgList.length<3}}">
+            <view class="itemAdd" bindtap="addImg" wx:if="{{reqData.imgList.length<3}}" wx:if="{{!disabled}}">
               <image src="/assets/图片.png" mode="widthFix"></image>
               <view>{{imgList.length==0 ?"添加图片":"继续添加"}}</view>
             </view>
@@ -128,22 +129,13 @@
           </view>
           </view>
     </view>
-    <view class="next" bindtap="next">
-      保存进入下一步
-    </view>
-</scroll-view>
 
-<!-- 详情介绍 -->
-<view wx:if="{{isNext}}">
+    <!-- 详情介绍 -->
+    <view>
    <view class="labelHeader">
       <view class="labelTitle">
               详情介绍
        </view>
-      <view class="detailSave" bindtap="addLabel">
-          <view class="rightItem" bind:tap="saveEvent">保存</view>
-          <view class="rightItem">上架</view>
-          <view class="rightItem" style="background:#959595" bind:tap="back">上一步</view>
-      </view>
     </view>
       <view class="container1" id="container">
 
@@ -167,13 +159,20 @@
             <video src="{{item.content}}"></video>
         </view>
       </view>
-       <textarea placeholder="{{placeholder}}" bindblur="textBulr" style="width:100%" value="{{textValue}}"></textarea>
+       <textarea disabled="{{disabled}}" placeholder="{{placeholder}}" bindblur="textBulr" style="width:100%" value="{{textValue}}"></textarea>
       </view>
 
 
-      <view class="toolbar" catchtouchend="format">
+      <view class="toolbar" catchtouchend="format" wx:if="{{!disabled}}">
         <i class="iconfont icon-tupian iconItem" catchtouchend="insertImage"></i>
         <i class="iconfont icon-dilanxianxingiconyihuifu_huabanfuben iconItem" catchtouchend="insertVideo"></i>
     </view>
 </view>
+<view class="next" bindtap="edit" wx:if="{{disabled}}">
+      编辑车辆信息
+ </view>
+ <view class="next" bindtap="editCarInfo" wx:else>
+      保存
+ </view>
+</scroll-view>
 </view>
