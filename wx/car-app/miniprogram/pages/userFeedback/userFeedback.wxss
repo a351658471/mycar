@@ -1,15 +1,17 @@
 /* pages/advise/advise.wxss */
 .advisetitle{
-    font-size: 32rpx;
-    color: #333333;
-    font-weight: bold;
-    margin: 28rpx 20rpx;
+  font-size: 32rpx;
+  color: #333333;
+  font-weight: bold;
+  margin: 28rpx 20rpx;
 }
 .advisemessage textarea{
-    width: 100%;
-    height: 232rpx;
-    background: #FFFFFF;
-    padding: 40rpx 36rpx;  
+  width: 100%;
+  height: 360rpx;
+  background: #FFFFFF;
+  box-sizing: border-box;
+  padding: 40rpx 36rpx; 
+  word-wrap: break-word; 
 }
 .adviseBtn{
   width: 100%;
@@ -17,9 +19,9 @@
   bottom: 44rpx;
 }
 .btn{
-    height: 88rpx;
-    color: #FFFFFF;
-    font-size: 36rpx;
-    font-weight: normal;
-    background: linear-gradient(to right,#FD7493,#FE2A45)
+  height: 88rpx;
+  color: #FFFFFF;
+  font-size: 36rpx;
+  font-weight: normal;
+  background: linear-gradient(to right,#FD7493,#FE2A45);
 }

@@ -4,6 +4,7 @@
     "pages/personal/personal",
     "pages/gif/gif",
     "pages/userFeedback/userFeedback",
+    "pages/userFeedbackDetail/userFeedbackDetail",
     "pages/userFeedbackQuery/userFeedbackQuery",
     "pages/index/index",
     "pages/index/carDetail/carDetail",

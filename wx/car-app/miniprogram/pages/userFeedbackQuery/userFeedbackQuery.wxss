@@ -1,18 +1,43 @@
 /* pages/userFeedbackQuery/userFeedbackQuery.wxss */
 .advisetitle{
-    font-size: 32rpx;
-    color: #333333;
-    font-weight: bold;
-    margin: 28rpx 20rpx;
+  font-size: 32rpx;
+  color: #333333;
+  font-weight: bold;
+  margin: 35rpx 20rpx;
 }
 .feedback{
   background: #ffffff;
-  margin-top: 10rpx;
-  padding: 20rpx;
+  padding: 20rpx 30rpx;
+  border-radius: 10rpx;
+  margin: 2rpx 10rpx;
+  position: relative;
 }
-.feedback .name{
+.feedback .feedbackuser{
+  display: flex;
+  align-items: center
+}
+.feedback .feedbackuser image{
+  width: 70rpx;
+  height: 70rpx;
+  border-radius: 50%;
+}
+.feedback .feedbackuser .tab{
+  width: 50rpx;
+  height: 50rpx;
+  position: absolute;
+  top: 0;
+  right: 20rpx;
+}
+.feedback .feedbackuser .name{
   font-size: 30rpx;
+  margin-left: 30rpx;
 }
 .feedback .content{
-  margin: 20rpx 50rpx;
+  width: 60%;
+  margin-left: 60rpx;
+  color: #555;
+  font-size: 25rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

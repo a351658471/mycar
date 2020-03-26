@@ -1,12 +1,16 @@
 <!--miniprogram/pages/userManage/userManage.wxml-->
-<view class="inputBox">
-  <input class="searchInput" 
+<view class="inputBoxes">
+  <view class="inputBox">
+  <icon type="search" size="25"></icon>
+    <input class="searchInput" 
          focus="true" 
          placeholder="搜索用户" 
          confirm-type="search"
          bindconfirm="search"
-         bindinput="inputBind">
-  </input>
+         bindinput="inputBind"
+         >
+    </input>
+  </view>
 </view>
 <view hidden="{{isSearch}}">
   <my-tab tabList="{{tabList}}"  bind:tabClick="tabClick"></my-tab>
