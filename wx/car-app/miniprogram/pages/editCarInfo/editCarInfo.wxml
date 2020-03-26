@@ -22,7 +22,7 @@
           <view class="baseItem">
               <view class="ItemName">销售价格</view>
               <view class="inputItem">
-                <input type="text" disabled="{{disabled}}" name="cPrice" bindblur="blurEvnet1" value="value1" placeholder="必填" placeholder-style="color:#FE2A45;font-size:0.95rem;font-weight:bolder"></input>
+                <input type="text" disabled="{{disabled}}" name="cPrice" bindblur="blurEvnet1" value="{{value1}}" placeholder="必填" placeholder-style="color:#FE2A45;font-size:0.95rem;font-weight:bolder"></input>
               </view>
           </view>
         </view>
@@ -31,7 +31,7 @@
           <view class="baseItem">
                 <view class="ItemName">品牌车型</view>
                 <view class="inputItem">
-                  <input type="text" name="cBrand" disabled="{{disabled}}" bindblur="blurEvnet2" value="value2" placeholder="必填" placeholder-style="color:#FE2A45;font-size:0.95rem;font-weight:bolder"></input>
+                  <input type="text" name="cBrand" disabled="{{disabled}}" bindblur="blurEvnet2" value="{{value2}}" placeholder="必填" placeholder-style="color:#FE2A45;font-size:0.95rem;font-weight:bolder"></input>
                 </view>
             </view>
         </view>
@@ -40,7 +40,7 @@
           <view class="baseItem">
                 <view class="ItemName">表显里程</view>
                 <view class="inputItem">
-                  <input type="text" name="cmileage" disabled="{{disabled}}"  bindblur="blurEvnet3" value="value3"placeholder="必填" placeholder-style="color:#FE2A45;font-size:0.95rem;font-weight:bolder"></input>
+                  <input type="text" name="cmileage" disabled="{{disabled}}"  bindblur="blurEvnet3" value="{{value3}}"placeholder="必填" placeholder-style="color:#FE2A45;font-size:0.95rem;font-weight:bolder"></input>
                 </view>
             </view>
         </view>
@@ -49,7 +49,7 @@
           <view class="baseItem" wx:if="{{isOld}}">
                 <view class="ItemName">初次上牌</view>
                 <view class="inputItem">
-                  <input type="text" name="cFirst" disabled="{{disabled}}" bindblur="blurEvnet4" value="value4" placeholder="必填" placeholder-style="color:#FE2A45;font-size:0.95rem;font-weight:bolder"></input>
+                  <input type="text" name="cFirst" disabled="{{disabled}}" bindblur="blurEvnet4" value="{{value4}}" placeholder="必填" placeholder-style="color:#FE2A45;font-size:0.95rem;font-weight:bolder"></input>
                 </view>
           </view>
         </view>
@@ -58,7 +58,7 @@
           <view class="baseItem">
                 <view class="ItemName">排放标准</view>
                 <view class="inputItem">
-                  <input type="text" name="cStandard" disabled="{{disabled}}" bindblur="blurEvnet5" value="value5" placeholder="请输入排放标准" placeholder-style="font-size:0.95rem"></input>
+                  <input type="text" name="cStandard" disabled="{{disabled}}" bindblur="blurEvnet5" value="{{value5}}" placeholder="请输入排放标准" placeholder-style="font-size:0.95rem"></input>
                 </view>
           </view>
         </view>
@@ -66,7 +66,7 @@
           <view class="baseItem">
                 <view class="ItemName">发动机</view>
                 <view class="inputItem">
-                  <input type="text" name="cEngine" disabled="{{disabled}}" bindblur="blurEvnet6" value="value6" placeholder="请输入发动机信息" placeholder-style="font-size:0.95rem"></input>
+                  <input type="text" name="cEngine" disabled="{{disabled}}" bindblur="blurEvnet6" value="{{value6}}" placeholder="请输入发动机信息" placeholder-style="font-size:0.95rem"></input>
                 </view>
           </view>
         </view>
@@ -75,7 +75,7 @@
           <view class="baseItem">
                 <view class="ItemName">马力</view>
                 <view class="inputItem">
-                  <input type="text" name="cHorse" disabled="{{disabled}}" bindblur="blurEvnet7" value="value7" placeholder="请输入马力" placeholder-style="font-size:0.95rem"></input>
+                  <input type="text" name="cHorse" disabled="{{disabled}}" bindblur="blurEvnet7" value="{{value7}}" placeholder="请输入马力" placeholder-style="font-size:0.95rem"></input>
                 </view>
           </view>
         </view>

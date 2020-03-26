@@ -1,6 +1,6 @@
 Page({
   data: {
-    values:{
+
       value1: '',
       value2: '',
       value3: '',
@@ -8,7 +8,7 @@ Page({
       value5: '',
       value6: '',
       value7: '',
-    },
+
     carData:[],
     disabled:true,
     isOld: true,
@@ -66,10 +66,40 @@ Page({
         res.result.data.forEach(item => {
           item.data = JSON.parse(item.data)
           this.data.carData.push(item)
-          this.setData({
-            carData: this.data.carData,
-          })
-
+        });
+        this.data.carData[0].data.params.forEach(item=>{
+          switch(item.type){
+            case 0:
+                this.setData({
+                  value3:item.content
+                });
+                break;
+            case 1:
+              this.setData({
+                value4: item.content
+              });
+              break;
+            case 2:
+              this.setData({
+                value5: item.content
+              });
+              break;
+            case 3:
+              this.setData({
+                value6: item.content
+              });
+              break;
+            case 4:
+              this.setData({
+                value7: item.content
+              });
+              break;
+          }
+        })
+        this.setData({
+          carData: this.data.carData,
+          value1: this.data.carData[0].price,
+          value2: this.data.carData[0].name,
         })
         console.log(this.data.carData)
       },
