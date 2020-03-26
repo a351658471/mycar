@@ -165,9 +165,9 @@ Page({
   saveEvent() {
     let oldlevel=0
     if (this.data.isOld){
-      oldlevel = [this.data.oldlevel.userdCar]
+      oldlevel = this.data.oldlevel.userdCar
     }else{
-      oldlevel = [this.data.oldlevel.newCar]
+      oldlevel = this.data.oldlevel.newCar
     }
     this.data.reqData.detail = this.data.dataList
     let item = {

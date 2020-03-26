@@ -1,3 +1,4 @@
+const app = getApp()
 Page({
   data: {
 
@@ -17,11 +18,7 @@ Page({
     showUpload: true,
     priceValue: 0,
     isNext: false,
-    reqData: {
-      imgList: [],
-      labelList: ['2.0T-H4', '250P'],
-      params: []
-    },
+    reqData: null,
     oldlevel: {
       newCar: 0,
       userdCar: 1
@@ -122,15 +119,13 @@ Page({
 
   },
   insertImage() {
-    wx.chooseImage({
-      count: 1,
-      success: (res) => {
+    app.globalFunc.uploadImg((r, res) => {
+      if (r) {
         let data = {
-          content: res.tempFilePaths[0],
+          content: res.fileID,
           type: 'image'
         }
         if (this.data.textCache != null) {
-          console.log(1111111)
           this.data.dataList.push(this.data.textCache)
         }
         this.data.dataList.push(data)
@@ -141,24 +136,41 @@ Page({
         })
       }
     })
+
+    // wx.chooseImage({
+    //   count: 1,
+    //   success: (res) => {
+    //     let data = {
+    //       content: res.tempFilePaths[0],
+    //       type: 'image'
+    //     }
+    //     if (this.data.textCache != null) {
+    //       console.log(1111111)
+    //       this.data.dataList.push(this.data.textCache)
+    //     }
+    //     this.data.dataList.push(data)
+    //     this.setData({
+    //       dataList: this.data.dataList,
+    //       textValue: '',
+    //       textCache: null
+    //     })
+    //   }
+    // })
   },
   imgDelete(e) {
     console.log(e)
     let index = e.currentTarget.dataset.index
-    this.data.dataList.splice(index, 1)
+    this.data.carData[0].data.detail.splice(index, 1)
+    
     this.setData({
-      dataList: this.data.dataList
+      carData: this.data.carData
     })
   },
   insertVideo() {
-    wx.chooseVideo({
-      sourceType: ['album', 'camera'],
-      maxDuration: 60,
-      camera: 'back',
-      success: (res) => {
-        console.log(res)
+    app.globalFunc.uploadVideo((r, res) => {
+      if (r) {
         let data = {
-          content: res.tempFilePath,
+          content: res.fileID,
           type: 'video'
         }
         if (this.data.textCache != null) {
@@ -172,6 +184,28 @@ Page({
         })
       }
     })
+
+    // wx.chooseVideo({
+    //   sourceType: ['album', 'camera'],
+    //   maxDuration: 60,
+    //   camera: 'back',
+    //   success: (res) => {
+    //     console.log(res)
+    //     let data = {
+    //       content: res.tempFilePath,
+    //       type: 'video'
+    //     }
+    //     if (this.data.textCache != null) {
+    //       this.data.dataList.push(this.data.textCache)
+    //     }
+    //     this.data.dataList.push(data)
+    //     this.setData({
+    //       dataList: this.data.dataList,
+    //       textValue: '',
+    //       textCache: null
+    //     })
+    //   }
+    // })
   },
   videoDelete(e) {
     let index = e.currentTarget.dataset.index;
@@ -182,118 +216,114 @@ Page({
     })
   },
   saveEvent() {
-    let oldlevel = 0
-    if (this.data.isOld) {
-      oldlevel = [this.data.oldlevel.userdCar]
-    } else {
-      oldlevel = [this.data.oldlevel.newCar]
-    }
-    this.data.reqData.detail = this.data.dataList
+    console.log(this.data.carData[0])
+
     let item = {
-      name: this.data.typeValue, // 商品名
-      price: this.data.priceValue,// 价格
-      stock: 1,       // 库存
-      sort: 1002,      // 排序 值越大排越前面
-      data: JSON.stringify(this.data.reqData),     // 数据
-      status: 2,
-      oldlevel,
-    }
-    //调用云函数
+      _id: this.data.carData[0]._id,
+      name: this.data.carData[0].name,
+      price: this.data.carData[0].price,
+      stock: 1,
+      data: JSON.stringify(this.data.carData[0].data),
+    };
+    
+         // 调用编辑云函数
     wx.cloud.callFunction({
       name: 'item',
       data: {
-        action: "itemAdd",
+        action: "itemEdit",
         shopid: "f841fd285e71d6900011f3b713c5a83f",
-        item: item
-        // {
-        //   name: this.data.typeValue,    // 商品名
-        //   price: this.data.priceValue,  // 价格
-        //   stock: 1,       // 库存
-        //   sort: 1002,      // 排序 值越大排越前面
-        //   data: data,     // 数据
+        item:item
+        // item: {
+        //   _id:"ae7e55b35e758c9600135dd8065f1744",
+        //   name: "911",    // 商品名
+        //   price: 666666,   // 价格
+        //   stock: 1,   // 库存
+        //   data: "{}",     // 数据
         // }
       },
       success: res => {
-        console.log('[云函数] [item.itemAdd] : ', res.result)
+        console.log('[云函数] [item.itemEdit] : ', res.result)
       },
       fail: err => {
-        console.error('[云函数] [item.itemAdd] 调用失败', err)
+        console.error('[云函数] [item.itemEdit] 调用失败', err)
       }
     })
+
+
   },
   //单选框
   radioChange(e) {
+    let oldlevel = "carData[0].oldlevel"
     if (e.detail.value == "oldcar") {
       this.setData({
-        isOld: true
+        [oldlevel]: 1
       })
 
     } else {
       this.setData({
-        isOld: false
+        [oldlevel]: 0
       })
     }
   },
   blurEvnet1(e) {
-    this.data.priceValue = e.detail.value
+    this.data.carData[0].price = e.detail.value
   },
   blurEvnet2(e) {
-    this.data.typeValue = e.detail.value
+    this.data.carData[0].name = e.detail.value
   },
   //里程
   blurEvnet3(e) {
-    let param = {
-      type: 0,
-      content: e.detail.value
-    }
-    this.data.reqData.params.push(param)
+    this.data.carData[0].data.params.forEach((item,index)=>{
+      if(item.type==0){
+        this.data.carData[0].data.params[index].content = e.detail.value
+      }
+    })
   },
   //初次上牌
   blurEvnet4(e) {
-    let param = {
-      type: 1,
-      content: e.detail.value
-    }
-    this.data.reqData.params.push(param)
+    this.data.carData[0].data.params.forEach((item, index) => {
+      if (item.type == 1) {
+        this.data.carData[0].data.params[index].content = e.detail.value
+      }
+    })
   },
   //排放
   blurEvnet5(e) {
-    let param = {
-      type: 2,
-      content: e.detail.value
-    }
-    this.data.reqData.params.push(param)
+    this.data.carData[0].data.params.forEach((item, index) => {
+      if (item.type == 2) {
+        this.data.carData[0].data.params[index].content = e.detail.value
+      }
+    })
   },
   //发动机
   blurEvnet6(e) {
-    let param = {
-      type: 3,
-      content: e.detail.value
-    }
-    this.data.reqData.params.push(param)
+    this.data.carData[0].data.params.forEach((item, index) => {
+      if (item.type == 3) {
+        this.data.carData[0].data.params[index].content = e.detail.value
+      }
+    })
   },
   //马力
   blurEvnet7(e) {
-    let param = {
-      type: 4,
-      content: e.detail.value
-    }
-    this.data.reqData.params.push(param)
+    this.data.carData[0].data.params.forEach((item, index) => {
+      if (item.type == 4) {
+        this.data.carData[0].data.params[index].content = e.detail.value
+      }
+    })
   },
 
 
   addLabel() {
-    console.log(111)
     this.setData({
       isEnter: true
     })
   },
   deleteLabel(e) {
     let index = e.currentTarget.dataset.index
-    this.data.reqData.labelList.splice(index, 1)
-    let labellist = "reqData.labelList"
+    this.data.carData[0].data.labelList.splice(index, 1)
+    let labellist = "carData[0].data.labelList"
     this.setData({
-      [labellist]: this.data.reqData.labelList
+      [labellist]: this.data.carData[0].data.labelList
     })
 
   },
@@ -304,10 +334,9 @@ Page({
   },
   //添加标签确定按钮
   enterEvent(e) {
-    console.log("确定")
-    let newArray = this.data.reqData.labelList;
+    let newArray = this.data.carData[0].data.labelList;
     newArray.push(e.detail.value);
-    let labellist = "reqData.labelList";
+    let labellist = "carData[0].data.labelList";
     this.setData({
       [labellist]: newArray
     })
@@ -316,7 +345,7 @@ Page({
   addImg() {
     app.globalFunc.uploadImg((r, res) => {
       if (r) {
-        this.data.reqData.imgList.push(res.fileID)
+        this.data.carData[0].data.imgList.push(res.fileID)
         this.setData(this.data)
       }
     })
@@ -342,10 +371,10 @@ Page({
   //删除图片
   deleteImg(e) {
     let index = e.currentTarget.dataset.index;
-    this.data.reqData.imgList.splice(index, 1);
-    let imglist = "reqData.imgList"
+    this.data.carData[0].data.imgList.splice(index, 1);
+    let imglist = "carData[0].data.imgList"
     this.setData({
-      [imglist]: this.data.reqData.imgList
+      [imglist]: this.data.carData[0].data.imgList
     })
   },
 

@@ -90,9 +90,9 @@
 					"scene": null
 				},
 				{
-					"id": -1,
-					"name": "pages/advise/advise",
-					"pathName": "pages/advise/advise",
+					"id": 4,
+					"name": "pages/userManage/userManage",
+					"pathName": "pages/userManage/userManage",
 					"query": "",
 					"scene": null
 				},
@@ -108,12 +108,6 @@
 					"name": "pages/addNewCar/addNewCar",
 					"pathName": "pages/addNewCar/addNewCar",
 					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/personal/personal",
-					"pathName": "pages/personal/personal",
 					"scene": null
 				},
 				{
