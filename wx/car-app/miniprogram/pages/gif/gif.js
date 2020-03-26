@@ -62,7 +62,7 @@ Page({
   },
   // 下载图片
   uploadImg: function () {
-    app.globalFunc.uploadImg((r, res) => {
+    app.globalFunc.uploadVideo((r, res) => {
       if (r) {
         this.data.swipers.push(res.fileID)
         this.setData(this.data)
