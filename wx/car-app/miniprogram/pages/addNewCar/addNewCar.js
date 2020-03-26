@@ -68,15 +68,13 @@ Page({
 
   },
   insertImage() {
-    wx.chooseImage({
-      count: 1,
-      success: (res) => {
+    app.globalFunc.uploadImg((r, res) => {
+      if (r) {
         let data = {
-          content: res.tempFilePaths[0],
+          content: res.fileID,
           type: 'image'
         }
         if (this.data.textCache != null) {
-          console.log(1111111)
           this.data.dataList.push(this.data.textCache)
         }
         this.data.dataList.push(data)
@@ -87,6 +85,25 @@ Page({
         })
       }
     })
+    // wx.chooseImage({
+    //   count: 1,
+    //   success: (res) => {
+    //     let data = {
+    //       content: res.tempFilePaths[0],
+    //       type: 'image'
+    //     }
+    //     if (this.data.textCache != null) {
+    //       console.log(1111111)
+    //       this.data.dataList.push(this.data.textCache)
+    //     }
+    //     this.data.dataList.push(data)
+    //     this.setData({
+    //       dataList: this.data.dataList,
+    //       textValue: '',
+    //       textCache: null
+    //     })
+    //   }
+    // })
   },
   imgDelete(e) {
     console.log(e)

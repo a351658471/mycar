@@ -10,10 +10,10 @@
             <view class="baseItem">
               <view class="ItemName">车辆类型</view>
               <view class="radioItem">
-              <!-- <radio-group bindchange="radioChange" name="cNew">
+              <radio-group wx:if="{{}}" bindchange="radioChange" name="cNew">
                <radio class="radio" value="oldcar" checked>二手车</radio>
                <radio class="radio" value="newcar">新车</radio>
-               </radio-group> -->
+               </radio-group>
                
               </view>
              </view>
