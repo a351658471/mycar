@@ -76,6 +76,5 @@ App({
         })
       }
     }
-    this.globalFunc.getShopInfo();
   }
 })
