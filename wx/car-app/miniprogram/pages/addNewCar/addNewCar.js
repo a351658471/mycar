@@ -1,3 +1,4 @@
+const app = getApp()
 Page({
   data: {
     isOld: true,
@@ -259,21 +260,10 @@ Page({
   },
   //添加图片
   addImg() {
-    let count = 3 - this.data.reqData.imgList.length
-    wx.chooseImage({
-      count: count,
-      sizeType: ['compressed'],
-      sourceType: ['album', 'camera'],
-      success: (res) => {
-        let tempFilePaths = res.tempFilePaths;
-       tempFilePaths.forEach(item=>{
-         this.data.reqData.imgList.push(item)
-       })
-        let imglist = "reqData.imgList"
-        this.setData({
-          [imglist]: this.data.reqData.imgList
-        })
-        console.log(this.data.reqData.imgList)
+    app.globalFunc.uploadImg((r, res) => {
+      if (r) {
+        this.data.reqData.imgList.push(res.fileID)
+        this.setData(this.data)
       }
     })
   },
