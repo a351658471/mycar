@@ -78,7 +78,7 @@ App({
       },
       uploadRes: function (filePath, callback) {
         // 上传图片
-        const name = Math.random() * 1000000;
+        const name = new Date().getTime().toString() + "_" + Math.floor(Math.random() * 100000);
         const cloudPath = name + filePath.match(/\.[^.]+?$/)[0]
         wx.cloud.uploadFile({
           cloudPath,
