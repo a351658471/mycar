@@ -38,7 +38,7 @@ App({
             callbacks.splice(idx, 1)
           }
         }
-       
+
       },
       dispatchEvent:function(event){
         let callbacks = app.globalData.event[event]
@@ -49,7 +49,8 @@ App({
          }
         }
       },
-      shop: {} //  商店信息
+      shop: {}, //  商店信息
+      user:{} // 用户信息
     }
     this.globalFunc = {
       getShopInfo: function () {

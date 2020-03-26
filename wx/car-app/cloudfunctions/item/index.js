@@ -32,6 +32,7 @@ async function itemList(event) {
     istotal,
     condition,
     status,
+    oldlevel,
     page,
     perpage,
     order,
@@ -40,6 +41,9 @@ async function itemList(event) {
   if (status) {
     condition = condition || {}
     condition.status = db.command.in(status)
+  }
+  if(oldlevel){
+    condition.oldlevel = db.command.in(oldlevel)
   }
   
   if (istotal) {

@@ -1,0 +1,70 @@
+/* pages/gif/gif.wxss */
+page{
+    box-sizing: border-box;
+}
+.gifTitle{
+    font-size: 32rpx;
+    color: #333333;
+    font-weight: bold;
+    margin: 28rpx 20rpx;
+}
+.gifWrap{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    background: #FFFFFF;
+    box-sizing: border-box;
+    padding: 40rpx 20rpx;
+    flex-wrap: wrap;
+}
+.gifMessage{
+    width: 27%;
+    height: 134rpx;
+    display: flex;
+    border: 1px solid #979797;
+    position: relative;
+    padding: 20rpx 10rpx 20rpx 0;
+    margin: 15rpx; 
+}
+
+.gifMessage .closeicon{
+    width: 26rpx;
+    height: 26rpx;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.gifMessage .gifImg{
+    height: 100%;
+}
+.gifAdd{
+    width: 26%;
+    height: 132rpx;
+    border: 1px dashed #979797;
+    padding: 20rpx 10rpx;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 12rpx;
+}
+.gifAdd image{
+  width: 60%;
+  height: 60%;
+}
+.gifAdd text{
+   font-size: 24rpx;
+   color: #ADA9A9;
+   margin-top: 10rpx;
+}
+.gifBtn{
+    width: 100%;
+    position: absolute;
+    bottom: 44rpx;
+}
+.btn{
+    height: 88rpx;
+    color: #FFFFFF;
+    font-size: 36rpx;
+    font-weight: normal;
+    background: linear-gradient(to right,#FD7493,#FE2A45)
+}

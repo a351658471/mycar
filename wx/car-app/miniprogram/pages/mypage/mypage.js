@@ -8,10 +8,9 @@ Page({
    */
   data: {
     shop: {},
-    avatarUrl: '../../assets/mypage/mypage-head.png',
     userInfo: {},
     logged: false,
-    signNum: '-',
+    signNum: 0,
     control: true,
     isregist: false,
     trends: '-',
@@ -20,7 +19,7 @@ Page({
     menu_personal: {
       name: "个人信息",
       icon: "mypage-personal.png",
-      link: "111"
+      link: "/pages/personal/personal"
     },
     menu_reward: {
       name: "积分奖励",
@@ -28,7 +27,8 @@ Page({
     },
     menu_back: {
       name: "建议反馈",
-      icon: "mypage-back.png"
+      icon: "mypage-back.png",
+      link: "/pages/advise/advise"
     },
     menu_car: {
       name: "车辆管理",
@@ -36,7 +36,8 @@ Page({
     },
     menu_picture: {
       name: "首页动图",
-      icon: "mypage-picture.png"
+      icon: "mypage-picture.png",
+      link: "/pages/gif/gif"
     },
     menu_safe: {
       name: "账号管理",
@@ -113,8 +114,6 @@ Page({
   },
   toLogin: function (userInfo) {
     console.log(userInfo)
-
-
     // 调用云函数
     wx.cloud.callFunction({
       name: 'user',
@@ -124,18 +123,16 @@ Page({
       },
       success: res => {
         console.log('[云函数] [user.userLogin] : ', res.result)
-        this.setData({
-          logged: true,
-          avatarUrl: userInfo.avatarUrl,
-          userInfo: res.result.data,
-          isregist: true,
-          control: false,
-          trends: '0',
-          follow: '0',
-          fans: '0',
-          signNum: '0'
-        })
-
+        this.data.userInfo = app.globalData.user = res.result.data
+        this.data.avatarUrl = this.data.userInfo.avatarUrl
+        this.data.logged = true
+        this.data.isregist = true
+        this.data.control = false
+        this.data.trends = '0'
+        this.data.follow = '0'
+        this.data.fans = '0'
+        this.data.signNum = 0
+        this.setData(this.data)
       },
       fail: err => {
         console.error('[云函数] [user.userLogin] 调用失败', err)

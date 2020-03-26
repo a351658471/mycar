@@ -112,6 +112,12 @@
 				},
 				{
 					"id": -1,
+					"name": "pages/personal/personal",
+					"pathName": "pages/personal/personal",
+					"scene": null
+				},
+				{
+					"id": -1,
 					"name": "pages/carManage/carManage",
 					"pathName": "pages/carManage/carManage",
 					"scene": null

@@ -3,7 +3,6 @@
   <input class="searchInput" 
          focus="true" 
          placeholder="搜索用户" 
-         confirm-type="send" 
          confirm-type="search"
          bindconfirm="search"
          bindinput="inputBind">
