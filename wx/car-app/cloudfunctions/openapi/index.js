@@ -18,5 +18,5 @@ async function getCellphone(event) {
   const res = await cloud.getOpenData({
     list: [event.id], // 假设 event.openData.list 是一个 CloudID 字符串列表
   })
-  return { res, event };
+  return res;
 }

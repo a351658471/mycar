@@ -34,7 +34,7 @@ exports.main = (event, context) => {
     case 'userFeedbackQuery': {
       return userFeedbackQuery(event)
     }
-    case 'userFeedbackRead':{
+    case 'userFeedbackRead': {
       return userFeedbackRead(event)
     }
     default: {
@@ -229,7 +229,7 @@ async function userFeedbackRead(event) {
   let {
     ids,
   } = event
-  return db.collection('feedback').where({_id:db.command.in(ids)}).update({
+  return db.collection('feedback').where({ _id: db.command.in(ids) }).update({
     data: {
       status: 1,
       updatetime: Date.parse(new Date())
@@ -255,25 +255,50 @@ async function userFeedbackQuery(event) {
     }
     if (condition) {
       return db.collection('feedback').where(condition).orderBy('creatime', 'desc').skip(idx * perpage).limit(perpage).get().then(res => {
-        return res
+        return userFeedbackQueryUserInfo(res)
       })
     }
     else {
       return db.collection('feedback').orderBy('creatime', 'desc').skip(idx * perpage).limit(perpage).get().then(res => {
-        return res
+        return userFeedbackQueryUserInfo(res)
       })
     }
   }
   else {
     if (condition) {
       return db.collection('feedback').where(condition).orderBy('creatime', 'desc').get().then(res => {
-        return res
+        return userFeedbackQueryUserInfo(res)
       })
     }
     else {
       return db.collection('feedback').orderBy('creatime', 'desc').get().then(res => {
-        return res
+        return userFeedbackQueryUserInfo(res)
       })
     }
   }
+}
+
+async function userFeedbackQueryUserInfo(res) {
+  let len = res.data.length
+  if (len > 0) {
+    let openids = []
+    for (let index = 0; index < len; index++) {
+      const element = res.data[index];
+      openids.push(element.openid)
+    }
+
+    await db.collection('user').where({ _openid: db.command.in(openids) }).get().then(_res => {
+      for (let index = 0; index < len; index++) {
+        const element = res.data[index];
+        for (let j = 0; j < _res.data.length; j++) {
+          const _element = _res.data[j];
+          if(element.openid == _element._openid){
+            element.user = _element
+            break
+          }
+        }
+      }
+    })
+  }
+  return res
 }
