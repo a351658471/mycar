@@ -8,7 +8,7 @@ Page({
       value5: '',
       value6: '',
       value7: '',
-    }
+    },
     carData:[],
     disabled:true,
     isOld: true,
