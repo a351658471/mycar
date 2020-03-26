@@ -32,7 +32,8 @@ Page({
     },
     menu_car: {
       name: "车辆管理",
-      icon: "mypage-car.png"
+      icon: "mypage-car.png",
+      link: "/pages/carManage/carManage"
     },
     menu_picture: {
       name: "首页动图",

@@ -17,40 +17,40 @@ App({
 
     let app = this;
     this.globalData = {
-      eventShopUpdate:"eventShopUpdate",
-      event:{
+      eventShopUpdate: "eventShopUpdate",
+      event: {
       },
-      addListener:function(event, callback){
+      addListener: function (event, callback) {
         let callbacks = app.globalData.event[event]
-        if(!callbacks){
+        if (!callbacks) {
           callbacks = []
           app.globalData.event[event] = callbacks
         }
-        if(callbacks.indexOf(callback) == -1){
+        if (callbacks.indexOf(callback) == -1) {
           callbacks.push(callback)
         }
       },
-      removeListener:function(event, callback){
+      removeListener: function (event, callback) {
         let callbacks = app.globalData.event[event]
-        if(callbacks){
+        if (callbacks) {
           var idx = callbacks.indexOf(callback)
-          if(idx != -1){
+          if (idx != -1) {
             callbacks.splice(idx, 1)
           }
         }
 
       },
-      dispatchEvent:function(event){
+      dispatchEvent: function (event) {
         let callbacks = app.globalData.event[event]
-        if(callbacks){
-         for (let index = 0; index < callbacks.length; index++) {
-           const element = callbacks[index];
-           element.call()
-         }
+        if (callbacks) {
+          for (let index = 0; index < callbacks.length; index++) {
+            const element = callbacks[index];
+            element.call()
+          }
         }
       },
       shop: {}, //  商店信息
-      user:{} // 用户信息
+      user: {} // 用户信息
     }
     this.globalFunc = {
       getShopInfo: function () {
@@ -62,8 +62,8 @@ App({
           },
           success: res => {
             console.log('[云函数] [shop] : ', res.result)
-            let onShopInfo = ()=>{
-              console.log("获取商店信息", app.globalData.shop )
+            let onShopInfo = () => {
+              console.log("获取商店信息", app.globalData.shop)
               app.globalData.removeListener(app.globalData.eventShopUpdate, onShopInfo)
             }
             app.globalData.addListener(app.globalData.eventShopUpdate, onShopInfo)
@@ -74,8 +74,51 @@ App({
             console.error('[云函数] [shop] 调用失败', err)
           }
         })
-      }
+      },
+      // 上传图片
+      uploadImg: function (callback) {
+        let that = this;
+        // 选择图片
+        wx.chooseImage({
+          count: 1,
+          sizeType: ['compressed'],
+          sourceType: ['album', 'camera'],
+          success: function (res) {
+            wx.showLoading({
+              title: '上传中',
+            })
+            const filePath = res.tempFilePaths[0];
+
+            // 上传图片
+            const name = Math.random() * 1000000;
+            const cloudPath = name + filePath.match(/\.[^.]+?$/)[0]
+            wx.cloud.uploadFile({
+              cloudPath,
+              filePath,
+              success: res => {
+                callback(true, res)
+                console.log('[上传文件] 成功：', res)
+              },
+              fail: e => {
+                callback(false, e)
+                console.error('[上传文件] 失败：', e)
+                wx.showToast({
+                  icon: 'none',
+                  title: '上传失败',
+                })
+              },
+              complete: () => {
+                wx.hideLoading()
+              }
+            })
+          },
+          fail: e => {
+            console.error(e)
+          }
+        })
+      },
+
+
     }
-    this.globalFunc.getShopInfo();
   }
 })
