@@ -10,11 +10,11 @@
             <view class="baseItem">
               <view class="ItemName">车辆类型</view>
               <view class="radioItem">
-              <radio-group wx:if="{{}}" bindchange="radioChange" name="cNew">
-               <radio class="radio" value="oldcar" checked>二手车</radio>
-               <radio class="radio" value="newcar">新车</radio>
+              <radio-group wx:if="{{!disabled}}" bindchange="radioChange" name="cNew">
+               <radio class="radio" value="oldcar" checked="{{carData[0].oldlevel[0]==1}}">二手车</radio>
+               <radio class="radio" value="newcar"checked="{{carData[0].oldlevel[0]==0}}">新车</radio>
                </radio-group>
-               
+               <view wx:if="{{disabled}}">{{carData[0].oldlevel[0]==0? '新车':'二手车'}}</view>
               </view>
              </view>
           </view>
@@ -120,8 +120,8 @@
             </view>
             </view>
 
-            <view class="itemAdd" bindtap="addImg" wx:if="{{reqData.imgList.length<3}}" wx:if="{{!disabled}}">
-              <image src="/assets/图片.png" mode="widthFix"></image>
+            <view class="itemAdd" bindtap="addImg" wx:if="{{reqData.imgList.length<3 && !disabled}}">
+              <image src="/assets/picture.png" mode="widthFix"></image>
               <view>{{imgList.length==0 ?"添加图片":"继续添加"}}</view>
             </view>
 
