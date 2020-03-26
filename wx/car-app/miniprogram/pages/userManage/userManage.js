@@ -8,6 +8,7 @@ Page({
     tabList: ['管理员', '普通用户'],
     isAdmin: true,
     userList: [],
+    flag: 1,
     search: '',
     curPage: 1,
   },
@@ -22,6 +23,7 @@ Page({
     this.userQuery()
   },
   search: function (e) {
+    this.data.flag++
     this.data.userList.length = 0
     this.setData(this.data)
     this.userQuery()
@@ -48,11 +50,15 @@ Page({
     }
     // console.log("queryData", queryData)
     let that = this
+    let flag = this.data.flag
     // 调用云函数
     wx.cloud.callFunction({
       name: 'user',
       data: queryData,
       success: res => {
+        if (flag != this.data.flag) {
+          return
+        }
         console.log('[云函数] [user.userQuery] : ', res.result)
         for (let index = 0; index < res.result.data.length; index++) {
           const element = res.result.data[index];
@@ -77,7 +83,7 @@ Page({
     }
     list.push(user)
   },
-  removeUser(user){
+  removeUser(user) {
     let list = this.data.userList
     for (let index = 0; index < list.length; index++) {
       const element = list[index];
@@ -89,6 +95,7 @@ Page({
     this.setData(this.data)
   },
   tabClick(e) {
+    this.data.flag++
     this.data.userList.length = 0
     this.data.isAdmin = e.detail.tabCurrent == 0
     this.setData(this.data)
@@ -115,7 +122,7 @@ Page({
         }
       })
     }
-    else{
+    else {
       // 调用云函数
       wx.cloud.callFunction({
         name: 'shop',
