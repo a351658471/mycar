@@ -142,6 +142,14 @@ Page({
   },
   bindtapMenu(event) {
     var src = event.currentTarget.dataset.src
-    wx.navigateTo({ url: src.link })
+    if(src.link ){
+      wx.navigateTo({ url: src.link })
+    }
+    else{
+      wx.showToast({
+        icon:"none",
+        title: '该功能暂未开放',
+      })
+    }
   }
 })
