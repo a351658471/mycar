@@ -45,24 +45,10 @@ Page({
     let index = e.currentTarget.dataset.index;
     that.data.swipers.splice(index, 1);
     this.setData(this.data)
-    wx.cloud.callFunction({
-      name: 'shop',
-      data: {
-        action: "swiperEdit",
-        shopid: app.globalData.shop._id,
-        swipers: that.data.swipers
-      },
-      success: res => {
-        console.log('[云函数] [shop] : ', res.result)
-      },
-      fail: err => {
-        console.error('[云函数] [shop] 调用失败', err)
-      }
-    })
   },
   // 下载图片
   uploadImg: function () {
-    app.globalFunc.uploadVideo((r, res) => {
+    app.globalFunc.uploadImg((r, res) => {
       if (r) {
         this.data.swipers.push(res.fileID)
         this.setData(this.data)
