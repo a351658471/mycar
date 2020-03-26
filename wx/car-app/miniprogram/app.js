@@ -52,6 +52,7 @@ App({
       shop: {}, //  商店信息
       user: {} // 用户信息
     }
+    let that = this
     this.globalFunc = {
       getShopInfo: function () {
         // 调用云函数
@@ -75,9 +76,32 @@ App({
           }
         })
       },
+      uploadRes: function (filePath, callback) {
+        // 上传图片
+        const name = Math.random() * 1000000;
+        const cloudPath = name + filePath.match(/\.[^.]+?$/)[0]
+        wx.cloud.uploadFile({
+          cloudPath,
+          filePath,
+          success: res => {
+            callback(true, res)
+            console.log('[上传文件] 成功：', res)
+          },
+          fail: e => {
+            callback(false, e)
+            console.error('[上传文件] 失败：', e)
+            wx.showToast({
+              icon: 'none',
+              title: '上传失败',
+            })
+          },
+          complete: () => {
+            wx.hideLoading()
+          }
+        })
+      },
       // 上传图片
       uploadImg: function (callback) {
-        let that = this;
         // 选择图片
         wx.chooseImage({
           count: 1,
@@ -88,37 +112,34 @@ App({
               title: '上传中',
             })
             const filePath = res.tempFilePaths[0];
-
-            // 上传图片
-            const name = Math.random() * 1000000;
-            const cloudPath = name + filePath.match(/\.[^.]+?$/)[0]
-            wx.cloud.uploadFile({
-              cloudPath,
-              filePath,
-              success: res => {
-                callback(true, res)
-                console.log('[上传文件] 成功：', res)
-              },
-              fail: e => {
-                callback(false, e)
-                console.error('[上传文件] 失败：', e)
-                wx.showToast({
-                  icon: 'none',
-                  title: '上传失败',
-                })
-              },
-              complete: () => {
-                wx.hideLoading()
-              }
-            })
+            that.globalFunc.uploadRes(filePath, callback)
           },
           fail: e => {
+            wx.hideLoading()
             console.error(e)
           }
         })
       },
-
-
+      uploadVideo: function (callback) {
+        wx.chooseVideo({
+          sourceType: ['album', 'camera'],
+          maxDuration: 60,
+          camera: 'back',
+          success: (res) => {
+            wx.showLoading({
+              title: '上传中',
+            })
+            // 上传图片
+            const filePath = res.tempFilePath;
+            //thumbTempFilePath
+            that.globalFunc.uploadRes(filePath, callback)
+          },
+          fail: e => {
+            wx.hideLoading()
+            console.error(e)
+          }
+        })
+      },
     }
   }
 })
