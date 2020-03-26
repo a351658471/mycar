@@ -1,0 +1,9 @@
+<!--pages/userFeedbackQuery/userFeedbackQuery.wxml-->
+<view class="advisetitle">
+  <text>反馈信息列表</text>
+</view>
+
+<view class="feedback" wx:for='{{message}}' wx:key='key'>
+  <view class="name">反馈人</view>
+  <view class="content">{{item.value}}</view>
+</view>

@@ -1,0 +1,18 @@
+/* pages/userFeedbackQuery/userFeedbackQuery.wxss */
+.advisetitle{
+    font-size: 32rpx;
+    color: #333333;
+    font-weight: bold;
+    margin: 28rpx 20rpx;
+}
+.feedback{
+  background: #ffffff;
+  margin-top: 10rpx;
+  padding: 20rpx;
+}
+.feedback .name{
+  font-size: 30rpx;
+}
+.feedback .content{
+  margin: 20rpx 50rpx;
+}

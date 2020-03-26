@@ -107,6 +107,13 @@
 					"id": -1,
 					"name": "pages/personal/personal",
 					"pathName": "pages/personal/personal",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/userFeedbackQuery/userFeedbackQuery",
+					"pathName": "pages/userFeedbackQuery/userFeedbackQuery",
 					"scene": null
 				}
 			]

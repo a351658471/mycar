@@ -15,7 +15,6 @@ page{
 }
 .personalMsg .personalDetail{
     display: flex;
-    justify-content: space-between;
 }
 .personalMsg .personalDetail button{
     font-size: 30rpx;

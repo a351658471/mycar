@@ -28,7 +28,7 @@ Page({
     menu_back: {
       name: "建议反馈",
       icon: "mypage-back.png",
-      link: "/pages/advise/advise"
+      link: "/pages/userFeedback/userFeedback"
     },
     menu_car: {
       name: "车辆管理",
@@ -43,6 +43,11 @@ Page({
       name: "账号管理",
       icon: "mypage-safe.png",
       link: "/pages/userManage/userManage"
+    },
+    menu_feedback: {
+      name: "反馈列表",
+      icon: "mypage-backlist.png",
+      link: "/pages/userFeedbackQuery/userFeedbackQuery"
     },
     menus: []
 
@@ -92,7 +97,8 @@ Page({
         this.data.menu_back,
         this.data.menu_car,
         this.data.menu_picture,
-        this.data.menu_safe
+        this.data.menu_safe,
+        this.data.menu_feedback
       ]
     }
     else if (shop.isManagers) {
@@ -101,7 +107,8 @@ Page({
         this.data.menu_reward,
         this.data.menu_back,
         this.data.menu_car,
-        this.data.menu_picture
+        this.data.menu_picture,
+        this.data.menu_feedback
       ]
     }
     this.setData(this.data)
