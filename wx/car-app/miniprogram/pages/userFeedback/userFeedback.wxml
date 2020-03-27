@@ -1,0 +1,16 @@
+<!--pages/advise/advise.wxml-->
+<view class="advisetitle">
+  <text>反馈信息</text>
+</view>
+<form bindsubmit="commit">
+  <view class="advisemessage">
+    <textarea placeholder="请填写反馈信息" 
+    placeholder-style="color:#CCCCCC;" 
+    focus="true" 
+    name="feedbackval"
+    maxlength="360"></textarea>
+  </view>
+  <view class="adviseBtn">
+    <button style="width:680rpx" class="btn" form-type="submit">确定</button>
+  </view>
+</form>

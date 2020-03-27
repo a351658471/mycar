@@ -1,0 +1,13 @@
+<!--pages/userFeedbackDetail/userFeedbackDetail.wxml-->
+<view class="wrap">
+   <view class="contents">
+      <image src="{{message.user.avatarUrl}}"></image>
+      <view class="content">
+        <view class="nickname">{{message.user.nickName}}</view>
+        <view class="time">{{message.creatime}}</view>
+      </view>
+   </view>
+   <view class="feedbackvalue"> 
+      <text>{{message.value}}</text>
+   </view>
+</view>

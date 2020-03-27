@@ -1,0 +1,33 @@
+/* pages/userFeedbackDetail/userFeedbackDetail.wxss */
+.wrap{
+  background: #ffffff;
+  padding: 40rpx;
+}
+.wrap .contents{
+  display: flex;
+}
+.wrap .contents image{
+  width: 110rpx;
+  height: 110rpx;
+  border-radius: 50%;
+  
+}
+.wrap .contents .content{
+  font-size: 40rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin-left: 30rpx;
+}
+.wrap .contents .content .time{
+  font-size: 25rpx;
+  color: #999
+}
+.wrap .feedbackvalue{
+  margin:40rpx 40rpx 200rpx 40rpx;
+}
+.wrap .feedbackvalue text{
+  font-size: 28rpx;
+  color: #777;
+  word-wrap: break-word;
+}

@@ -28,7 +28,7 @@ Page({
     menu_back: {
       name: "建议反馈",
       icon: "mypage-back.png",
-      link: "/pages/advise/advise"
+      link: "/pages/userFeedback/userFeedback"
     },
     menu_car: {
       name: "车辆管理",
@@ -45,11 +45,21 @@ Page({
       icon: "mypage-safe.png",
       link: "/pages/userManage/userManage"
     },
+    menu_feedback: {
+      name: "反馈列表",
+      icon: "mypage-backlist.png",
+      link: "/pages/userFeedbackQuery/userFeedbackQuery"
+    },
     menus: []
 
   },
 
   signButton: function () {
+    wx.showToast({
+      icon:"none",
+      title: '该功能暂未开放',
+    })
+    return
     this.setData({
       signNum: this.data.signNum + 10,
       control: true
@@ -62,6 +72,7 @@ Page({
     this.data.menus = [
       this.data.menu_personal, this.data.menu_reward, this.data.menu_back
     ]
+    this.setData(this.data)
     // 获取用户信息
     wx.getSetting({
       success: res => {
@@ -86,6 +97,15 @@ Page({
   onUpdateShop: function () {
     let shop = app.globalData.shop
     this.data.shop = shop
+    if (!this.data.userInfo._id) {
+      this.data.menus = [
+        this.data.menu_personal,
+        this.data.menu_reward,
+        this.data.menu_back,
+      ]
+      this.setData(this.data)
+      return
+    }
     if (shop.isOwner || shop.isAdmin) {
       this.data.menus = [
         this.data.menu_personal,
@@ -93,7 +113,8 @@ Page({
         this.data.menu_back,
         this.data.menu_car,
         this.data.menu_picture,
-        this.data.menu_safe
+        this.data.menu_safe,
+        this.data.menu_feedback
       ]
     }
     else if (shop.isManagers) {
@@ -102,7 +123,15 @@ Page({
         this.data.menu_reward,
         this.data.menu_back,
         this.data.menu_car,
-        this.data.menu_picture
+        this.data.menu_picture,
+        this.data.menu_feedback
+      ]
+    }
+    else {
+      this.data.menus = [
+        this.data.menu_personal,
+        this.data.menu_reward,
+        this.data.menu_back,
       ]
     }
     this.setData(this.data)
@@ -133,7 +162,7 @@ Page({
         this.data.follow = '0'
         this.data.fans = '0'
         this.data.signNum = 0
-        this.setData(this.data)
+        this.onUpdateShop()
       },
       fail: err => {
         console.error('[云函数] [user.userLogin] 调用失败', err)

@@ -112,6 +112,28 @@
 				},
 				{
 					"id": -1,
+<<<<<<< HEAD
+=======
+					"name": "pages/personal/personal",
+					"pathName": "pages/personal/personal",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/userFeedbackQuery/userFeedbackQuery",
+					"pathName": "pages/userFeedbackQuery/userFeedbackQuery",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/userFeedbackDetail/userFeedbackDetail",
+					"pathName": "pages/userFeedbackDetail/userFeedbackDetail",
+					"scene": null
+				},
+				{
+					"id": -1,
+>>>>>>> 43dd4be95ce2b3d7a9547d326da8c243a786c029
 					"name": "pages/carManage/carManage",
 					"pathName": "pages/carManage/carManage",
 					"scene": null

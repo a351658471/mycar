@@ -5,7 +5,7 @@
 <view class="personalMsg">
   <view class="personalDetail">
     <text>姓名</text>
-    <input placeholder="请输入姓名" focus="true" value="{{userInfo.nickName}}"></input>
+    <input placeholder="请输入姓名" focus="true" value="{{userInfo.nickName}}" disabled="true"></input>
   </view>
 </view>
 <view class="personalMsg">

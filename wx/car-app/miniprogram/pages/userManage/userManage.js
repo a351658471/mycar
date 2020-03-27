@@ -22,6 +22,9 @@ Page({
   bindTapMore: function (e) {
     this.userQuery()
   },
+  focusBind:function(){
+    this.data.searchvalue =''
+  },
   search: function (e) {
     this.data.flag++
     this.data.userList.length = 0

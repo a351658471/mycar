@@ -1,12 +1,22 @@
-.inputBox{
+.inputBoxes{
+  width: 100%;
   background: #FFFFFF;
+  box-sizing: border-box;
   padding: 22rpx 28rpx;
 }
-.searchInput{
+.inputBoxes icon{
+  margin: 0 20rpx;
+}
+.inputBox{
   background: #F7F7F7;
-  text-align: center;
-  padding: 10rpx;
+  display: flex;
+  align-items: center;
+}
+.searchInput{
+  width: 80%;
+  background: #F7F7F7;
   font-size: 30rpx;
+  padding: 20rpx 0;
 }
 .userBox{
   background: #FFFFFF;
