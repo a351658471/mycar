@@ -55,6 +55,11 @@ Page({
   },
 
   signButton: function () {
+    wx.showToast({
+      icon:"none",
+      title: '该功能暂未开放',
+    })
+    return
     this.setData({
       signNum: this.data.signNum + 10,
       control: true
