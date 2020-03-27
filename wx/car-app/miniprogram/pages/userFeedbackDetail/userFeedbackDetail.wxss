@@ -19,6 +19,9 @@
   justify-content: space-around;
   margin-left: 30rpx;
 }
+.wrap .contents .content .nickname{
+  font-size: 32rpx;
+}
 .wrap .contents .content .time{
   font-size: 25rpx;
   color: #999
@@ -28,6 +31,6 @@
 }
 .wrap .feedbackvalue text{
   font-size: 28rpx;
-  color: #777;
+  color: #555;
   word-wrap: break-word;
 }

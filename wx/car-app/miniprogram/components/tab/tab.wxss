@@ -1,11 +1,10 @@
 .myTabCtrl{
   position: relative;
   padding-top:1.2rem;
-  margin: 1rem auto 0 auto;
   width: 90%;
   display: flex;
   justify-content: space-between;
-  font-size: 16px;
+  font-size: 28rpx;
 }
 .detail{
   height:4rem;
@@ -17,8 +16,8 @@
 .active::after{
   position:absolute;
   content:'';
-  width:30px;
-  height:4px;
+  width:40rpx;
+  height:2rpx;
   background:#FE2A45;
   bottom:-0.5rem;
   left:1rem;

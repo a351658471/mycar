@@ -4,9 +4,9 @@
 </view>
 <view class="feedback" wx:for='{{message}}' wx:key='key' data-src="{{item}}" bindtap="isTab">
   <view class="feedbackuser">
-      <image src="{{item.user.avatarUrl}}" />
-      <view class="name">{{item.user.nickName}}</view>
-      <view class="content">{{item.value}}</view>
       <image class="tab" src="../../assets/mypage/mypage-tab{{item.status==1?'_on':''}}.png" />
+      <image class="headImg" src="{{item.user.avatarUrl}}" />
+      <!-- <view class="name">{{item.user.nickName}}</view> -->
+      <view class="content">{{item.value}}</view>
   </view>
 </view>

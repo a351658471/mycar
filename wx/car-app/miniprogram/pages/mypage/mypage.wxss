@@ -89,6 +89,7 @@
 }
 .myserve{
     background: #FFFFFF;
+    padding: 0 0 120rpx 0;
 }
 .myserve .myservetitle{
     font-size: 32rpx;

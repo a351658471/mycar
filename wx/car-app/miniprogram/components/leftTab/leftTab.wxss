@@ -1,7 +1,7 @@
 /* components/leftTab/leftTab.wxss */
 .tab{
    width: 90%;
-   margin: 1rem auto;
+   margin: 18rpx auto 42rpx auto;
    display: flex;
    justify-content: space-between;
    align-items: center
@@ -15,7 +15,8 @@
 .active{
   color: #F92C48;
   font-weight: bolder;
-  position: relative
+  position: relative;
+  font-size: 30rpx;
 }
 .active::after{
   content: '';

@@ -3,7 +3,6 @@
   <view class="inputBox">
   <icon type="search" size="25"></icon>
     <input class="searchInput" 
-         focus="true" 
          placeholder="搜索用户" 
          confirm-type="search"
          bindconfirm="search"
@@ -12,19 +11,21 @@
     </input>
   </view>
 </view>
-<view hidden="{{isSearch}}">
-  <my-tab tabList="{{tabList}}"  bind:tabClick="tabClick"></my-tab>
+
+  <view class="tab">
+      <my-tab tabList="{{tabList}}"  bind:tabClick="tabClick" />
+  </view>
+  
 
   <view class="userBox">
     <view class="userItem" wx:for="{{userList}}"  wx:key="key">
       <view class="userInfo pd">
         <view>{{item.nickName}}</view>
-        <view style="margin-top:3vw">{{item.phone}}</view>
+        <view style="margin-top:24rpx">{{item.phone}}</view>
       </view>
       <view class="setMg pd" bind:tap="serMg" data-index="{{index}}" data-src="{{item}}">
         {{isAdmin? "设为普通用户":"设为管理员"}}
       </view>
     </view>
   </view>
-  
-</view>
+
