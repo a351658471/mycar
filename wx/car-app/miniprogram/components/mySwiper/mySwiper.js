@@ -8,6 +8,18 @@ Component({
       value: []
 
     },
+    bRadius:{
+      type:String,
+      value:"20rpx"
+    },
+    swiperHeight:{
+      type:String,
+      value:"360rpx"
+    },
+    swiperWidth: {
+      type: String,
+      value: "90%"
+    },
     isMyDots: {
       type: Boolean,
       value: false

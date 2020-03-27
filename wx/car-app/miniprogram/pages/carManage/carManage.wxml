@@ -2,10 +2,10 @@
 <view class="carManage">
   
   <!-- tab -->
-  <mg-tab tabList="{{tabList}}" bind:tabClick="tabClick">
-    <view slot="rightBox" class="rightBox" bindtap="jumpToAddcar">添加新车</view>
+  <mg-tab tabList="{{tabList}}" bind:tabClick="tabClick" fontSize="17px">
+    <view slot="rightBox" class="rightBox" bindtap="jumpToAddcar" style="font-size:14px">添加新车</view>
   </mg-tab>
 
    <!-- 车列表 -->
-  <my-carslist items="{{items}}" carData="{{carData}}" bind:caritemClick="caritemClick"></my-carslist>
+  <my-carslist items="{{items}}" carData="{{carData}}" bind:caritemClick="caritemClick" bind:saleGoods="saleGoods" bind:soldGoods="soldGoods" bind:lowGoods="lowGoods" bind:deleteGoods="deleteGoods" bind:loadMore="loadMore" isLoading="{{isLoading}}" noMore="{{noMore}}"></my-carslist>
 </view>

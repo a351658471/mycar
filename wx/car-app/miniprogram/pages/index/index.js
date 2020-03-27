@@ -11,7 +11,10 @@ Page({
 
     resData: [],
     newcar: [],
-    oldcar: []
+    oldcar: [],
+    page:1,
+    isLoading: false,
+    noMore: false
   },
   onShow() {
     app.globalData.addListener(app.globalData.eventShopUpdate, this.onShopInfo)
@@ -26,7 +29,18 @@ Page({
     //获取车列表
     this.getCarData()
   },
-  getCarData() {
+
+
+  //获取数据接口方法
+  getCarData(page=1) {
+    this.setData({
+      isLoading: true
+    })
+    if (page == 1) {
+      this.setData({
+        resData: []
+      })
+    }
     let oldlevel = 0
     if (!this.data.isNew) {
       oldlevel = [this.data.oldlevel.userdCar]
@@ -48,25 +62,33 @@ Page({
           //   $options: 'i'
           // }
         },
-        status:[2],    // 商品状态 0在售 1已售 2未上架 
+        status:[0],    // 商品状态 0在售 1已售 2未上架 
         oldlevel,
         // 分页
-        page: 1,
+        page,
         perpage: 5,
         // 是否排序
         order: 0
       },
       success: res => {
-        this.data.resData = []
+        this.data.flag = true;
+        if (res.result.data.length < 5) {
+          this.data.noMore = true
+        } else {
+          this.data.noMore = false
+        }
+        this.setData({
+          noMore: this.data.noMore,
+          isLoading: false
+        })
         console.log('[云函数] [item.itemList] : ', res.result)
         res.result.data.forEach(item => {
-          if (item.creatime) {
             item.data = JSON.parse(item.data)
             this.data.resData.push(item)
             this.setData({
               resData: this.data.resData
             })
-          }
+
         })
       },
       fail: err => {
@@ -93,6 +115,14 @@ Page({
     wx.navigateTo({
       url: '/pages/index/carDetail/carDetail?carId=' + carId
     })
+  },
+
+  //上拉加载更多
+  loadMore() {
+    if(this.data.flag)
+      this.data.flag =false;
+      this.data.page++;
+      this.getCarData(this.data.page)
   }
 
 })

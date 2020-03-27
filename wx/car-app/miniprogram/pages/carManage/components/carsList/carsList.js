@@ -10,6 +10,14 @@ Component({
     items:{
       type:Array,
       value:[]
+    },
+    noMore:{
+      type:Boolean,
+      value:false
+    },
+    isLoading:{
+      type:Boolean,
+      value:false
     }
   },
   data: {
@@ -28,9 +36,12 @@ Component({
   },
   methods: {
     caritemClick: function (e){
-      this.triggerEvent('caritemClick', {
-        itemData: e.currentTarget.dataset.item
-      })
+     let index = e.currentTarget.dataset.index;
+      if (!this.data.items[index].isOpen){
+        // this.triggerEvent('caritemClick', {
+        //   itemData: e.currentTarget.dataset.item
+        // })
+      }
     },
     //记录起点X坐标
     handleTouchStart(e) {
@@ -40,12 +51,12 @@ Component({
       })
     },
     handleTouchEnd(e) {
-      console.log(11)
-      console.log(this.data)
       let index = e.currentTarget.dataset.index
       if (!this.data.items[index].isOpen) {
         if (this.data.startX - e.changedTouches[0].clientX < 5) {
-          console.log('详情')
+          this.triggerEvent('caritemClick', {
+            itemData: e.currentTarget.dataset.item
+          })
         } else if (this.data.startX - e.changedTouches[0].clientX > 50) {
           this.showButton(e)
         } else {
@@ -78,7 +89,35 @@ Component({
       this.setData({
         [faker]: Xmove
       })
+    },
+    //在售商品
+    saleGoods(e){
+      this.triggerEvent("saleGoods", {
+        id: e.currentTarget.dataset.id
+      })
+    },
+    //已售商品
+    soldGoods(e){
+      this.triggerEvent("soldGoods", {
+        id: e.currentTarget.dataset.id
+      })
+    },
+    //下架商品
+    lowGoods(e){
+      this.triggerEvent("lowGoods", {
+        id: e.currentTarget.dataset.id
+      })
+    },
+    //删除商品
+    deleteGoods(e){
+      this.triggerEvent("deleteGoods",{
+        id:e.currentTarget.dataset.id
+      })
+    },
+    //加载更多
+    loadMore() {
+      this.triggerEvent("loadMore")
     }
-  }
-
+  },
+  
 })

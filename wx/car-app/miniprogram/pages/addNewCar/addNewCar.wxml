@@ -141,7 +141,7 @@
        </view>
       <view class="detailSave" bindtap="addLabel">
           <view class="rightItem" bind:tap="saveEvent">保存</view>
-          <view class="rightItem">上架</view>
+          <view class="rightItem" bind:tap="upEvent">上架</view>
           <view class="rightItem" style="background:#959595" bind:tap="back">上一步</view>
       </view>
     </view>
@@ -157,7 +157,7 @@
             <view class="videoDelete" bindtap="imgDelete" data-index="{{index}}">
               <image src="/assets/删除.png" mode="widthFix"></image>
             </view>
-            <image src="{{item.content}}"></image>
+            <image src="{{item.content}}" mode="widthFix" style="width:90%"></image>
         </view>
         <!-- 视频 -->
         <view class="imgContent" wx:if="{{item.type == 'video'}}">

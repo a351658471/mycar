@@ -9,6 +9,6 @@
   <my-ltab bind:tabClick="tabClick"></my-ltab>
 
     <!-- 车列表 -->
-  <my-carslist carData="{{resData}}" bind:caritemClick="caritemClick"></my-carslist>
+  <my-carslist carData="{{resData}}" bind:caritemClick="caritemClick" bind:loadMore="loadMore" isLoading="{{isLoading}}" noMore="{{noMore}}"></my-carslist>
   </scroll-view>
 </view>

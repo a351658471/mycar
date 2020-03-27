@@ -14,6 +14,7 @@
 }
 .active{
   color: #F92C48;
+  /* font-size: 34rpx; */
   font-weight: bolder;
   position: relative
 }

@@ -9,7 +9,7 @@ Page({
     isNext:false,
     reqData:{
       imgList: [],
-      labelList: ['2.0T-H4', '250P'],
+      labelList: [],
       params:[]
     },
     oldlevel:{
@@ -162,11 +162,14 @@ Page({
       dataList: this.data.dataList
     })
   },
-  saveEvent() {
-    let oldlevel=0
-    if (this.data.isOld){
+
+  //调用增加商品接口
+  send(status){
+
+    let oldlevel = 0
+    if (this.data.isOld) {
       oldlevel = this.data.oldlevel.userdCar
-    }else{
+    } else {
       oldlevel = this.data.oldlevel.newCar
     }
     this.data.reqData.detail = this.data.dataList
@@ -176,10 +179,10 @@ Page({
       stock: 1,       // 库存
       sort: 1002,      // 排序 值越大排越前面
       data: JSON.stringify(this.data.reqData),     // 数据
-      status:2,
+      status: status,
       oldlevel,
     }
-   //调用云函数
+    //调用云函数
     wx.cloud.callFunction({
       name: 'item',
       data: {
@@ -196,11 +199,27 @@ Page({
       },
       success: res => {
         console.log('[云函数] [item.itemAdd] : ', res.result)
+        wx.showToast({
+          title: status ==0?'上架成功':'保存成功',
+        })
+        setTimeout(() => {
+          wx.hideToast(),
+          wx.navigateBack()
+        }, 1000)
       },
       fail: err => {
         console.error('[云函数] [item.itemAdd] 调用失败', err)
       }
     })
+  },
+  //保存
+  saveEvent() {
+   this.send(2)
+  },
+
+  //上架
+  upEvent(){
+    this.send(0)
   },
   //单选框
   radioChange(e) {

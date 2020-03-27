@@ -1,6 +1,6 @@
 <!--components/carsList/carsList.wxml-->
 <view class='carList' style=' width:100%'>
-    <view wx:for="{{carData}}" style="display:flex;margin-bottom:2vw;height:38vw">
+    <view wx:for="{{carData}}" style="display:flex;margin-bottom:2vw;height:35vw" wx:key="index">
       <movable-area class="area">
         <movable-view class="mview" 
                       x="{{items[index].xmove}}"
@@ -9,28 +9,31 @@
                       bindtouchend="handleTouchEnd"
                       direction="horizontal"
                       out-of-bounds="true"
-                      data-index="{{index}}">
-          <view class='carItem' bind:tap="caritemClick" data-item='{{item}}'>
+                      data-index="{{index}}"
+                      data-item='{{item}}'>
+          <view class='carItem' >
             <view class='carImg'>
-              <image src='{{item.data.imgList[0]}}' mode="scaleToFill" style='width:100%;height:80%'>
+              <image src='{{item.data.imgList[0]}}' mode="scaleToFill" style='width:100%;height:90%'>
               </image>
             </view>
             <view class='carMsg'>
-              <view style='font-size:12px; font-weight: bolder; text-overflow:ellipsis; overflow:hidden; white-space:nowrap;margin-bottom:3vw'>{{item.name}}</view>
-              <view style='color:#BDBCBF; font-size:11px;margin-bottom:3vw'>{{item.oldlevel==0?'全新':'二手'}}</view>
-              <view style='display:flex; font-size:11px;margin-bottom:3vw'>
-                <view class='itemCars' wx:for="{{item.data.labelList}}">{{item}}</view>
+              <view style='font-size:14px; font-weight: bolder; text-overflow:ellipsis; overflow:hidden; white-space:nowrap'>{{item.name}}</view>
+              <view style='color:#BDBCBF; font-size:12px'>{{item.oldlevel==0?'全新':'二手'}}</view>
+              <view style='display:flex; font-size:11px'>
+                <view class='itemCars' wx:for="{{item.data.labelList}}" wx:key="index">{{item}}</view>
                 <!-- <view class='itemCars'>{{item.data.labelList[1]}}</view> -->
               </view>
-              <view style='color:#DA3A4E;font-size:13px;font-weight:bolder'>￥{{item.price}}</view>
+              <view style='color:#DA3A4E;font-size:14px;font-weight:bolder'>￥{{item.price}}</view>
             </view>
           </view>
         </movable-view>
       </movable-area>
       <view class="menu">
-        <view class="sold menu-item" style="background:#9F9C9D">已售</view>
-        <view class="tShelves menu-item" style="background:#6A3ABC">下架</view>
-        <view class="delete menu-item" style="background:#FE2A44">删除</view>
+        <view wx:if="{{item.status != 0}}" class="tShelves menu-item" style="background:#3CB371" catchtap="saleGoods" data-id="{{item._id}}">在售</view>
+        <view wx:if="{{item.status != 1}}" class="sold menu-item" style="background:#9F9C9D" catchtap="soldGoods" data-id="{{item._id}}">已售</view>
+        <view wx:if="{{item.status != 2}}" class="tShelves menu-item" style="background:#6A3ABC" catchtap="lowGoods" data-id="{{item._id}}">下架</view>
+        <view class="delete menu-item" style="background:#FE2A44" catchtap="deleteGoods" data-id="{{item._id}}">删除</view>
       </view>
     </view>
+    <view class="loadMore" bindtap="loadMore" wx:if="{{!noMore}}">{{isLoading?'加载中...':'加载更多'}}</view>
   </view>

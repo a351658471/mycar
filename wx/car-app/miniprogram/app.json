@@ -17,7 +17,8 @@
     "pages/userManage/userSearch/userSearch",
     "pages/addNewCar/addNewCar",
     "pages/carManage/carManage",
-    "pages/editCarInfo/editCarInfo"
+    "pages/editCarInfo/editCarInfo",
+    "pages/addNewCar/detail/detail"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
@@ -27,10 +28,10 @@
     "navigationBarTextStyle": "black"
   },
   "tabBar": {
-      "backgroundColor": "#fff",
-      "borderStyle": "white",
-      "selectedColor": "#FE2945",
-      "color": "#999999",
+    "backgroundColor": "#fff",
+    "borderStyle": "white",
+    "selectedColor": "#FE2945",
+    "color": "#999999",
     "list": [
       {
         "pagePath": "pages/index/index",

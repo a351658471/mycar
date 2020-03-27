@@ -94,7 +94,7 @@
         </view>
           
         <view class="labelItem">
-          <view wx:for="{{carData[0].data.labelList}}" style="display:flex;margin-right:1.5rem">
+          <view wx:for="{{carData[0].data.labelList}}" wx:key="index" style="display:flex;margin-right:1.5rem">
             <view class="labelText">{{item}}</view>
             <view wx:if="{{!disabled}}" class="deleteIcon" bindtap="deleteLabel" data-index="{{index}}"></view>
           </view>
@@ -113,7 +113,7 @@
           <view style="width:100%; background:#fff">
           <view style="padding:0 5vw">
           <view class="addImgBox">
-            <view class="imgItem" wx:for="{{carData[0].data.imgList}}">
+            <view class="imgItem" wx:for="{{carData[0].data.imgList}}" wx:key="index">
               <image class="itemImg" src="{{item}}" mode="aspectFill"></image>
               <view class="deleteImg" bindtap="deleteImg" data-index="{{index}}" wx:if="{{!disabled}}">
                 <image src="/assets/删除.png" mode="widthFix"></image>
@@ -139,7 +139,7 @@
     </view>
       <view class="container1" id="container">
 
-      <view wx:for="{{carData[0].data.detail}}">
+      <view wx:for="{{carData[0].data.detail}}" wx:key="index">
        <!-- 文本内容 -->
         <view wx:if="{{item.type == 'text'}}">
           {{item.content}}

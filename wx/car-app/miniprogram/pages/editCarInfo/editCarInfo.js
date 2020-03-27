@@ -243,6 +243,14 @@ Page({
       },
       success: res => {
         console.log('[云函数] [item.itemEdit] : ', res.result)
+        wx.showToast({
+          title: '保存成功',
+        })
+        setTimeout(() => {
+          wx.hideToast(),
+         wx.navigateBack()
+        }, 1000)
+        
       },
       fail: err => {
         console.error('[云函数] [item.itemEdit] 调用失败', err)

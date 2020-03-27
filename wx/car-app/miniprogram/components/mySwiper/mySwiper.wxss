@@ -2,11 +2,9 @@
 .mySwiper{
   position: relative;
 }
-image{
-  border-radius: 10px
-}
+
 .myDots{
-  background:	#696969;
+  background:	#BEBABA;
    opacity: 0.7; 
   position: absolute;
   width: 3.2rem;

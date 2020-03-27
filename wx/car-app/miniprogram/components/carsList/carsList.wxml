@@ -1,20 +1,21 @@
 <!--components/carsList/carsList.wxml-->
 <view class='carList' style=' width:90%; margin:0 auto'>
-    <block wx:for="{{carData}}" wx:key="*this">
+    <block wx:for="{{carData}}" wx:key="index">
       <view class='carItem' bind:tap="caritemClick" data-item='{{item}}'>
         <view class='carImg'>
-          <image src='{{item.data.imgList[0]}}' mode="scaleToFill" style='width:100%;height:80%'>
+          <image src='{{item.data.imgList[0]}}' mode="scaleToFill" style='width:100%;height:90%'>
           </image>
         </view>
         <view class='carMsg'>
-          <view style='font-size:12px; font-weight: bolder; text-overflow:ellipsis; overflow:hidden; white-space:nowrap;margin-bottom:0.5rem'>{{item.name}}</view>
-          <view style='color:#BDBCBF; font-size:11px;margin-bottom:0.5rem'>{{item.oldlevel[0]==0?'全新':'二手'}}</view>
-          <view style='display:flex; font-size:11px;margin-bottom:0.5rem'>
-            <view class='itemCars'>{{item.data.labelList[0]}}</view>
-            <view class='itemCars'>{{item.data.labelList[1]}}</view>
+          <view style='font-size:12px; font-weight: bolder; text-overflow:ellipsis; overflow:hidden; white-space:nowrap'>{{item.name}}</view>
+          <view style='color:#BDBCBF; font-size:10px'>{{item.oldlevel==0?'新车':'二手'}}</view>
+          <view style='display:flex; font-size:10px'>
+            <view class='itemCars' wx:for="{{item.data.labelList}}">{{item}}</view>
+            <!-- <view class='itemCars'>{{item.data.labelList[1]}}</view> -->
           </view>
-          <view style='color:#DA3A4E;font-size:13px;font-weight:bolder'>￥{{item.price}}</view>
+          <view style='color:#DA3A4E;font-size:14px;font-weight:bolder'>￥{{item.price}}</view>
         </view>
       </view>
     </block>
+    <view class="loadMore" bindtap="loadMore" wx:if="{{!noMore}}">{{isLoading?'加载中...':'点击加载更多'}}</view>
   </view>

@@ -3,7 +3,7 @@
 
 <scroll-view scroll-y style='height:100%'>
   <!-- 轮播图组件 -->
-  <my-swiper imgList="{{carData[0].data.imgList}}" isMyDots="{{true}}"></my-swiper>
+  <my-swiper imgList="{{carData[0].data.imgList}}" isMyDots="{{true}}" swiperWidth="100%" bRadius="0"></my-swiper>
 
   <!-- 报价 -->
   <view class='carDetail'>
@@ -26,7 +26,7 @@
   <!-- detail -->
   <view class="bottomBox">
    <!-- tab -->
-  <my-tab tabList="{{tabList}}" bind:tabClick="tabClick"></my-tab>
+  <my-tab tabList="{{tabList}}" fontSize="13px" bind:tabClick="tabClick"></my-tab>
 
   <view wx:if="{{currentIndex == 0}}" style='background:#fff; width:100%;padding-top:2vw'>
    <block wx:for="{{carData[0].data.detail}}">
@@ -61,7 +61,7 @@
   <!-- call -->
   <view class="backgournd" bindtap='chooseShare' wx:if="{{hideShare}}">
     <view class="binner">
-      <view bind:tap="copyEvent" hover-class="hoverClass" hover-stay-time="100" style="height:15vw;line-height:15vw;border-bottom:1rpx solid #E9E6EA;border-radius:10px 10px 0 0;text-align:center">
+      <view bind:tap="copyEvent" hover-class="hoverClass" hover-stay-time="100" style="height:15vw;line-height:15vw;border-bottom:1px solid #E9E6EA;border-radius:10px 10px 0 0;text-align:center">
         186-5088-3333(微信同号)<i class="iconfont icon-ai-copy" style="margin-left:2vw"></i>
       </view>
       <view bind:tap="callEvent" hover-class="hoverClass" hover-stay-time="100" class="bitem"  style="border-bottom:1.5vw solid #E9E6EA">呼叫</view>
