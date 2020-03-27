@@ -202,11 +202,16 @@ radio .wx-radio-input.wx-radio-input-checked::before{
   margin-right: 3vw
 }
 .imgContent{
+  width: 90%;
+  text-align: center;
+  position: relative;
+  border: 1px solid #F5F5F5
+}
+videoContent{
   width: 100%;
   position: relative;
   border: 1px solid #F5F5F5
 }
-
 .videoDelete{
   background: #fff;
   width: 6vw;

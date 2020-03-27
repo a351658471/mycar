@@ -4,6 +4,7 @@
   width: 2.5rem;
   border: 1rpx solid #515151;
   border-radius: 50%;
+  background: #fff
 }
 .icon{
   width: 85%;

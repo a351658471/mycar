@@ -1,2 +1,44 @@
 <!--miniprogram/pages/addNewCar/detail/detail.wxml-->
-<text>miniprogram/pages/addNewCar/detail/detail.wxml</text>
+<!-- 详情介绍 -->
+<view wx:if="{{isNext}}">
+   <view class="labelHeader">
+      <view class="labelTitle">
+              详情介绍
+       </view>
+      <view class="detailSave" bindtap="addLabel">
+          <view class="rightItem" bind:tap="saveEvent">保存</view>
+          <view class="rightItem" bind:tap="upEvent">上架</view>
+          <view class="rightItem" style="background:#959595" bind:tap="back">上一步</view>
+      </view>
+    </view>
+      <view class="container1" id="container">
+
+      <view wx:for="{{dataList}}">
+       <!-- 文本内容 -->
+        <view wx:if="{{item.type == 'text'}}">
+          {{item.content}}
+        </view>
+        <!-- 图片内容 -->
+        <view class="imgContent" wx:if="{{item.type == 'image'}}">
+            <view class="videoDelete" bindtap="imgDelete" data-index="{{index}}">
+              <image src="/assets/删除.png" mode="widthFix"></image>
+            </view>
+            <image src="{{item.content}}" mode="widthFix" style="width:90%"></image>
+        </view>
+        <!-- 视频 -->
+        <view class="imgContent" wx:if="{{item.type == 'video'}}">
+          <view class="videoDelete" bindtap="videoDelete" data-index="{{index}}">
+              <image src="/assets/删除.png" mode="widthFix"></image>
+            </view>
+            <video src="{{item.content}}"></video>
+        </view>
+      </view>
+       <textarea placeholder="{{placeholder}}" bindblur="textBulr" style="width:100%" value="{{textValue}}"></textarea>
+      </view>
+
+
+      <view class="toolbar" catchtouchend="format">
+        <i class="iconfont icon-tupian iconItem" catchtouchend="insertImage"></i>
+        <i class="iconfont icon-dilanxianxingiconyihuifu_huabanfuben iconItem" catchtouchend="insertVideo"></i>
+    </view>
+</view>
