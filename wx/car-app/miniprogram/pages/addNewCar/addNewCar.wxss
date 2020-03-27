@@ -217,7 +217,7 @@ videoContent{
   width: 6vw;
   height: 6vw;
   position: absolute;
-  top: 0;
+
   right: 0
 }
 .videoDelete image{
