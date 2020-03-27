@@ -17,16 +17,15 @@ page{
     box-sizing: border-box;
     padding: 40rpx 20rpx;
     flex-wrap: wrap;
-    margin: 0 auto;
 }
 .gifMessage{
-    width: 27%;
+    width: 28%;
     height: 134rpx;
     display: flex;
     border: 1px solid #979797;
     position: relative;
     padding: 20rpx 0;
-    margin: 15rpx; 
+    margin: 17rpx; 
 }
 
 .gifMessage .closeicon{

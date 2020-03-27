@@ -10,3 +10,6 @@
       <view class="content">{{item.value}}</view>
   </view>
 </view>
+<view class="load" hidden="{{!load}}">
+    <view class="loading">正在加载</view>
+</view>
