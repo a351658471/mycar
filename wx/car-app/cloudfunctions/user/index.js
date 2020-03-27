@@ -216,6 +216,7 @@ async function userFeedback(event) {
     data: {
       openid: wxContext.OPENID,
       value: value,
+      status: 0,
       creatime: Date.parse(new Date())
     }
   }).then(res => {
@@ -254,24 +255,24 @@ async function userFeedbackQuery(event) {
       idx = 0
     }
     if (condition) {
-      return db.collection('feedback').where(condition).orderBy('creatime', 'desc').skip(idx * perpage).limit(perpage).get().then(res => {
+      return db.collection('feedback').where(condition).orderBy('status', 'asc').orderBy('creatime', 'desc').skip(idx * perpage).limit(perpage).get().then(res => {
         return userFeedbackQueryUserInfo(res)
       })
     }
     else {
-      return db.collection('feedback').orderBy('creatime', 'desc').skip(idx * perpage).limit(perpage).get().then(res => {
+      return db.collection('feedback').orderBy('status', 'asc').orderBy('creatime', 'desc').skip(idx * perpage).limit(perpage).get().then(res => {
         return userFeedbackQueryUserInfo(res)
       })
     }
   }
   else {
     if (condition) {
-      return db.collection('feedback').where(condition).orderBy('creatime', 'desc').get().then(res => {
+      return db.collection('feedback').where(condition).orderBy('status', 'asc').orderBy('creatime', 'desc').get().then(res => {
         return userFeedbackQueryUserInfo(res)
       })
     }
     else {
-      return db.collection('feedback').orderBy('creatime', 'desc').get().then(res => {
+      return db.collection('feedback').orderBy('status', 'asc').orderBy('creatime', 'desc').get().then(res => {
         return userFeedbackQueryUserInfo(res)
       })
     }
