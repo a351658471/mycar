@@ -7,21 +7,27 @@ Page({
    */
   data: {
     message: {},
+    page:1,
+    perpage:9,
+    load:false
   },
+  // onReachBottom:function(){
+  //     let that = this;
+
+  // },
   onLoad: function () {
     // 调用云函数
     wx.cloud.callFunction({
       name: 'user',
       data: {
         action: "userFeedbackQuery",
-        page: 1,
-        perpage: 10,
+        page:this.data.page,
+        perpage: this.data.perpage
       },
       success: res => {
         console.log('[云函数] [user.userFeedback] : ', res.result)
         this.data.message = res.result.data
         this.setData(this.data)
-        console.log(this.data.message)
       },
       fail: err => {
         console.error('[云函数] [user.userFeedback] 调用失败', err)

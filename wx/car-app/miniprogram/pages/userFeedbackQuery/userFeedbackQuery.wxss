@@ -25,8 +25,6 @@
 .feedback .feedbackuser .tab{
   width: 30rpx;
   height: 30rpx;
- 
-  
 }
 .feedback .content{
   width: 60%;
@@ -36,4 +34,10 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+.load{
+  width: 100%;
+}
+.loading{
+  text-align: center;
 }

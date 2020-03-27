@@ -16,7 +16,6 @@
     "pages/im/im",
     "pages/im/room/room",
     "pages/userManage/userManage",
-    "pages/userManage/userSearch/userSearch",
     "pages/addNewCar/addNewCar",
     "pages/carManage/carManage",
     "pages/editCarInfo/editCarInfo",
