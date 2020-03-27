@@ -29,9 +29,9 @@ Page({
           title: '保存成功',
           duration: 3000,
           success: res => {
-            wx.navigateBack({
-              url: '/pages/mypage/mypage'
-            })
+            setTimeout(() => {
+              wx.navigateBack()
+            }, 500)
           }
         })
       },

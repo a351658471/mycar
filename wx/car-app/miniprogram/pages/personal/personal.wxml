@@ -2,17 +2,23 @@
 <view class="personalTitle">
   <text>个人信息</text>
 </view>
-<view class="personalMsg">
-  <view class="personalDetail">
-    <text>姓名</text>
-    <input placeholder="请输入姓名" focus="true" value="{{userInfo.nickName}}" disabled="true"></input>
+<view class="content">
+  <view class="personalMsg">
+    <view class="personalDetail">
+      <text>姓名</text>
+      <input placeholder="请输入姓名" value="{{userInfo.nickName}}" disabled="true"></input>
+    </view>
   </view>
-</view>
-<view class="personalMsg">
-  <view class="personalDetail">
-    <text>手机</text>
-    <input placeholder="请输入手机" focus="true" value="{{userInfo.phone}}"></input>
-    <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" size="mini">获取手机号</button>
+  <view class="personalMsg">
+    <view class="personalDetail">
+      <text>手机</text>
+      <input placeholder="请输入手机" value="{{userInfo.phone}}" type="number" bindinput="inputBind"></input>
+      <button open-type="getPhoneNumber" 
+              bindgetphonenumber="getPhoneNumber" 
+              size="mini" >
+              获取手机号
+      </button>
+    </view>
   </view>
 </view>
 <view class="personalBtn" bindtap="confirm">

@@ -4,6 +4,7 @@
   color: #333333;
   font-weight: bold;
   margin: 28rpx 20rpx;
+  font-family: "微软雅黑";
 }
 .advisemessage textarea{
   width: 100%;
@@ -12,6 +13,8 @@
   box-sizing: border-box;
   padding: 40rpx 36rpx; 
   word-wrap: break-word; 
+  font-size: 30rpx;
+  color: #666;
 }
 .adviseBtn{
   width: 100%;

@@ -2,11 +2,16 @@
 page{
     box-sizing: border-box;
 }
+.content{
+  background: #ffffff;
+  padding: 0 0 300rpx 0;
+}
 .personalTitle{
     font-size: 32rpx;
     color: #333333;
     font-weight: bold;
     margin: 28rpx 20rpx;
+    font-family: "微软雅黑";
 }
 .personalMsg{
     background: #ffffff;
@@ -15,15 +20,27 @@ page{
 }
 .personalMsg .personalDetail{
     display: flex;
+    align-items: center;
 }
 .personalMsg .personalDetail button{
-    font-size: 30rpx;
+    font-size: 25rpx;
+    color: white;
+    background: linear-gradient(to right,#FD7493,#FE2A45);
+    padding: 5rpx 10rpx;
 }
 
+input{
+  width: 40%;
+  font-size: 28rpx;
+  color: #777;
+  margin-left: 20rpx;
+  flex: 1;
+}
 .personalMsg .personalDetail text{
     font-size: 32rpx;
     font-weight: bold;
     padding: 0 30rpx;
+    font-family: "微软雅黑";
 }
 .personalBtn{
     width: 100%;

@@ -20,20 +20,20 @@
 }
 .userBox{
   background: #FFFFFF;
+  padding: 0 0 200rpx 0;
 }
 .userItem{
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   border-bottom: 1px solid #FAF7F8;
-  height:25vw
 }
 .userInfo{
   color: #575454;
   font-size: 28rpx;
 }
 .pd{
-  padding: 0 5vw;
+  padding: 26rpx 20rpx 26rpx 48rpx;
 }
 .setMg{
   font-size: 30rpx;

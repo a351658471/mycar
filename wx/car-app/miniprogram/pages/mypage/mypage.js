@@ -54,6 +54,7 @@ Page({
 
   },
 
+
   signButton: function () {
     wx.showToast({
       icon:"none",
@@ -171,6 +172,13 @@ Page({
   },
   bindtapMenu(event) {
     var src = event.currentTarget.dataset.src
+    if (!this.data.userInfo._id) {
+      wx.showToast({
+        icon: "none",
+        title: '您还未登录',
+      })
+      return
+    }
     if(src.link ){
       wx.navigateTo({ url: src.link })
     }

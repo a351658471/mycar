@@ -10,27 +10,23 @@
   padding: 20rpx 30rpx;
   border-radius: 10rpx;
   margin: 2rpx 10rpx;
-  position: relative;
+
 }
 .feedback .feedbackuser{
   display: flex;
   align-items: center
 }
-.feedback .feedbackuser image{
+.feedback .feedbackuser .headImg{
   width: 70rpx;
   height: 70rpx;
   border-radius: 50%;
+  margin-left: 40rpx;
 }
 .feedback .feedbackuser .tab{
-  width: 50rpx;
-  height: 50rpx;
-  position: absolute;
-  top: 0;
-  right: 20rpx;
-}
-.feedback .feedbackuser .name{
-  font-size: 30rpx;
-  margin-left: 30rpx;
+  width: 30rpx;
+  height: 30rpx;
+ 
+  
 }
 .feedback .content{
   width: 60%;

@@ -8,12 +8,18 @@ Page({
   data: {
     userInfo: {},
   },
-  onShow: function() {
+  onShow: function () {
     this.data.userInfo.nickName = app.globalData.user.nickName
     this.data.userInfo.phone = app.globalData.user.phone
     this.setData(this.data)
   },
-  getPhoneNumber: function(e) {
+  inputBind:function(e){
+    this.data.userInfo.phone = e.detail.value
+  },
+  getPhoneNumber: function (e) {
+    if (!e.detail.cloudID) {
+      return
+    }
     wx.cloud.callFunction({
       name: 'openapi',
       data: {
@@ -25,21 +31,35 @@ Page({
       this.setData(this.data)
     })
   },
-  confirm: function(e) {
-    // 调用云函数
-    wx.cloud.callFunction({
-      name: 'user',
-      data: {
-        action: "userBindPhone",
-        phone: this.data.userInfo.phone
-      },
-      success: res => {
-        console.log('[云函数] [user.userBindPhone] : ', res.result)
-      },
-      fail: err => {
-        console.error('[云函数] [user.userBindPhone] 调用失败', err)
-      }
-    })
+  confirm: function (e) {
+    if (this.data.userInfo.phone != app.globalData.user.phone){
+      // 调用云函数
+      wx.cloud.callFunction({
+        name: 'user',
+        data: {
+          action: "userBindPhone",
+          phone: this.data.userInfo.phone
+        },
+        success: res => {
+          console.log('[云函数] [user.userBindPhone] : ', res.result)
+          wx.showToast({
+            icon: 'success',
+            title: '修改成功',
+            duration: 3000,
+            success: res => {
+              setTimeout(() => {
+                wx.navigateBack()
+              }, 500)
+            }
+          })
+        },
+        fail: err => {
+          console.error('[云函数] [user.userBindPhone] 调用失败', err)
+        }
+      })
+    }else{
+      wx.navigateBack()
+    }
   },
 
 })
