@@ -5,7 +5,7 @@
 <view class="gifWrap">
   <view class="gifMessage" wx:for="{{swipers}}" wx:key="*this">
       <image class="gifImg" src="{{item}}" mode="aspectFit"></image>
-      <image class="closeicon" src="../../assets/delete.png" bindtap="close" data-index="{{index}}"></image>
+      <image class="closeicon" src="../../assets/delete.png" bindtap="close" data-src="{{item}}"></image>
   </view>
   <view class="gifAdd" bindtap="uploadImg">
       <image src="../../assets/pic.png" mode="aspectFit"></image>

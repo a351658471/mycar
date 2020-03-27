@@ -42,9 +42,27 @@ Page({
   },
   close: function (e) {
     let that = this;
-    let index = e.currentTarget.dataset.index;
-    that.data.swipers.splice(index, 1);
-    this.setData(this.data)
+    let item = e.currentTarget.dataset.src;
+    wx.cloud.callFunction({
+      name: 'shop',
+      data: {
+        action: "swiperEdit",
+        shopid: app.globalData.shop._id,
+        swipers: that.data.swipers
+      },
+      success: res => {
+        for(let i= 0;i<this.data.swipers.length;i++){
+          let img = this.data.swipers[i]
+          if(img == item){
+            this.data.swipers.pop(img)
+          }
+        }
+        this.setData(this.data)
+      },
+      fail: err => {
+        console.error('[云函数] [shop] 调用失败', err)
+      }
+    })
   },
   // 下载图片
   uploadImg: function () {
