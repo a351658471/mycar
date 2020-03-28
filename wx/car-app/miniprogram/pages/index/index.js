@@ -37,7 +37,6 @@ Page({
     app.globalData.removeListener(app.globalData.eventShopUpdate, this.onShopInfo)
   },
   onShopInfo() {
-    app.globalData.removeListener(app.globalData.eventShopUpdate, this.onShopInfo)
     this.data.shop = app.globalData.shop
     this.setData(this.data)
     //获取车列表
