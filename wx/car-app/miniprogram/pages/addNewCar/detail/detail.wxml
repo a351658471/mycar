@@ -5,7 +5,7 @@
       <view class="labelTitle">
               详情介绍
        </view>
-      <view class="detailSave" bindtap="addLabel">
+      <view class="detailSave">
           <view class="rightItem" bind:tap="saveEvent" >保存</view>
           <view class="rightItem" bind:tap="upEvent">上架</view>
       </view>

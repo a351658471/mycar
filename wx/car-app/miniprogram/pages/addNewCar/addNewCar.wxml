@@ -119,7 +119,7 @@
             </view>
             </view>
 
-            <view class="itemAdd" bindtap="addImg" wx:if="{{reqData.imgList.length<3}}">
+            <view class="itemAdd" bindtap="addImg">
               <image src="/assets/picture.png" mode="widthFix"></image>
               <view>{{imgList.length==0 ?"添加图片":"继续添加"}}</view>
             </view>

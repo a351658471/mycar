@@ -173,7 +173,7 @@ Page({
     app.globalFunc.uploadVideo((r, res) => {
       if (r) {
         let data = {
-          content: res.fileID,
+          content: res.fileIDs[0],
           type: 'video'
         }
         if (this.data.textCache != null) {

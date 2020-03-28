@@ -28,20 +28,20 @@
    <!-- tab -->
   <my-tab tabList="{{tabList}}" fontSize="13px" bind:tabClick="tabClick"></my-tab>
 
-  <view wx:if="{{currentIndex == 0}}" style='background:#fff; width:100%;padding-top:2vw'>
-   <block wx:for="{{carData[0].data.detail}}" wx:key="index">
+  <view wx:if="{{currentIndex == 0}}" style='background:#fff; width:100%;padding-top:2vw' >
+   <view wx:for="{{carData[0].data.detail}}" wx:key="index" style="margin:1rem 0">
       <view style='width:90%; height:170px; margin:0 auto' wx:if="{{item.type == 'image'}}">
-         <image src='{{item.content}}' mode="aspectFill" style='width:100%; height:170px'></image>
+         <image src='{{item.content}}' mode="aspectFill" style='width:100%; height:170px' bindtap="previewImage" data-content="{{item.content}}"></image>
       </view>
       <!-- 视频 -->
       <view style='width:90%; height:170px; margin:0 auto' wx:if="{{item.type == 'video'}}">
-        <video src="{{item.content}}"></video>
+        <video src="{{item.content}}" style="width:100%"></video>
       </view>
 
       <view style='width:90%; margin:1vw auto; font-size:14px' wx:if="{{item.type == 'text'}}">
          {{item.content}}
       </view>
-   </block>
+   </view>
   </view>
 
 

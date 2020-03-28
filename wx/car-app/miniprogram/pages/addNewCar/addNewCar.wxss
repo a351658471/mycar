@@ -100,25 +100,27 @@ radio .wx-radio-input.wx-radio-input-checked::before{
   width: 100%
 }
 .addImgBox{
-  height:25vw;
   display: flex;
   width: 100%;
-  justify-content: space-between;
+  flex-wrap: wrap;
   background: #fff;
   align-items: center
 }
 .imgItem{
   width:30%;
-  height:80%;
+  height:20vw;
+  margin:3vw 3vw 0 0;
   text-align: center;
-  position: relative
+  position: relative;
+  margin-bottom: 1vw
   
 }
 .itemImg{
   width: 100%;
   height: 100%;
   border: 1px solid #9A979B;
-  border-radius: 5px
+  border-radius: 5px;
+  
 }
 .deleteImg{
   width: 15%;
@@ -132,12 +134,14 @@ radio .wx-radio-input.wx-radio-input-checked::before{
   background: #fff
 }
 .itemAdd{
-  width: 25%;
-  height:80%;
+  width: 20vw;
+  height:17vw;
+  margin-top: 1vw;
   border: 1px dashed #B5B2B5;
   text-align: center;
   font-size: 14px;
-  color: #B5B2B5
+  color: #B5B2B5;
+  margin-bottom: 1vw
 }
 .itemAdd image{
   width:60%
