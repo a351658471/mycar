@@ -64,6 +64,15 @@ Page({
       }
     })
   },
+  //预览图片
+  preview:function(event){
+    let src = event.currentTarget.dataset.src
+    let imgList = event.currentTarget.dataset.list
+    wx.previewImage({
+      current:src,
+      urls:imgList
+    })
+  },
   // 下载图片
   uploadImg: function () {
     app.globalFunc.uploadImg((r, res) => {

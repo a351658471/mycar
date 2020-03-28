@@ -32,11 +32,6 @@
     color: #FFFFFF;
     margin-left: 28rpx;
 }
-/* .header .head .headIcon{
-    width: 44rpx;
-    height: 34rpx;
-    margin-left: 14rpx;
-} */
 .header .head .noregist button{
     width: 140rpx;
     height: 65rpx;
