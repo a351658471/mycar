@@ -43,12 +43,7 @@ Page({
         // 查询条件
         condition: {
           _id: id,
-          shopId: "f841fd285e71d6900011f3b713c5a83f",
-          // 名称模糊搜素
-          // name: {
-          //   $regex: ".*13.*",
-          //   $options: 'i'
-          // }
+          shopId: app.globalData.shop._id,
         },
 
         // status:[2],    // 商品状态 在售 已售 未上架 
@@ -237,15 +232,8 @@ Page({
       name: 'item',
       data: {
         action: "itemEdit",
-        shopid: "f841fd285e71d6900011f3b713c5a83f",
+        shopid: app.globalData.shop._id,
         item: item
-        // item: {
-        //   _id:"ae7e55b35e758c9600135dd8065f1744",
-        //   name: "911",    // 商品名
-        //   price: 666666,   // 价格
-        //   stock: 1,   // 库存
-        //   data: "{}",     // 数据
-        // }
       },
       success: res => {
         console.log('[云函数] [item.itemEdit] : ', res.result)

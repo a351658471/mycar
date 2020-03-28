@@ -51,6 +51,7 @@ App({
       },
       shop: {}, //  商店信息
       user:{},// 用户信息
+      feedbacks:[], // 反馈信息
     }
     let that = this
     this.globalFunc = {
