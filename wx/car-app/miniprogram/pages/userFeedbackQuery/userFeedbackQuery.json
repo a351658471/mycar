@@ -3,5 +3,6 @@
   "navigationBarTextStyle": "black",
   "navigationBarTitleText": "建议反馈",
   "enablePullDownRefresh": true,
+  "backgroundTextStyle":"dark",
   "usingComponents": {}
 }

@@ -53,12 +53,10 @@ Page({
     })
   },
   
-  onShow: function() {
-
-  },
   onPullDownRefresh:function(){
     this.data.page = 1
     this.getFeedbackData(this.data.page)
+    wx.stopPullDownRefresh();
   },
   loadMore() {
     this.data.page++
