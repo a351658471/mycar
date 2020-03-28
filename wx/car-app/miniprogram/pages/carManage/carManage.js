@@ -1,4 +1,5 @@
 
+const PERPAGE = 5
 Page({
   data: {
     tabList: ['在售', '已售', '未上架'],
@@ -59,11 +60,11 @@ Page({
           // }
         },
 
-        status,    // 商品状态 在售 已售 未上架 
+        status:status,    // 商品状态 在售 已售 未上架 
         // oldlevel,
         // 分页
-        page,
-        perpage:5,
+        page:page,
+        perpage:PERPAGE,
         // 是否排序
         order: 0
       },
@@ -71,7 +72,7 @@ Page({
       success: res => {
         this.data.flag = true
         //没有数据则关闭下拉加载
-        if(res.result.data.length<5){
+        if(res.result.data.length<PERPAGE){
           this.data.noMore = true
         }else{
           this.data.noMore = false
@@ -125,7 +126,7 @@ Page({
         shopid: "f841fd285e71d6900011f3b713c5a83f",
         item:{
           _id:id,
-          status
+          status:status
         },
         
       },
@@ -141,7 +142,7 @@ Page({
   //已售商品
   soldGoods(e){
     let id = e.detail.id;
-    let status = [1]
+    let status = 1
     wx.showModal({
       title: '提示',
       content: '是否确认已售',
@@ -156,7 +157,7 @@ Page({
   //下架商品
   lowGoods(e){
     let id = e.detail.id;
-    let status= [2]
+    let status= 2
     wx.showModal({
       title: '提示',
       content: '是否确认下架',
@@ -170,7 +171,7 @@ Page({
   //在售商品
   saleGoods(e){
     let id = e.detail.id;
-    let status = [0]
+    let status = 0
     wx.showModal({
       title: '提示',
       content: '是否确认在售',
