@@ -145,7 +145,6 @@ Page({
     }
   },
   toLogin: function (userInfo) {
-    console.log(userInfo)
     // 调用云函数
     wx.cloud.callFunction({
       name: 'user',

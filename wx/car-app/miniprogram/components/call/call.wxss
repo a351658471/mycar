@@ -43,7 +43,8 @@
 }
 .bitem{
   height:13vw;
-  line-height: 11vw
+  line-height: 11vw;
+  border-bottom: 1rpx solid #dbdbdb;
 }
 .hoverClass{
   background: #dbdbdb
