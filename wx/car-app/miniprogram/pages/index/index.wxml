@@ -2,7 +2,7 @@
   <scroll-view class='crollView' scroll-y style="height:100%"> 
 
   <!-- 轮播图 -->
-  <view>
+  <view style="margin-top:36rpx;">
     <my-swiper imgList="{{shop.swipers}}" isDots="{{true}}" bind:previewImage="previewImage"></my-swiper>
   </view>
     <!-- tab -->

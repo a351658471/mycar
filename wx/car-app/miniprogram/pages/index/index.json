@@ -1,4 +1,6 @@
 {
+  "navigationBarBackgroundColor": "#ffffff",
+  "navigationBarTextStyle": "black",
   "usingComponents": {
     "my-swiper": "/components/mySwiper/mySwiper",
     "my-ltab": "/components/leftTab/leftTab",

@@ -3,7 +3,9 @@
 
 <scroll-view scroll-y style='height:100%'>
   <!-- 轮播图组件 -->
-  <my-swiper imgList="{{carData[0].data.imgList}}" isMyDots="{{true}}" swiperWidth="100%" bRadius="0"></my-swiper>
+  <view style="margin-top:26rpx;">
+      <my-swiper imgList="{{carData[0].data.imgList}}" isMyDots="{{true}}" swiperWidth="100%" bRadius="20rpx"></my-swiper>
+  </view> 
 
   <!-- 报价 -->
   <view class='carDetail'>
@@ -17,7 +19,7 @@
               <view class='left-item'>{{item}}</view>
           </block>
       </view>
-      <view class='body-right' style='color:#D0435A'>
+      <view class='body-right' style='color:#FE2A45'>
         ￥{{carData[0].price}}
       </view>
     </view>
@@ -34,7 +36,7 @@
          <image src='{{item.content}}' mode="aspectFill" style='width:100%; height:170px'></image>
       </view>
       <!-- 视频 -->
-      <view style='width:90%; height:170px; margin:0 auto' wx:if="{{item.type == 'video'}}">
+      <view style='width:90%;  margin:0 auto' wx:if="{{item.type == 'video'}}">
         <video src="{{item.content}}"></video>
       </view>
 
@@ -61,15 +63,4 @@
 
   </scroll-view>
   <my-call class="callIcon" bind:call="call"></my-call>
-
-  <!-- call
-  <view class="backgournd" bindtap='chooseShare' wx:if="{{hideShare}}">
-    <view class="binner">
-      <view bind:tap="copyEvent" hover-class="hoverClass" hover-stay-time="100" style="height:15vw;line-height:15vw;border-bottom:1px solid #E9E6EA;border-radius:10px 10px 0 0;text-align:center">
-        186-5088-3333(微信同号)<i class="iconfont icon-ai-copy" style="margin-left:2vw"></i>
-      </view>
-      <view bind:tap="callEvent" hover-class="hoverClass" hover-stay-time="100" class="bitem"  style="border-bottom:1.5vw solid #E9E6EA">呼叫</view>
-      <view bindtap="backEvent" hover-class="hoverClass" hover-stay-time="100" class="bitem" >取消</view>
-    </view>
-</view> -->
 </view>

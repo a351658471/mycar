@@ -7,13 +7,13 @@
           </image>
         </view>
         <view class='carMsg'>
-          <view style='font-size:12px; font-weight: bolder; text-overflow:ellipsis; overflow:hidden; white-space:nowrap'>{{item.name}}</view>
-          <view style='color:#BDBCBF; font-size:10px'>{{item.oldlevel==0?'新车':'二手'}}</view>
+          <view style='font-size:24rpx;  text-overflow:ellipsis; overflow:hidden; white-space:nowrap'>{{item.name}}</view>
+          <view style='color:#BBBBBB; font-size:20rpx'>{{item.oldlevel==0?'新车':'二手'}}</view>
           <view style='display:flex; font-size:10px'>
             <view class='itemCars' wx:for="{{item.data.labelList}}" wx:key="index">{{item}}</view>
             <!-- <view class='itemCars'>{{item.data.labelList[1]}}</view> -->
           </view>
-          <view style='color:#DA3A4E;font-size:14px;font-weight:bolder'>￥{{item.price}}</view>
+          <view style='color:#FE2A45;font-size:30rpx;font-weight:bolder'>￥{{item.price}}</view>
         </view>
       </view>
     </block>
