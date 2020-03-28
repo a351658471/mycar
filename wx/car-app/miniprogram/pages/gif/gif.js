@@ -68,7 +68,7 @@ Page({
   uploadImg: function () {
     app.globalFunc.uploadImg((r, res) => {
       if (r) {
-        this.data.swipers.push(res.fileID)
+        this.data.swipers = this.data.swipers.concat(res.fileIDs)
         this.setData(this.data)
       }
     })

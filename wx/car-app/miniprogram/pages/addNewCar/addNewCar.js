@@ -150,7 +150,7 @@ Page({
   addImg() {
     app.globalFunc.uploadImg((r, res) => {
       if (r) {
-        this.data.reqData.imgList.push(res.fileID)
+        this.data.reqData.imgList = this.data.reqData.imgList.concat(res.fileIDs)
         this.setData(this.data)
       }
     })
