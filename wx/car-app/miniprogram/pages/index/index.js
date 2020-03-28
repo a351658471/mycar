@@ -16,14 +16,15 @@ Page({
     isLoading: false,
     noMore: false
   },
-  onShow() {
+  onLoad(){
     app.globalData.addListener(app.globalData.eventShopUpdate, this.onShopInfo)
     app.globalFunc.getShopInfo();
   },
-  onHide() {
+  onUnload(){
     app.globalData.removeListener(app.globalData.eventShopUpdate, this.onShopInfo)
   },
   onShopInfo() {
+    app.globalData.removeListener(app.globalData.eventShopUpdate, this.onShopInfo)
     this.data.shop = app.globalData.shop
     this.setData(this.data)
     //获取车列表
