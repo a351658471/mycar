@@ -114,6 +114,7 @@ Page({
     }
 
   },
+  //添加详情图片
   insertImage() {
     app.globalFunc.uploadImg((r, res) => {
       if (r) {
@@ -126,36 +127,18 @@ Page({
             content: element,
             type: 'image'
           }
-          this.data.dataList.push(data)
+          this.data.carData[0].data.detail.push(data)
         }
         this.setData({
-          dataList: this.data.dataList,
+          carData: this.data.carData,
           textValue: '',
           textCache: null
         })
       }
     })
-
-    // wx.chooseImage({
-    //   count: 1,
-    //   success: (res) => {
-    //     let data = {
-    //       content: res.tempFilePaths[0],
-    //       type: 'image'
-    //     }
-    //     if (this.data.textCache != null) {
-    //       console.log(1111111)
-    //       this.data.dataList.push(this.data.textCache)
-    //     }
-    //     this.data.dataList.push(data)
-    //     this.setData({
-    //       dataList: this.data.dataList,
-    //       textValue: '',
-    //       textCache: null
-    //     })
-    //   }
-    // })
   },
+
+  // 删除详情图片
   imgDelete(e) {
     console.log(e)
     let index = e.currentTarget.dataset.index
@@ -165,6 +148,8 @@ Page({
       carData: this.data.carData
     })
   },
+
+  //添加详情视频
   insertVideo() {
     app.globalFunc.uploadVideo((r, res) => {
       if (r) {
@@ -175,9 +160,9 @@ Page({
         if (this.data.textCache != null) {
           this.data.dataList.push(this.data.textCache)
         }
-        this.data.dataList.push(data)
+        this.data.carData[0].data.detail.push(data)
         this.setData({
-          dataList: this.data.dataList,
+          carData: this.data.carData,
           textValue: '',
           textCache: null
         })
@@ -207,13 +192,20 @@ Page({
     // })
   },
   videoDelete(e) {
-    let index = e.currentTarget.dataset.index;
-    console.log(index)
-    this.data.dataList.splice(index, 1)
+    let index = e.currentTarget.dataset.index
+    this.data.carData[0].data.detail.splice(index, 1)
+
     this.setData({
-      dataList: this.data.dataList
+      carData: this.data.carData
     })
+    // let index = e.currentTarget.dataset.index;
+    // console.log(index)
+    // this.data.dataList.splice(index, 1)
+    // this.setData({
+    //   dataList: this.data.dataList
+    // })
   },
+  //保存
   saveEvent() {
    if(this.data.carData[0].oldlevel ==1 && this.data.sp ==''){
      wx.showToast({
@@ -292,11 +284,18 @@ Page({
   //初次上牌
   blurEvnet4(e) {
     this.data.sp = e.detail.value
+    let param={
+      type :1,
+      content: e.detail.value
+    }
     this.data.carData[0].data.params.forEach((item, index) => {
       if (item.type == 1) {
         this.data.carData[0].data.params[index].content = e.detail.value
+        return
       }
     })
+    this.data.carData[0].data.params.push(param)
+
   },
   //排放
   blurEvnet5(e) {

@@ -57,7 +57,8 @@
   height: 6vw;
   position: absolute;
   top: 0;
-  right: 0
+  right: 0;
+  z-index: 1
 }
 .videoDelete image{
   width: 100%
