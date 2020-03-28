@@ -11,14 +11,17 @@ Page({
     noMore: false,
     isLoading: false
   },
+  onLoad(){
+    this.data.message = app.globalData.feedbacks
+    this.getFeedbackData()
+  },
   getFeedbackData: function(page = 1) {
     this.setData({
       isLoading: true
     })
     if (page == 1) {
-      this.setData({
-        message: []
-      })
+      this.data.message.length = 0
+      this.setData(this.data)
     }
     // 调用云函数
     wx.cloud.callFunction({
@@ -41,9 +44,7 @@ Page({
         console.log('[云函数] [user.userFeedback] : ', res.result)
         res.result.data.forEach(item => {
           this.data.message.push(item)
-          this.setData({
-            message: this.data.message
-          })
+          this.setData(this.data)
         })
       },
       fail: err => {
@@ -52,13 +53,16 @@ Page({
     })
   },
   
-  onLoad: function() {
+  onShow: function() {
+
+  },
+  onPullDownRefresh:function(){
     this.data.page = 1
     this.getFeedbackData(this.data.page)
   },
   loadMore() {
     this.data.page++
-      this.getFeedbackData(this.data.page)
+    this.getFeedbackData(this.data.page)
   },
 
   isTab: function(e) {
