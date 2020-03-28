@@ -17,7 +17,7 @@ Component({
 
     fontSize: {
       type: String,
-      value: '17px'
+      value: '28rpx'
     }
   },
   /**

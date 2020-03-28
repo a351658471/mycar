@@ -5,6 +5,7 @@
   background: #fff;
   margin-bottom: 3vw;
   display: flex;
+  align-items: center;
   height:38vw;
   border-radius: 15px
 }
@@ -13,7 +14,7 @@
   position: relative;
   width: 60%;
   height:35vw;
-  margin-left: 2vw;
+  margin-left: 24rpx;
  
 }
 
@@ -25,24 +26,27 @@
 
 .carMsg{
   width: 40%;
+  height:35vw;
   margin-left: 2vw;
-   display: flex;
+  display: flex;
   flex-direction: column;
-  justify-content: space-around
+  justify-content: space-around;
+
 }
 
 .itemCars{
-  color: #DA3A4E;
-  border-radius: 5px;
-  border: 1.5px solid #DA3A4E;
+  color: #FE2A45;
+  border-radius: 6rpx;
+  border: 1px solid #FE2A45;
   padding: 1px 2.5px;
   margin-right: 0.5rem;
-  font-weight: bolder
+
 }
 .loadMore{
   width: 100;
   text-align: center;
   height: 8vw;
   line-height: 8vw;
-  color: #DA3A4E
+  color: #777;
+  font-size: 30rpx;
 }
