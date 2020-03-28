@@ -1,4 +1,4 @@
-
+const app = getApp()
 const PERPAGE = 5
 Page({
   data: {
