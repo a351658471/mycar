@@ -1,4 +1,5 @@
 
+const PERPAGE = 5
 Page({
   data: {
     tabList: ['在售', '已售', '未上架'],
@@ -15,15 +16,16 @@ Page({
   //生命周期函数初次渲染完成
   onLoad: function () {
     console.log("父组件onload")
-    
-  },
-  onShow:function(){
     this.data.page=1
     let status = "carData[0].status"
     this.setData({
       [status]: 0
     })
     this.getCarData([this.data.tabCurrent])
+    
+  },
+  onShow:function(){
+    
   },
   tabClick: function (e) {
     this.data.count++;
@@ -61,11 +63,11 @@ Page({
           // }
         },
 
-        status,    // 商品状态 在售 已售 未上架 
+        status:status,    // 商品状态 在售 已售 未上架 
         // oldlevel,
         // 分页
-        page,
-        perpage:5,
+        page:page,
+        perpage:PERPAGE,
         // 是否排序
         order: 0
       },
@@ -73,7 +75,7 @@ Page({
       success: res => {
         this.data.flag = true
         //没有数据则关闭下拉加载
-        if(res.result.data.length<5){
+        if(res.result.data.length<PERPAGE){
           this.data.noMore = true
         }else{
           this.data.noMore = false
@@ -127,7 +129,7 @@ Page({
         shopid: "f841fd285e71d6900011f3b713c5a83f",
         item:{
           _id:id,
-          status
+          status:status
         },
         
       },
@@ -143,7 +145,7 @@ Page({
   //已售商品
   soldGoods(e){
     let id = e.detail.id;
-    let status = [1]
+    let status = 1
     wx.showModal({
       title: '提示',
       content: '是否确认已售',
@@ -158,7 +160,7 @@ Page({
   //下架商品
   lowGoods(e){
     let id = e.detail.id;
-    let status= [2]
+    let status= 2
     wx.showModal({
       title: '提示',
       content: '是否确认下架',
@@ -172,7 +174,7 @@ Page({
   //在售商品
   saleGoods(e){
     let id = e.detail.id;
-    let status = [0]
+    let status = 0
     wx.showModal({
       title: '提示',
       content: '是否确认在售',
@@ -201,7 +203,8 @@ Page({
       },
       success: res => {
         console.log('[云函数] [item.itemRemove] : ', res.result);
-        this.getCarData([this.data.tabCurrent])
+        this.getCarData([this.data.tabCurrent]);
+        this.data.page = 1
       },
       fail: err => {
         console.error('[云函数] [item.itemRemove] 调用失败', err)

@@ -76,43 +76,43 @@ App({
           }
         })
       },
-      uploadRes: function (filePath, callback) {
+      uploadRes: async function (filePaths, callback) {
         // 上传图片
-        const name = new Date().getTime().toString() + "_" + Math.floor(Math.random() * 100000);
-        const cloudPath = name + filePath.match(/\.[^.]+?$/)[0]
-        wx.cloud.uploadFile({
-          cloudPath,
-          filePath,
-          success: res => {
-            callback(true, res)
-            console.log('[上传文件] 成功：', res)
-          },
-          fail: e => {
-            callback(false, e)
-            console.error('[上传文件] 失败：', e)
-            wx.showToast({
-              icon: 'none',
-              title: '上传失败',
-            })
-          },
-          complete: () => {
-            wx.hideLoading()
-          }
-        })
+        let data = {
+          fileIDs:[],
+          errors:[]
+        }
+        for (let index = 0; index < filePaths.length; index++) {
+          const filePath = filePaths[index];
+          const name = new Date().getTime().toString() + "_" + Math.floor(Math.random() * 100000);
+          const cloudPath = name + filePath.match(/\.[^.]+?$/)[0]
+         
+          await wx.cloud.uploadFile({
+            cloudPath,
+            filePath,
+          }).then(res => {
+            data.fileIDs.push(res.fileID)
+          }).catch(error => {
+            // handle error
+          })
+          
+        }
+        wx.hideLoading()
+        callback(true, data)
+        console.log('[上传文件] 结果', data)
       },
       // 上传图片
       uploadImg: function (callback) {
         // 选择图片
         wx.chooseImage({
-          count: 1,
+          count: 9,
           sizeType: ['compressed'],
           sourceType: ['album', 'camera'],
           success: function (res) {
             wx.showLoading({
               title: '上传中',
             })
-            const filePath = res.tempFilePaths[0];
-            that.globalFunc.uploadRes(filePath, callback)
+            that.globalFunc.uploadRes(res.tempFilePaths, callback)
           },
           fail: e => {
             wx.hideLoading()
@@ -130,9 +130,8 @@ App({
               title: '上传中',
             })
             // 上传图片
-            const filePath = res.tempFilePath;
             //thumbTempFilePath
-            that.globalFunc.uploadRes(filePath, callback)
+            that.globalFunc.uploadRes([res.tempFilePath], callback)
           },
           fail: e => {
             wx.hideLoading()

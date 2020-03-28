@@ -7,10 +7,9 @@
   font-size: 1rem;
 }
 .detailSave{
-  margin-right: 3vw;
   display: flex;
-  width: 40%;
-  justify-content: space-between;
+  width: 30%;
+  justify-content: space-around;
   align-items: center
 }
 .rightItem{
@@ -18,7 +17,7 @@
   line-height: 7vw;
   background: #FE2A46;
   color: #fff;
-  width: 30%;
+  width: 40%;
   border-radius: 5px;
   font-size: 13px;
   text-align: center

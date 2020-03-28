@@ -121,14 +121,17 @@ Page({
   insertImage() {
     app.globalFunc.uploadImg((r, res) => {
       if (r) {
-        let data = {
-          content: res.fileID,
-          type: 'image'
-        }
         if (this.data.textCache != null) {
           this.data.dataList.push(this.data.textCache)
         }
-        this.data.dataList.push(data)
+        for (let index = 0; index < res.fileIDs.length; index++) {
+          const element = res.fileIDs[index];
+          let data = {
+            content: element,
+            type: 'image'
+          }
+          this.data.dataList.push(data)
+        }
         this.setData({
           dataList: this.data.dataList,
           textValue: '',
@@ -353,7 +356,7 @@ Page({
   addImg() {
     app.globalFunc.uploadImg((r, res) => {
       if (r) {
-        this.data.carData[0].data.imgList.push(res.fileID)
+        this.data.carData[0].data.imgList = this.data.carData[0].data.imgList.concat(res.fileIDs)
         this.setData(this.data)
       }
     })

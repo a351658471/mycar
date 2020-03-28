@@ -1,6 +1,6 @@
 <!--miniprogram/pages/addNewCar/detail/detail.wxml-->
 <!-- 详情介绍 -->
-<view wx:if="{{isNext}}">
+<view>
    <view class="labelHeader">
       <view class="labelTitle">
               详情介绍
@@ -8,7 +8,6 @@
       <view class="detailSave" bindtap="addLabel">
           <view class="rightItem" bind:tap="saveEvent">保存</view>
           <view class="rightItem" bind:tap="upEvent">上架</view>
-          <view class="rightItem" style="background:#959595" bind:tap="back">上一步</view>
       </view>
     </view>
       <view class="container1" id="container">
