@@ -83,7 +83,7 @@ Page({
           noMore: this.data.noMore,
           isLoading: false
         })
-        console.log('[云函数] [item.itemList] : ', res.result)
+        // console.log('[云函数] [item.itemList] : ', res.result)
         res.result.data.forEach(item => {
             item.data = JSON.parse(item.data)
             this.data.resData.push(item)
@@ -94,7 +94,7 @@ Page({
         })
       },
       fail: err => {
-        console.error('[云函数] [item.itemList] 调用失败', err)
+        // console.error('[云函数] [item.itemList] 调用失败', err)
       }
     })
   },
@@ -164,7 +164,7 @@ Page({
         this.setData({
           hideShare: !this.data.hideShare
         })
-        console.log("呼叫电话返回：", res_makephone)
+        // console.log("呼叫电话返回：", res_makephone)
       }
     })
 

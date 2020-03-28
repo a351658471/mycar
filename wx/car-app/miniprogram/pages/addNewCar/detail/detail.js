@@ -39,8 +39,8 @@ Page({
     var pages = getCurrentPages();
     this.data.passData = pages[pages.length - 2].data
     this.data.reqData = this.data.passData.reqData
-    console.log(this.data.passData)
-    console.log(this.data.reqData)
+    // console.log(this.data.passData)
+    // console.log(this.data.reqData)
   },
 
   /**
@@ -106,7 +106,7 @@ Page({
       status: status,
       oldlevel,
     }
-    console.log(item)
+    // console.log(item)
     //调用云函数
     wx.cloud.callFunction({
       name: 'item',
@@ -123,7 +123,7 @@ Page({
         // }
       },
       success: res => {
-        console.log('[云函数] [item.itemAdd] : ', res.result)
+        // console.log('[云函数] [item.itemAdd] : ', res.result)
         wx.showToast({
           title: status == 0 ? '上架成功' : '保存成功',
         })
@@ -135,7 +135,7 @@ Page({
         }, 1000)
       },
       fail: err => {
-        console.error('[云函数] [item.itemAdd] 调用失败', err)
+        // console.error('[云函数] [item.itemAdd] 调用失败', err)
       }
     })
   },
@@ -162,7 +162,7 @@ Page({
     })
   },
   imgDelete(e) {
-    console.log(e)
+    // console.log(e)
     let index = e.currentTarget.dataset.index
     this.data.dataList.splice(index, 1)
     this.setData({
@@ -190,7 +190,7 @@ Page({
   },
   videoDelete(e) {
     let index = e.currentTarget.dataset.index;
-    console.log(index)
+    // console.log(index)
     this.data.dataList.splice(index, 1)
     this.setData({
       dataList: this.data.dataList

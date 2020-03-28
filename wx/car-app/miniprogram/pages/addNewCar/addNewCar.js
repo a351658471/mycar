@@ -48,9 +48,9 @@ Page({
       type:0,
       content: e.detail.value
     }
-    this.data.reqData.param.forEach((item,index)=>{
+    this.data.reqData.params.forEach((item,index)=>{
       if(item.type == param.type){
-        this.data.reqData.param[index] = param
+        this.data.reqData.params[index] = param
       }else{
         this.data.reqData.params.push(param)
       }
@@ -64,9 +64,9 @@ Page({
       type: 1,
       content: e.detail.value
     }
-    this.data.reqData.param.forEach((item, index) => {
+    this.data.reqData.params.forEach((item, index) => {
       if (item.type == param.type) {
-        this.data.reqData.param[index] = param
+        this.data.reqData.params[index] = param
       } else {
         this.data.reqData.params.push(param)
       }
@@ -78,9 +78,9 @@ Page({
       type: 2,
       content: e.detail.value
     }
-    this.data.reqData.param.forEach((item, index) => {
+    this.data.reqData.params.forEach((item, index) => {
       if (item.type == param.type) {
-        this.data.reqData.param[index] = param
+        this.data.reqData.params[index] = param
       } else {
         this.data.reqData.params.push(param)
       }
@@ -92,9 +92,9 @@ Page({
       type: 3,
       content: e.detail.value
     }
-    this.data.reqData.param.forEach((item, index) => {
+    this.data.reqData.params.forEach((item, index) => {
       if (item.type == param.type) {
-        this.data.reqData.param[index] = param
+        this.data.reqData.params[index] = param
       } else {
         this.data.reqData.params.push(param)
       }
@@ -106,9 +106,9 @@ Page({
       type: 4,
       content: e.detail.value
     }
-    this.data.reqData.param.forEach((item, index) => {
+    this.data.reqData.params.forEach((item, index) => {
       if (item.type == param.type) {
-        this.data.reqData.param[index] = param
+        this.data.reqData.params[index] = param
       } else {
         this.data.reqData.params.push(param)
       }
@@ -137,7 +137,7 @@ Page({
   },
   //添加标签确定按钮
   enterEvent(e) {
-    console.log("确定")
+    // console.log("确定")
     let newArray = this.data.reqData.labelList;
     newArray.push(e.detail.value);
     let labellist = "reqData.labelList";

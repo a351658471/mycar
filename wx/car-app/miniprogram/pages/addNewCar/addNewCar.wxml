@@ -93,7 +93,7 @@
         </view>
           
         <view class="labelItem">
-          <view wx:for="{{reqData.labelList}}" style="display:flex;margin-right:1.5rem">
+          <view wx:for="{{reqData.labelList}}" wx:key="index" style="display:flex;margin-right:1.5rem">
             <view class="labelText">{{item}}</view>
             <view class="deleteIcon" bindtap="deleteLabel" data-index="{{index}}"></view>
           </view>
@@ -112,7 +112,7 @@
           <view style="width:100%; background:#fff">
           <view style="padding:0 5vw">
           <view class="addImgBox">
-            <view class="imgItem" wx:for="{{reqData.imgList}}">
+            <view class="imgItem" wx:for="{{reqData.imgList}}" wx:key="index">
               <image class="itemImg" src="{{item}}" mode="aspectFill"></image>
               <view class="deleteImg" bindtap="deleteImg" data-index="{{index}}">
                 <image src="/assets/delete.png" mode="widthFix"></image>

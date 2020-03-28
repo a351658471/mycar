@@ -23,6 +23,7 @@ Page({
       newCar: 0,
       userdCar: 1
     },
+    sp:'',
     dataList: [],
     textCache: null,
     textValue: ''
@@ -219,24 +220,33 @@ Page({
     })
   },
   saveEvent() {
-    console.log(this.data.carData[0])
+   if(this.data.carData[0].oldlevel ==1 && this.data.sp ==''){
+     wx.showToast({
+       title: '必填项不能为空',
+       icon:'none'
+     })
+   }else{
+     this.editSaveFunc()
+   }
 
+  },
+  editSaveFunc(){
     let item = {
       _id: this.data.carData[0]._id,
       name: this.data.carData[0].name,
       price: this.data.carData[0].price,
       stock: 1,
-      oldlevel:this.data.carData[0].oldlevel,
+      oldlevel: this.data.carData[0].oldlevel,
       data: JSON.stringify(this.data.carData[0].data),
     };
-    
-         // 调用编辑云函数00
+
+    // 调用编辑云函数00
     wx.cloud.callFunction({
       name: 'item',
       data: {
         action: "itemEdit",
         shopid: "f841fd285e71d6900011f3b713c5a83f",
-        item:item
+        item: item
         // item: {
         //   _id:"ae7e55b35e758c9600135dd8065f1744",
         //   name: "911",    // 商品名
@@ -252,15 +262,14 @@ Page({
         })
         setTimeout(() => {
           wx.hideToast(),
-         wx.navigateBack()
+            wx.navigateBack()
         }, 1000)
-        
+
       },
       fail: err => {
         console.error('[云函数] [item.itemEdit] 调用失败', err)
       }
     })
-
 
   },
   //单选框
@@ -294,9 +303,11 @@ Page({
   },
   //初次上牌
   blurEvnet4(e) {
+    this.data.sp = e.detail.value
     this.data.carData[0].data.params.forEach((item, index) => {
       if (item.type == 1) {
         this.data.carData[0].data.params[index].content = e.detail.value
+        
       }
     })
   },

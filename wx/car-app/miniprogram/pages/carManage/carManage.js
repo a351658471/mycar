@@ -84,7 +84,7 @@ Page({
         if (count != this.data.count) {
           return
         }
-        console.log('[云函数] [item.itemList] : ', res.result)
+        // console.log('[云函数] [item.itemList] : ', res.result)
         
         res.result.data.forEach(item => {
           this.data.items.push({ xmove: 0, isOpen: false })
@@ -98,7 +98,7 @@ Page({
         })
       },
       fail: err => {
-        console.error('[云函数] [item.itemList] 调用失败', err)
+        // console.error('[云函数] [item.itemList] 调用失败', err)
       }
     })
   },
@@ -125,11 +125,11 @@ Page({
         
       },
       success: res => {
-        console.log('[云函数] [item.itemEdit] : ', res.result)
+        // console.log('[云函数] [item.itemEdit] : ', res.result)
         this.getCarData([this.data.tabCurrent])
       },
       fail: err => {
-        console.error('[云函数] [item.itemEdit] 调用失败', err)
+        // console.error('[云函数] [item.itemEdit] 调用失败', err)
       }
     })
   },
@@ -193,12 +193,12 @@ Page({
         ids: [id],
       },
       success: res => {
-        console.log('[云函数] [item.itemRemove] : ', res.result);
+        // console.log('[云函数] [item.itemRemove] : ', res.result);
         this.getCarData([this.data.tabCurrent]);
         this.data.page = 1
       },
       fail: err => {
-        console.error('[云函数] [item.itemRemove] 调用失败', err)
+        // console.error('[云函数] [item.itemRemove] 调用失败', err)
       }
     })
       }
