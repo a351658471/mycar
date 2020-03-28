@@ -1,4 +1,5 @@
 
+const PERPAGE = 5
 Page({
   data: {
     tabList: ['在售', '已售', '未上架'],
@@ -66,7 +67,7 @@ Page({
         // oldlevel,
         // 分页
         page:page,
-        perpage:5,
+        perpage:PERPAGE,
         // 是否排序
         order: 0
       },
@@ -74,7 +75,7 @@ Page({
       success: res => {
         this.data.flag = true
         //没有数据则关闭下拉加载
-        if(res.result.data.length<5){
+        if(res.result.data.length<PERPAGE){
           this.data.noMore = true
         }else{
           this.data.noMore = false
