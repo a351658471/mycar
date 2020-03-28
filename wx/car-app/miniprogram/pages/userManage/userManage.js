@@ -12,7 +12,6 @@ Page({
     search: '',
     curPage: 1,
   },
-
   onShow: function () {
     this.userQuery()
   },
