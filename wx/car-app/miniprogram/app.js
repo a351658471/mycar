@@ -104,7 +104,7 @@ App({
       uploadImg: function (callback) {
         // 选择图片
         wx.chooseImage({
-          count: 1,
+          count: 9,
           sizeType: ['compressed'],
           sourceType: ['album', 'camera'],
           success: function (res) {
