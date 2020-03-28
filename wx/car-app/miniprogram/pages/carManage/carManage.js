@@ -52,12 +52,7 @@ Page({
         istotal: 0,   //  返回总数
         // 查询条件
         condition: {
-          shopId: "f841fd285e71d6900011f3b713c5a83f",
-          // 名称模糊搜素
-          // name: {
-          //   $regex: ".*13.*",
-          //   $options: 'i'
-          // }
+          shopId: app.globalData.shop._id,
         },
 
         status:status,    // 商品状态 在售 已售 未上架 
@@ -117,7 +112,7 @@ Page({
       name: 'item',
       data: {
         action: "itemEdit",
-        shopid: "f841fd285e71d6900011f3b713c5a83f",
+        shopid: app.globalData.shop._id,
         item:{
           _id:id,
           status:status
@@ -189,7 +184,7 @@ Page({
       name: 'item',
       data: {
         action: "itemRemove",
-        shopid: "f841fd285e71d6900011f3b713c5a83f",
+        shopid: app.globalData.shop._id,
         ids: [id],
       },
       success: res => {

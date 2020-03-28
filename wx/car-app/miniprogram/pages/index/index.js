@@ -12,16 +12,16 @@ Page({
     resData: [],
     newcar: [],
     oldcar: [],
-    page:1,
+    page: 1,
     isLoading: false,
     noMore: false,
     hideShare: false
   },
-  onLoad(){
+  onLoad() {
     app.globalData.addListener(app.globalData.eventShopUpdate, this.onShopInfo)
     app.globalFunc.getShopInfo();
   },
-  onUnload(){
+  onUnload() {
     app.globalData.removeListener(app.globalData.eventShopUpdate, this.onShopInfo)
   },
   onShopInfo() {
@@ -34,7 +34,7 @@ Page({
 
 
   //获取数据接口方法
-  getCarData(page=1) {
+  getCarData(page = 1) {
     this.setData({
       isLoading: true
     })
@@ -64,7 +64,7 @@ Page({
           //   $options: 'i'
           // }
         },
-        status:[0],    // 商品状态 0在售 1已售 2未上架 
+        status: [0],    // 商品状态 0在售 1已售 2未上架 
         oldlevel,
         // 分页
         page,
@@ -85,11 +85,11 @@ Page({
         })
         // console.log('[云函数] [item.itemList] : ', res.result)
         res.result.data.forEach(item => {
-            item.data = JSON.parse(item.data)
-            this.data.resData.push(item)
-            this.setData({
-              resData: this.data.resData
-            })
+          item.data = JSON.parse(item.data)
+          this.data.resData.push(item)
+          this.setData({
+            resData: this.data.resData
+          })
 
         })
       },
@@ -121,10 +121,10 @@ Page({
 
   //上拉加载更多
   loadMore() {
-    if(this.data.flag)
-      this.data.flag =false;
-      this.data.page++;
-      this.getCarData(this.data.page)
+    if (this.data.flag)
+      this.data.flag = false;
+    this.data.page++;
+    this.getCarData(this.data.page)
   },
 
   // 模块遮罩层
@@ -178,5 +178,15 @@ Page({
       hideShare: !this.data.hideShare
     })
   }
+  ,
+  onShareAppMessage(res) {
+    if (res.from === 'button') {
+      console.log(res.target);
+    }
+    return {
+      title: '厦门车之居',
+      path: '/pages/index/index'
+    };
+  },
 
 })

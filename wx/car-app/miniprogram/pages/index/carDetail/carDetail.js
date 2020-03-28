@@ -30,7 +30,8 @@ Page({
     //   currentCar: cardata[0]
     // })
     // console.log(this.data.currentCar)
-    this.getCarData(options.carId)
+    this.data.itemid = options.carId
+    this.getCarData()
   },
 
   /**
@@ -74,15 +75,17 @@ Page({
   onReachBottom: function () {
 
   },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  onShareAppMessage(res) {
+    if (res.from === 'button') {
+      console.log(res.target);
+    }
+    return {
+      title: '厦门车之居',
+      path: '/pages/index/index?itemid='
+    };
   },
   //根据id调用接口获取数据
-  getCarData(id) {
+  getCarData() {
     // 调用云函数  商品列表
     wx.cloud.callFunction({
       name: 'item',
@@ -91,22 +94,8 @@ Page({
         istotal: 0,   //  返回总数
         // 查询条件
         condition: {
-          _id: id,
-          shopId: "f841fd285e71d6900011f3b713c5a83f",
-          // 名称模糊搜素
-          // name: {
-          //   $regex: ".*13.*",
-          //   $options: 'i'
-          // }
-        },
-        
-        // status:[2],    // 商品状态 在售 已售 未上架 
-        // oldlevel,
-        // 分页
-        page: 1,
-        perpage: 5,
-        // 是否排序
-        order: 0
+          _id: this.data.itemid,
+        }
       },
       success: res => {
         // console.log('[云函数] [item.itemList] : ', res.result)

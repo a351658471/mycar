@@ -112,7 +112,7 @@ Page({
       name: 'item',
       data: {
         action: "itemAdd",
-        shopid: "f841fd285e71d6900011f3b713c5a83f",
+        shopid: app.globalData.shop._id,
         item: item
         // {
         //   name: this.data.typeValue,    // 商品名
