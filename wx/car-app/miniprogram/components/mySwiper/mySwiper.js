@@ -46,6 +46,17 @@ Component({
       this.setData({
         currentIndex: e.detail.current + 1
       })
+    },
+    //点击轮播图放大
+    previewImage(e) {
+      let index = e.currentTarget.dataset.index
+      var current = this.data.imgList[index];
+      var imgList = this.data.imgList
+      //图片预览
+      wx.previewImage({
+        current: current, // 当前显示图片的http链接
+        urls: imgList // 需要预览的图片http链接列表
+      })
     }
   }
 })

@@ -124,6 +124,6 @@ Page({
       this.data.flag =false;
       this.data.page++;
       this.getCarData(this.data.page)
-  }
+  },
 
 })

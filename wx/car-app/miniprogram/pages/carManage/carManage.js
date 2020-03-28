@@ -202,7 +202,8 @@ Page({
       },
       success: res => {
         console.log('[云函数] [item.itemRemove] : ', res.result);
-        this.getCarData([this.data.tabCurrent])
+        this.getCarData([this.data.tabCurrent]);
+        this.data.page = 1
       },
       fail: err => {
         console.error('[云函数] [item.itemRemove] 调用失败', err)

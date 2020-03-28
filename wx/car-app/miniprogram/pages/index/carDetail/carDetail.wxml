@@ -33,6 +33,11 @@
       <view style='width:90%; height:170px; margin:0 auto' wx:if="{{item.type == 'image'}}">
          <image src='{{item.content}}' mode="scaleToFill" style='width:100%; height:170px'></image>
       </view>
+      <!-- 视频 -->
+      <view style='width:90%; height:170px; margin:0 auto' wx:if="{{item.type == 'video'}}">
+        <video src="{{item.content}}"></video>
+      </view>
+
       <view style='width:90%; margin:1vw auto; font-size:14px' wx:if="{{item.type == 'text'}}">
          {{item.content}}
       </view>
@@ -41,7 +46,6 @@
 
 
     <view wx:elif="{{currentIndex == 1}}" style='width:100%; background:#fff'>
-
     <view style='width:90%; margin:0 auto;border-top:1px solid #E8E5E9'>
       <view wx:for="{{carData[0].data.params}}"  style='padding:0.5rem 0; border-bottom:1px solid #E8E5E9; font-size:14px;display: flex;'>
             <view style='width:5rem'>
