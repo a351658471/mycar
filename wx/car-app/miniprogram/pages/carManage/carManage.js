@@ -85,6 +85,7 @@ Page({
           return
         }
         console.log('[云函数] [item.itemList] : ', res.result)
+        
         res.result.data.forEach(item => {
           this.data.items.push({ xmove: 0, isOpen: false })
           item.data = JSON.parse(item.data)
@@ -109,13 +110,6 @@ Page({
     })
   },
 
-  //跳转详情页
-  caritemClick(e){
-    let id = e.detail.itemData._id;
-    wx.navigateTo({
-      url: '/pages/editCarInfo/editCarInfo?id='+id,
-    })
-  },
 
   editGoods(id,status){
          // 调用编辑云函数
@@ -221,5 +215,11 @@ Page({
         this.getCarData([this.data.tabCurrent], this.data.page)
       }
       
+  },
+  toEdit(e){
+    let id = e.detail.id;
+    wx.navigateTo({
+      url: '/pages/editCarInfo/editCarInfo?id=' + id,
+    })
   }
 })

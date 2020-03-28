@@ -11,7 +11,7 @@
                       out-of-bounds="true"
                       data-index="{{index}}"
                       data-item='{{item}}'>
-          <view class='carItem' >
+          <view class='carItem' bindtap="boxClick" data-item='{{item}}' data-index="{{index}}">
             <view class='carImg'>
               <image src='{{item.data.imgList[0]}}' mode="scaleToFill" style='width:100%;height:90%'>
               </image>

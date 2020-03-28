@@ -1,9 +1,14 @@
 page{
   background: #F5F5F5;
   height: 100%;
+  
 }
 .addCar{
-  height: 100%
+  height: 100%;
+}
+.scrollBox{
+   height:100%;
+  -webkit-overflow-scrolling: touch
 }
 .baseTitle,.labelTitle,.labelAdd{
   padding: 3vw;
@@ -81,7 +86,8 @@ radio .wx-radio-input.wx-radio-input-checked::before{
   margin-left: 0.3rem;
   border-radius: 50%;
   border: 1px solid #FE2A45;
-  position: relative
+  position: relative;
+  z-index:1; 
 }
 .deleteIcon::after{
   content: '';
@@ -89,6 +95,7 @@ radio .wx-radio-input.wx-radio-input-checked::before{
   height:1px;
   background: #FE2A45;
   position: absolute;
+  z-index:1; 
   top: 50%;
   left: 25%
 }
@@ -111,7 +118,8 @@ radio .wx-radio-input.wx-radio-input-checked::before{
   width:30%;
   height:80%;
   text-align: center;
-  position: relative
+  position: relative;
+  z-index:1; 
   
 }
 .itemImg{
@@ -123,6 +131,7 @@ radio .wx-radio-input.wx-radio-input-checked::before{
 .deleteImg{
   width: 15%;
   position: absolute;
+  z-index:1; 
   right:0;
   top: 0;
   
@@ -204,6 +213,7 @@ radio .wx-radio-input.wx-radio-input-checked::before{
 .imgContent{
   width: 100%;
   position: relative;
+  z-index:1; 
   border: 1px solid #F5F5F5
 }
 
@@ -212,6 +222,7 @@ radio .wx-radio-input.wx-radio-input-checked::before{
   width: 6vw;
   height: 6vw;
   position: absolute;
+  z-index:1; 
   top: 0;
   right: 0
 }

@@ -1,5 +1,5 @@
 <view class="addCar">
-<scroll-view scroll-y style="height:100%">
+<view class="scrollBox">
 <!-- 基本信息 -->
     <view class="baseInfo">
         <view class="baseTitle">
@@ -149,7 +149,7 @@
             <view class="videoDelete" bindtap="imgDelete" data-index="{{index}}" wx:if="{{!disabled}}">
               <image src="/assets/删除.png" mode="widthFix"></image>
             </view>
-            <image src="{{item.content}}"></image>
+            <image src="{{item.content}}" mode="widthFix" style="width:90%"></image>
         </view>
         <!-- 视频 -->
         <view class="imgContent" wx:if="{{item.type == 'video'}}">
@@ -174,5 +174,5 @@
  <view class="next" bindtap="saveEvent" wx:else>
       保存
  </view>
-</scroll-view>
+</view>
 </view>

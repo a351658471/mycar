@@ -45,7 +45,6 @@ Component({
     },
     //记录起点X坐标
     handleTouchStart(e) {
-      console.log(e)
       this.setData({
         startX: e.changedTouches[0].clientX,
       })
@@ -53,11 +52,7 @@ Component({
     handleTouchEnd(e) {
       let index = e.currentTarget.dataset.index
       if (!this.data.items[index].isOpen) {
-        if (this.data.startX - e.changedTouches[0].clientX < 5) {
-          this.triggerEvent('caritemClick', {
-            itemData: e.currentTarget.dataset.item
-          })
-        } else if (this.data.startX - e.changedTouches[0].clientX > 50) {
+        if (this.data.startX - e.changedTouches[0].clientX > 50) {
           this.showButton(e)
         } else {
           this.hideButton(e)
@@ -117,7 +112,14 @@ Component({
     //加载更多
     loadMore() {
       this.triggerEvent("loadMore")
+    },
+    //点击事件
+    boxClick(e){
+        this.triggerEvent('toEdit', {
+          id: e.currentTarget.dataset.item._id
+        })
     }
+
   },
   
 })

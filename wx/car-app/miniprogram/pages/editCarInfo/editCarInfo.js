@@ -226,10 +226,11 @@ Page({
       name: this.data.carData[0].name,
       price: this.data.carData[0].price,
       stock: 1,
+      oldlevel:this.data.carData[0].oldlevel,
       data: JSON.stringify(this.data.carData[0].data),
     };
     
-         // 调用编辑云函数
+         // 调用编辑云函数00
     wx.cloud.callFunction({
       name: 'item',
       data: {
@@ -275,6 +276,7 @@ Page({
         [oldlevel]: 0
       })
     }
+    console.log(this.data.carData[0].oldlevel)
   },
   blurEvnet1(e) {
     this.data.carData[0].price = e.detail.value

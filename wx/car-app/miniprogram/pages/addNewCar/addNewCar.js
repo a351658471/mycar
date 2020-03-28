@@ -6,8 +6,10 @@ Page({
     typeValue:'',
     isEnter: false,
     showUpload: true,
-    priceValue:0,
+    priceValue:'',
     isNext:false,
+    gl:'',
+    sp:'',
     reqData:{
       imgList: [],
       labelList: [],
@@ -17,43 +19,7 @@ Page({
     dataList: [],
     
   },
-  onLoad() {
-    // const platform = wx.getSystemInfoSync().platform
-    // const isIOS = platform === 'ios'
-    // this.setData({ isIOS })
-    // const that = this
-    // this.updatePosition(0)
-    // let keyboardHeight = 0
-    // wx.onKeyboardHeightChange(res => {
-    //   console.log(res)
-    //   if (res.height === keyboardHeight) return
-    //   const duration = res.height > 0 ? res.duration * 1000 : 0
-    //   keyboardHeight = res.height
-    //   setTimeout(() => {
-    //     wx.pageScrollTo({
-    //       scrollTop: 0,
-    //       success() {
-    //         that.updatePosition(keyboardHeight)
-    //         that.editorCtx.scrollIntoView()
-    //       }
-    //     })
-    //   }, duration)
-    // })
-  },
-  // updatePosition(keyboardHeight) {
-  //   const toolbarHeight = 50
-  //   const { windowHeight, platform } = wx.getSystemInfoSync()
-  //   let editorHeight = keyboardHeight > 0 ? (windowHeight - keyboardHeight - toolbarHeight) : windowHeight
-  //   this.setData({ editorHeight, keyboardHeight })
-  // },
-
-  back(){
-    this.setData({
-      isNext:false
-    })
-  },
-
-
+  onLoad() {},
 
   
   //单选框
@@ -77,19 +43,34 @@ Page({
   },
   //里程
   blurEvnet3(e) {
+    this.data.gl = e.detail.value
     let param={
       type:0,
       content: e.detail.value
     }
-    this.data.reqData.params.push(param)
+    this.data.reqData.param.forEach((item,index)=>{
+      if(item.type == param.type){
+        this.data.reqData.param[index] = param
+      }else{
+        this.data.reqData.params.push(param)
+      }
+    })
+    
   },
   //初次上牌
   blurEvnet4(e) {
+    this.data.sp = e.detail.value
     let param = {
       type: 1,
       content: e.detail.value
     }
-    this.data.reqData.params.push(param)
+    this.data.reqData.param.forEach((item, index) => {
+      if (item.type == param.type) {
+        this.data.reqData.param[index] = param
+      } else {
+        this.data.reqData.params.push(param)
+      }
+    })
   },
   //排放
   blurEvnet5(e) {
@@ -97,7 +78,13 @@ Page({
       type: 2,
       content: e.detail.value
     }
-    this.data.reqData.params.push(param)
+    this.data.reqData.param.forEach((item, index) => {
+      if (item.type == param.type) {
+        this.data.reqData.param[index] = param
+      } else {
+        this.data.reqData.params.push(param)
+      }
+    })
   },
   //发动机
   blurEvnet6(e) {
@@ -105,7 +92,13 @@ Page({
       type: 3,
       content: e.detail.value
     }
-    this.data.reqData.params.push(param)
+    this.data.reqData.param.forEach((item, index) => {
+      if (item.type == param.type) {
+        this.data.reqData.param[index] = param
+      } else {
+        this.data.reqData.params.push(param)
+      }
+    })
   },
   //马力
   blurEvnet7(e) {
@@ -113,7 +106,13 @@ Page({
       type: 4,
       content: e.detail.value
     }
-    this.data.reqData.params.push(param)
+    this.data.reqData.param.forEach((item, index) => {
+      if (item.type == param.type) {
+        this.data.reqData.param[index] = param
+      } else {
+        this.data.reqData.params.push(param)
+      }
+    })
   },
 
 
@@ -167,8 +166,29 @@ Page({
   },
 
   next(){
-   wx.navigateTo({
-     url: 'detail/detail',
-   })
+    if(this.data.isOld){
+      if (this.data.priceValue && this.data.typeValue && this.data.gl && this.data.sp) {
+        wx.navigateTo({
+          url: 'detail/detail',
+        })
+      }else{
+        wx.showToast({
+          title: '必填项不能为空',
+          icon:'none'
+        })
+      }
+    }else{
+      if (this.data.priceValue && this.data.typeValue && this.data.gl){
+        wx.navigateTo({
+          url: 'detail/detail',
+        })
+      }else{
+        wx.showToast({
+          title: '必填项不能为空',
+          icon: 'none'
+        })
+      }
+      
+    }
   },
 })
