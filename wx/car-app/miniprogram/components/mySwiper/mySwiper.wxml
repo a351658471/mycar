@@ -1,7 +1,7 @@
 <view class='mySwiper' style='width:100%'>
   <swiper autoplay='true' duration='1000' bindchange='changeCurrent' circular="{{true}}" indicator-dots="{{isDots}}" style='width:{{swiperWidth}};height:{{swiperHeight}};margin:0 auto'>
       <swiper-item wx:for="{{imgList}}" wx:key="index" >
-        <image src='{{item}}' mode="scaleToFill" style='width:100%;height:100%;border-radius:{{bRadius}}' bindtap="previewImage" data-index="{{index}}"></image> 
+        <image src='{{item}}' mode="aspectFill" style='width:100%;height:100%;border-radius:{{bRadius}}' bindtap="previewImage" data-index="{{index}}"></image> 
       </swiper-item>
   </swiper>
   <view class='myDots' wx:if="{{isMyDots}}">

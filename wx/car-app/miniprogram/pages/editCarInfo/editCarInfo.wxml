@@ -149,14 +149,14 @@
             <view class="videoDelete" bindtap="imgDelete" data-index="{{index}}" wx:if="{{!disabled}}">
               <image src="/assets/删除.png" mode="widthFix"></image>
             </view>
-            <image src="{{item.content}}" mode="widthFix" style="width:90%"></image>
+            <image src="{{item.content}}" mode="widthFix" style="width:100%"></image>
         </view>
         <!-- 视频 -->
         <view class="imgContent" wx:if="{{item.type == 'video'}}">
           <view class="videoDelete" bindtap="videoDelete" data-index="{{index}}" wx:if="{{!disabled}}">
               <image src="/assets/删除.png" mode="widthFix"></image>
             </view>
-            <video src="{{item.content}}"></video>
+            <video src="{{item.content}}" style="width:100%"></video>
         </view>
       </view>
        <textarea disabled="{{disabled}}" placeholder="{{placeholder}}" bindblur="textBulr" style="width:100%" value="{{textValue}}"></textarea>

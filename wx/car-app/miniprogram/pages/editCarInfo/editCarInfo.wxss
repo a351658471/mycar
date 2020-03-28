@@ -110,7 +110,6 @@ radio .wx-radio-input.wx-radio-input-checked::before{
   height:25vw;
   display: flex;
   width: 100%;
-  justify-content: space-between;
   background: #fff;
   align-items: center
 }
@@ -119,6 +118,7 @@ radio .wx-radio-input.wx-radio-input-checked::before{
   height:80%;
   text-align: center;
   position: relative;
+  margin-right: 5vw;
   z-index:1; 
   
 }

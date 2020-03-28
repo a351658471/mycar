@@ -13,7 +13,7 @@
     </view>
     <view class='detail-body'>
       <view class='body-left'>
-          <block wx:for="{{carData[0].data.labelList}}">
+          <block wx:for="{{carData[0].data.labelList}}" wx:key="index">
               <view class='left-item'>{{item}}</view>
           </block>
       </view>
@@ -29,9 +29,9 @@
   <my-tab tabList="{{tabList}}" fontSize="13px" bind:tabClick="tabClick"></my-tab>
 
   <view wx:if="{{currentIndex == 0}}" style='background:#fff; width:100%;padding-top:2vw'>
-   <block wx:for="{{carData[0].data.detail}}">
+   <block wx:for="{{carData[0].data.detail}}" wx:key="index">
       <view style='width:90%; height:170px; margin:0 auto' wx:if="{{item.type == 'image'}}">
-         <image src='{{item.content}}' mode="scaleToFill" style='width:100%; height:170px'></image>
+         <image src='{{item.content}}' mode="aspectFill" style='width:100%; height:170px'></image>
       </view>
       <!-- 视频 -->
       <view style='width:90%; height:170px; margin:0 auto' wx:if="{{item.type == 'video'}}">
@@ -47,7 +47,7 @@
 
     <view wx:elif="{{currentIndex == 1}}" style='width:100%; background:#fff'>
     <view style='width:90%; margin:0 auto;border-top:1px solid #E8E5E9'>
-      <view wx:for="{{carData[0].data.params}}"  style='padding:0.5rem 0; border-bottom:1px solid #E8E5E9; font-size:14px;display: flex;'>
+      <view wx:for="{{carData[0].data.params}}" wx:key="index"  style='padding:0.5rem 0; border-bottom:1px solid #E8E5E9; font-size:14px;display: flex;'>
             <view style='width:5rem'>
               {{paramsEnum[item.type]}}
             </view>

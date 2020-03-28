@@ -15,14 +15,15 @@ Page({
   },
   //生命周期函数初次渲染完成
   onLoad: function () {
-  },
-  onShow:function(){
     this.data.page = 1
     let status = "carData[0].status"
     this.setData({
       [status]: 0
     })
     this.getCarData([this.data.tabCurrent])
+  },
+  onShow:function(){
+    
   },
   tabClick: function (e) {
     this.data.count++;
