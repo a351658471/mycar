@@ -81,7 +81,7 @@ Page({
     }
     return {
       title: '厦门车之居',
-      path: '/pages/index/index?itemid='
+      path: '/pages/index/index?itemid='+this.data.itemid
     };
   },
   //根据id调用接口获取数据
