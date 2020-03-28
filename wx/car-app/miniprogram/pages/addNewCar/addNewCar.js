@@ -51,10 +51,10 @@ Page({
     this.data.reqData.params.forEach((item,index)=>{
       if(item.type == param.type){
         this.data.reqData.params[index] = param
-      }else{
-        this.data.reqData.params.push(param)
+        return
       }
     })
+    this.data.reqData.params.push(param)
     
   },
   //初次上牌
@@ -66,11 +66,11 @@ Page({
     }
     this.data.reqData.params.forEach((item, index) => {
       if (item.type == param.type) {
-        this.data.reqData.params[index] = param
-      } else {
-        this.data.reqData.params.push(param)
-      }
+        this.data.reqData.params[index] = param;
+        return
+      } 
     })
+    this.data.reqData.params.push(param)
   },
   //排放
   blurEvnet5(e) {
@@ -80,11 +80,11 @@ Page({
     }
     this.data.reqData.params.forEach((item, index) => {
       if (item.type == param.type) {
-        this.data.reqData.params[index] = param
-      } else {
-        this.data.reqData.params.push(param)
-      }
+        this.data.reqData.params[index] = param;
+        return
+      } 
     })
+    this.data.reqData.params.push(param)
   },
   //发动机
   blurEvnet6(e) {
@@ -94,11 +94,11 @@ Page({
     }
     this.data.reqData.params.forEach((item, index) => {
       if (item.type == param.type) {
-        this.data.reqData.params[index] = param
-      } else {
-        this.data.reqData.params.push(param)
-      }
+        this.data.reqData.params[index] = param;
+        return
+      } 
     })
+    this.data.reqData.params.push(param)
   },
   //马力
   blurEvnet7(e) {
@@ -109,10 +109,10 @@ Page({
     this.data.reqData.params.forEach((item, index) => {
       if (item.type == param.type) {
         this.data.reqData.params[index] = param
-      } else {
-        this.data.reqData.params.push(param)
-      }
+        return
+      } 
     })
+    this.data.reqData.params.push(param)
   },
 
 

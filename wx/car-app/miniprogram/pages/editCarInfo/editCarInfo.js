@@ -307,7 +307,6 @@ Page({
     this.data.carData[0].data.params.forEach((item, index) => {
       if (item.type == 1) {
         this.data.carData[0].data.params[index].content = e.detail.value
-        
       }
     })
   },
