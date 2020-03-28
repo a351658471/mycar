@@ -60,7 +60,7 @@ radio .wx-radio-input.wx-radio-input-checked::before{
   height:14vw;
   align-items: center;
   background: #FFFEFF;
-  font-size: 0.5rem;
+  font-size: 14px;
   padding:0 4vw;
   color: #FE2A45;
 }

@@ -1,9 +1,9 @@
 <view class='outBox'>
-  <scroll-view class='crollView'> 
+  <scroll-view class='crollView' scroll-y style="height:100%"> 
 
   <!-- 轮播图 -->
   <view>
-    <my-swiper imgList="{{shop.swipers}}" isDots="{{true}}"></my-swiper>
+    <my-swiper imgList="{{shop.swipers}}" isDots="{{true}}" bind:previewImage="previewImage"></my-swiper>
   </view>
     <!-- tab -->
   <my-ltab bind:tabClick="tabClick"></my-ltab>
@@ -11,4 +11,6 @@
     <!-- 车列表 -->
   <my-carslist carData="{{resData}}" bind:caritemClick="caritemClick" bind:loadMore="loadMore" isLoading="{{isLoading}}" noMore="{{noMore}}"></my-carslist>
   </scroll-view>
+
 </view>
+<my-call class="callIcon" bind:call="call"></my-call>

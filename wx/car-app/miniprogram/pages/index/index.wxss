@@ -1,5 +1,9 @@
 page{
   background: #F5F5F5;
+  height: 100%;
+}
+.outBox{
+  height: 100%;
 }
 .topNavigate{
   padding-left: 1rem;

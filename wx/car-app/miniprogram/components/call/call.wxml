@@ -2,5 +2,14 @@
   <view class="icon">
      <image src="{{callIcon}}" mode="scaleToFill"></image>
   </view>
-    
+</view>
+  <!-- call -->
+  <view class="backgournd" bindtap='chooseShare' wx:if="{{hideShare}}">
+    <view class="binner">
+      <view bind:tap="copyEvent" hover-class="hoverClass" hover-stay-time="100" style="height:15vw;line-height:15vw;border-bottom:1px solid #E9E6EA;border-radius:10px 10px 0 0;text-align:center">
+        186-5088-3333(微信同号)<i class="iconfont icon-ai-copy" style="margin-left:2vw"></i>
+      </view>
+      <view bind:tap="callEvent" hover-class="hoverClass" hover-stay-time="100" class="bitem"  style="border-bottom:1.5vw solid #E9E6EA">呼叫</view>
+      <view bindtap="backEvent" hover-class="hoverClass" hover-stay-time="100" class="bitem" >取消</view>
+    </view>
 </view>

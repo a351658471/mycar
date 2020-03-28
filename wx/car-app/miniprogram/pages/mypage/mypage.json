@@ -3,5 +3,7 @@
   "navigationBarTextStyle": "white",
   "navigationBarTitleText": "",
   "disableScroll": true,
-  "usingComponents": {}
+  "usingComponents": {
+    "my-call": "/components/call/call"
+  }
 }

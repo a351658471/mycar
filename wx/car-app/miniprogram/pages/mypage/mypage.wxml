@@ -48,5 +48,6 @@
 			</view>
 		</view>
 	</view>
-	<image class="phoneImg" catchtap="phone" src="../../assets/mypage/mypage-phone.png"></image>
+	<!-- <image class="phoneImg" catchtap="phone" src="../../assets/mypage/mypage-phone.png"></image> -->
 </view>
+<my-call class="callIcon" bind:call="call"></my-call>
