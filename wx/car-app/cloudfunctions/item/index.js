@@ -61,56 +61,27 @@ async function itemList(event) {
     if (idx < 0) {
       idx = 0
     }
-    if (order) {
-      if (condition) {
-        return db.collection('item').where(condition).orderBy('sort', 'desc').skip(idx * perpage).limit(perpage).get().then(res => {
-          return res
-        })
-      }
-      else {
-        return db.collection('item').orderBy('sort', 'desc').skip(idx * perpage).limit(perpage).get().then(res => {
-          return res
-        })
-      }
-      
+    if (condition) {
+      return db.collection('item').where(condition).orderBy('sort', 'desc').orderBy('creatime', 'desc').skip(idx * perpage).limit(perpage).get().then(res => {
+        return res
+      })
     }
     else {
-      if (condition) {
-        return db.collection('item').where(condition).skip(idx * perpage).limit(perpage).get().then(res => {
-          return res
-        })
-      }
-      else {
-        return db.collection('item').skip(idx * perpage).limit(perpage).get().then(res => {
-          return res
-        })
-      }
+      return db.collection('item').orderBy('sort', 'desc').orderBy('creatime', 'desc').skip(idx * perpage).limit(perpage).get().then(res => {
+        return res
+      })
     }
   }
   else {
-    if (order) {
-      if (condition) {
-        return db.collection('item').where(condition).orderBy('sort', 'desc').get().then(res => {
-          return res
-        })
-      }
-      else {
-        return db.collection('item').orderBy('sort', 'desc').get().then(res => {
-          return res
-        })
-      }
+    if (condition) {
+      return db.collection('item').where(condition).orderBy('sort', 'desc').orderBy('creatime', 'desc').get().then(res => {
+        return res
+      })
     }
     else {
-      if (condition) {
-        return db.collection('item').where(condition).get().then(res => {
-          return res
-        })
-      }
-      else {
-        return db.collection('item').get().then(res => {
-          return res
-        })
-      }
+      return db.collection('item').orderBy('sort', 'desc').orderBy('creatime', 'desc').get().then(res => {
+        return res
+      })
     }
   }
 }
@@ -160,6 +131,10 @@ async function itemAdd(event) {
   //   data:string,     // 数据
   // }
   item.creatime = Date.parse(new Date())
+  item.updatetime = item.creatime
+  if(item.sort == null){
+    item.sort = 0
+  }
   return db.collection('item').add({
     data: item
   }).then(res => {

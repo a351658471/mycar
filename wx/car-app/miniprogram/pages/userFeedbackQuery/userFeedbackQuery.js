@@ -51,14 +51,14 @@ Page({
       }
     })
   },
-
+  
+  onLoad: function() {
+    this.data.page = 1
+    this.getFeedbackData(this.data.page)
+  },
   loadMore() {
     this.data.page++
       this.getFeedbackData(this.data.page)
-  },
-  onShow: function() {
-    this.data.page = 1
-    this.getFeedbackData(this.data.page)
   },
 
   isTab: function(e) {
