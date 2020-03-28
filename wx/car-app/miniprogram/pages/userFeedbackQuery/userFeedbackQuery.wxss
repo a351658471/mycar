@@ -1,43 +1,73 @@
 /* pages/userFeedbackQuery/userFeedbackQuery.wxss */
+page{
+  box-sizing: border-box;
+  padding: 40rpx;
+}
 .advisetitle{
   font-size: 32rpx;
   color: #333333;
   font-weight: bold;
-  margin: 35rpx 20rpx;
 }
 .feedback{
+  width: 100%;
   background: #ffffff;
-  padding: 20rpx 30rpx;
   border-radius: 10rpx;
-  margin: 2rpx 10rpx;
-
+  margin-top: 30rpx;
+  box-shadow: 10rpx 10rpx 10rpx rgb(230, 230, 230);
 }
 .feedback .feedbackuser{
   display: flex;
-  align-items: center
+  align-items: flex-start;
+  padding: 40rpx 30rpx;
 }
 .feedback .feedbackuser .headImg{
-  width: 70rpx;
-  height: 70rpx;
+  width: 80rpx;
+  height: 80rpx;
   border-radius: 50%;
-  margin-left: 40rpx;
 }
-.feedback .feedbackuser .tab{
-  width: 30rpx;
-  height: 30rpx;
+ .headRight{
+  display: flex;
+  flex-direction: column;
+  margin-left: 30rpx;
 }
-.feedback .content{
-  width: 60%;
-  margin-left: 60rpx;
-  color: #555;
-  font-size: 25rpx;
+.headRight .headname{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.headRight .headname .time{
+  font-size: 24rpx;
+  color: #999;
+}
+.headRight .name{
+  font-size: 32rpx;
+  font-weight: bold;
+}
+.headRight .contents{
+   width: 500rpx;
+   display: flex;
+   align-items: flex-end;
+}
+.headRight .contents .content{
+  max-width: 450rpx;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  font-size: 28rpx;
+  color: #666;
+  margin-top: 20rpx;
+}
+.headRight .contents .tab{
+  width: 30rpx;
+  height: 30rpx;
+  margin-left: 20rpx;
 }
 .load{
   width: 100%;
 }
 .loading{
   text-align: center;
+  font-size: 28rpx;
+  color: #555;
+  padding: 20rpx;
 }
