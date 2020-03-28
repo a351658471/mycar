@@ -15,11 +15,23 @@ Page({
     page: 1,
     isLoading: false,
     noMore: false,
-    hideShare: false
+    hideShare: false,
+
   },
-  onLoad() {
+  onLoad(option) {
+    if (option && option.itemid) {
+      wx.navigateTo({
+        url: '/pages/index/carDetail/carDetail?carId=' + option.itemid
+      })
+    }
     app.globalData.addListener(app.globalData.eventShopUpdate, this.onShopInfo)
     app.globalFunc.getShopInfo();
+  },
+  onShow() {
+    //获取车列表
+    if (this.data.resData.length == 0 && this.data.shop._id != null) {
+      this.getCarData()
+    }
   },
   onUnload() {
     app.globalData.removeListener(app.globalData.eventShopUpdate, this.onShopInfo)
@@ -29,7 +41,9 @@ Page({
     this.data.shop = app.globalData.shop
     this.setData(this.data)
     //获取车列表
-    this.getCarData()
+    if (this.data.resData.length == 0) {
+      this.getCarData()
+    }
   },
 
 
