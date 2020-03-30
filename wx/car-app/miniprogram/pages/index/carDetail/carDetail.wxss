@@ -47,9 +47,9 @@ page{
   top: 50%;
   left: 0;
   right: 0; */
- border-top: 5vw solid #FFFFFF;
+  border-top: 5vw solid #FFFFFF;
   padding-top:1vw; 
-  margin-bottom: 10rem;
+  padding-bottom:10rem ;
 }
 
 .backgournd{

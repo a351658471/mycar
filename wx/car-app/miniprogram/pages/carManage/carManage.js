@@ -68,7 +68,7 @@ Page({
       success: res => {
         this.data.flag = true
         //没有数据则关闭下拉加载
-        if(res.result.data.length<PERPAGE){
+        if(res.result.data.length<=PERPAGE){
           this.data.noMore = true
         }else{
           this.data.noMore = false
