@@ -22,7 +22,7 @@
             <view class="videoDelete" bindtap="imgDelete" data-index="{{index}}">
               <image src="/assets/删除.png" mode="widthFix"></image>
             </view>
-            <image src="{{item.content}}" mode="widthFix" style="width:100%"></image>
+            <image src="{{item.content}}" mode="heightFix" style="width:100%"></image>
         </view>
         <!-- 视频 -->
         <view class="imgContent" wx:if="{{item.type == 'video'}}">

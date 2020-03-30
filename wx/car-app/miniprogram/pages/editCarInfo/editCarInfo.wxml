@@ -106,7 +106,7 @@
     </view>
 
     <!-- 滚动图 -->
-    <view class="imgBox">
+    <!-- <view class="imgBox">
           <view class="labelTitle">
                 滚动图
           </view>
@@ -121,6 +121,30 @@
             </view>
 
             <view class="itemAdd" bindtap="addImg" wx:if="{{carData[0].data.imgList.length <3 && !disabled}}">
+              <image src="/assets/picture.png" mode="widthFix"></image>
+              <view>{{imgList.length==0 ?"添加图片":"继续添加"}}</view>
+            </view>
+
+          </view>
+          </view>
+          </view>
+    </view> -->
+    <!-- 滚动图 -->
+    <view class="imgBox">
+          <view class="labelTitle">
+                滚动图
+          </view>
+          <view style="width:100%; background:#fff">
+          <view style="padding:0 5vw">
+          <view class="addImgBox">
+            <view class="imgItem" wx:for="{{carData[0].data.imgList}}" wx:key="index">
+              <image class="itemImg" src="{{item}}" mode="aspectFill"></image>
+              <view class="deleteImg" bindtap="deleteImg" data-index="{{index}}">
+                <image src="/assets/delete.png" mode="widthFix"></image>
+            </view>
+            </view>
+
+            <view class="itemAdd" bindtap="addImg">
               <image src="/assets/picture.png" mode="widthFix"></image>
               <view>{{imgList.length==0 ?"添加图片":"继续添加"}}</view>
             </view>
