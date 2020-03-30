@@ -61,7 +61,7 @@
     </view>
    </view>
   </view>
-
+  <view class=""></view>
   </scroll-view>
   <my-call class="callIcon" bind:call="call"></my-call>
 </view>

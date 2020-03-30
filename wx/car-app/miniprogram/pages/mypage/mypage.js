@@ -193,49 +193,6 @@ Page({
       })
     }
   },
-  // 模块遮罩层
-  call: function () {
-    var hides = this.data.hideShare;
 
-    if (hides == true) {
-      this.setData({
-        hideShare: false
-      })
-    } else if (hides == false) {
-      this.setData({
-        hideShare: true
-      })
-    }
-
-  },
-  copyEvent() {
-    wx.setClipboardData({
-      data: '18650883333',
-      success: () => {
-        this.setData({
-          hideShare: !this.data.hideShare
-        })
-        wx.showToast({
-          title: '复制成功'
-        })
-      }
-    })
-  },
-  callEvent() {
-    wx.makePhoneCall({
-      phoneNumber: '18650883333',
-      success: (res_makephone) => {
-        this.setData({
-          hideShare: !this.data.hideShare
-        })
-        console.log("呼叫电话返回：", res_makephone)
-      }
-    })
-  },
-  backEvent() {
-    this.setData({
-      hideShare: !this.data.hideShare
-    })
-  }
 
 })
