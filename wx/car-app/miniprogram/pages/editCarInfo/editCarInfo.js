@@ -21,14 +21,14 @@ Page({
       newCar: 0,
       userdCar: 1
     },
-
+    id:'',
     dataList: [],
     textCache: null,
     textValue: ''
   },
   onLoad(options) {
-    let id= options.id;
-    this.getCarData(id)
+    this.data.id= options.id;
+    this.getCarData(this.data.id)
   },
   //根据id调用接口获取数据
   getCarData(id) {
@@ -261,13 +261,16 @@ Page({
         item: item
       },
       success: res => {
+        let id = this.data.id
         // console.log('[云函数] [item.itemEdit] : ', res.result)
         wx.showToast({
           title: '保存成功',
         })
         setTimeout(() => {
           wx.hideToast(),
-            wx.navigateBack()
+            wx.redirectTo({
+            url: '/pages/carManage/carManage?id=' + id
+            })
         }, 1000)
 
       },

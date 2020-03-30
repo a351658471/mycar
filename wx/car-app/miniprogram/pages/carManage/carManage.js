@@ -22,8 +22,9 @@ Page({
     })
     this.getCarData([this.data.tabCurrent])
   },
-  onShow:function(){
-    
+  onShow:function(options){
+    console.log(options)
+    console.log(2323232)
   },
   tabClick: function (e) {
     this.data.count++;
