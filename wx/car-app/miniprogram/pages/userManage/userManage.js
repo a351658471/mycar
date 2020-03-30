@@ -61,7 +61,7 @@ Page({
         if (flag != this.data.flag) {
           return
         }
-        console.log('[云函数] [user.userQuery] : ', res.result)
+        // console.log('[云函数] [user.userQuery] : ', res.result)
         for (let index = 0; index < res.result.data.length; index++) {
           const element = res.result.data[index];
           that.addUser(element)
@@ -116,7 +116,7 @@ Page({
           openid: user._openid
         },
         success: res => {
-          console.log('[云函数] [shop.masterAdd] : ', res.result)
+          // console.log('[云函数] [shop.masterAdd] : ', res.result)
           that.removeUser(user)
         },
         fail: err => {
@@ -134,7 +134,7 @@ Page({
           openid: user._openid
         },
         success: res => {
-          console.log('[云函数] [shop.masterRemove] : ', res.result)
+          // console.log('[云函数] [shop.masterRemove] : ', res.result)
           that.removeUser(user)
         },
         fail: err => {

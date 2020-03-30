@@ -1,4 +1,6 @@
 {
+  "navigationBarBackgroundColor": "#ffffff",
+  "navigationBarTextStyle": "black",
   "usingComponents": {
     "mg-tab":"/components/leftTab/leftTab",
     "my-carslist": "./components/carsList/carsList"

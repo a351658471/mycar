@@ -1,16 +1,20 @@
 /* mypage.wxss */
-.wrap{
-    display: flex;
-    flex-direction: column;
+
+.wrap {
+  display: flex;
+  flex-direction: column;
 }
-.header{
-    background: #FA4154;
-    box-sizing: border-box;
+
+.header {
+  background: #fa4154;
+  box-sizing: border-box;
 }
-.header .head{
-    display: flex;
-    align-items: center;
+
+.header .head {
+  display: flex;
+  align-items: center;
 }
+
 .header .head .userinfo-avatar {
   width: 100rpx;
   height: 100rpx;
@@ -21,128 +25,153 @@
   padding: 0;
   margin-left: 62rpx;
 }
+
 .header .head .userinfo-avatar[size] {
   width: 100rpx;
 }
+
 .header .head .userinfo-avatar:after {
   border: none;
 }
-.header .head .headName{
-    font-size: 36rpx;
-    color: #FFFFFF;
-    margin-left: 28rpx;
+
+.header .head .headName {
+  font-size: 36rpx;
+  color: #fff;
+  margin-left: 28rpx;
 }
-.header .head .noregist button{
-    width: 140rpx;
-    height: 65rpx;
-    padding: 5rpx;
-    border: 1rpx solid #ffffff;
-    border-radius: 15rpx;
-    color: #ffffff;
-    font-size: 25rpx;
-    line-height: 50rpx;
+
+.header .head .noregist button {
+  width: 140rpx;
+  height: 65rpx;
+  padding: 5rpx;
+  border: 1rpx solid #fff;
+  border-radius: 15rpx;
+  color: #fff;
+  font-size: 25rpx;
+  line-height: 50rpx;
 }
-.header .infors{
-    display: flex;
-    font-size: 24rpx;
-    box-sizing: border-box;
-    padding: 48rpx 0 48rpx 62rpx;
+
+.header .infors {
+  display: flex;
+  font-size: 24rpx;
+  box-sizing: border-box;
+  padding: 48rpx 0 48rpx 62rpx;
 }
-.header .infors .infor{
-    margin-right: 18rpx;
+
+.header .infors .infor {
+  margin-right: 18rpx;
 }
-.header .infors .infor text{
-    margin-right: 8rpx;
+
+.header .infors .infor text {
+  margin-right: 8rpx;
 }
-.signcontain{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 36rpx 20rpx 36rpx 62rpx;
-    font-size: 28rpx;
-    background-color: #FFFFFF;
+
+.signcontain {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 36rpx 20rpx 36rpx 62rpx;
+  font-size: 28rpx;
+  background-color: #fff;
 }
-.signcontain .sign{
-    flex: 1;
+
+.signcontain .sign {
+  flex: 1;
 }
-.signcontain .sign .signNum{
-    font-weight: bold;
-    margin-left: 18rpx;
+
+.signcontain .sign .signNum {
+  font-weight: bold;
+  margin-left: 18rpx;
 }
-.signcontain button{
-    width: 120rpx;
-    height: 60rpx;
-    background-color: #EA5750;
-    font-size: 28rpx;
-    color: #FFFFFF;
-    font-weight: normal;
+
+.signcontain button {
+  width: 120rpx;
+  height: 60rpx;
+  background: #FE2A45;
+  font-size: 28rpx;
+  color: #fff;
+  font-weight: normal;
 }
-.middleline{
-    width: 100%;
-    height: 16rpx;
-    background: rgba(247,247,247,1);
+
+.middleline {
+  width: 100%;
+  height: 16rpx;
+  background: rgba(247, 247, 247, 1);
 }
-.myserve{
-    background: #FFFFFF;
-    padding: 0 0 120rpx 0;
+
+.myserve {
+  background: #fff;
 }
-.myserve .myservetitle{
-    font-size: 32rpx;
-    color: #333333;
-    font-weight: bold;
-    padding: 46rpx 30rpx;
+
+.myserve .myservetitle {
+  font-size: 32rpx;
+  color: #333;
+  font-weight: bold;
+  padding: 46rpx 30rpx;
 }
-.myserve .myserveItem{
-    width: 100%;
-    display: flex; 
-    flex-wrap: wrap;
+.myserve .admintitle{
+  padding: 38rpx 30rpx 46rpx 30rpx;
 }
-.myserve .myserveItem .Item{
-    width: 33.3%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+
+.myserve .myserveItem {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
 }
-.myserve .myserveItem .Item image{
-    width: 65rpx;
-    height: 65rpx;
+
+.myserve .myserveItem .Item {
+  width: 33.3%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-.myserve .myserveItem .Item text{
-    font-size: 28rpx;
-    color: #686666;
-    padding: 38rpx 0 80rpx 0;
+
+.myserve .myserveItem .Item image {
+  width: 65rpx;
+  height: 65rpx;
 }
-.backgournd{
-    position:fixed;
-    top:0;
-    bottom:1rpx;
-    right:0;
-    left:0;
-    background-color:#333333d1;
-    display:flex;
-    align-items:flex-end;
-    align-content:center;
+
+.myserve .myserveItem .Item text {
+  font-size: 28rpx;
+  color: #686666;
+  padding: 24rpx 0 64rpx 0;
 }
-.binner{
-   text-align:center;
-   width:100%;
-   height:40vw;
-   background:#FFFEFF;
-   border-radius:10px 10px 0 0;
-   display:flex;
-   flex-direction:column;
-   justify-content:space-between;
+
+.backgournd {
+  position: fixed;
+  top: 0;
+  bottom: 1rpx;
+  right: 0;
+  left: 0;
+  background-color: #333333d1;
+  display: flex;
+  align-items: flex-end;
+  align-content: center;
 }
-.bitem{
-  height:13vw;
+
+.binner {
+  text-align: center;
+  width: 100%;
+  height: 40vw;
+  background: #fffeff;
+  border-radius: 10px 10px 0 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.bitem {
+  height: 13vw;
   line-height: 11vw;
   border-bottom: 1rpx solid #dbdbdb;
 }
-.hoverClass{
-  background: #dbdbdb
+
+.hoverClass {
+  background: #dbdbdb;
 }
-.callIcon{
+
+.callIcon {
   position: fixed;
-  right:5%;
+  right: 5%;
   bottom: 5%;
 }

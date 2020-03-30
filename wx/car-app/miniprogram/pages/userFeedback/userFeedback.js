@@ -25,7 +25,7 @@ Page({
           value:feedbackval,
         },
         success: res => {
-          console.log('[云函数] [user.userFeedback] : ', res.result)
+          // console.log('[云函数] [user.userFeedback] : ', res.result)
           wx.showToast({
             icon: 'success',
             title: '提交成功',

@@ -41,7 +41,7 @@ Page({
           noMore: this.data.noMore,
           isLoading: false
         })
-        console.log('[云函数] [user.userFeedback] : ', res.result)
+        // console.log('[云函数] [user.userFeedback] : ', res.result)
         res.result.data.forEach(item => {
           this.data.message.push(item)
           this.setData(this.data)
@@ -65,7 +65,6 @@ Page({
 
   isTab: function(e) {
     let item = e.currentTarget.dataset.src
-    console.log(item)
     // 调用云函数
     wx.cloud.callFunction({
       name: 'user',
@@ -74,7 +73,7 @@ Page({
         ids: [item._id]
       },
       success: res => {
-        console.log('[云函数] [user.userFeedbackRead] : ', res.result)
+        // console.log('[云函数] [user.userFeedbackRead] : ', res.result)
         for (var i = 0; i < this.data.message.length; i++) {
           var msg = this.data.message[i]
           if (msg._id == item._id) {

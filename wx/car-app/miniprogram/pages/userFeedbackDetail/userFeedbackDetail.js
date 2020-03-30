@@ -9,7 +9,6 @@ Page({
     message:{}
   },
   onLoad:function(option){
-    console.log(option)
     for (var i = 0; i < app.globalData.feedbacks.length; i++) {
       var msg = app.globalData.feedbacks[i]
       if (msg._id == option.item_id) {
@@ -20,6 +19,5 @@ Page({
       }
     } 
   }
-
   
 })

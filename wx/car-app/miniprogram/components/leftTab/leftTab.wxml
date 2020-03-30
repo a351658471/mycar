@@ -1,7 +1,7 @@
 <view class="tab">
   <view class='leftTab'>
      <block wx:for="{{tabList}}" wx:key="key">
-      <view style='font-size:{{fontSize}}' class='tabItem {{tabCurrent == index? "active" : ""}}' bindtap='tabClick' data-index='{{index}}'>{{item}}</view>
+      <view style='font-size:{{fontSize}};'  class='tabItem {{tabCurrent == index? "active" : ""}}' bindtap='tabClick' data-index='{{index}}'>{{item}}</view>
      </block>
   </view>
   <slot name="rightBox"></slot>

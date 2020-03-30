@@ -2,12 +2,12 @@ Component({
   /**
   * 组件的属性列表
   */
+  externalClasses:['my-class'],
   properties: {
 
     tabList: {
       type: Array,
       value: ['新车', '二手车'],
-
     },
 
     tabCurrent: {
@@ -18,7 +18,11 @@ Component({
     fontSize: {
       type: String,
       value: '28rpx'
-    }
+    },
+    tabColor:{
+      type:String,
+      value:'#333333'
+    },
   },
   /**
   * 启用插槽
