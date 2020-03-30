@@ -1,6 +1,7 @@
 const app = getApp()
 Page({
   data: {
+    isFocus:false,
     date:'',
     pass:null,
     isOld: true,
@@ -29,7 +30,6 @@ Page({
       this.setData({
         isOld: true
       })
-
     } else {
       this.setData({
         isOld: false
@@ -79,10 +79,6 @@ Page({
     console.log(this.data.reqData.params)
     
   },
-  //初次上牌
-  blurEvnet4(e) {
-    
-  },
   //排放
   blurEvnet5(e) {
     let param = {
@@ -129,7 +125,7 @@ Page({
 
   addLabel() {
     this.setData({
-      isEnter: true
+      isEnter: !this.data.isEnter,
     })
   },
   deleteLabel(e) {
@@ -141,21 +137,29 @@ Page({
     })
 
   },
-  enterBlur() {
-    this.setData({
-      isEnter: false
-    })
+  enterBlur(e) {
+    if(e.detail.value !=''){
+      let newArray = this.data.reqData.labelList;
+      newArray.push(e.detail.value);
+      let labellist = "reqData.labelList";
+      this.setData({
+        [labellist]: newArray,
+        isEnter: false
+      })
+    }
   },
   //添加标签确定按钮
-  enterEvent(e) {
-    // console.log("确定")
-    let newArray = this.data.reqData.labelList;
-    newArray.push(e.detail.value);
-    let labellist = "reqData.labelList";
-    this.setData({
-      [labellist]: newArray
-    })
-  },
+  // enterEvent(e) {
+  //   // console.log("确定")
+  //   if (e.detail.value != '') {
+  //     let newArray = this.data.reqData.labelList;
+  //     newArray.push(e.detail.value);
+  //     let labellist = "reqData.labelList";
+  //     this.setData({
+  //       [labellist]: newArray
+  //     })
+  //   }
+  // },
   //添加图片
   addImg() {
     app.globalFunc.uploadImg((r, res) => {

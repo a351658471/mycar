@@ -1,13 +1,13 @@
 const app = getApp()
 Page({
   data: {
-      value1: '',
-      value2: '',
-      value3: '',
-      value4: '',
-      value5: '',
-      value6: '',
-      value7: '',
+      value1: '', //价格
+      value2: '',//车型
+      value3: '',//里程
+      value4: '',//上牌
+      value5: '',//排放
+      value6: '',//发动机
+      value7: '',//马力
 
     carData:[],
     disabled:true,
@@ -15,7 +15,6 @@ Page({
     typeValue: '',
     isEnter: false,
     showUpload: true,
-    priceValue: 0,
     isNext: false,
     reqData: null,
     oldlevel: {
@@ -54,7 +53,7 @@ Page({
         order: 0
       },
       success: res => {
-        console.log('[云函数] [item.itemList] : ', res.result)
+        // console.log('[云函数] [item.itemList] : ', res.result)
         res.result.data.forEach(item => {
           item.data = JSON.parse(item.data)
           this.data.carData.push(item)
@@ -93,7 +92,7 @@ Page({
           value1: this.data.carData[0].price,
           value2: this.data.carData[0].name,
         })
-        console.log(this.data.carData)
+        // console.log(this.data.carData)
       },
       fail: err => {
         console.error('[云函数] [item.itemList] 调用失败', err)
@@ -139,7 +138,7 @@ Page({
 
   // 删除详情图片
   imgDelete(e) {
-    console.log(e)
+   
     let index = e.currentTarget.dataset.index
     this.data.carData[0].data.detail.splice(index, 1)
     
@@ -206,17 +205,42 @@ Page({
   },
   //保存
   saveEvent() {
-    if (this.data.carData[0].oldlevel == 1 && this.data.value4 ==''){
-     wx.showToast({
-       title: '必填项不能为空',
-       icon:'none'
-     })
-   }else{
-     this.editSaveFunc()
-   }
+    // console.log(this.data.carData[0])
+    if (this.data.carData[0].oldlevel == 1) {
+      if (this.data.value1 && this.data.value2 && this.data.value3 && this.data.value4) {
+        
+        this.editSaveFunc()
+      } else {
+        // console.log(this.data.value1)
+        // console.log(this.data.value2)
+        // console.log(this.data.value3)
+        // console.log(this.data.value4)
+        wx.showToast({
+          title: '必填项不能为空',
+          icon: 'none'
+        })
+      }
+    } else {
+      if (this.data.value1 && this.data.value2 && this.data.value3) {
+        this.editSaveFunc()
+      } else {
+        // console.log(2222)
+        wx.showToast({
+          title: '必填项不能为空',
+          icon: 'none'
+        })
+      }
 
+    }
   },
   editSaveFunc(){
+    if (this.data.carData[0].oldlevel ==0){
+      for (let i in this.data.carData[0].data.params){
+        if (this.data.carData[0].data.params[i].type == 1){
+          this.data.carData[0].data.params.splice(i,1)
+        }
+      }
+    }
     let item = {
       _id: this.data.carData[0]._id,
       name: this.data.carData[0].name,
@@ -237,7 +261,7 @@ Page({
         item: item
       },
       success: res => {
-        console.log('[云函数] [item.itemEdit] : ', res.result)
+        // console.log('[云函数] [item.itemEdit] : ', res.result)
         wx.showToast({
           title: '保存成功',
         })
@@ -266,16 +290,18 @@ Page({
         [oldlevel]: 0
       })
     }
-    console.log(this.data.carData[0].oldlevel)
   },
   blurEvnet1(e) {
-    this.data.carData[0].price = e.detail.value
+    this.data.carData[0].price = e.detail.value;
+    this.data.value1 = e.detail.value;
   },
   blurEvnet2(e) {
-    this.data.carData[0].name = e.detail.value
+    this.data.carData[0].name = e.detail.value;
+    this.data.value2 = e.detail.value;
   },
   //里程
   blurEvnet3(e) {
+    this.data.value3 = e.detail.value;
     let param = {
       type: 0,
       content: e.detail.value
@@ -374,7 +400,7 @@ Page({
 
   addLabel() {
     this.setData({
-      isEnter: true
+      isEnter: !this.data.isEnter
     })
   },
   deleteLabel(e) {
@@ -386,20 +412,28 @@ Page({
     })
 
   },
-  enterBlur() {
-    this.setData({
-      isEnter: false
-    })
+  enterBlur(e) {
+    if (e.detail.value != '') {
+      let newArray = this.data.carData[0].data.labelList;
+      newArray.push(e.detail.value);
+      let labellist = "carData[0].data.labelList";
+      this.setData({
+        [labellist]: newArray,
+        isEnter: false
+      })
+    }
   },
-  //添加标签确定按钮
-  enterEvent(e) {
-    let newArray = this.data.carData[0].data.labelList;
-    newArray.push(e.detail.value);
-    let labellist = "carData[0].data.labelList";
-    this.setData({
-      [labellist]: newArray
-    })
-  },
+  // //添加标签确定按钮
+  // enterEvent(e) {
+  //   if (e.detail.value != '') {
+  //     let newArray = this.data.carData[0].data.labelList;
+  //     newArray.push(e.detail.value);
+  //     let labellist = "carData[0].data.labelList";
+  //     this.setData({
+  //       [labellist]: newArray
+  //     })
+  //   }
+  // },
   //添加图片
   addImg() {
     // app.globalFunc.uploadImg((r, res) => {

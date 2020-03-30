@@ -115,7 +115,7 @@
             <view wx:if="{{!disabled}}" class="deleteIcon" bindtap="deleteLabel" data-index="{{index}}"></view>
           </view>
           <view style="width:4rem" wx:if="{{isEnter}}">
-              <input type="text" confirm-type="done" focus="true" bindblur="enterBlur" bindconfirm="enterEvent"></input>
+              <input type="text" confirm-type="done" focus="true" bindblur="enterBlur"></input>
           </view>
         </view>
       </view>
