@@ -225,9 +225,11 @@ Page({
       stock: 1,
       oldlevel: this.data.carData[0].oldlevel,
       data: JSON.stringify(this.data.carData[0].data),
+      // data: this.data.carData[0].data
     };
 
     // 调用编辑云函数00
+
     wx.cloud.callFunction({
       name: 'item',
       data: {
@@ -353,29 +355,20 @@ Page({
   },
   //添加图片
   addImg() {
+    // app.globalFunc.uploadImg((r, res) => {
+    //   if (r) {
+    //     this.data.carData[0].data.imgList = this.data.carData[0].data.imgList.concat(res.fileIDs)
+    //     this.setData(this.data)
+    //   }
+      
+    // })
+
     app.globalFunc.uploadImg((r, res) => {
       if (r) {
         this.data.carData[0].data.imgList = this.data.carData[0].data.imgList.concat(res.fileIDs)
         this.setData(this.data)
       }
     })
-    // let count = 3 - this.data.reqData.imgList.length
-    // wx.chooseImage({
-    //   count: count,
-    //   sizeType: ['compressed'],
-    //   sourceType: ['album', 'camera'],
-    //   success: (res) => {
-    //     let tempFilePaths = res.tempFilePaths;
-    //     tempFilePaths.forEach(item => {
-    //       this.data.reqData.imgList.push(item)
-    //     })
-    //     let imglist = "reqData.imgList"
-    //     this.setData({
-    //       [imglist]: this.data.reqData.imgList
-    //     })
-    //     console.log(this.data.reqData.imgList)
-    //   }
-    // })
   },
 
   //删除图片
