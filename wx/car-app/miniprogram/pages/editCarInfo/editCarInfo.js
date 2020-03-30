@@ -29,7 +29,6 @@ Page({
   onLoad(options) {
     this.data.id= options.id;
     this.getCarData(this.data.id);
-    
   },
   //根据id调用接口获取数据
   getCarData(id) {

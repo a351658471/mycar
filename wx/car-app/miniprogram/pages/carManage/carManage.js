@@ -22,9 +22,6 @@ Page({
     })
     this.getCarData([this.data.tabCurrent])
   },
-  onShow:function(options){
-    
-  },
   tabClick: function (e) {
     this.data.count++;
     this.data.page=1

@@ -129,6 +129,7 @@ Page({
         })
         setTimeout(() => {
           wx.hideToast(),
+            this.reBefore()
             wx.navigateBack({
               delta:2
             })
@@ -208,4 +209,11 @@ Page({
     }
 
   },
+
+  reBefore() {
+    var pages = getCurrentPages();
+    var prePage = pages[pages.length - 3];
+    var info = prePage.data;
+    prePage.getCarData([info.tabCurrent])
+  }
 })
