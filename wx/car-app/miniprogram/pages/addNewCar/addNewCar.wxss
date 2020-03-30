@@ -34,6 +34,9 @@ page{
   align-items: center;
   margin-left: 10vw
 }
+.picker{
+  width:50vw
+}
 .radioItem{
    margin-left: 10vw
 }
@@ -100,25 +103,27 @@ radio .wx-radio-input.wx-radio-input-checked::before{
   width: 100%
 }
 .addImgBox{
-  height:25vw;
   display: flex;
   width: 100%;
-  justify-content: space-between;
+  flex-wrap: wrap;
   background: #fff;
   align-items: center
 }
 .imgItem{
   width:30%;
-  height:80%;
+  height:20vw;
+  margin:3vw 3vw 0 0;
   text-align: center;
-  position: relative
+  position: relative;
+  margin-bottom: 1vw
   
 }
 .itemImg{
   width: 100%;
   height: 100%;
   border: 1px solid #9A979B;
-  border-radius: 5px
+  border-radius: 5px;
+  
 }
 .deleteImg{
   width: 15%;
@@ -133,11 +138,12 @@ radio .wx-radio-input.wx-radio-input-checked::before{
 }
 .itemAdd{
   width: 25%;
-  height:80%;
+  height:20vw;
   border: 1px dashed #B5B2B5;
   text-align: center;
   font-size: 14px;
-  color: #B5B2B5
+  color: #B5B2B5;
+  margin-top: 3vw
 }
 .itemAdd image{
   width:60%

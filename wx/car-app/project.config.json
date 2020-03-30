@@ -83,16 +83,9 @@
 					"scene": null
 				},
 				{
-					"id": -1,
-					"name": "pages/demo/demo",
-					"pathName": "pages/demo/demo",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 4,
-					"name": "pages/userManage/userManage",
-					"pathName": "pages/userManage/userManage",
+					"id": 3,
+					"name": "pages/addNewCar/addNewCar",
+					"pathName": "pages/addNewCar/addNewCar",
 					"query": "",
 					"scene": null
 				},
@@ -112,30 +105,23 @@
 				},
 				{
 					"id": -1,
-<<<<<<< HEAD
-=======
-					"name": "pages/personal/personal",
-					"pathName": "pages/personal/personal",
+					"name": "pages/carManage/carManage",
+					"pathName": "pages/carManage/carManage",
 					"query": "",
 					"scene": null
 				},
 				{
 					"id": -1,
-					"name": "pages/userFeedbackQuery/userFeedbackQuery",
-					"pathName": "pages/userFeedbackQuery/userFeedbackQuery",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/userFeedbackDetail/userFeedbackDetail",
-					"pathName": "pages/userFeedbackDetail/userFeedbackDetail",
-					"scene": null
-				},
-				{
-					"id": -1,
->>>>>>> 43dd4be95ce2b3d7a9547d326da8c243a786c029
 					"name": "pages/carManage/carManage",
 					"pathName": "pages/carManage/carManage",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/carManage/carManage",
+					"pathName": "pages/carManage/carManage",
+					"query": "",
 					"scene": null
 				}
 			]

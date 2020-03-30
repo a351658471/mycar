@@ -44,11 +44,25 @@
             </view>
         </view>
 
-        <view class="borderBottom">
+        <!-- <view class="borderBottom">
           <view class="baseItem" wx:if="{{isOld}}">
                 <view class="ItemName">初次上牌</view>
                 <view class="inputItem">
                   <input type="text" name="cFirst" bindblur="blurEvnet4" placeholder="必填" placeholder-style="color:#FE2A45;font-size:0.95rem;font-weight:bolder"></input>
+                </view>
+          </view>
+        </view> -->
+        <view class="borderBottom">
+          <view class="baseItem" wx:if="{{isOld}}">
+                <view class="ItemName">初次上牌</view>
+                <view class="inputItem">
+                    <view class="section">
+                      <picker mode="date" value="{{date}}" bindchange="bindDateChange">
+                        <view class="picker" style="color:{{date ==''?'#FE2A45':''}};font-size:0.95rem;font-weight:{{date ==''?'bolder':''}}">
+                          {{date ==''?"必填":date}}
+                        </view>
+                      </picker>
+                    </view>
                 </view>
           </view>
         </view>
@@ -88,7 +102,7 @@
               标签
           </view>
           <view class="labelAdd" bindtap="addLabel">
-            添加
+              添加
           </view>
         </view>
           
@@ -98,7 +112,7 @@
             <view class="deleteIcon" bindtap="deleteLabel" data-index="{{index}}"></view>
           </view>
           <view style="width:4rem" wx:if="{{isEnter}}">
-              <input type="text" confirm-type="done" focus="true" bindblur="enterBlur" bindconfirm="enterEvent"></input>
+              <input type="text" confirm-type="done" focus="true" bindblur="enterBlur" ></input>
           </view>
         </view>
       </view>
@@ -119,7 +133,7 @@
             </view>
             </view>
 
-            <view class="itemAdd" bindtap="addImg" wx:if="{{reqData.imgList.length<3}}">
+            <view class="itemAdd" bindtap="addImg">
               <image src="/assets/picture.png" mode="widthFix"></image>
               <view>{{imgList.length==0 ?"添加图片":"继续添加"}}</view>
             </view>

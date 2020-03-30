@@ -1,14 +1,13 @@
 const app = getApp()
 Page({
   data: {
-
-      value1: '',
-      value2: '',
-      value3: '',
-      value4: '',
-      value5: '',
-      value6: '',
-      value7: '',
+      value1: '', //价格
+      value2: '',//车型
+      value3: '',//里程
+      value4: '',//上牌
+      value5: '',//排放
+      value6: '',//发动机
+      value7: '',//马力
 
     carData:[],
     disabled:true,
@@ -16,21 +15,20 @@ Page({
     typeValue: '',
     isEnter: false,
     showUpload: true,
-    priceValue: 0,
     isNext: false,
     reqData: null,
     oldlevel: {
       newCar: 0,
       userdCar: 1
     },
-    sp:'',
+    id:'',
     dataList: [],
     textCache: null,
     textValue: ''
   },
   onLoad(options) {
-    let id= options.id;
-    this.getCarData(id)
+    this.data.id= options.id;
+    this.getCarData(this.data.id);
   },
   //根据id调用接口获取数据
   getCarData(id) {
@@ -55,7 +53,7 @@ Page({
         order: 0
       },
       success: res => {
-        console.log('[云函数] [item.itemList] : ', res.result)
+        // console.log('[云函数] [item.itemList] : ', res.result)
         res.result.data.forEach(item => {
           item.data = JSON.parse(item.data)
           this.data.carData.push(item)
@@ -94,7 +92,7 @@ Page({
           value1: this.data.carData[0].price,
           value2: this.data.carData[0].name,
         })
-        console.log(this.data.carData)
+        // console.log(this.data.carData)
       },
       fail: err => {
         console.error('[云函数] [item.itemList] 调用失败', err)
@@ -140,7 +138,7 @@ Page({
 
   // 删除详情图片
   imgDelete(e) {
-    console.log(e)
+   
     let index = e.currentTarget.dataset.index
     this.data.carData[0].data.detail.splice(index, 1)
     
@@ -207,17 +205,53 @@ Page({
   },
   //保存
   saveEvent() {
-   if(this.data.carData[0].oldlevel ==1 && this.data.sp ==''){
-     wx.showToast({
-       title: '必填项不能为空',
-       icon:'none'
-     })
-   }else{
-     this.editSaveFunc()
-   }
+    // console.log(this.data.carData[0])
+    if (this.data.carData[0].oldlevel == 1) {
+      if (this.data.value1 && this.data.value2 && this.data.value3 && this.data.value4) {
+        
+        this.editSaveFunc()
+      } else {
+        // console.log(this.data.value1)
+        // console.log(this.data.value2)
+        // console.log(this.data.value3)
+        // console.log(this.data.value4)
+        wx.showToast({
+          title: '必填项不能为空',
+          icon: 'none'
+        })
+      }
+    } else {
+      if (this.data.value1 && this.data.value2 && this.data.value3) {
+        this.editSaveFunc()
+      } else {
+        // console.log(2222)
+        wx.showToast({
+          title: '必填项不能为空',
+          icon: 'none'
+        })
+      }
 
+    }
   },
+  //本地更改车辆管理页面数据
+  editBefore(){
+    var pages = getCurrentPages();
+    var prePage = pages[pages.length - 1];
+    var info = prePage.data.carData;
+    prePage.setData({
+      info: this.data.carData[0]
+    })
+  },
+
+  //调用编辑保存接口
   editSaveFunc(){
+    if (this.data.carData[0].oldlevel ==0){
+      for (let i in this.data.carData[0].data.params){
+        if (this.data.carData[0].data.params[i].type == 1){
+          this.data.carData[0].data.params.splice(i,1)
+        }
+      }
+    }
     let item = {
       _id: this.data.carData[0]._id,
       name: this.data.carData[0].name,
@@ -225,9 +259,11 @@ Page({
       stock: 1,
       oldlevel: this.data.carData[0].oldlevel,
       data: JSON.stringify(this.data.carData[0].data),
+      // data: this.data.carData[0].data
     };
 
     // 调用编辑云函数00
+
     wx.cloud.callFunction({
       name: 'item',
       data: {
@@ -236,13 +272,17 @@ Page({
         item: item
       },
       success: res => {
-        console.log('[云函数] [item.itemEdit] : ', res.result)
+        let id = this.data.id
+        // console.log('[云函数] [item.itemEdit] : ', res.result)
         wx.showToast({
           title: '保存成功',
         })
         setTimeout(() => {
           wx.hideToast(),
-            wx.navigateBack()
+          this.editBefore()
+            wx.redirectTo({
+            url: '/pages/carManage/carManage?'
+            })
         }, 1000)
 
       },
@@ -265,67 +305,101 @@ Page({
         [oldlevel]: 0
       })
     }
-    console.log(this.data.carData[0].oldlevel)
   },
   blurEvnet1(e) {
-    this.data.carData[0].price = e.detail.value
+    this.data.carData[0].price = e.detail.value;
+    this.data.value1 = e.detail.value;
   },
   blurEvnet2(e) {
-    this.data.carData[0].name = e.detail.value
+    this.data.carData[0].name = e.detail.value;
+    this.data.value2 = e.detail.value;
   },
   //里程
   blurEvnet3(e) {
-    this.data.carData[0].data.params.forEach((item,index)=>{
-      if(item.type==0){
-        this.data.carData[0].data.params[index].content = e.detail.value
+    this.data.value3 = e.detail.value;
+    let param = {
+      type: 0,
+      content: e.detail.value
+    }
+    for (let i in this.data.carData[0].data.params) {
+      if (this.data.carData[0].data.params[i].type === param.type) {
+        this.data.carData[0].data.params[i].content = e.detail.value
+        return
       }
-    })
+    }
+    this.data.carData[0].data.params.push(param)
+    // this.data.carData[0].data.params.forEach((item,index)=>{
+    //   if(item.type==0){
+    //     this.data.carData[0].data.params[index].content = e.detail.value
+    //   }
+    // })
   },
+
   //初次上牌
-  blurEvnet4(e) {
-    this.data.sp = e.detail.value
+  bindDateChange(e) {
+    this.setData({
+      value4: e.detail.value
+    })
     let param={
       type :1,
       content: e.detail.value
     }
-    this.data.carData[0].data.params.forEach((item, index) => {
-      if (item.type == 1) {
-        this.data.carData[0].data.params[index].content = e.detail.value
+    for (let i in this.data.carData[0].data.params) {
+      if (this.data.carData[0].data.params[i].type === param.type) {
+        this.data.carData[0].data.params[i].content = e.detail.value
         return
       }
-    })
+    }
     this.data.carData[0].data.params.push(param)
 
   },
   //排放
   blurEvnet5(e) {
-    this.data.carData[0].data.params.forEach((item, index) => {
-      if (item.type == 2) {
-        this.data.carData[0].data.params[index].content = e.detail.value
+    let param = {
+      type: 2,
+      content: e.detail.value
+    }
+    for (let i in this.data.carData[0].data.params) {
+      if (this.data.carData[0].data.params[i].type === param.type) {
+        this.data.carData[0].data.params[i].content = e.detail.value
+        return
       }
-    })
+    }
+    this.data.carData[0].data.params.push(param)
   },
   //发动机
   blurEvnet6(e) {
-    this.data.carData[0].data.params.forEach((item, index) => {
-      if (item.type == 3) {
-        this.data.carData[0].data.params[index].content = e.detail.value
+    let param = {
+      type: 3,
+      content: e.detail.value
+    }
+    for (let i in this.data.carData[0].data.params) {
+      if (this.data.carData[0].data.params[i].type === param.type) {
+        this.data.carData[0].data.params[i].content = e.detail.value
+        return
       }
-    })
+    }
+    this.data.carData[0].data.params.push(param)
   },
   //马力
   blurEvnet7(e) {
-    this.data.carData[0].data.params.forEach((item, index) => {
-      if (item.type == 4) {
-        this.data.carData[0].data.params[index].content = e.detail.value
+    let param = {
+      type: 4,
+      content: e.detail.value
+    }
+    for (let i in this.data.carData[0].data.params) {
+      if (this.data.carData[0].data.params[i].type === param.type) {
+        this.data.carData[0].data.params[i].content = e.detail.value
+        return
       }
-    })
+    }
+    this.data.carData[0].data.params.push(param)
   },
 
 
   addLabel() {
     this.setData({
-      isEnter: true
+      isEnter: !this.data.isEnter
     })
   },
   deleteLabel(e) {
@@ -337,21 +411,17 @@ Page({
     })
 
   },
-  enterBlur() {
-    this.setData({
-      isEnter: false
-    })
+  enterBlur(e) {
+    if (e.detail.value != '') {
+      let newArray = this.data.carData[0].data.labelList;
+      newArray.push(e.detail.value);
+      let labellist = "carData[0].data.labelList";
+      this.setData({
+        [labellist]: newArray,
+        isEnter: false
+      })
+    }
   },
-  //添加标签确定按钮
-  enterEvent(e) {
-    let newArray = this.data.carData[0].data.labelList;
-    newArray.push(e.detail.value);
-    let labellist = "carData[0].data.labelList";
-    this.setData({
-      [labellist]: newArray
-    })
-  },
-  //添加图片
   addImg() {
     app.globalFunc.uploadImg((r, res) => {
       if (r) {
@@ -359,23 +429,6 @@ Page({
         this.setData(this.data)
       }
     })
-    // let count = 3 - this.data.reqData.imgList.length
-    // wx.chooseImage({
-    //   count: count,
-    //   sizeType: ['compressed'],
-    //   sourceType: ['album', 'camera'],
-    //   success: (res) => {
-    //     let tempFilePaths = res.tempFilePaths;
-    //     tempFilePaths.forEach(item => {
-    //       this.data.reqData.imgList.push(item)
-    //     })
-    //     let imglist = "reqData.imgList"
-    //     this.setData({
-    //       [imglist]: this.data.reqData.imgList
-    //     })
-    //     console.log(this.data.reqData.imgList)
-    //   }
-    // })
   },
 
   //删除图片

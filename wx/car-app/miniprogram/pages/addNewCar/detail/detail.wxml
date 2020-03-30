@@ -5,7 +5,7 @@
       <view class="labelTitle">
               详情介绍
        </view>
-      <view class="detailSave" bindtap="addLabel">
+      <view class="detailSave">
           <view class="rightItem" bind:tap="saveEvent" >保存</view>
           <view class="rightItem" bind:tap="upEvent">上架</view>
       </view>
@@ -22,7 +22,7 @@
             <view class="videoDelete" bindtap="imgDelete" data-index="{{index}}">
               <image src="/assets/删除.png" mode="widthFix"></image>
             </view>
-            <image src="{{item.content}}" mode="widthFix" style="width:100%"></image>
+            <image src="{{item.content}}" mode="heightFix" style="width:100%"></image>
         </view>
         <!-- 视频 -->
         <view class="imgContent" wx:if="{{item.type == 'video'}}">
