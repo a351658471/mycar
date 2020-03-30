@@ -28,7 +28,8 @@ Page({
   },
   onLoad(options) {
     this.data.id= options.id;
-    this.getCarData(this.data.id)
+    this.getCarData(this.data.id);
+    
   },
   //根据id调用接口获取数据
   getCarData(id) {
@@ -233,6 +234,17 @@ Page({
 
     }
   },
+  //本地更改车辆管理页面数据
+  editBefore(){
+    var pages = getCurrentPages();
+    var prePage = pages[pages.length - 1];
+    var info = prePage.data.carData;
+    prePage.setData({
+      info: this.data.carData[0]
+    })
+  },
+
+  //调用编辑保存接口
   editSaveFunc(){
     if (this.data.carData[0].oldlevel ==0){
       for (let i in this.data.carData[0].data.params){
@@ -268,8 +280,9 @@ Page({
         })
         setTimeout(() => {
           wx.hideToast(),
+          this.editBefore()
             wx.redirectTo({
-            url: '/pages/carManage/carManage?id=' + id
+            url: '/pages/carManage/carManage?'
             })
         }, 1000)
 
@@ -354,12 +367,6 @@ Page({
       }
     }
     this.data.carData[0].data.params.push(param)
-
-    // this.data.carData[0].data.params.forEach((item, index) => {
-    //   if (item.type == 2) {
-    //     this.data.carData[0].data.params[index].content = e.detail.value
-    //   }
-    // })
   },
   //发动机
   blurEvnet6(e) {
@@ -374,11 +381,6 @@ Page({
       }
     }
     this.data.carData[0].data.params.push(param)
-    // this.data.carData[0].data.params.forEach((item, index) => {
-    //   if (item.type == 3) {
-    //     this.data.carData[0].data.params[index].content = e.detail.value
-    //   }
-    // })
   },
   //马力
   blurEvnet7(e) {
@@ -393,11 +395,6 @@ Page({
       }
     }
     this.data.carData[0].data.params.push(param)
-    // this.data.carData[0].data.params.forEach((item, index) => {
-    //   if (item.type == 4) {
-    //     this.data.carData[0].data.params[index].content = e.detail.value
-    //   }
-    // })
   },
 
 
@@ -426,27 +423,7 @@ Page({
       })
     }
   },
-  // //添加标签确定按钮
-  // enterEvent(e) {
-  //   if (e.detail.value != '') {
-  //     let newArray = this.data.carData[0].data.labelList;
-  //     newArray.push(e.detail.value);
-  //     let labellist = "carData[0].data.labelList";
-  //     this.setData({
-  //       [labellist]: newArray
-  //     })
-  //   }
-  // },
-  //添加图片
   addImg() {
-    // app.globalFunc.uploadImg((r, res) => {
-    //   if (r) {
-    //     this.data.carData[0].data.imgList = this.data.carData[0].data.imgList.concat(res.fileIDs)
-    //     this.setData(this.data)
-    //   }
-      
-    // })
-
     app.globalFunc.uploadImg((r, res) => {
       if (r) {
         this.data.carData[0].data.imgList = this.data.carData[0].data.imgList.concat(res.fileIDs)
