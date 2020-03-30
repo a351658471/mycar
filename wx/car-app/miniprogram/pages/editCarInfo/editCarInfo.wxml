@@ -45,14 +45,30 @@
             </view>
         </view>
 
-        <view class="borderBottom">
+        <!-- <view class="borderBottom">
           <view class="baseItem" wx:if="{{carData[0].oldlevel==1}}">
                 <view class="ItemName">初次上牌</view>
                 <view class="inputItem">
                   <input type="text" name="cFirst" disabled="{{disabled}}" bindblur="blurEvnet4" value="{{value4}}" placeholder="必填" placeholder-style="color:#FE2A45;font-size:0.95rem;font-weight:bolder"></input>
                 </view>
           </view>
+        </view> -->
+
+         <view class="borderBottom">
+          <view class="baseItem" wx:if="{{carData[0].oldlevel==1}}">
+                <view class="ItemName">初次上牌</view>
+                <view class="inputItem">
+                    <view class="section">
+                      <picker disabled="{{disabled}}" mode="date" value="{{value4}}" bindchange="bindDateChange">
+                        <view class="picker" style="color:{{value4 ==''?'#FE2A45':''}};font-size:0.95rem;font-weight:{{value4 ==''?'bolder':''}}">
+                          {{value4 ==''?"必填":value4}}
+                        </view>
+                      </picker>
+                    </view>
+                </view>
+          </view>
         </view>
+
 
         <view class="borderBottom">
           <view class="baseItem">

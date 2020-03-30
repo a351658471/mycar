@@ -3,6 +3,9 @@ page{
 
   height:100%
 }
+.active{
+  color: red
+}
 .outbox{
   height: 100%
 }

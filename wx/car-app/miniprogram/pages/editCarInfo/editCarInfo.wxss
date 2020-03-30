@@ -141,6 +141,9 @@ radio .wx-radio-input.wx-radio-input-checked::before{
   width: 100%;
   background: #fff
 }
+.picker{
+  width:50vw
+}
 .itemAdd{
   width: 25%;
   height:20vw;

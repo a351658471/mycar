@@ -1,7 +1,6 @@
 const app = getApp()
 Page({
   data: {
-
       value1: '',
       value2: '',
       value3: '',
@@ -23,7 +22,7 @@ Page({
       newCar: 0,
       userdCar: 1
     },
-    sp:'',
+
     dataList: [],
     textCache: null,
     textValue: ''
@@ -207,7 +206,7 @@ Page({
   },
   //保存
   saveEvent() {
-   if(this.data.carData[0].oldlevel ==1 && this.data.sp ==''){
+    if (this.data.carData[0].oldlevel == 1 && this.data.value4 ==''){
      wx.showToast({
        title: '必填项不能为空',
        icon:'none'
@@ -277,51 +276,99 @@ Page({
   },
   //里程
   blurEvnet3(e) {
-    this.data.carData[0].data.params.forEach((item,index)=>{
-      if(item.type==0){
-        this.data.carData[0].data.params[index].content = e.detail.value
+    let param = {
+      type: 0,
+      content: e.detail.value
+    }
+    for (let i in this.data.carData[0].data.params) {
+      if (this.data.carData[0].data.params[i].type === param.type) {
+        this.data.carData[0].data.params[i].content = e.detail.value
+        return
       }
-    })
+    }
+    this.data.carData[0].data.params.push(param)
+    // this.data.carData[0].data.params.forEach((item,index)=>{
+    //   if(item.type==0){
+    //     this.data.carData[0].data.params[index].content = e.detail.value
+    //   }
+    // })
   },
+
   //初次上牌
-  blurEvnet4(e) {
-    this.data.sp = e.detail.value
+  bindDateChange(e) {
+    this.setData({
+      value4: e.detail.value
+    })
     let param={
       type :1,
       content: e.detail.value
     }
-    this.data.carData[0].data.params.forEach((item, index) => {
-      if (item.type == 1) {
-        this.data.carData[0].data.params[index].content = e.detail.value
+    for (let i in this.data.carData[0].data.params) {
+      if (this.data.carData[0].data.params[i].type === param.type) {
+        this.data.carData[0].data.params[i].content = e.detail.value
         return
       }
-    })
+    }
     this.data.carData[0].data.params.push(param)
 
   },
   //排放
   blurEvnet5(e) {
-    this.data.carData[0].data.params.forEach((item, index) => {
-      if (item.type == 2) {
-        this.data.carData[0].data.params[index].content = e.detail.value
+    let param = {
+      type: 2,
+      content: e.detail.value
+    }
+    for (let i in this.data.carData[0].data.params) {
+      if (this.data.carData[0].data.params[i].type === param.type) {
+        this.data.carData[0].data.params[i].content = e.detail.value
+        return
       }
-    })
+    }
+    this.data.carData[0].data.params.push(param)
+
+    // this.data.carData[0].data.params.forEach((item, index) => {
+    //   if (item.type == 2) {
+    //     this.data.carData[0].data.params[index].content = e.detail.value
+    //   }
+    // })
   },
   //发动机
   blurEvnet6(e) {
-    this.data.carData[0].data.params.forEach((item, index) => {
-      if (item.type == 3) {
-        this.data.carData[0].data.params[index].content = e.detail.value
+    let param = {
+      type: 3,
+      content: e.detail.value
+    }
+    for (let i in this.data.carData[0].data.params) {
+      if (this.data.carData[0].data.params[i].type === param.type) {
+        this.data.carData[0].data.params[i].content = e.detail.value
+        return
       }
-    })
+    }
+    this.data.carData[0].data.params.push(param)
+    // this.data.carData[0].data.params.forEach((item, index) => {
+    //   if (item.type == 3) {
+    //     this.data.carData[0].data.params[index].content = e.detail.value
+    //   }
+    // })
   },
   //马力
   blurEvnet7(e) {
-    this.data.carData[0].data.params.forEach((item, index) => {
-      if (item.type == 4) {
-        this.data.carData[0].data.params[index].content = e.detail.value
+    let param = {
+      type: 4,
+      content: e.detail.value
+    }
+    for (let i in this.data.carData[0].data.params) {
+      if (this.data.carData[0].data.params[i].type === param.type) {
+        this.data.carData[0].data.params[i].content = e.detail.value
+        return
       }
-    })
+    }
+    this.data.carData[0].data.params.push(param)
+    // this.data.carData[0].data.params.forEach((item, index) => {
+    //   if (item.type == 4) {
+    //     this.data.carData[0].data.params[index].content = e.detail.value
+    //   }
+    // })
   },
 
 

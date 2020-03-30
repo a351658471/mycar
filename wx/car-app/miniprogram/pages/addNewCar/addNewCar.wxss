@@ -33,6 +33,9 @@ page{
   align-items: center;
   margin-left: 10vw
 }
+.picker{
+  width:50vw
+}
 .radioItem{
    margin-left: 10vw
 }
@@ -134,14 +137,13 @@ radio .wx-radio-input.wx-radio-input-checked::before{
   background: #fff
 }
 .itemAdd{
-  width: 20vw;
-  height:17vw;
-  margin-top: 1vw;
+  width: 25%;
+  height:20vw;
   border: 1px dashed #B5B2B5;
   text-align: center;
   font-size: 14px;
   color: #B5B2B5;
-  margin-bottom: 1vw
+  margin-top: 3vw
 }
 .itemAdd image{
   width:60%
