@@ -17,7 +17,7 @@ page{
   background-color: #FFFFFF;
 }
 .heard-name, .heard-right, detail-body{
-  font-size: 12px
+  font-size: 28rpx;
 }
 .detail-heard{
   width: 90%;
@@ -45,13 +45,10 @@ page{
 }
 
 .bottomBox{
-  /* position: absolute;
-  bottom: 0;
-  top: 50%;
-  left: 0;
-  right: 0; */
   border-top: 5vw solid #FFFFFF;
   padding-top:1vw; 
+  background: #FFFFFF;
+  margin-top: 28rpx;
 }
 
 .backgournd{
