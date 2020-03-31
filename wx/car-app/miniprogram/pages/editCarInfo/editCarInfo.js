@@ -234,13 +234,20 @@ Page({
     }
   },
   //本地更改车辆管理页面数据
-  editBefore(){
+  editBefore(id){
     var pages = getCurrentPages();
-    var prePage = pages[pages.length - 1];
+    var prePage = pages[pages.length - 2];
     var info = prePage.data.carData;
-    prePage.setData({
-      info: this.data.carData[0]
+    info.forEach((item,index)=>{
+      if(item._id == id){
+        info[index] = this.data.carData[0]
+        prePage.setData({
+          carData: info
+        })
+      }
     })
+    
+    console.log(info)
   },
 
   //调用编辑保存接口
@@ -277,12 +284,13 @@ Page({
         wx.showToast({
           title: '保存成功',
         })
+        this.editBefore(id)
         setTimeout(() => {
           wx.hideToast(),
-          this.editBefore()
-            wx.redirectTo({
-            url: '/pages/carManage/carManage?'
-            })
+          wx.navigateBack({})
+            // wx.redirectTo({
+            // url: '/pages/carManage/carManage'
+            // })
         }, 1000)
 
       },
