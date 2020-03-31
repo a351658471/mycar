@@ -16,9 +16,10 @@ Page({
     isLoading: false,
     noMore: false,
     hideShare: false,
-
+    state:null
   },
   onLoad(option) {
+
     if (option && option.itemid) {
       wx.navigateTo({
         url: '/pages/index/carDetail/carDetail?carId=' + option.itemid
@@ -29,8 +30,12 @@ Page({
   },
   onShow() {
     //获取车列表
-    if (this.data.resData.length == 0 && this.data.shop._id != null) {
+    // if (this.data.resData.length == 0 && this.data.shop._id != null) {
+    //   this.getCarData()
+    // }
+    if (this.state != app.globalData.state && this.data.shop._id != null) {
       this.getCarData()
+      this.state = app.globalData.state
     }
   },
   onUnload() {

@@ -8,7 +8,8 @@ Page({
       value5: '',//排放
       value6: '',//发动机
       value7: '',//马力
-
+    currentText:null,
+    textContent:'',
     carData:[],
     disabled:true,
     isOld: true,
@@ -29,6 +30,7 @@ Page({
   onLoad(options) {
     this.data.id= options.id;
     this.getCarData(this.data.id);
+    
   },
   //根据id调用接口获取数据
   getCarData(id) {
@@ -166,28 +168,6 @@ Page({
         })
       }
     })
-
-    // wx.chooseVideo({
-    //   sourceType: ['album', 'camera'],
-    //   maxDuration: 60,
-    //   camera: 'back',
-    //   success: (res) => {
-    //     console.log(res)
-    //     let data = {
-    //       content: res.tempFilePath,
-    //       type: 'video'
-    //     }
-    //     if (this.data.textCache != null) {
-    //       this.data.dataList.push(this.data.textCache)
-    //     }
-    //     this.data.dataList.push(data)
-    //     this.setData({
-    //       dataList: this.data.dataList,
-    //       textValue: '',
-    //       textCache: null
-    //     })
-    //   }
-    // })
   },
   videoDelete(e) {
     let index = e.currentTarget.dataset.index
@@ -206,15 +186,20 @@ Page({
   //保存
   saveEvent() {
     // console.log(this.data.carData[0])
+    
     if (this.data.carData[0].oldlevel == 1) {
       if (this.data.value1 && this.data.value2 && this.data.value3 && this.data.value4) {
-        
-        this.editSaveFunc()
+        wx.showModal({
+          title: '提示',
+          content: '是否确认保存',
+          success:(res)=>{
+            if (res.confirm){
+               this.editSaveFunc()
+            }
+          }
+        })
+       
       } else {
-        // console.log(this.data.value1)
-        // console.log(this.data.value2)
-        // console.log(this.data.value3)
-        // console.log(this.data.value4)
         wx.showToast({
           title: '必填项不能为空',
           icon: 'none'
@@ -247,7 +232,6 @@ Page({
       }
     })
     
-    console.log(info)
   },
 
   //调用编辑保存接口
@@ -268,7 +252,6 @@ Page({
       data: JSON.stringify(this.data.carData[0].data),
       // data: this.data.carData[0].data
     };
-
     // 调用编辑云函数00
 
     wx.cloud.callFunction({
@@ -279,6 +262,7 @@ Page({
         item: item
       },
       success: res => {
+       app.globalData.stateChange()
         let id = this.data.id
         // console.log('[云函数] [item.itemEdit] : ', res.result)
         wx.showToast({
@@ -288,9 +272,6 @@ Page({
         setTimeout(() => {
           wx.hideToast(),
           wx.navigateBack({})
-            // wx.redirectTo({
-            // url: '/pages/carManage/carManage'
-            // })
         }, 1000)
 
       },
@@ -454,4 +435,34 @@ Page({
       disabled: false
     })
   },
+  textEvent(e){
+    console.log(e)
+    if (!this.data.disabled){
+      this.setData({
+        currentText: e.currentTarget.dataset.index,
+        textContent: e.currentTarget.dataset.item.content
+      })
+    }
+  },
+  editTextBulr(e){
+    
+    let content={
+      type: 'text',
+      content:e.detail.value
+    }
+    let index = this.data.currentText
+    if(e.detail.content !=''){
+      this.data.carData[0].data.detail[index] = content
+      this.setData({
+        carData: this.data.carData,
+        currentText:null
+      })
+    }else{
+      this.data.carData[0].data.detail.splice(index,1)
+      this.setData({
+        carData: this.data.carData,
+        currentText: null
+      })
+    }
+  }
 })
