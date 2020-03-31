@@ -2,7 +2,7 @@
 <view class="carManage">
   
   <!-- tab -->
-  <mg-tab tabList="{{tabList}}" bind:tabClick="tabClick" fontSize="28rpx">
+  <mg-tab tabList="{{tabList}}" bind:tabClick="tabClick" fontSize="13px">
     <view slot="rightBox" class="rightBox" bindtap="jumpToAddcar" style="font-size:14px; font-weight:bold;" >添加新车</view>
   </mg-tab>
 

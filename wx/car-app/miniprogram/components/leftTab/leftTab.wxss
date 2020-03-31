@@ -16,7 +16,7 @@
   color: #F92C48;
   font-weight: bolder;
   position: relative;
-  font-size: 17px;
+  font-size: 14px;
 }
 .active::after{
   content: '';

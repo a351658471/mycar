@@ -28,7 +28,7 @@
   <!-- detail -->
   <view class="bottomBox">
    <!-- tab -->
-  <my-tab tabList="{{tabList}}" fontSize="13px" bind:tabClick="tabClick"></my-tab>
+  <my-tab tabList="{{tabList}}" fontSize="14px" bind:tabClick="tabClick"></my-tab>
 
   <view wx:if="{{currentIndex == 0}}" style='background:#fff; width:100%;padding-top:2vw' >
    <view wx:for="{{carData[0].data.detail}}" wx:key="index" style="margin:1rem 0">
