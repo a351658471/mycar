@@ -15,7 +15,9 @@ Page({
     },
     name:'',
     price:0,
-    passData:null
+    passData:null,
+    currentText: null,
+    textContent: '',
   },
 
   /**
@@ -79,12 +81,30 @@ Page({
   },
   //保存
   saveEvent() {
-    this.send(2)
+    wx.showModal({
+      title: '提示',
+      content: '是否确认保存',
+      success:(res)=>{
+        if(res.confirm){
+          this.send(2)
+        }
+      }
+    })
+   
   },
 
   //上架
   upEvent() {
-    this.send(0)
+    wx.showModal({
+      title: '提示',
+      content: '是否确认上架',
+      success: (res) => {
+        if (res.confirm) {
+          this.send(0)
+        }
+      }
+    })
+    
   },
 
   //调用增加商品接口
@@ -211,10 +231,43 @@ Page({
 
   },
 
+  //保存成功后刷新管理页面数据
   reBefore() {
     var pages = getCurrentPages();
     var prePage = pages[pages.length - 3];
     var info = prePage.data;
     prePage.getCarData([info.tabCurrent])
+  },
+ 
+ //详情文本点击 出现输入框
+  textEvent(e) {
+    console.log(e)
+      this.setData({
+        currentText: e.currentTarget.dataset.index,
+        textContent: e.currentTarget.dataset.item.content
+      })
+  },
+
+  //输入框失焦
+  editTextBulr(e) {
+    console.log(e)
+    let content = {
+      type: 'text',
+      content: e.detail.value
+    }
+    let index = this.data.currentText
+    if (e.detail.content != '') {
+      this.data.dataList[index] = content
+      this.setData({
+        dataList: this.data.dataList,
+        currentText: null
+      })
+    } else {
+      this.data.dataList.splice(index, 1)
+      this.setData({
+        dataList: this.data.dataList,
+        currentText: null
+      })
+    }
   }
 })

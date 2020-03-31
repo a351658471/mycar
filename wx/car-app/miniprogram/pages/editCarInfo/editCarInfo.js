@@ -8,7 +8,8 @@ Page({
       value5: '',//排放
       value6: '',//发动机
       value7: '',//马力
-
+    currentText:null,
+    textContent:'',
     carData:[],
     disabled:true,
     isOld: true,
@@ -185,10 +186,19 @@ Page({
   //保存
   saveEvent() {
     // console.log(this.data.carData[0])
+    
     if (this.data.carData[0].oldlevel == 1) {
       if (this.data.value1 && this.data.value2 && this.data.value3 && this.data.value4) {
-        
-        this.editSaveFunc()
+        wx.showModal({
+          title: '提示',
+          content: '是否确认保存',
+          success:(res)=>{
+            if (res.confirm){
+               this.editSaveFunc()
+            }
+          }
+        })
+       
       } else {
         wx.showToast({
           title: '必填项不能为空',
@@ -222,7 +232,6 @@ Page({
       }
     })
     
-    console.log(info)
   },
 
   //调用编辑保存接口
@@ -243,7 +252,6 @@ Page({
       data: JSON.stringify(this.data.carData[0].data),
       // data: this.data.carData[0].data
     };
-
     // 调用编辑云函数00
 
     wx.cloud.callFunction({
@@ -427,4 +435,34 @@ Page({
       disabled: false
     })
   },
+  textEvent(e){
+    console.log(e)
+    if (!this.data.disabled){
+      this.setData({
+        currentText: e.currentTarget.dataset.index,
+        textContent: e.currentTarget.dataset.item.content
+      })
+    }
+  },
+  editTextBulr(e){
+    
+    let content={
+      type: 'text',
+      content:e.detail.value
+    }
+    let index = this.data.currentText
+    if(e.detail.content !=''){
+      this.data.carData[0].data.detail[index] = content
+      this.setData({
+        carData: this.data.carData,
+        currentText:null
+      })
+    }else{
+      this.data.carData[0].data.detail.splice(index,1)
+      this.setData({
+        carData: this.data.carData,
+        currentText: null
+      })
+    }
+  }
 })

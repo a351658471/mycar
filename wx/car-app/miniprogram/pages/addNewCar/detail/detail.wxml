@@ -14,9 +14,13 @@
 
       <view wx:for="{{dataList}}">
        <!-- 文本内容 -->
-        <view wx:if="{{item.type == 'text'}}">
+        <!-- <view wx:if="{{item.type == 'text'}}" bind:tap="textEvent" data-index="{{index}}">
           {{item.content}}
-        </view>
+        </view> -->
+        <view wx:if="{{item.type == 'text'}}" style="font-size:30rpx; padding:20rpx 0">
+            <textarea wx:if="{{currentText == index}}" bindblur="editTextBulr" style="width:100%" focus value="{{textContent}}"></textarea>
+            <view wx:else data-item="{{item}}" data-index="{{index}}" bindtap="textEvent">{{item.content}}</view>
+          </view>
         <!-- 图片内容 -->
         <view class="imgContent" wx:if="{{item.type == 'image'}}">
             <view class="videoDelete" bindtap="imgDelete" data-index="{{index}}">
