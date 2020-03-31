@@ -19,7 +19,7 @@
               <view class='left-item'>{{item}}</view>
           </block>
       </view>
-      <view class='body-right' style='color:#FE2A45'>
+      <view class='body-right' style='color:#FE2A45;font-weight:bold;'>
         ￥{{carData[0].price}}
       </view>
     </view>
@@ -28,7 +28,9 @@
   <!-- detail -->
   <view class="bottomBox">
    <!-- tab -->
-  <my-tab tabList="{{tabList}}" fontSize="14px" bind:tabClick="tabClick"></my-tab>
+  <view style="margin: 18rpx auto 42rpx 44rpx">
+      <my-tab tabList="{{tabList}}" fontSize="14px" bind:tabClick="tabClick"></my-tab>
+  </view>
 
   <view wx:if="{{currentIndex == 0}}" style='background:#fff; width:100%;padding-top:2vw' >
    <view wx:for="{{carData[0].data.detail}}" wx:key="index" style="margin:1rem 0">

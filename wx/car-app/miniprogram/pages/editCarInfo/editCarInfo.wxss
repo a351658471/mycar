@@ -12,7 +12,8 @@ page{
 }
 .baseTitle,.labelTitle,.labelAdd{
   padding: 3vw;
-  font-size: 1rem;
+  font-size: 32rpx;
+  font-weight: bold;
 }
 .labelAdd{
   font-size: 0.8rem;
@@ -36,14 +37,19 @@ page{
 .inputItem{
   display: flex;
   align-items: center;
-  margin-left: 10vw
+  margin-left: 88rpx;
+  font-size: 28rpx;
 }
 .radioItem{
-   margin-left: 10vw
+   margin-left: 88rpx;
+   font-size: 28rpx;
 }
 .ItemName{
   width:20vw;
   text-align: right;
+  font-size: 30rpx;
+  color: #7B7575;
+  font-weight: bold;
 }
 .radio{
   margin-right: 5vw
@@ -62,22 +68,19 @@ radio .wx-radio-input.wx-radio-input-checked::before{
 }
 .labelItem{
   display: flex;
-  height:14vw;
   align-items: center;
   background: #FFFEFF;
-  font-size: 14px;
-  padding:0 4vw;
+  font-size: 20rpx;
+  padding: 25rpx 44rpx 40rpx 44rpx;
   color: #FE2A45;
 }
 .labelText{
   border: 1px solid #FE2A45;
-  padding: 0.3vw 1.5vw;
-  border-radius: 5px;
-  width:12.5vw;
-   text-align: center;
-   text-overflow: ellipsis;
-   white-space: nowrap;
-   overflow: hidden
+  padding: 2rpx 14rpx;
+  border-radius: 6rpx;
+  text-align: center;
+  font-size: 24rpx;
+  margin-top: 15rpx; 
 
 }
 .deleteIcon{
@@ -104,14 +107,14 @@ radio .wx-radio-input.wx-radio-input-checked::before{
   justify-content: space-between;
 }
 .imgBox{
-  width: 100%
+  width: 100%;
 }
 .addImgBox{
   display: flex;
   width: 100%;
   flex-wrap: wrap;
   background: #fff;
-  align-items: center
+  align-items: center;
 }
 .imgItem{
   width:30%;
@@ -158,13 +161,17 @@ radio .wx-radio-input.wx-radio-input-checked::before{
 }
 .next{
   width: 90%;
-  height:12vw;
+  height:88rpx;
   text-align: center;
-  line-height: 12vw;
-  background: #FE2A46;
+  line-height: 88rpx;
+  background: linear-gradient(to right,#FD7493,#FE2A45);
   color: #fff;
-  border-radius: 10px;
-  margin: 5vw auto
+  font-size: 36rpx;
+  border-radius: 16rpx;
+  position: fixed;
+  z-index: 9999;
+  bottom: 15rpx;
+  margin-left: 5%;
 }
 
 .labelHeader{
@@ -194,11 +201,11 @@ radio .wx-radio-input.wx-radio-input-checked::before{
 }
 .container1 {
   background: #fff;
-  padding: 0 3vw
+  padding: 20rpx 20rpx 120rpx 20rpx;
 }
 .toolbar {
   box-sizing: border-box;
-  padding: 0 10px;
+  padding: 0 20rpx 150rpx 20rpx;
   height: 50px;
   width: 100%;
   display: flex;

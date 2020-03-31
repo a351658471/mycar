@@ -45,26 +45,22 @@ page{
 }
 
 .bottomBox{
-  /* position: absolute;
-  bottom: 0;
-  top: 50%;
-  left: 0;
-  right: 0; */
   border-top: 5vw solid #FFFFFF;
-  padding-top:1vw; 
   padding-bottom:10rem ;
+  background: #FFFFFF;
+  margin-top: 28rpx;
 }
 
 .backgournd{
-    position:fixed;
-    top:0;
-    bottom:0;
-    right:0;
-    left:0;
-    background-color:#333333d1;
-    display:flex;
-    align-items:flex-end;
-    align-content:center;
+  position:fixed;
+  top:0;
+  bottom:0;
+  right:0;
+  left:0;
+  background-color:#333333d1;
+  display:flex;
+  align-items:flex-end;
+  align-content:center;
 }
 .binner{
    text-align:center;
@@ -81,7 +77,7 @@ page{
   line-height: 11vw
 }
 .hoverClass{
-  background: #dbdbdb
+  background: #dbdbdb;
 }
 .callIcon{
   position: fixed;

@@ -72,10 +72,10 @@ radio .wx-radio-input.wx-radio-input-checked::before{
 }
 .labelText{
   border: 1px solid #FE2A45;
-  padding: 0 8rpx;
+  padding: 2rpx 14rpx;
   border-radius: 6rpx;
   text-align: center;
-  font-size: 20rpx;
+  font-size: 24rpx;
   margin-top: 15rpx; 
 }
 .deleteIcon{
