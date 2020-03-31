@@ -8,7 +8,7 @@
 </view>
 
 <view class="tab">
-  <my-tab tabList="{{tabList}}" bind:tabClick="tabClick" />
+  <my-tab tabList="{{tabList}}" bind:tabClick="tabClick"/>
 </view>
 
 
