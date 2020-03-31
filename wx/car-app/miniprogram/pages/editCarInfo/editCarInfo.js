@@ -29,6 +29,7 @@ Page({
   onLoad(options) {
     this.data.id= options.id;
     this.getCarData(this.data.id);
+    
   },
   //根据id调用接口获取数据
   getCarData(id) {
@@ -166,28 +167,6 @@ Page({
         })
       }
     })
-
-    // wx.chooseVideo({
-    //   sourceType: ['album', 'camera'],
-    //   maxDuration: 60,
-    //   camera: 'back',
-    //   success: (res) => {
-    //     console.log(res)
-    //     let data = {
-    //       content: res.tempFilePath,
-    //       type: 'video'
-    //     }
-    //     if (this.data.textCache != null) {
-    //       this.data.dataList.push(this.data.textCache)
-    //     }
-    //     this.data.dataList.push(data)
-    //     this.setData({
-    //       dataList: this.data.dataList,
-    //       textValue: '',
-    //       textCache: null
-    //     })
-    //   }
-    // })
   },
   videoDelete(e) {
     let index = e.currentTarget.dataset.index
@@ -211,10 +190,6 @@ Page({
         
         this.editSaveFunc()
       } else {
-        // console.log(this.data.value1)
-        // console.log(this.data.value2)
-        // console.log(this.data.value3)
-        // console.log(this.data.value4)
         wx.showToast({
           title: '必填项不能为空',
           icon: 'none'
@@ -279,6 +254,7 @@ Page({
         item: item
       },
       success: res => {
+       app.globalData.stateChange()
         let id = this.data.id
         // console.log('[云函数] [item.itemEdit] : ', res.result)
         wx.showToast({
@@ -288,9 +264,6 @@ Page({
         setTimeout(() => {
           wx.hideToast(),
           wx.navigateBack({})
-            // wx.redirectTo({
-            // url: '/pages/carManage/carManage'
-            // })
         }, 1000)
 
       },

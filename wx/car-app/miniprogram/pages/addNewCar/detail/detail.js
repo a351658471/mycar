@@ -123,6 +123,7 @@ Page({
         // }
       },
       success: res => {
+        app.globalData.stateChange()
         // console.log('[云函数] [item.itemAdd] : ', res.result)
         wx.showToast({
           title: status == 0 ? '上架成功' : '保存成功',
