@@ -1,7 +1,7 @@
 /* components/leftTab/leftTab.wxss */
 .tab{
    width: 90%;
-   margin: 18rpx auto 42rpx auto;
+   /* margin: 18rpx auto 42rpx auto; */
    display: flex;
    justify-content: space-between;
    align-items: center

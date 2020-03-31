@@ -11,8 +11,8 @@
               <view class="ItemName">车辆类型</view>
               <view class="radioItem">
               <radio-group bindchange="radioChange" name="cNew">
-               <radio class="radio" value="oldcar" checked>二手车</radio>
-               <radio class="radio" value="newcar">新车</radio>
+               <radio class="radio" value="oldcar" checked> 二手车</radio>
+               <radio class="radio" value="newcar"> 新车</radio>
                </radio-group>
               </view>
              </view>
@@ -107,7 +107,7 @@
         </view>
           
         <view class="labelItem">
-          <view wx:for="{{reqData.labelList}}" wx:key="index" style="display:flex;margin-right:1.5rem">
+          <view wx:for="{{reqData.labelList}}" wx:key="index" style="display:flex;margin-right:1.5rem; align-items:center;">
             <view class="labelText">{{item}}</view>
             <view class="deleteIcon" bindtap="deleteLabel" data-index="{{index}}"></view>
           </view>

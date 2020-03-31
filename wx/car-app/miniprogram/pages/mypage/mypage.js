@@ -51,8 +51,8 @@ Page({
       icon: "mypage-backlist.png",
       link: "/pages/userFeedbackQuery/userFeedbackQuery"
     },
-    menus: []
-
+    menus: [],
+    adminMenus:[]
   },
 
 
@@ -113,6 +113,8 @@ Page({
         this.data.menu_personal,
         this.data.menu_reward,
         this.data.menu_back,
+      ];
+      this.data.adminMenus =[
         this.data.menu_car,
         this.data.menu_picture,
         this.data.menu_safe,
@@ -124,6 +126,8 @@ Page({
         this.data.menu_personal,
         this.data.menu_reward,
         this.data.menu_back,
+      ];
+      this.data.adminMenus = [
         this.data.menu_car,
         this.data.menu_picture,
         this.data.menu_feedback
@@ -153,7 +157,7 @@ Page({
         wxUserInfo: userInfo
       },
       success: res => {
-        console.log('[云函数] [user.userLogin] : ', res.result)
+        // console.log('[云函数] [user.userLogin] : ', res.result)
         this.data.userInfo = app.globalData.user = res.result.data
         this.data.avatarUrl = this.data.userInfo.avatarUrl
         this.data.logged = true

@@ -2,7 +2,6 @@
   "navigationBarBackgroundColor": "#FA4154",
   "navigationBarTextStyle": "white",
   "navigationBarTitleText": "",
-  "disableScroll": true,
   "usingComponents": {
     "my-call": "/components/call/call"
   }

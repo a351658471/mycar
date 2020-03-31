@@ -28,6 +28,7 @@
 }
 
 .carMsg{
+  width: 35%;
   margin-left: 2vw;
   display: flex;
   flex-direction:column;
@@ -35,12 +36,11 @@
 }
 
 .itemCars{
-  color: #DA3A4E;
-  border-radius: 5px;
-  border: 1.5px solid #DA3A4E;
-  padding: 1px 2.5px;
-  margin-right: 0.5rem;
-  font-weight: bolder
+  color: #FE2A45;
+  border-radius: 6rpx;
+  border: 2rpx solid #FE2A45;
+  padding: 0 8rpx;
+  margin:0 18rpx 10rpx 0;
 }
 .menu{
   display: flex;
@@ -59,7 +59,8 @@
   height: 10vw;
   line-height: 10vw;
   background: #fff;
-  color: #DA3A4E
+  color: #777;
+  font-size: 30rpx;
 }
 .noMore{
   width: 100;
@@ -67,5 +68,5 @@
   height: 10vw;
   line-height: 10vw;
   background: #F5F5F5;
-  font-size: 14px
+  font-size: 30rpx
 }
