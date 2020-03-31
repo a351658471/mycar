@@ -8,7 +8,7 @@
       <view class="headRight">
           <view class="headname">
               <view class="name">{{item.user.nickName}}</view>
-              <!-- <view class="time">{{item.creatime}}</view> -->
+              <view class="time">{{item.creatime}}</view>
           </view>
           <view class="contents">
               <view class="content">{{item.value}}</view>

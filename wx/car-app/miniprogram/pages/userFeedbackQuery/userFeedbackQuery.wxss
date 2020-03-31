@@ -33,7 +33,7 @@ page{
 .headRight .headname{
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
 }
 .headRight .headname .time{
   font-size: 24rpx;
@@ -60,7 +60,7 @@ page{
 .headRight .contents .tab{
   width: 30rpx;
   height: 30rpx;
-  margin-left: 20rpx;
+  margin:0 0 4rpx 20rpx;
 }
 .load{
   width: 100%;
