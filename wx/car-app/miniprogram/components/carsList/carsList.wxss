@@ -6,8 +6,9 @@
   margin-bottom: 3vw;
   display: flex;
   align-items: center;
-  height:38vw;
-  border-radius: 15px
+  border-radius: 20rpx;
+  box-sizing: border-box;
+  padding: 20rpx 10rpx;
 }
 
 .carImg{
@@ -15,19 +16,18 @@
   width: 60%;
   height:35vw;
   margin-left: 24rpx;
- 
 }
 
 .carImg image{
   position: absolute;
   top: 50%;
-  transform: translateY(-50%)
+  transform: translateY(-50%);
 }
 
 .carMsg{
-  width: 40%;
-  height:35vw;
-  margin-left: 2vw;
+  width: 35%;
+  height: 35vw;
+  margin-left: 18rpx;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -38,8 +38,8 @@
   color: #FE2A45;
   border-radius: 6rpx;
   border: 1px solid #FE2A45;
-  padding: 1px 2.5px;
-  margin-right: 0.5rem;
+  padding: 0 8rpx;
+  margin:0 18rpx 10rpx 0;
 
 }
 .loadMore{

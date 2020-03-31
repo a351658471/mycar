@@ -51,8 +51,8 @@ Page({
       icon: "mypage-backlist.png",
       link: "/pages/userFeedbackQuery/userFeedbackQuery"
     },
-    menus: []
-
+    menus: [],
+    adminMenus:[]
   },
 
 
@@ -113,6 +113,8 @@ Page({
         this.data.menu_personal,
         this.data.menu_reward,
         this.data.menu_back,
+      ];
+      this.data.adminMenus =[
         this.data.menu_car,
         this.data.menu_picture,
         this.data.menu_safe,
@@ -124,6 +126,8 @@ Page({
         this.data.menu_personal,
         this.data.menu_reward,
         this.data.menu_back,
+      ];
+      this.data.adminMenus = [
         this.data.menu_car,
         this.data.menu_picture,
         this.data.menu_feedback
@@ -153,7 +157,7 @@ Page({
         wxUserInfo: userInfo
       },
       success: res => {
-        console.log('[云函数] [user.userLogin] : ', res.result)
+        // console.log('[云函数] [user.userLogin] : ', res.result)
         this.data.userInfo = app.globalData.user = res.result.data
         this.data.avatarUrl = this.data.userInfo.avatarUrl
         this.data.logged = true
@@ -189,49 +193,6 @@ Page({
       })
     }
   },
-  // 模块遮罩层
-  call: function () {
-    var hides = this.data.hideShare;
 
-    if (hides == true) {
-      this.setData({
-        hideShare: false
-      })
-    } else if (hides == false) {
-      this.setData({
-        hideShare: true
-      })
-    }
-
-  },
-  copyEvent() {
-    wx.setClipboardData({
-      data: '18650883333',
-      success: () => {
-        this.setData({
-          hideShare: !this.data.hideShare
-        })
-        wx.showToast({
-          title: '复制成功'
-        })
-      }
-    })
-  },
-  callEvent() {
-    wx.makePhoneCall({
-      phoneNumber: '18650883333',
-      success: (res_makephone) => {
-        this.setData({
-          hideShare: !this.data.hideShare
-        })
-        console.log("呼叫电话返回：", res_makephone)
-      }
-    })
-  },
-  backEvent() {
-    this.setData({
-      hideShare: !this.data.hideShare
-    })
-  }
 
 })

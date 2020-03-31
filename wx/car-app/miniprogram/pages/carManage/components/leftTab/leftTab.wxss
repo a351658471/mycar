@@ -13,10 +13,10 @@
   margin-right: 1rem
 }
 .active{
-  color: #F92C48;
   font-weight: bolder;
   position: relative;
-  font-size: 14px;
+  font-size: 17px;
+  color: #F92C48
 }
 .active::after{
   content: '';
@@ -26,6 +26,5 @@
   bottom: -0.5rem;
   left: 25%;
   background: #F92C48;
-  
   border-radius: 30%
 }

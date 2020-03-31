@@ -41,7 +41,7 @@ Page({
           phone: this.data.userInfo.phone
         },
         success: res => {
-          console.log('[云函数] [user.userBindPhone] : ', res.result)
+          // console.log('[云函数] [user.userBindPhone] : ', res.result)
           app.globalData.user.phone = this.data.userInfo.phone
           wx.showToast({
             icon: 'success',

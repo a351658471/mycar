@@ -1,8 +1,8 @@
 /* components/call/call.wxss */
 .callBox{
   position: fixed;
-  right:5%;
-  bottom: 5%;
+  right:20rpx;
+  bottom: 20rpx;
   height: 2.5rem;
   width: 2.5rem;
   border: 1rpx solid #515151;

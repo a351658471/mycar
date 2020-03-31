@@ -7,7 +7,6 @@ page{
 .topNavigate{
   padding-left: 1rem;
   display: flex;
-  height:2.5rem;
   justify-content: space-around;
   line-height: 2rem;
   width:60%

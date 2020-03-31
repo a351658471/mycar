@@ -123,12 +123,14 @@ Page({
         // }
       },
       success: res => {
+        app.globalData.stateChange()
         // console.log('[云函数] [item.itemAdd] : ', res.result)
         wx.showToast({
           title: status == 0 ? '上架成功' : '保存成功',
         })
         setTimeout(() => {
           wx.hideToast(),
+            this.reBefore()
             wx.navigateBack({
               delta:2
             })
@@ -208,4 +210,11 @@ Page({
     }
 
   },
+
+  reBefore() {
+    var pages = getCurrentPages();
+    var prePage = pages[pages.length - 3];
+    var info = prePage.data;
+    prePage.getCarData([info.tabCurrent])
+  }
 })

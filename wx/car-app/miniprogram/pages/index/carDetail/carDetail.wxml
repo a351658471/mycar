@@ -19,7 +19,7 @@
               <view class='left-item'>{{item}}</view>
           </block>
       </view>
-      <view class='body-right' style='color:#FE2A45'>
+      <view class='body-right' style='color:#FE2A45;font-weight:bold;'>
         ￥{{carData[0].price}}
       </view>
     </view>
@@ -28,12 +28,15 @@
   <!-- detail -->
   <view class="bottomBox">
    <!-- tab -->
-  <my-tab tabList="{{tabList}}" fontSize="13px" bind:tabClick="tabClick"></my-tab>
+  <view style="margin: 18rpx auto 42rpx 44rpx">
+      <my-tab tabList="{{tabList}}" fontSize="14px" bind:tabClick="tabClick"></my-tab>
+  </view>
 
   <view wx:if="{{currentIndex == 0}}" style='background:#fff; width:100%;padding-top:2vw' >
-   <view wx:for="{{carData[0].data.detail}}" wx:key="index" style="margin:1rem 0">
-      <view style='width:90%; height:170px; margin:0 auto' wx:if="{{item.type == 'image'}}">
-         <image src='{{item.content}}' mode="aspectFill" style='width:100%; height:170px' bindtap="previewImage" data-content="{{item.content}}"></image>
+   <view wx:for="{{carData[0].data.detail}}" wx:key="index" style="margin-top:1rem">
+   <!-- 图片内容 -->
+      <view style='width:90%; margin:0 auto' wx:if="{{item.type == 'image'}}">
+         <image src='{{item.content}}' mode="widthFix" style='width:100%' bindtap="previewImage" data-content="{{item.content}}"></image>
       </view>
       <!-- 视频 -->
       <view style='width:90%;  margin:0 auto' wx:if="{{item.type == 'video'}}">
@@ -60,7 +63,7 @@
     </view>
    </view>
   </view>
-
+  <view class="boxBox"></view>
   </scroll-view>
   <my-call class="callIcon" bind:call="call"></my-call>
 </view>

@@ -12,10 +12,11 @@ page{
 }
 .baseTitle,.labelTitle,.labelAdd{
   padding: 3vw;
-  font-size: 1rem;
+  font-size: 32rpx;
+  font-weight: bold;
 }
 .labelAdd{
-  font-size: 0.8rem;
+  font-size: 26rpx;
   color: #FE2A45
 }
 .baseContent{
@@ -36,14 +37,19 @@ page{
 .inputItem{
   display: flex;
   align-items: center;
-  margin-left: 10vw
+  margin-left: 88rpx;
+  font-size: 28rpx;
 }
 .radioItem{
-   margin-left: 10vw
+   margin-left: 88rpx;
+   font-size: 28rpx;
 }
 .ItemName{
   width:20vw;
   text-align: right;
+  font-size: 30rpx;
+  color: #7B7575;
+  font-weight: bold;
 }
 .radio{
   margin-right: 5vw
@@ -53,8 +59,8 @@ radio .wx-radio-input{
   height: 3vw
 }
 radio .wx-radio-input.wx-radio-input-checked{
-  background:#FE2A45;
-  border: 1px solid #A3A1A2
+  background:#FE2A45 !important;
+  border: 1px solid #A3A1A2 !important
 }
 radio .wx-radio-input.wx-radio-input-checked::before{
   content: '';
@@ -62,22 +68,19 @@ radio .wx-radio-input.wx-radio-input-checked::before{
 }
 .labelItem{
   display: flex;
-  height:14vw;
   align-items: center;
   background: #FFFEFF;
-  font-size: 14px;
-  padding:0 4vw;
+  font-size: 20rpx;
+  padding: 25rpx 44rpx 40rpx 44rpx;
   color: #FE2A45;
 }
 .labelText{
   border: 1px solid #FE2A45;
-  padding: 0.3vw 1.5vw;
-  border-radius: 5px;
-  width:12.5vw;
-   text-align: center;
-   text-overflow: ellipsis;
-   white-space: nowrap;
-   overflow: hidden
+  padding: 2rpx 14rpx;
+  border-radius: 6rpx;
+  text-align: center;
+  font-size: 24rpx;
+  margin-top: 15rpx; 
 
 }
 .deleteIcon{
@@ -104,29 +107,30 @@ radio .wx-radio-input.wx-radio-input-checked::before{
   justify-content: space-between;
 }
 .imgBox{
-  width: 100%
+  width: 100%;
 }
 .addImgBox{
-  height:25vw;
   display: flex;
   width: 100%;
+  flex-wrap: wrap;
   background: #fff;
-  align-items: center
+  align-items: center;
 }
 .imgItem{
   width:30%;
-  height:80%;
+  height:20vw;
+  margin:3vw 3vw 0 0;
   text-align: center;
   position: relative;
-  margin-right: 5vw;
-  z-index:1; 
+  margin-bottom: 1vw
   
 }
 .itemImg{
   width: 100%;
   height: 100%;
   border: 1px solid #9A979B;
-  border-radius: 5px
+  border-radius: 5px;
+  
 }
 .deleteImg{
   width: 15%;
@@ -140,35 +144,39 @@ radio .wx-radio-input.wx-radio-input-checked::before{
   width: 100%;
   background: #fff
 }
+.picker{
+  width:50vw
+}
 .itemAdd{
   width: 25%;
-  height:80%;
+  height:20vw;
   border: 1px dashed #B5B2B5;
   text-align: center;
   font-size: 14px;
-  color: #B5B2B5
+  color: #B5B2B5;
+  margin-top: 3vw
 }
 .itemAdd image{
   width:60%;
 }
 .next{
   width: 90%;
-  height:12vw;
+  height:88rpx;
   text-align: center;
-  line-height: 12vw;
-  background: #FE2A46;
+  line-height: 88rpx;
+  background: linear-gradient(to right,#FD7493,#FE2A45);
   color: #fff;
-  border-radius: 10px;
-  margin: 5vw auto
+  font-size: 36rpx;
+  border-radius: 16rpx;
+  position: fixed;
+  z-index: 9999;
+  bottom: 15rpx;
+  margin-left: 5%;
 }
 
 .labelHeader{
   display: flex;
   justify-content: space-between;
-}
-.labelTitle,.labelAdd{
-  padding: 3vw;
-  font-size: 1rem;
 }
 .detailSave{
   margin-right: 3vw;
@@ -189,11 +197,11 @@ radio .wx-radio-input.wx-radio-input-checked::before{
 }
 .container1 {
   background: #fff;
-  padding: 0 3vw
+  padding: 20rpx 20rpx 120rpx 20rpx;
 }
 .toolbar {
   box-sizing: border-box;
-  padding: 0 10px;
+  padding: 0 20rpx 150rpx 20rpx;
   height: 50px;
   width: 100%;
   display: flex;

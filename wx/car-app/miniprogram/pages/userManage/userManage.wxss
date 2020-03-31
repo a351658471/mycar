@@ -18,6 +18,9 @@
   font-size: 30rpx;
   padding: 20rpx 0;
 }
+.tab{
+  margin: 18rpx 38rpx 45rpx 38rpx;
+}
 .userBox{
   background: #FFFFFF;
   padding: 0 0 200rpx 0;

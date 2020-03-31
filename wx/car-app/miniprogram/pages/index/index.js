@@ -16,9 +16,10 @@ Page({
     isLoading: false,
     noMore: false,
     hideShare: false,
-
+    state:null
   },
   onLoad(option) {
+
     if (option && option.itemid) {
       wx.navigateTo({
         url: '/pages/index/carDetail/carDetail?carId=' + option.itemid
@@ -29,8 +30,12 @@ Page({
   },
   onShow() {
     //获取车列表
-    if (this.data.resData.length == 0 && this.data.shop._id != null) {
+    // if (this.data.resData.length == 0 && this.data.shop._id != null) {
+    //   this.getCarData()
+    // }
+    if (this.state != app.globalData.state && this.data.shop._id != null) {
       this.getCarData()
+      this.state = app.globalData.state
     }
   },
   onUnload() {
@@ -138,52 +143,6 @@ Page({
       this.data.flag = false;
     this.data.page++;
     this.getCarData(this.data.page)
-  },
-
-  // 模块遮罩层
-  call: function () {
-    var hides = this.data.hideShare;
-
-    if (hides == true) {
-      this.setData({
-        hideShare: false
-      })
-    } else if (hides == false) {
-      this.setData({
-        hideShare: true
-      })
-    }
-
-  },
-
-  copyEvent() {
-    wx.setClipboardData({
-      data: '18650883333',
-      success: () => {
-        this.setData({
-          hideShare: !this.data.hideShare
-        })
-        wx.showToast({
-          title: '复制成功'
-        })
-      }
-    })
-  },
-
-  callEvent() {
-    wx.makePhoneCall({
-      phoneNumber: '18650883333',
-      success: (res_makephone) => {
-        this.setData({
-          hideShare: !this.data.hideShare
-        })
-        // console.log("呼叫电话返回：", res_makephone)
-      }
-    })
-
-    // wx.showActionSheet({
-    //   itemList:['12312312312','呼叫']
-    // })
   },
 
   backEvent() {

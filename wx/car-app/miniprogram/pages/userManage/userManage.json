@@ -3,6 +3,6 @@
   "navigationBarTextStyle": "black",
   "navigationBarTitleText": "",
   "usingComponents": {
-    "my-tab":"/components/leftTab/leftTab"
+    "my-tab":"../carManage/components/leftTab/leftTab"
   }
 }

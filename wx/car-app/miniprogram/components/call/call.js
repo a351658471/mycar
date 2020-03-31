@@ -20,40 +20,8 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    // call() {
-    //   this.triggerEvent("call")
-    // },
-    // 模块遮罩层
-    call: function () {
-      var hides = this.data.hideShare;
 
-      if (hides == true) {
-        this.setData({
-          hideShare: false
-        })
-      } else if (hides == false) {
-        this.setData({
-          hideShare: true
-        })
-      }
-
-    },
-
-    copyEvent() {
-      wx.setClipboardData({
-        data: '18650883333',
-        success: () => {
-          this.setData({
-            hideShare: !this.data.hideShare
-          })
-          wx.showToast({
-            title: '复制成功'
-          })
-        }
-      })
-    },
-
-    callEvent() {
+    call() {
       wx.makePhoneCall({
         phoneNumber: '18650883333',
         success: (res_makephone) => {
@@ -64,15 +32,7 @@ Component({
         }
       })
 
-      // wx.showActionSheet({
-      //   itemList:['12312312312','呼叫']
-      // })
     },
 
-    backEvent() {
-      this.setData({
-        hideShare: !this.data.hideShare
-      })
-    }
   }
 })
