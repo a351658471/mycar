@@ -36,7 +36,7 @@
    <view wx:for="{{carData[0].data.detail}}" wx:key="index" style="margin-top:1rem">
    <!-- 图片内容 -->
       <view style='width:90%; margin:0 auto' wx:if="{{item.type == 'image'}}">
-         <image src='{{item.content}}' mode="heightFix" style='width:100%' bindtap="previewImage" data-content="{{item.content}}"></image>
+         <image src='{{item.content}}' mode="widthFix" style='width:100%' bindtap="previewImage" data-content="{{item.content}}"></image>
       </view>
       <!-- 视频 -->
       <view style='width:90%;  margin:0 auto' wx:if="{{item.type == 'video'}}">
