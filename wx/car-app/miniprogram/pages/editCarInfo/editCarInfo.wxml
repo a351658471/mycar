@@ -110,7 +110,7 @@
         </view>
 
         <view class="labelItem">
-          <view wx:for="{{carData[0].data.labelList}}" wx:key="index" style="display:flex;margin-right:1.5rem">
+          <view wx:for="{{carData[0].data.labelList}}" wx:key="index" style="display:flex;margin-right:1.5rem;align-items:center">
             <view class="labelText">{{item}}</view>
             <view wx:if="{{!disabled}}" class="deleteIcon" bindtap="deleteLabel" data-index="{{index}}"></view>
           </view>

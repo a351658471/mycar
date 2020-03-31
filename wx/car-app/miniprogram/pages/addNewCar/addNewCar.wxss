@@ -32,13 +32,15 @@ page{
 .inputItem{
   display: flex;
   align-items: center;
-  margin-left: 10vw
+  margin-left: 10vw;
+  font-size: 28rpx;
 }
 .picker{
   width:50vw
 }
 .radioItem{
-   margin-left: 10vw
+   margin-left: 10vw;
+   font-size: 28rpx;
 }
 .ItemName{
   width:20vw;
@@ -66,7 +68,7 @@ radio .wx-radio-input.wx-radio-input-checked::before{
   display: flex;
   align-items: center;
   background: #FFFEFF;
-  font-size: 20rpx;
+  font-size: 24rpx;
   padding: 25rpx 44rpx 40rpx 44rpx;
   color: #FE2A45;
 }

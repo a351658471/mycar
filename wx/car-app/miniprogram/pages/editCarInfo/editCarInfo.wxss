@@ -16,7 +16,7 @@ page{
   font-weight: bold;
 }
 .labelAdd{
-  font-size: 0.8rem;
+  font-size: 26rpx;
   color: #FE2A45
 }
 .baseContent{
@@ -177,10 +177,6 @@ radio .wx-radio-input.wx-radio-input-checked::before{
 .labelHeader{
   display: flex;
   justify-content: space-between;
-}
-.labelTitle,.labelAdd{
-  padding: 3vw;
-  font-size: 1rem;
 }
 .detailSave{
   margin-right: 3vw;
