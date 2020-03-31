@@ -36,12 +36,12 @@ page{
   justify-content: space-between
 }
 .left-item{
-  font-size: 12px;
-  border: 1px solid #FE2A45;
-  border-radius: 5px;
-  padding: 3px 10px;
+  font-size: 24rpx;
+  border: 2rpx solid #FE2A45;
+  border-radius: 6rpx;
+  padding: 0 20rpx;
   color: #FE2A45;
-  margin-right: 0.5rem
+  margin-right: 30rpx;
 }
 
 .bottomBox{
