@@ -7,7 +7,8 @@ Page({
   data: {
     swipers: [],
   },
-  onShow() {
+  
+  onLoad:function() {
     let shop = app.globalData.shop
     this.data.swipers = shop.swipers
     this.setData(this.data)
@@ -54,7 +55,7 @@ Page({
         for(let i= 0;i<this.data.swipers.length;i++){
           let img = this.data.swipers[i]
           if(img == item){
-            this.data.swipers.pop(img)
+            this.data.swipers.splice(i,1)
           }
         }
         this.setData(this.data)
