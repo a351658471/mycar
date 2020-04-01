@@ -125,7 +125,6 @@ Page({
       this.setData({
         isNew: false
       })
-
     }
     this.getCarData()
   },

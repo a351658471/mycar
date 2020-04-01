@@ -9,7 +9,8 @@ Page({
       value6: '',//发动机
       value7: '',//马力
     currentText:null,
-    textContent:'',
+    isFocus:false,
+    // textContent:'',
     carData:[],
     disabled:true,
     // isOld: true,
@@ -436,14 +437,15 @@ Page({
   },
   textEvent(e){
     console.log(e)
-    if (!this.data.disabled){
-      this.setData({
-        currentText: e.currentTarget.dataset.index,
-        textContent: e.currentTarget.dataset.item.content
-      })
+    if (!this.data.disabled && this.data.currentText == null){
+         this.setData({
+           currentText: e.currentTarget.dataset.index,
+         })
     }
   },
   editTextBulr(e){
+    console.log(e)
+    console.log(this.data.currentText)
     let content={
       type: 'text',
       content:e.detail.value

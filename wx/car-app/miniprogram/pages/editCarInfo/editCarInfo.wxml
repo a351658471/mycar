@@ -181,7 +181,7 @@
         <view wx:for="{{carData[0].data.detail}}" wx:key="index">
           <!-- 文本内容 -->
           <view wx:if="{{item.type == 'text'}}" style="font-size:30rpx; padding:20rpx 0">
-            <textarea wx:if="{{currentText == index}}" bindblur="editTextBulr" style="width:100%" focus value="{{textContent}}"></textarea>
+            <textarea wx:if="{{currentText == index}}" bindblur="editTextBulr" data-index="{{index}}" style="width:100%" focus value="{{item.content}}"></textarea>
             <view wx:else data-item="{{item}}" data-index="{{index}}" bindtap="textEvent">{{item.content}}</view>
           </view>
           <!-- 图片内容 -->

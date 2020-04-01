@@ -238,10 +238,12 @@ Page({
  //详情文本点击 出现输入框
   textEvent(e) {
     console.log(e)
+    if (this.data.currentText == null){
       this.setData({
         currentText: e.currentTarget.dataset.index,
         textContent: e.currentTarget.dataset.item.content
       })
+    }
   },
 
   //输入框失焦
