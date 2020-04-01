@@ -28,12 +28,7 @@ Component({
   /**
    * 组件的方法列表
    */
-  ready: function () {
-    console.log("子组件ready")
-    // this.data.carData.forEach((item) => {
-    //   this.data.items.push({ xmove: 0, isOpen: false })
-    // })
-  },
+  ready: function () {},
   methods: {
     caritemClick: function (e){
      let index = e.currentTarget.dataset.index;
