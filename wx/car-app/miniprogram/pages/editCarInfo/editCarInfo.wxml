@@ -196,7 +196,7 @@
             <view class="videoDelete" bindtap="videoDelete" data-index="{{index}}" wx:if="{{!disabled}}">
               <image src="/assets/删除.png" mode="widthFix"></image>
             </view>
-            <video src="{{item.content}}" style="width:100%" show-mute-btn="true" enable-play-gesture="true" vslide-gesture="true"></video>
+            <video src="{{item.content}}" style="width:100%" show-mute-btn="true" enable-play-gesture="true" vslide-gesture-in-fullscreen="true"></video>
           </view>
         </view>
         <textarea disabled="{{disabled}}" placeholder="{{placeholder}}" bindblur="textBulr" style="width:100%" value="{{textValue}}"></textarea>
