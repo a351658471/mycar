@@ -15,6 +15,7 @@ Page({
     this.data.message = app.globalData.feedbacks
     this.getFeedbackData()
   },
+
   getFeedbackData: function(page = 1) {
     this.setData({
       isLoading: true
@@ -31,7 +32,7 @@ Page({
         page,
         perpage: 6
       },
-      success: res => {
+      success: res => { 
         if (res.result.data.length < 6) {
           this.data.noMore = true
         } else {
@@ -39,11 +40,12 @@ Page({
         }
         this.setData({
           noMore: this.data.noMore,
-          isLoading: false
+          isLoading: false,  
         })
         // console.log('[云函数] [user.userFeedback] : ', res.result)
         res.result.data.forEach(item => {
           this.data.message.push(item)
+          item.creatime = new Date(item.creatime).toLocaleDateString();
           this.setData(this.data)
         })
       },

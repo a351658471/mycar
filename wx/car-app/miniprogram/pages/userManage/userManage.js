@@ -18,12 +18,12 @@ Page({
   inputBind: function (e) {
     this.data.search = e.detail.value
   },
-  bindTapMore: function (e) {
-    this.userQuery()
-  },
-  focusBind:function(){
-    this.data.searchvalue =''
-  },
+  // bindTapMore: function (e) {
+  //   this.userQuery()
+  // },
+  // focusBind:function(){
+  //   this.data.searchvalue =''
+  // },
   search: function (e) {
     this.data.flag++
     this.data.userList.length = 0
@@ -97,6 +97,7 @@ Page({
     this.setData(this.data)
   },
   tabClick(e) {
+    console.log(e)
     this.data.flag++
     this.data.userList.length = 0
     this.data.isAdmin = e.detail.tabCurrent == 0
