@@ -33,7 +33,8 @@ page{
 }
 .body-left{
   display: flex;
-  justify-content: space-between
+  justify-content: space-between;
+  align-items: center;
 }
 .left-item{
   font-size: 24rpx;
