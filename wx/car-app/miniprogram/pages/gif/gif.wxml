@@ -4,7 +4,7 @@
 </view>
 <view class="gifWrap">
   <view class="gifMessage" wx:for="{{swipers}}" wx:key="*this">
-    <image class="gifImg" src="{{item}}" mode="scaleToFill"  bindtap="preview" data-list="{{swipers}}" data-src="{{item}}"></image>
+    <image class="gifImg" src="{{item}}" mode="aspectFill"  bindtap="preview" data-list="{{swipers}}" data-src="{{item}}"></image>
     <image class="closeicon" src="../../assets/mypage/mypage-close.png" bindtap="close" data-src="{{item}}"></image>
   </view>
   <view class="gifAdd" bindtap="uploadImg">
