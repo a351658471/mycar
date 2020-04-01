@@ -13,9 +13,8 @@ App({
         traceUser: true,
       }
       const accountInfo = wx.getAccountInfoSync();
-
       console.log('accountInfo',accountInfo)
-      if(accountInfo.miniProgram.envVersion){
+      if(accountInfo.miniProgram.envVersion == "release"){
         config.env = 'release-8n393'
       }
       wx.cloud.init(config)
