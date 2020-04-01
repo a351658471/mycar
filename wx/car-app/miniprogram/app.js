@@ -16,6 +16,10 @@ App({
 
     let app = this;
     this.globalData = {
+      type: {
+        newCar: 0,
+        userCar: 1
+      },
       state: 0,
       stateChange:function(){
         this.state++

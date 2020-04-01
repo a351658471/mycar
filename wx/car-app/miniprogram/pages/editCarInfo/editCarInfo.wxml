@@ -11,10 +11,10 @@
             <view class="ItemName">车辆类型</view>
             <view class="radioItem">
               <radio-group wx:if="{{!disabled}}" bindchange="radioChange" name="cNew">
-                <radio class="radio" value="oldcar" checked="{{carData[0].oldlevel==1}}">二手车</radio>
-                <radio class="radio" value="newcar" checked="{{carData[0].oldlevel==0}}">新车</radio>
+                <radio class="radio" value="oldcar" checked="{{carData[0].type==1}}">二手车</radio>
+                <radio class="radio" value="newcar" checked="{{carData[0].type==0}}">新车</radio>
               </radio-group>
-              <view wx:if="{{disabled}}">{{carData[0].oldlevel==0? '新车':'二手车'}}</view>
+              <view wx:if="{{disabled}}">{{carData[0].type==0? '新车':'二手车'}}</view>
             </view>
           </view>
         </view>
@@ -55,7 +55,7 @@
         </view> -->
 
         <view class="borderBottom">
-          <view class="baseItem" wx:if="{{carData[0].oldlevel==1}}">
+          <view class="baseItem" wx:if="{{carData[0].type==1}}">
             <view class="ItemName">初次上牌</view>
             <view class="inputItem">
               <view class="section">

@@ -2,10 +2,10 @@ const app = getApp()
 
 Page({
   data: {
-    oldlevel: {
-      newCar: 0,
-      userdCar: 1
-    },
+    // type: {
+    //   newCar: 0,
+    //   userdCar: 1
+    // },
     shop: {},
     isNew: true,
 
@@ -61,11 +61,11 @@ Page({
         resData: []
       })
     }
-    let oldlevel = 0
+    let type = 0
     if (!this.data.isNew) {
-      oldlevel = [this.data.oldlevel.userdCar]
+      type = [app.globalData.type.userCar]
     } else {
-      oldlevel = [this.data.oldlevel.newCar]
+      type = [app.globalData.type.newCar]
     }
     // 调用云函数  商品列表
     wx.cloud.callFunction({
@@ -83,7 +83,7 @@ Page({
           // }
         },
         status: [0],    // 商品状态 0在售 1已售 2未上架 
-        oldlevel,
+        type,
         // 分页
         page,
         perpage: 5,

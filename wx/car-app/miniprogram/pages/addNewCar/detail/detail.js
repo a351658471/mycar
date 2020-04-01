@@ -9,10 +9,6 @@ Page({
     textCache: null,
     textValue: '',
     dataList: [],
-    oldlevel: {
-      newCar: 0,
-      userdCar: 1
-    },
     name:'',
     price:0,
     passData:null,
@@ -110,11 +106,11 @@ Page({
   //调用增加商品接口
   send(status) {
 
-    let oldlevel = 0
+    let type = 0
     if (this.data.passData.isOld) {
-      oldlevel = this.data.oldlevel.userdCar
+      type = app.globalData.type.usedCar
     } else {
-      oldlevel = this.data.oldlevel.newCar
+      type = app.globalData.type.newCar
     }
     this.data.reqData.detail = this.data.dataList
     let item = {
@@ -124,7 +120,7 @@ Page({
       sort: 1002,      // 排序 值越大排越前面
       data: JSON.stringify(this.data.reqData),     // 数据
       status: status,
-      oldlevel,
+      type,
     }
     // console.log(item)
     //调用云函数

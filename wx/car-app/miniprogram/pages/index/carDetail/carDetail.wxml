@@ -11,7 +11,7 @@
   <view class='carDetail'>
     <view class='detail-heard'>
         <view class="heard-name">{{carData[0].name}}</view>
-        <view class="heard-right">{{carData[0].oldlevel ==0 ?'全新':'二手'}}</view>
+        <view class="heard-right">{{carData[0].type ==0 ?'全新':'二手'}}</view>
     </view>
     <view class='detail-body'>
       <view class='body-left'>

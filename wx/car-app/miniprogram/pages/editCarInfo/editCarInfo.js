@@ -12,16 +12,16 @@ Page({
     textContent:'',
     carData:[],
     disabled:true,
-    isOld: true,
+    // isOld: true,
     typeValue: '',
     isEnter: false,
     showUpload: true,
     isNext: false,
     reqData: null,
-    oldlevel: {
-      newCar: 0,
-      userdCar: 1
-    },
+    // type: {
+    //   newCar: 0,
+    //   userdCar: 1
+    // },
     id:'',
     dataList: [],
     textCache: null,
@@ -47,7 +47,6 @@ Page({
         },
 
         // status:[2],    // 商品状态 在售 已售 未上架 
-        // oldlevel,
         // 分页
         page: 1,
         perpage: 5,
@@ -187,7 +186,7 @@ Page({
   saveEvent() {
     // console.log(this.data.carData[0])
     
-    if (this.data.carData[0].oldlevel == 1) {
+    if (this.data.carData[0].type == 1) {
       if (this.data.value1 && this.data.value2 && this.data.value3 && this.data.value4) {
         wx.showModal({
           title: '提示',
@@ -236,7 +235,7 @@ Page({
 
   //调用编辑保存接口
   editSaveFunc(){
-    if (this.data.carData[0].oldlevel ==0){
+    if (this.data.carData[0].type ==0){
       for (let i in this.data.carData[0].data.params){
         if (this.data.carData[0].data.params[i].type == 1){
           this.data.carData[0].data.params.splice(i,1)
@@ -248,7 +247,7 @@ Page({
       name: this.data.carData[0].name,
       price: this.data.carData[0].price,
       stock: 1,
-      oldlevel: this.data.carData[0].oldlevel,
+      type: this.data.carData[0].type,
       data: JSON.stringify(this.data.carData[0].data),
       // data: this.data.carData[0].data
     };
@@ -283,15 +282,15 @@ Page({
   },
   //单选框
   radioChange(e) {
-    let oldlevel = "carData[0].oldlevel"
+    let type = "carData[0].type"
     if (e.detail.value == "oldcar") {
       this.setData({
-        [oldlevel]: 1
+        [type]: app.globalData.type.userCar
       })
 
     } else {
       this.setData({
-        [oldlevel]: 0
+        [type]: app.globalData.type.newCar
       })
     }
   },
