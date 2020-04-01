@@ -16,8 +16,20 @@ page{
   height:17vw;
   background-color: #FFFFFF;
 }
-.heard-name, .heard-right, detail-body{
+.heard-name, detail-body{
   font-size: 28rpx;
+}
+.heard-right{
+  display: flex;
+  align-items: center;
+  font-size: 28rpx;
+  height:5vw
+}
+.share{
+  width: 14px;
+  height: 14px;
+  margin: auto;
+  margin-left:2vw
 }
 .detail-heard{
   width: 90%;
@@ -89,6 +101,78 @@ page{
   width: 100%;
   background: #fff
 }
+
+
+/* 分享 */
+.shareBox{
+  background: #333333d1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0
+}
+.boxBottom{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right:0;
+  height:30vh;
+  background: #fff
+}
+.title{
+  height:10vw;
+  line-height: 10vw;
+  text-align: center;
+  font-size: 35rpx;
+}
+.shareContent{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height:60%
+}
+.shareImg{
+  width:10vw;
+  margin: 0 auto
+}
+.cancel{
+  font-size: 35rpx;
+  color: #FE2A45;
+  height:12vw;
+  line-height: 12vw;
+  text-align: center;
+  border-top: 1px solid #dbdbdb
+}
+/* 画布区域 */
+.cardBox{
+  position: absolute;
+  width: 100%;
+  height:100%;
+  background:#ff5777;
+
+}
+.canvasBox{
+  width: 70%;
+  height:70%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%)
+}
+
+.downCard{
+  width: 40%;
+  height:15vw;
+  background:yellow;
+  line-height: 15vw;
+  text-align: center;
+  margin: auto
+}
+
+
+
+
 
 
 /* 阿里巴巴图标 */

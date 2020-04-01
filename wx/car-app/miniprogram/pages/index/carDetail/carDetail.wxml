@@ -11,7 +11,10 @@
   <view class='carDetail'>
     <view class='detail-heard'>
         <view class="heard-name">{{carData[0].name}}</view>
-        <view class="heard-right">{{carData[0].type ==0 ?'全新':'二手'}}</view>
+        <view class="heard-right">
+           <view>{{carData[0].type ==0 ?'全新':'二手'}}</view>
+           <view class="share" bindtap="shareEvent"> <image src="/assets/分享.png" mode="widthFix" style="width:100%"></image></view>
+        </view>
     </view>
     <view class='detail-body'>
       <view class='body-left'>
@@ -67,3 +70,33 @@
   </scroll-view>
   <my-call class="callIcon" bind:call="call"></my-call>
 </view>
+<view class="shareBox">
+  <view class="boxBottom">
+      <view class="title">分享给好友</view>
+      <view class="shareContent">
+        <button class="contentItem" open-type="share">
+          <view class="shareImg"><image src="/assets/分享.png" mode="widthFix" style="width:100%"></image></view>
+          <view>微信好友</view>
+        </button>
+
+        <button class="contentItem" bindtap="makeCard">
+          <view class="shareImg"><image src="/assets/分享.png" mode="widthFix" style="width:100%"></image></view>
+          <view>生成卡片</view>
+        </button>
+      </view>
+      <view class="cancel">取消</view>
+  </view>
+</view>
+  <view class="cardBox" wx:if="{{isCanvas}}">
+    <view class="canvasBox">
+      <canvas canvas-id="shareCanvas" style="width:100%;height:90%;margin:auto;background:#fff"></canvas>
+
+      <view class="downCard">
+      <view class="downImg">
+        <!-- <image src="/assets/分享.png" mode="widthFix" width:></image> -->
+      </view>
+      <view>生成卡片</view>
+    </view>
+    </view>
+    
+  </view>

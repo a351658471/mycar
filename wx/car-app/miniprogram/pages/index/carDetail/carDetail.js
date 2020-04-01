@@ -1,8 +1,10 @@
+const rpx2px = createRpx2px()
 Page({
   /**
   * 页面的初始数据
   */
   data: {
+    isCanvas:false,
     filterList: [],
     i: 0,
     // lastTapTime:0,
@@ -82,15 +84,15 @@ Page({
   onReachBottom: function () {
 
   },
-  onShareAppMessage(res) {
-    if (res.from === 'button') {
-      console.log(res.target);
-    }
-    return {
-      title: '厦门车之居',
-      path: '/pages/index/index?itemid=' + this.data.itemid
-    };
-  },
+  // onShareAppMessage(res) {
+  //   if (res.from === 'button') {
+  //     console.log(res.target);
+  //   }
+  //   return {
+  //     title: '厦门车之居',
+  //     path: '/pages/index/index?itemid=' + this.data.itemid
+  //   };
+  // },
   //根据id调用接口获取数据
   getCarData() {
     // 调用云函数  商品列表
@@ -140,5 +142,54 @@ Page({
       current: e.currentTarget.dataset.content, // 当前显示图片的http链接
       urls: imgList // 需要预览的图片http链接列表
     })
-  }
+  },
+  //分享
+  shareEvent(){
+    
+  },
+
+  //分享好友
+  onShareAppMessage(res) {
+    if (res.from === 'button') {
+    }
+    return {
+      title: '厦门车之居',
+      path: '/pages/index/index',
+      success: function (res) {
+        console.log('成功', res)
+      }
+    }
+  },
+  //生成卡片
+  makeCard(){
+    this.setData({
+      isCanvas:true
+    })
+    let src = this.data.carData[0].data.imgList[0]
+    console.log(src)
+    wx.getImageInfo({
+      src:src,
+      success:(res)=>{
+        const ctx = wx.createCanvasContext('shareCanvas')
+        ctx.drawImage(res.path, 0, 0,262,456)
+        ctx.drawImage(res.path, 0, 0, 300, 300)
+        ctx.setTextAlign('center')    // 文字居中
+        ctx.setFillStyle('#000000')  // 文字颜色：黑色
+        ctx.setFontSize(15)         // 文字字号：22px
+        ctx.fillText("兰博基尼", 55, 320)
+        ctx.fillText("全新", 55, 340)
+        ctx.fillText("6.0T，300p", 55, 360)
+        ctx.fillText("100w", 55, 380)
+        ctx.draw()
+      }
+    })
+  },
+  createRpx2px() {
+    const { windowWidth } = wx.getSystemInfoSync()
+    return function (rpx) {
+        return windowWidth / 750 * rpx
+      }
+    },
+
+
 })
