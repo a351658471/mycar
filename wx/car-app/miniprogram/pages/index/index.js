@@ -1,5 +1,4 @@
 const app = getApp()
-
 Page({
   data: {
     // type: {
@@ -117,6 +116,7 @@ Page({
     })
   },
   tabClick: function (e) {
+    this.data.page =1
     if (e.detail.tabCurrent == 0) {
       this.setData({
         isNew: true
