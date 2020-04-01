@@ -115,6 +115,8 @@ Page({
       }
     })
   },
+
+  //tab事件
   tabClick: function (e) {
     this.data.page =1
     if (e.detail.tabCurrent == 0) {

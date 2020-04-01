@@ -9,7 +9,6 @@ Page({
       value6: '',//发动机
       value7: '',//马力
     currentText:null,
-    isFocus:false,
     // textContent:'',
     carData:[],
     disabled:true,
@@ -24,7 +23,6 @@ Page({
     //   userdCar: 1
     // },
     id:'',
-    dataList: [],
     textCache: null,
     textValue: ''
   },
@@ -119,7 +117,7 @@ Page({
     app.globalFunc.uploadImg((r, res) => {
       if (r) {
         if (this.data.textCache != null) {
-          this.data.dataList.push(this.data.textCache)
+          this.data.carData[0].data.detail.push(this.data.textCache)
         }
         for (let index = 0; index < res.fileIDs.length; index++) {
           const element = res.fileIDs[index];
@@ -158,7 +156,7 @@ Page({
           type: 'video'
         }
         if (this.data.textCache != null) {
-          this.data.dataList.push(this.data.textCache)
+          this.data.carData[0].data.detail.push(this.data.textCache)
         }
         this.data.carData[0].data.detail.push(data)
         this.setData({
