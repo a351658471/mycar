@@ -444,7 +444,6 @@ Page({
     }
   },
   editTextBulr(e){
-    
     let content={
       type: 'text',
       content:e.detail.value
