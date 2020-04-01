@@ -48,7 +48,7 @@
 			</view>
 		</view>
 	</view>
-  <view class="myserve" style="padding: 0 0 200rpx 0;">
+  <view class="myserve" style="padding: 0 0 100rpx 0;">
 		<view class="myservetitle admintitle">车行管理</view>
 		<view class="myserveItem">
 			<view wx:for="{{adminMenus}}" wx:key="key" class="Item" data-src="{{item}}" bindtap="bindtapMenu">
