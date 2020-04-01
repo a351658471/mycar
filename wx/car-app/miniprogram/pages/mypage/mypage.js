@@ -14,6 +14,7 @@ Page({
     control: true,
     isregist: false,
     hideShare: false,
+    adminhide:false,
     trends: '-',
     follow: '-',
     fans: '-',
@@ -120,6 +121,7 @@ Page({
         this.data.menu_safe,
         this.data.menu_feedback
       ]
+      this.data.adminhide = true;
     }
     else if (shop.isManagers) {
       this.data.menus = [
@@ -132,6 +134,7 @@ Page({
         this.data.menu_picture,
         this.data.menu_feedback
       ]
+      this.data.adminhide = true;
     }
     else {
       this.data.menus = [
