@@ -89,6 +89,7 @@ Page({
   onReachBottom: function () {
 
   },
+<<<<<<< HEAD
   // onShareAppMessage(res) {
   //   if (res.from === 'button') {
   //     console.log(res.target);
@@ -98,6 +99,17 @@ Page({
   //     path: '/pages/index/index?itemid=' + this.data.itemid
   //   };
   // },
+=======
+  onShareAppMessage(res) {
+    if (res.from === 'button') {
+      console.log(res.target);
+    }
+    return {
+      title: '厦门车之居',
+      path: '/pages/index/index?scene=' + this.data.itemid
+    };
+  },
+>>>>>>> 55cf45c008ba4c278087f2fe6b61b26ca3672ba5
   //根据id调用接口获取数据
   getCarData() {
     // 调用云函数  商品列表
