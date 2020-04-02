@@ -42,13 +42,11 @@
 
 .header .head .noregist button {
   width: 140rpx;
-  height: 65rpx;
   padding: 5rpx;
   border: 1rpx solid #fff;
   border-radius: 15rpx;
   color: #fff;
   font-size: 25rpx;
-  line-height: 50rpx;
 }
 
 .header .infors {

@@ -7,6 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    background:'/assets/mypage/mypage-head.png',
     shop: {},
     userInfo: {},
     logged: false,
@@ -72,6 +73,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    let base64 = 'data:image/png;base64,'+wx.getFileSystemManager().readFileSync(this.data.background,'base64');   
+    this.setData({
+      background:base64
+    })
+    
     this.data.menus = [
       this.data.menu_personal, this.data.menu_reward, this.data.menu_back
     ]

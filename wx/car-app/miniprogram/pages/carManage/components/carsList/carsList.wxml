@@ -19,7 +19,7 @@
             <view class='carMsg'>
               <view style='font-size:28rpx; text-overflow:ellipsis; overflow:hidden; white-space:nowrap'>{{item.name}}</view>
               <view style='color:#BBBBBB; font-size:24rpx;'>{{item.type==0?'全新':'二手'}}</view>
-              <view style='display:flex; font-size:20rpx;flex-wrap:wrap;'>
+              <view style='display:flex; font-size:20rpx;text-overflow:ellipsis; overflow:hidden; white-space:nowrap;'>
                 <view class='itemCars' wx:for="{{item.data.labelList}}" wx:key="index">{{item}}</view>
                 <!-- <view class='itemCars'>{{item.data.labelList[1]}}</view> -->
               </view>
