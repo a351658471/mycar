@@ -1,10 +1,14 @@
-const rpx2px = createRpx2px()
+// const rpx2px = createRpx2px()
 Page({
   /**
   * 页面的初始数据
   */
   data: {
+    cHeight:0,
+    cWidth:0,
+    imagePath:'',
     isCanvas:false,
+    isShare:false,
     filterList: [],
     i: 0,
     // lastTapTime:0,
@@ -145,9 +149,16 @@ Page({
   },
   //分享
   shareEvent(){
-    
+    this.setData({
+      isShare:true
+    })
   },
-
+  //取消
+  cancel(){
+    this.setData({
+      isShare: false
+    })
+  },
   //分享好友
   onShareAppMessage(res) {
     if (res.from === 'button') {
@@ -162,34 +173,126 @@ Page({
   },
   //生成卡片
   makeCard(){
+    let name = this.data.carData[0].name
+    let type = this.data.carData[0].type == 0?'全新':'二手'
+    let label = this.data.carData[0].data.labelList.slice(0,2).join()
+    let price = this.data.carData[0].price
+    var wpx;
+    var hpx;
+    wx.getSystemInfo({
+      success: function(res) {
+        console.log(res)
+        wpx = res.windowWidth / 375;
+        hpx = res.windowHeight /812
+      },
+    })
     this.setData({
+      cWidth:270*wpx,
+      cHeight:550*hpx,
       isCanvas:true
     })
     let src = this.data.carData[0].data.imgList[0]
-    console.log(src)
     wx.getImageInfo({
       src:src,
       success:(res)=>{
         const ctx = wx.createCanvasContext('shareCanvas')
-        ctx.drawImage(res.path, 0, 0,262,456)
-        ctx.drawImage(res.path, 0, 0, 300, 300)
+        ctx.setFillStyle('#fff')
+        ctx.fillRect(0, 0, 270 * wpx, 550 * hpx)
+        ctx.drawImage(res.path, 0, 0, 270*wpx,400*hpx)
+        ctx.drawImage(res.path, 140*wpx, 400*hpx, 130*wpx, 150*hpx)
         ctx.setTextAlign('center')    // 文字居中
         ctx.setFillStyle('#000000')  // 文字颜色：黑色
-        ctx.setFontSize(15)         // 文字字号：22px
-        ctx.fillText("兰博基尼", 55, 320)
-        ctx.fillText("全新", 55, 340)
-        ctx.fillText("6.0T，300p", 55, 360)
-        ctx.fillText("100w", 55, 380)
-        ctx.draw()
+        ctx.setFontSize(17 * wpx)         // 文字字号：22px
+        ctx.fillText(name, 65*wpx, 425*hpx)
+        ctx.fillText(type, 65 * wpx, 455 * hpx)
+        ctx.fillText(label, 65 * wpx, 490 * hpx)
+        ctx.setFillStyle('#ff5777')  // 文字颜色
+        ctx.setFontSize(20 * wpx)         // 文字字号
+        ctx.fillText('￥'+price, 65 * wpx, 530 * hpx)
+        ctx.draw();
+
+        setTimeout( ()=>{
+          wx.canvasToTempFilePath({
+            x: 0,
+            y: 0,
+            width: 270*wpx,
+            height: 550*hpx,
+            destWidth: 375*wpx,
+            destHeight: 812*hpx,
+            canvasId: 'shareCanvas',
+            
+            success:(res)=>{
+              
+              // this.data.imagePath = res.tempFilePath
+              // console.log(typeof (this.data.imagePath))
+              this.setData({
+                imagePath: res.tempFilePath,
+                canvasHidden: true
+              });
+            },
+            fail: function (res) {
+              console.log(res);
+            }
+          });
+        }, 200);
+      }
+    })
+   
+  },
+
+  //点击保存到相册
+  save() {
+    // 获取用户是否开启用户授权相册
+    wx.getSetting({
+      success:(res)=>{
+        // 如果没有则获取授权
+        if (!res.authSetting['scope.writePhotosAlbum']) {
+          wx.authorize({
+            scope: 'scope.writePhotosAlbum',
+            success() {
+              wx.saveImageToPhotosAlbum({
+                filePath: this.data.imagePath,
+                success() {
+                  wx.showToast({
+                    title: '保存成功'
+                  })
+                },
+                fail() {
+                  wx.showToast({
+                    title: '保存失败',
+                    icon: 'none'
+                  })
+                }
+              })
+            },
+            fail() {
+              // 如果用户拒绝过或没有授权，则再次打开授权窗口
+              //（ps：微信api又改了现在只能通过button才能打开授权设置，以前通过openSet就可打开，下面有打开授权的button弹窗代码）
+              that.setData({
+                openSet: true
+              })
+            }
+          })
+        } else {
+          // 有则直接保存
+          wx.saveImageToPhotosAlbum({
+            filePath: this.data.imagePath,
+            success:(res)=>{
+              console.log(res)
+              wx.showToast({
+                title: '保存成功'
+              })
+            },
+            fail:(err)=>{
+              console.log(err)
+              wx.showToast({
+                title: '保存失败',
+                icon: 'none'
+              })
+            }
+          })
+        }
       }
     })
   },
-  createRpx2px() {
-    const { windowWidth } = wx.getSystemInfoSync()
-    return function (rpx) {
-        return windowWidth / 750 * rpx
-      }
-    },
-
-
 })
