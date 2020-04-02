@@ -7,7 +7,8 @@ Page({
     userInfo: {},
     logged: false,
     takeSession: false,
-    requestResult: ''
+    requestResult: '',
+    imgBase64:""
   },
 
   onLoad: function () {
@@ -63,7 +64,24 @@ Page({
     })
   },
   onGetOpenid: function () {
-    
+    // 调用云函数
+    wx.cloud.callFunction({
+      name: 'openapi',
+      data: {
+        action: "getQRCode",
+        scene:"itemid=1",
+      },
+      success: res => {
+        console.log('[云函数] [openapi.getQRCode] : ', res)
+        this.setData({
+          imgBase64: wx.arrayBufferToBase64(res.result.buffer)
+      })
+      },
+      fail: err => {
+        console.error('[云函数] [openapi.getQRCode] 调用失败', err)
+      }
+    })
+
     // // 调用云函数
     // wx.cloud.callFunction({
     //   name: 'user',

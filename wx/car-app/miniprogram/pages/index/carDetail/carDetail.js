@@ -1,8 +1,15 @@
+// const rpx2px = createRpx2px()
 Page({
   /**
   * 页面的初始数据
   */
   data: {
+    imgBase64:null,
+    cHeight:0,
+    cWidth:0,
+    imagePath:'',
+    isCanvas:false,
+    isShare:false,
     filterList: [],
     i: 0,
     // lastTapTime:0,
@@ -82,15 +89,27 @@ Page({
   onReachBottom: function () {
 
   },
+<<<<<<< HEAD
+  // onShareAppMessage(res) {
+  //   if (res.from === 'button') {
+  //     console.log(res.target);
+  //   }
+  //   return {
+  //     title: '厦门车之居',
+  //     path: '/pages/index/index?itemid=' + this.data.itemid
+  //   };
+  // },
+=======
   onShareAppMessage(res) {
     if (res.from === 'button') {
       console.log(res.target);
     }
     return {
       title: '厦门车之居',
-      path: '/pages/index/index?itemid=' + this.data.itemid
+      path: '/pages/index/index?scene=' + this.data.itemid
     };
   },
+>>>>>>> 55cf45c008ba4c278087f2fe6b61b26ca3672ba5
   //根据id调用接口获取数据
   getCarData() {
     // 调用云函数  商品列表
@@ -140,5 +159,206 @@ Page({
       current: e.currentTarget.dataset.content, // 当前显示图片的http链接
       urls: imgList // 需要预览的图片http链接列表
     })
-  }
+  },
+  //分享
+  shareEvent(){
+    this.setData({
+      isShare:true
+    })
+  },
+  //取消
+  cancel(){
+    this.setData({
+      isShare: false
+    })
+  },
+  //分享好友
+  onShareAppMessage(res) {
+    if (res.from === 'button') {
+    }
+    return {
+      title: '厦门车之居',
+      path: '/pages/index/index',
+      success: function (res) {
+        console.log('成功', res)
+      }
+    }
+  },
+
+  //二维码生成
+  getQrCode(wpx,hpx){
+    let itemid = this.data.carData[0]._id
+    let number = Math.random()
+    let fsm = wx.getFileSystemManager()
+     var tempPath = wx.env.USER_DATA_PATH + '/pic' + number + '.png'
+    // 调用云函数
+    wx.cloud.callFunction({
+      name: 'openapi',
+      data: {
+        scene: itemid,
+        action: "getQRCode",
+      },
+      success: res => {
+        console.log('[云函数] [openapi.getQRCode] : ', res)
+        
+        this.setData({
+          imgBase64: wx.arrayBufferToBase64(res.result.buffer)
+        })
+        fsm.writeFile({
+          data:this.data.imgBase64,
+          encoding:'base64',
+          filePath: tempPath,
+          success:(res)=>{
+              wx.getImageInfo({
+                src: tempPath,
+                success:(res)=>{
+                  var qrWidth=270 * wpx/2
+                  this.canvasFunc(tempPath, qrWidth, wpx, hpx)
+                }
+              })
+            
+            // wx.saveImageToPhotosAlbum({
+            //   filePath: tempPath,
+            //   success:(res)=>{
+            //     this.canvasFunc()
+            //   }
+            // })
+          }
+        })
+      },
+      fail: err => {
+        console.error('[云函数] [openapi.getQRCode] 调用失败', err)
+      }
+    })
+  },
+  //生成卡片
+  makeCard(){
+    wx.showLoading({
+      title: '正在生成中...',
+    })
+    var wpx;
+    var hpx;
+    wx.getSystemInfo({
+      success: function (res) {
+        console.log(res)
+        wpx = res.windowWidth / 375;
+        hpx = res.windowHeight / 812
+      },
+    })
+    this.getQrCode(wpx, hpx)
+  },
+  canvasFunc(tempPath, qrWidth,wpx,hpx){
+    let name = this.data.carData[0].name
+    let type = this.data.carData[0].type == 0 ? '全新' : '二手'
+    let label = this.data.carData[0].data.labelList.slice(0, 1).join()
+    let price = this.data.carData[0].price
+    
+    
+    let src = this.data.carData[0].data.imgList[0]
+    wx.getImageInfo({
+      src: src,
+      success: (res) => {
+        let imgHeight = res.height * (270 * wpx / res.width)
+        let Height = qrWidth + imgHeight
+        this.setData({
+          cWidth: 270 * wpx,
+          cHeight: Height+1,
+          isCanvas: true
+        })
+        const ctx = wx.createCanvasContext('shareCanvas')
+        ctx.setFillStyle('#fff')
+        ctx.fillRect(0, 0, 270 * wpx, 350 * hpx)
+        ctx.drawImage(res.path, 0, 0, 270 * wpx, imgHeight)
+        ctx.drawImage(tempPath, 270 * wpx - qrWidth, imgHeight, qrWidth, qrWidth)
+        ctx.setTextAlign('center')    // 文字居中
+        ctx.setFillStyle('#000000')  // 文字颜色：黑色
+        ctx.setFontSize(17 * wpx)         // 文字字号：22px
+        ctx.fillText(name, (270 * wpx - qrWidth) / 2, Height - qrWidth+30)
+        ctx.fillText(type, (270 * wpx - qrWidth) / 2, Height - qrWidth + 30*2)
+        ctx.fillText(label, (270 * wpx - qrWidth) / 2, Height - qrWidth + 30*3)
+        ctx.setFillStyle('#ff5777')  // 文字颜色
+        ctx.setFontSize(20 * wpx)         // 文字字号
+        ctx.fillText('￥' + price, (270 * wpx - qrWidth) / 2, Height - qrWidth + 30 * 4)
+        ctx.draw();
+        wx.hideLoading({});
+          wx.canvasToTempFilePath({
+            x: 0,
+            y: 0,
+            width: 270*3 * wpx,
+            height: Height*3 * hpx,
+            destWidth: 270 * 3 * wpx,
+            destHeight: Height * 3 * hpx,
+            canvasId: 'shareCanvas',
+
+            success: (res) => {
+
+              // this.data.imagePath = res.tempFilePath
+              // console.log(typeof (this.data.imagePath))
+              this.setData({
+                imagePath: res.tempFilePath,
+                canvasHidden: true
+              });
+            },
+            fail: function (res) {
+              console.log(res);
+            }
+          });
+      }
+    })
+  },
+  //点击保存到相册
+  save() {
+    // 获取用户是否开启用户授权相册
+    wx.getSetting({
+      success:(res)=>{
+        // 如果没有则获取授权
+        if (!res.authSetting['scope.writePhotosAlbum']) {
+          wx.authorize({
+            scope: 'scope.writePhotosAlbum',
+            success() {
+              wx.saveImageToPhotosAlbum({
+                filePath: this.data.imagePath,
+                success() {
+                  wx.showToast({
+                    title: '保存成功'
+                  })
+                },
+                fail() {
+                  wx.showToast({
+                    title: '保存失败',
+                    icon: 'none'
+                  })
+                }
+              })
+            },
+            fail() {
+              // 如果用户拒绝过或没有授权，则再次打开授权窗口
+              //（ps：微信api又改了现在只能通过button才能打开授权设置，以前通过openSet就可打开，下面有打开授权的button弹窗代码）
+              that.setData({
+                openSet: true
+              })
+            }
+          })
+        } else {
+          // 有则直接保存
+          wx.saveImageToPhotosAlbum({
+            filePath: this.data.imagePath,
+            success:(res)=>{
+              console.log(res)
+              wx.showToast({
+                title: '保存成功'
+              })
+            },
+            fail:(err)=>{
+              console.log(err)
+              wx.showToast({
+                title: '保存失败',
+                icon: 'none'
+              })
+            }
+          })
+        }
+      }
+    })
+  },
 })
