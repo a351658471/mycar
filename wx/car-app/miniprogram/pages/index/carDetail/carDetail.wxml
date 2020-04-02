@@ -13,7 +13,7 @@
         <view class="heard-name">{{carData[0].name}}</view>
         <view class="heard-right">
            <view>{{carData[0].type ==0 ?'全新':'二手'}}</view>
-           <view class="share" bindtap="shareEvent"> <image src="/assets/分享.png" mode="widthFix" style="width:100%"></image></view>
+           <view class="share" bindtap="shareEvent"> <image src="/assets/分享.png" mode="widthFix" style="width:70%;margin-top:6rpx"></image></view>
         </view>
     </view>
     <view class='detail-body'>

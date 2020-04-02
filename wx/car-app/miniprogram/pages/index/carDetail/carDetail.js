@@ -4,6 +4,7 @@ Page({
   * 页面的初始数据
   */
   data: {
+    imgBase64:null,
     cHeight:0,
     cWidth:0,
     imagePath:'',
@@ -171,58 +172,114 @@ Page({
       }
     }
   },
+
+  //二维码生成
+  getQrCode(wpx,hpx){
+    let itemid = this.data.carData[0]._id
+    let number = Math.random()
+    let fsm = wx.getFileSystemManager()
+     var tempPath = wx.env.USER_DATA_PATH + '/pic' + number + '.png'
+    // 调用云函数
+    wx.cloud.callFunction({
+      name: 'openapi',
+      data: {
+        scene: itemid,
+        action: "getQRCode",
+      },
+      success: res => {
+        console.log('[云函数] [openapi.getQRCode] : ', res)
+        
+        this.setData({
+          imgBase64: wx.arrayBufferToBase64(res.result.buffer)
+        })
+        fsm.writeFile({
+          data:this.data.imgBase64,
+          encoding:'base64',
+          filePath: tempPath,
+          success:(res)=>{
+              wx.getImageInfo({
+                src: tempPath,
+                success:(res)=>{
+                  var qrWidth=270 * wpx/2
+                  this.canvasFunc(tempPath, qrWidth, wpx, hpx)
+                }
+              })
+            
+            // wx.saveImageToPhotosAlbum({
+            //   filePath: tempPath,
+            //   success:(res)=>{
+            //     this.canvasFunc()
+            //   }
+            // })
+          }
+        })
+      },
+      fail: err => {
+        console.error('[云函数] [openapi.getQRCode] 调用失败', err)
+      }
+    })
+  },
   //生成卡片
   makeCard(){
-    let name = this.data.carData[0].name
-    let type = this.data.carData[0].type == 0?'全新':'二手'
-    let label = this.data.carData[0].data.labelList.slice(0,2).join()
-    let price = this.data.carData[0].price
+    wx.showLoading({
+      title: '正在生成中...',
+    })
     var wpx;
     var hpx;
     wx.getSystemInfo({
-      success: function(res) {
+      success: function (res) {
         console.log(res)
         wpx = res.windowWidth / 375;
-        hpx = res.windowHeight /812
+        hpx = res.windowHeight / 812
       },
     })
-    this.setData({
-      cWidth:270*wpx,
-      cHeight:550*hpx,
-      isCanvas:true
-    })
+    this.getQrCode(wpx, hpx)
+  },
+  canvasFunc(tempPath, qrWidth,wpx,hpx){
+    let name = this.data.carData[0].name
+    let type = this.data.carData[0].type == 0 ? '全新' : '二手'
+    let label = this.data.carData[0].data.labelList.slice(0, 1).join()
+    let price = this.data.carData[0].price
+    
+    
     let src = this.data.carData[0].data.imgList[0]
     wx.getImageInfo({
-      src:src,
-      success:(res)=>{
+      src: src,
+      success: (res) => {
+        let imgHeight = res.height * (270 * wpx / res.width)
+        let Height = qrWidth + imgHeight
+        this.setData({
+          cWidth: 270 * wpx,
+          cHeight: Height+1,
+          isCanvas: true
+        })
         const ctx = wx.createCanvasContext('shareCanvas')
         ctx.setFillStyle('#fff')
-        ctx.fillRect(0, 0, 270 * wpx, 550 * hpx)
-        ctx.drawImage(res.path, 0, 0, 270*wpx,400*hpx)
-        ctx.drawImage(res.path, 140*wpx, 400*hpx, 130*wpx, 150*hpx)
+        ctx.fillRect(0, 0, 270 * wpx, 350 * hpx)
+        ctx.drawImage(res.path, 0, 0, 270 * wpx, imgHeight)
+        ctx.drawImage(tempPath, 270 * wpx - qrWidth, imgHeight, qrWidth, qrWidth)
         ctx.setTextAlign('center')    // 文字居中
         ctx.setFillStyle('#000000')  // 文字颜色：黑色
         ctx.setFontSize(17 * wpx)         // 文字字号：22px
-        ctx.fillText(name, 65*wpx, 425*hpx)
-        ctx.fillText(type, 65 * wpx, 455 * hpx)
-        ctx.fillText(label, 65 * wpx, 490 * hpx)
+        ctx.fillText(name, (270 * wpx - qrWidth) / 2, Height - qrWidth+30)
+        ctx.fillText(type, (270 * wpx - qrWidth) / 2, Height - qrWidth + 30*2)
+        ctx.fillText(label, (270 * wpx - qrWidth) / 2, Height - qrWidth + 30*3)
         ctx.setFillStyle('#ff5777')  // 文字颜色
         ctx.setFontSize(20 * wpx)         // 文字字号
-        ctx.fillText('￥'+price, 65 * wpx, 530 * hpx)
+        ctx.fillText('￥' + price, (270 * wpx - qrWidth) / 2, Height - qrWidth + 30 * 4)
         ctx.draw();
-
-        setTimeout( ()=>{
+        wx.hideLoading({});
           wx.canvasToTempFilePath({
             x: 0,
             y: 0,
-            width: 270*wpx,
-            height: 550*hpx,
-            destWidth: 375*wpx,
-            destHeight: 812*hpx,
+            width: 270*3 * wpx,
+            height: Height*3 * hpx,
+            destWidth: 270 * 3 * wpx,
+            destHeight: Height * 3 * hpx,
             canvasId: 'shareCanvas',
-            
-            success:(res)=>{
-              
+
+            success: (res) => {
+
               // this.data.imagePath = res.tempFilePath
               // console.log(typeof (this.data.imagePath))
               this.setData({
@@ -234,12 +291,9 @@ Page({
               console.log(res);
             }
           });
-        }, 200);
       }
     })
-   
   },
-
   //点击保存到相册
   save() {
     // 获取用户是否开启用户授权相册
