@@ -35,12 +35,18 @@
 }
 
 .itemCars{
+  max-width: 120rpx;
   color: #FE2A45;
   border-radius: 6rpx;
   border: 1px solid #FE2A45;
   padding: 0 8rpx;
   margin:0 18rpx 10rpx 0;
-
+  text-overflow:ellipsis; 
+  overflow:hidden; 
+  white-space:nowrap;
+}
+.itemCars:nth-child(n+3){
+  display: none;
 }
 .loadMore{
   width: 100;
