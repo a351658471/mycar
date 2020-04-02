@@ -64,13 +64,12 @@ Page({
     })
   },
   onGetOpenid: function () {
-    
     // 调用云函数
     wx.cloud.callFunction({
       name: 'openapi',
       data: {
-        scene:"itemid=1",
         action: "getQRCode",
+        scene:"itemid=1",
       },
       success: res => {
         console.log('[云函数] [openapi.getQRCode] : ', res)
