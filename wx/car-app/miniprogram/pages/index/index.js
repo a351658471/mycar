@@ -17,13 +17,16 @@ Page({
     hideShare: false,
     state:null
   },
-  onLoad(option) {
-
-    if (option && option.itemid) {
-      wx.navigateTo({
-        url: '/pages/index/carDetail/carDetail?carId=' + option.itemid
-      })
+  onLoad(options) {
+    if(options && options.scene){
+      let scene=decodeURIComponent(options.scene);
+      if(scene.length > 0){
+        wx.navigateTo({
+          url: '/pages/index/carDetail/carDetail?carId=' + scene
+        })
+      }
     }
+   
     app.globalData.addListener(app.globalData.eventShopUpdate, this.onShopInfo)
     app.globalFunc.getShopInfo();
   },
