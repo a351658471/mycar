@@ -21,10 +21,11 @@ Page({
   // bindTapMore: function (e) {
   //   this.userQuery()
   // },
-  // focusBind:function(){
-  //   this.data.searchvalue =''
-  // },
+  focusBind:function(){
+    this.data.searchvalue =''
+  },
   search: function (e) {
+    console.log(e)
     this.data.flag++
     this.data.userList.length = 0
     this.setData(this.data)
@@ -51,7 +52,7 @@ Page({
       queryData.keyWord = this.data.search
     }
     // console.log("queryData", queryData)
-    let that = this
+    // let that = this
     let flag = this.data.flag
     // 调用云函数
     wx.cloud.callFunction({
@@ -64,10 +65,10 @@ Page({
         // console.log('[云函数] [user.userQuery] : ', res.result)
         for (let index = 0; index < res.result.data.length; index++) {
           const element = res.result.data[index];
-          that.addUser(element)
+          this.addUser(element)
 
         }
-        that.setData(that.data)
+        this.setData(this.data)
       },
       fail: err => {
         console.error('[云函数] [user.userQuery] 调用失败', err)
