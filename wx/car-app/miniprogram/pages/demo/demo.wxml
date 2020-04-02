@@ -32,5 +32,5 @@
       <text>即时通信 Demo</text>
     </navigator>
   </view>
-  
+  <image style="width:430rpx;height:430rpx" src="data:image/png;base64,{{imgBase64}}"></image>
 </view>
