@@ -31,7 +31,7 @@
   <!-- detail -->
   <view class="bottomBox">
    <!-- tab -->
-  <view style="margin: 18rpx auto 42rpx 44rpx">
+  <view style="margin: 18rpx auto 42rpx 38rpx">
       <my-tab tabList="{{tabList}}" fontSize="14px" bind:tabClick="tabClick"></my-tab>
   </view>
 
