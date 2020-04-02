@@ -95,7 +95,7 @@
       <view class="downImg">
         <!-- <image src="/assets/分享.png" mode="widthFix" width:></image> -->
       </view>
-      <view bindtap="save">生成卡片</view>
+      <view bindtap="save">保存卡片</view>
     </view>
     </view>
   

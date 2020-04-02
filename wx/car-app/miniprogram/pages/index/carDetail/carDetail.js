@@ -4,6 +4,7 @@ Page({
   * 页面的初始数据
   */
   data: {
+    Height:0,
     imgBase64:null,
     cHeight:0,
     cWidth:0,
@@ -174,7 +175,9 @@ Page({
   },
 
   //二维码生成
-  getQrCode(wpx,hpx){
+  getQrCode(){
+    let wpx = this.data.wpx
+    let hpx = this.data.hpx
     let itemid = this.data.carData[0]._id
     let number = Math.random()
     let fsm = wx.getFileSystemManager()
@@ -227,21 +230,25 @@ Page({
     var wpx;
     var hpx;
     wx.getSystemInfo({
-      success: function (res) {
-        console.log(res)
+      success: (res)=> {
         wpx = res.windowWidth / 375;
         hpx = res.windowHeight / 812
+        this.setData({
+          wpx: wpx,
+          hpx: hpx
+        })
+        
       },
     })
     this.getQrCode(wpx, hpx)
   },
-  canvasFunc(tempPath, qrWidth,wpx,hpx){
+  canvasFunc(tempPath, qrWidth){
+    let wpx = this.data.wpx
+    let hpx = this.data.hpx
     let name = this.data.carData[0].name
     let type = this.data.carData[0].type == 0 ? '全新' : '二手'
     let label = this.data.carData[0].data.labelList.slice(0, 1).join()
     let price = this.data.carData[0].price
-    
-    
     let src = this.data.carData[0].data.imgList[0]
     wx.getImageInfo({
       src: src,
@@ -249,6 +256,7 @@ Page({
         let imgHeight = res.height * (270 * wpx / res.width)
         let Height = qrWidth + imgHeight
         this.setData({
+          Height: Height,
           cWidth: 270 * wpx,
           cHeight: Height+1,
           isCanvas: true
@@ -269,7 +277,16 @@ Page({
         ctx.fillText('￥' + price, (270 * wpx - qrWidth) / 2, Height - qrWidth + 30 * 4)
         ctx.draw();
         wx.hideLoading({});
-          wx.canvasToTempFilePath({
+         
+      }
+    })
+  },
+  //卡片临时路径
+  canvasTempPath(){
+    let wpx = this.data.wpx
+    let hpx = this.data.hpx
+    let Height = this.data.Height
+     wx.canvasToTempFilePath({
             x: 0,
             y: 0,
             width: 270*3 * wpx,
@@ -279,28 +296,23 @@ Page({
             canvasId: 'shareCanvas',
 
             success: (res) => {
+                this.data.imagePath=res
 
-              // this.data.imagePath = res.tempFilePath
-              // console.log(typeof (this.data.imagePath))
-              this.setData({
-                imagePath: res.tempFilePath,
-                canvasHidden: true
-              });
             },
             fail: function (res) {
-              console.log(res);
+             console.log('临时路径生成失败')
             }
           });
-      }
-    })
   },
   //点击保存到相册
   save() {
+    this.canvasTempPath()
     // 获取用户是否开启用户授权相册
     wx.getSetting({
       success:(res)=>{
         // 如果没有则获取授权
         if (!res.authSetting['scope.writePhotosAlbum']) {
+          console.log(111)
           wx.authorize({
             scope: 'scope.writePhotosAlbum',
             success() {
@@ -313,6 +325,7 @@ Page({
                 },
                 fail() {
                   wx.showToast({
+                    
                     title: '保存失败',
                     icon: 'none'
                   })
@@ -330,7 +343,7 @@ Page({
         } else {
           // 有则直接保存
           wx.saveImageToPhotosAlbum({
-            filePath: this.data.imagePath,
+            filePath: this.data.imagePath.tempFilePath,
             success:(res)=>{
               console.log(res)
               wx.showToast({
@@ -338,6 +351,7 @@ Page({
               })
             },
             fail:(err)=>{
+              console.log(this.data.imagePath.tempFilePath)
               console.log(err)
               wx.showToast({
                 title: '保存失败',
