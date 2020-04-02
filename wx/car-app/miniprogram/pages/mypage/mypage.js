@@ -7,6 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    background:'/assets/mypage/mypage-head.png',
     shop: {},
     userInfo: {},
     logged: false,
@@ -14,6 +15,7 @@ Page({
     control: true,
     isregist: false,
     hideShare: false,
+    adminhide:false,
     trends: '-',
     follow: '-',
     fans: '-',
@@ -71,6 +73,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    let base64 = 'data:image/png;base64,'+wx.getFileSystemManager().readFileSync(this.data.background,'base64');   
+    this.setData({
+      background:base64
+    })
+    
     this.data.menus = [
       this.data.menu_personal, this.data.menu_reward, this.data.menu_back
     ]
@@ -120,6 +127,7 @@ Page({
         this.data.menu_safe,
         this.data.menu_feedback
       ]
+      this.data.adminhide = true;
     }
     else if (shop.isManagers) {
       this.data.menus = [
@@ -132,6 +140,7 @@ Page({
         this.data.menu_picture,
         this.data.menu_feedback
       ]
+      this.data.adminhide = true;
     }
     else {
       this.data.menus = [

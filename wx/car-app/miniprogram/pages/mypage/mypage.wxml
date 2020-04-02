@@ -5,7 +5,7 @@
           <button open-type="getUserInfo" 
                   bindgetuserinfo="onGetUserInfo" 
                   class="userinfo-avatar" 
-                  style="background-image: url({{userInfo.avatarUrl?userInfo.avatarUrl:'../../assets/mypage/mypage-head.png'}})" 
+                  style="background-image: url({{userInfo.avatarUrl?userInfo.avatarUrl:background}})" 
                   size="default">
     </button>
 			<text class="headName">{{userInfo.nickName}}</text>
@@ -48,7 +48,7 @@
 			</view>
 		</view>
 	</view>
-  <view class="myserve" style="padding: 0 0 100rpx 0;">
+  <view class="myserve" style="padding: 0 0 100rpx 0;"  wx:if="{{adminhide}}">
 		<view class="myservetitle admintitle">车行管理</view>
 		<view class="myserveItem">
 			<view wx:for="{{adminMenus}}" wx:key="key" class="Item" data-src="{{item}}" bindtap="bindtapMenu">
