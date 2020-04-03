@@ -19,7 +19,8 @@
     "pages/addNewCar/addNewCar",
     "pages/carManage/carManage",
     "pages/editCarInfo/editCarInfo",
-    "pages/addNewCar/detail/detail"
+    "pages/addNewCar/detail/detail",
+    "pages/index/carDetail/card/card"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
