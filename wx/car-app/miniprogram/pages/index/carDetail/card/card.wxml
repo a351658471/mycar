@@ -1,14 +1,17 @@
-  <view class="cardBox">
-    <view class="cartitle">生成专属卡片</view>
-    <view class="canvasBox" style="width:{{cWidth}}px;height:{{cHeight}}px">
-      <canvas id="myCanvas" canvas-id="shareCanvas" style="width:{{cWidth}}px;height:{{cHeight}}px;margin:auto;background:#fff"></canvas>
+<view class="cardBox">
+  <view class="cartitle">生成专属卡片</view>
+  <view class="canvasBox" style="width:{{cWidth}}px;height:{{cHeight}}px">
+    <canvas id="myCanvas" canvas-id="shareCanvas" style="width:{{cWidth}}px;height:{{cHeight}}px;margin:auto;background:#fff"></canvas>
 
-      <view class="downCard">
+    <view class="downCard">
       <view class="downImg">
         <!-- <image src="/assets/分享.png" mode="widthFix" width:></image> -->
       </view>
-      <view bindtap="save" wx:if="{{isShow}}"><image src="/assets/down.png" mode="widthFix" style="width:50rpx;"></image>生成卡片</view>
+      <view bindtap="save" wx:if="{{isShow}}" style="display:flex;align-items:center;justify-content: center;">
+        <image src="/assets/down.png" mode="widthFix" style="width:50rpx;"></image>
+        <view style="margin-left:10rpx;">生成卡片</view>
+      </view>
     </view>
-    </view>
-  
   </view>
+
+</view>
