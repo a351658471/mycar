@@ -1,0 +1,13 @@
+  <view class="cardBox">
+    <view class="canvasBox" style="width:{{cWidth}}px;height:{{cHeight}}px">
+      <canvas id="myCanvas" canvas-id="shareCanvas" style="width:{{cWidth}}px;height:{{cHeight}}px;margin:auto;background:#fff"></canvas>
+
+      <view class="downCard">
+      <view class="downImg">
+        <!-- <image src="/assets/分享.png" mode="widthFix" width:></image> -->
+      </view>
+      <view bindtap="save" wx:if="{{isShow}}">保存卡片</view>
+    </view>
+    </view>
+  
+  </view>

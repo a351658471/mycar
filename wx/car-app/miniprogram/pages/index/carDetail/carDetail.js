@@ -1,8 +1,12 @@
+// const rpx2px = createRpx2px()
 Page({
   /**
   * 页面的初始数据
   */
   data: {
+    
+    isCanvas:false,
+    isShare:false,
     filterList: [],
     i: 0,
     // lastTapTime:0,
@@ -139,6 +143,36 @@ Page({
     wx.previewImage({
       current: e.currentTarget.dataset.content, // 当前显示图片的http链接
       urls: imgList // 需要预览的图片http链接列表
+    })
+  },
+  //分享
+  shareEvent(){
+    this.setData({
+      isShare:true
+    })
+  },
+  //取消
+  cancel(){
+    this.setData({
+      isShare: false
+    })
+  },
+  //分享好友
+  onShareAppMessage(res) {
+    if (res.from === 'button') {
+    }
+    return {
+      title: '厦门车之居',
+      path: '/pages/index/index',
+      success: function (res) {
+        console.log('成功', res)
+      }
+    }
+  },
+
+  makeCard(){
+    wx.navigateTo({
+      url: 'card/card?id='+this.data.carData[0]._id,
     })
   }
 })
