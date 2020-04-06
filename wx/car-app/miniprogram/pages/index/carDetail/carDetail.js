@@ -4,7 +4,7 @@ Page({
   * 页面的初始数据
   */
   data: {
-    
+    // share:'/assets/分享.png',
     isCanvas:false,
     isShare:false,
     filterList: [],
