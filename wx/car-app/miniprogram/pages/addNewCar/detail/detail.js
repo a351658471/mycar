@@ -5,13 +5,13 @@ Page({
    * 页面的初始数据
    */
   data: {
-    reqData:[],
+    reqData: [],
     textCache: null,
     textValue: '',
     dataList: [],
-    name:'',
-    price:0,
-    passData:null,
+    name: '',
+    price: 0,
+    passData: null,
     currentText: null,
     textContent: '',
   },
@@ -80,13 +80,13 @@ Page({
     wx.showModal({
       title: '提示',
       content: '是否确认保存',
-      success:(res)=>{
-        if(res.confirm){
+      success: (res) => {
+        if (res.confirm) {
           this.send(2)
         }
       }
     })
-   
+
   },
 
   //上架
@@ -100,7 +100,7 @@ Page({
         }
       }
     })
-    
+
   },
 
   //调用增加商品接口
@@ -108,7 +108,7 @@ Page({
 
     let type = 0
     if (this.data.passData.isOld) {
-      type = app.globalData.type.usedCar
+      type = app.globalData.type.userCar
     } else {
       type = app.globalData.type.newCar
     }
@@ -120,7 +120,7 @@ Page({
       sort: 1002,      // 排序 值越大排越前面
       data: JSON.stringify(this.data.reqData),     // 数据
       status: status,
-      type,
+      type: type,
     }
     // console.log(item)
     //调用云函数
@@ -147,9 +147,9 @@ Page({
         setTimeout(() => {
           wx.hideToast(),
             this.reBefore()
-            wx.navigateBack({
-              delta:2
-            })
+          wx.navigateBack({
+            delta: 2
+          })
         }, 1000)
       },
       fail: err => {
@@ -159,7 +159,7 @@ Page({
   },
   insertImage() {
     app.globalFunc.uploadImg((r, res) => {
-      if (r) { 
+      if (r) {
         if (this.data.textCache != null) {
           this.data.dataList.push(this.data.textCache)
         }
@@ -234,11 +234,11 @@ Page({
     var info = prePage.data;
     prePage.getCarData([info.tabCurrent])
   },
- 
- //详情文本点击 出现输入框
+
+  //详情文本点击 出现输入框
   textEvent(e) {
     console.log(e)
-    if (this.data.currentText == null){
+    if (this.data.currentText == null) {
       this.setData({
         currentText: e.currentTarget.dataset.index,
         textContent: e.currentTarget.dataset.item.content
