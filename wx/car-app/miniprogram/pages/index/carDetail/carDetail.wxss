@@ -75,7 +75,7 @@ page{
     bottom:0;
     right:0;
     left:0;
-    background-color:#333333d1;
+    background-color:rgb(0,0,0,0.6);
     display:flex;
     align-items:flex-end;
     align-content:center;
@@ -111,7 +111,7 @@ page{
 
 /* 分享 */
 .shareBox{
-  background: #333333d1;
+  background: rgb(0,0,0,0.6);
   position: absolute;
   top: 0;
   left: 0;
