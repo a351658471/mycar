@@ -10,10 +10,12 @@
   <!-- 报价 -->
   <view class='carDetail'>
     <view class='detail-heard'>
-        <view class="heard-name">{{carData[0].name}}</view>
+        <view class="detail-in">
+          <view class="heard-name" style="max-width:80%">{{carData[0].name}}</view>
+          <view style="margin-left:30rpx;">{{carData[0].type ==0 ?'全新':'二手'}}</view>
+        </view>
         <view class="heard-right">
-           <view>{{carData[0].type ==0 ?'全新':'二手'}}</view>
-           <view class="share" bindtap="shareEvent"> <image src="/assets/share.png" mode="widthFix" style="width:70%;margin-top:6rpx"></image></view>
+           <view class="share" bindtap="shareEvent"> <image src="/assets/share.png" mode="widthFix" style="width:80%;margin-top:6rpx"></image></view>
         </view>
     </view>
     <view class='detail-body'>
@@ -22,7 +24,7 @@
               <view class='left-item'>{{item}}</view>
           </block>
       </view>
-      <view class='body-right' style='color:#FE2A45;font-weight:bold;'>
+      <view class='body-right' style='color:#FE2A45;font-weight:bold; margin-top: 5rpx;'>
         ￥{{carData[0].price}}
       </view>
     </view>
@@ -76,12 +78,12 @@
       <view class="title">分享给好友</view>
       <view class="shareContent">
         <button class="contentItem" open-type="share" bindtap="cancel">
-          <view class="shareImg"><image src="/assets/wechat.png" mode="widthFix" style="width:100%"></image></view>
+          <view class="shareImg"><image src="/assets/wechat.png" mode="widthFix" style="width:94rpx"></image></view>
           <view class="shareText">微信好友</view>
         </button>
 
         <button class="contentItem" bindtap="makeCard">
-          <view class="shareImg"><image src="/assets/pic.png" mode="widthFix" style="width:100%"></image></view>
+          <view class="shareImg"><image src="/assets/pics.png" mode="widthFix" style="width:94rpx"></image></view>
           <view class="shareText">生成卡片</view>
         </button>
       </view>

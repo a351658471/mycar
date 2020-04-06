@@ -172,7 +172,7 @@ Page({
     let hpx = this.data.hpx
     let name = this.data.carData[0].name
     let type = this.data.carData[0].type == 0 ? '全新' : '二手'
-    let label = this.data.carData[0].data.labelList.slice(0, 1).join()
+    let label = this.data.carData[0].data.labelList.slice(0, 3).join('   ')
     let price = this.data.carData[0].price
     let src = this.data.carData[0].data.imgList[0]
     wx.getImageInfo({
@@ -190,21 +190,29 @@ Page({
         const ctx = wx.createCanvasContext('shareCanvas')
         ctx.setFillStyle('#fff')
         ctx.fillRect(0, 0, cWidth, cHeight)
-        ctx.drawImage(res.path, 0, 0, cWidth, imgHeight)
+        ctx.drawImage(res.path, 10, 10, cWidth-20, imgHeight-10)
         ctx.setFillStyle('#fff')
         ctx.fillRect(0, imgHeight, cWidth, difValue - imgHeight)
-        ctx.drawImage(tempPath, cWidth * 2 / 3, cHeight - 50 * hpx - qrWidth , qrWidth, qrWidth)
-        ctx.setFillStyle('#7B7575') 
+        ctx.drawImage(tempPath, cWidth * 2 / 3, cHeight - 40 * hpx - qrWidth , qrWidth-10, qrWidth-10)
+        ctx.setFillStyle('#5C5C5C') 
         ctx.setFontSize(12* wpx) 
-        ctx.fillText('扫描/长按识别', cWidth * 2 / 3, cHeight -25*hpx)
-        // ctx.setTextAlign('center')    // 文字居中
+        ctx.fillText('扫码/长按识别', cWidth * 2 / 3, cHeight -25*hpx)
+        // 标题
         ctx.setFillStyle('#000000')  // 文字颜色：黑色
-        ctx.setFontSize(17 * wpx)         // 文字字号：22px
+        ctx.setFontSize(16 * wpx)         // 文字字号：22px
         ctx.fillText(name, 10, difValue)
+        // 类型
+        ctx.setFontSize(12 * wpx) 
         ctx.fillText(type, 10, difValue + 45 * hpx)
+        // 标签
+        ctx.setStrokeStyle('#F95D74') 
+        // ctx.strokeRect(10, difValue + 45 * hpx * 2, label.length, 10)
+        ctx.setFontSize(10 * wpx) 
+        ctx.setFillStyle('#F95D74')
         ctx.fillText(label, 10, difValue + 45 * hpx * 2)
-        ctx.setFillStyle('#ff5777')  // 文字颜色
-        ctx.setFontSize(20 * wpx)         // 文字字号
+        // 价格
+        ctx.setFillStyle('#F95D74')  // 文字颜色
+        ctx.setFontSize(18 * wpx)         // 文字字号
         ctx.fillText('￥' + price, 10, cHeight - 25 * hpx)
         ctx.draw();
         wx.hideLoading({});
@@ -224,8 +232,8 @@ Page({
       y: 0,
       width: 270 * 3 * wpx,
       height: Height * 3 * hpx,
-      destWidth: 270 * 3 * wpx,
-      destHeight: Height * 3 * hpx,
+      destWidth: 270 * 2 * wpx,
+      destHeight: Height * 2 * hpx,
       canvasId: 'shareCanvas',
 
       success: (res) => {
