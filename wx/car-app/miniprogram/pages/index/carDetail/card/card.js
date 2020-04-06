@@ -248,15 +248,15 @@ Page({
           console.log(111)
           wx.authorize({
             scope: 'scope.writePhotosAlbum',
-            success() {
+            success: () => {
               wx.saveImageToPhotosAlbum({
                 filePath: this.data.imagePath,
-                success() {
+                success: () => {
                   wx.showToast({
                     title: '保存成功'
                   })
                 },
-                fail() {
+                fail: () => {
                   wx.showToast({
 
                     title: '保存失败',
@@ -265,7 +265,7 @@ Page({
                 }
               })
             },
-            fail() {
+            fail: () => {
               // 如果用户拒绝过或没有授权，则再次打开授权窗口
               //（ps：微信api又改了现在只能通过button才能打开授权设置，以前通过openSet就可打开，下面有打开授权的button弹窗代码）
               that.setData({
