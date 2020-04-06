@@ -213,6 +213,7 @@ Page({
         // 价格
         ctx.setFillStyle('#F95D74')  // 文字颜色
         ctx.setFontSize(18 * wpx)         // 文字字号
+        ctx.font='18px bold'
         ctx.fillText('￥' + price, 10, cHeight - 25 * hpx)
         ctx.draw();
         wx.hideLoading({});
@@ -232,8 +233,8 @@ Page({
       y: 0,
       width: 270 * 3 * wpx,
       height: Height * 3 * hpx,
-      destWidth: 270 * 2 * wpx,
-      destHeight: Height * 2 * hpx,
+      destWidth: 270 * 2.2 * wpx,
+      destHeight: Height * 2.2 * hpx,
       canvasId: 'shareCanvas',
 
       success: (res) => {
