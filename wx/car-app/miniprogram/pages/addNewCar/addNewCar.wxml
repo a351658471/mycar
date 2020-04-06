@@ -57,7 +57,7 @@
             <view class="ItemName">初次上牌</view>
             <view class="inputItem">
               <view class="section">
-                <picker mode="date" value="{{date}}" bindchange="bindDateChange">
+                <picker mode="date" fields="month" value="{{date}}" bindchange="bindDateChange">
                   <view class="picker" style="color:{{date ==''?'#FE2A45':''}};font-size:0.95rem;font-weight:{{date ==''?'bolder':''}}">
                     {{date ==''?"必填":date}}
                   </view>
