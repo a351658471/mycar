@@ -167,6 +167,7 @@ Page({
       }
     })
   },
+  
 
   canvasFunc(tempPath, qrWidth) {
     let wpx = this.data.wpx
@@ -204,12 +205,13 @@ Page({
         ctx.setFontSize(16 * wpx)         // 文字字号：22px
         ctx.fillText(name, 10, difValue)
         // 类型
-        ctx.setFontSize(12 * wpx)
+        ctx.setFontSize(13 * wpx)
         ctx.fillText(type, 10, difValue + 45 * hpx)
         // 标签
+        ctx.measureText(label).width 
         ctx.setStrokeStyle('#F95D74')
-        // ctx.strokeRect(10, difValue + 45 * hpx * 2, label.length, 10)
-        ctx.setFontSize(10 * wpx)
+        // ctx.strokeRect(10, difValue + 30 * hpx * 2, label.length, 10)
+        ctx.setFontSize(13 * wpx)
         ctx.setFillStyle('#F95D74')
         ctx.fillText(label, 10, difValue + 45 * hpx * 2)
         // 价格
