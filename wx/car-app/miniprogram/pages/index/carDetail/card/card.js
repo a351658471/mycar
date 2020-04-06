@@ -5,14 +5,15 @@ Page({
    * 页面的初始数据
    */
   data: {
-    Height: 0,
+    carWidth: 270,
+    carHeight: 480,
     imgBase64: null,
     cHeight: 0,
     cWidth: 0,
     imagePath: '',
-    itemid:'',
-    carData:[],
-    isShow:false
+    itemid: '',
+    carData: [],
+    isShow: false
   },
 
   /**
@@ -51,7 +52,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-   
+
   },
 
   /**
@@ -118,7 +119,7 @@ Page({
       }
     })
   },
-   //二维码生成
+  //二维码生成
   getQrCode() {
     let wpx = this.data.wpx
     let hpx = this.data.hpx
@@ -135,7 +136,7 @@ Page({
       },
       success: res => {
         console.log('[云函数] [openapi.getQRCode] : ', res)
-    
+
         this.setData({
           imgBase64: wx.arrayBufferToBase64(res.result.buffer)
         })
@@ -147,7 +148,7 @@ Page({
             wx.getImageInfo({
               src: tempPath,
               success: (res) => {
-                var qrWidth = 270 * wpx / 4*1.2
+                var qrWidth = this.data.carWidth * wpx / 4 * 1.2
                 this.canvasFunc(tempPath, qrWidth)
               }
             })
@@ -178,10 +179,11 @@ Page({
     wx.getImageInfo({
       src: src,
       success: (res) => {
-        let imgHeight = res.height * (270 * wpx / res.width)
-        let cWidth = 270 * wpx;
-        let cHeight = 480*hpx;
-        let difValue = cHeight*2/3
+        let imgHeight = res.height * (this.data.carWidth * wpx / res.width)
+        let cWidth = this.data.carWidth * wpx;
+        let cHeight = this.data.carHeight * hpx;
+        let difValue = cHeight * 2 / 3
+        console.log("cWidth", cWidth, "cHeight", cHeight)
         this.setData({
           cWidth: cWidth,
           cHeight: cHeight,
@@ -190,24 +192,24 @@ Page({
         const ctx = wx.createCanvasContext('shareCanvas')
         ctx.setFillStyle('#fff')
         ctx.fillRect(0, 0, cWidth, cHeight)
-        ctx.drawImage(res.path, 10, 10, cWidth-20, imgHeight-10)
+        ctx.drawImage(res.path, 10, 10, cWidth - 20, imgHeight - 10)
         ctx.setFillStyle('#fff')
         ctx.fillRect(0, imgHeight, cWidth, difValue - imgHeight)
-        ctx.drawImage(tempPath, cWidth * 2 / 3, cHeight - 40 * hpx - qrWidth , qrWidth-10, qrWidth-10)
-        ctx.setFillStyle('#5C5C5C') 
-        ctx.setFontSize(12* wpx) 
-        ctx.fillText('扫码/长按识别', cWidth * 2 / 3, cHeight -25*hpx)
+        ctx.drawImage(tempPath, cWidth * 2 / 3, cHeight - 40 * hpx - qrWidth, qrWidth - 10, qrWidth - 10)
+        ctx.setFillStyle('#5C5C5C')
+        ctx.setFontSize(12 * wpx)
+        ctx.fillText('扫码/长按识别', cWidth * 2 / 3, cHeight - 25 * hpx)
         // 标题
         ctx.setFillStyle('#000000')  // 文字颜色：黑色
         ctx.setFontSize(16 * wpx)         // 文字字号：22px
         ctx.fillText(name, 10, difValue)
         // 类型
-        ctx.setFontSize(12 * wpx) 
+        ctx.setFontSize(12 * wpx)
         ctx.fillText(type, 10, difValue + 45 * hpx)
         // 标签
-        ctx.setStrokeStyle('#F95D74') 
+        ctx.setStrokeStyle('#F95D74')
         // ctx.strokeRect(10, difValue + 45 * hpx * 2, label.length, 10)
-        ctx.setFontSize(10 * wpx) 
+        ctx.setFontSize(10 * wpx)
         ctx.setFillStyle('#F95D74')
         ctx.fillText(label, 10, difValue + 45 * hpx * 2)
         // 价格
@@ -217,7 +219,7 @@ Page({
         ctx.draw();
         wx.hideLoading({});
         this.setData({
-          isShow:true
+          isShow: true
         })
       }
     })
@@ -226,14 +228,15 @@ Page({
   canvasTempPath() {
     let wpx = this.data.wpx
     let hpx = this.data.hpx
-    let Height = this.data.Height
+    let carWidth = this.data.carWidth
+    let carHeight = this.data.carHeight
     wx.canvasToTempFilePath({
       x: 0,
       y: 0,
-      width: 270 * 3 * wpx,
-      height: Height * 3 * hpx,
-      destWidth: 270 * 2 * wpx,
-      destHeight: Height * 2 * hpx,
+      width: carWidth * 3 * wpx,
+      height: carHeight * 3 * hpx,
+      destWidth: carWidth * 2 * wpx,
+      destHeight: carHeight * 2 * hpx,
       canvasId: 'shareCanvas',
 
       success: (res) => {
