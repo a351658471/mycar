@@ -73,6 +73,7 @@ radio .wx-radio-input.wx-radio-input-checked::before{
   font-size: 20rpx;
   padding: 25rpx 44rpx 40rpx 44rpx;
   color: #FE2A45;
+  flex-wrap: wrap;
 }
 .labelItem input{
   font-size: 24rpx;
