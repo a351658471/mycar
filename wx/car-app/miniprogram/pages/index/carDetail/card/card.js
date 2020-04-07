@@ -193,7 +193,7 @@ Page({
         const ctx = wx.createCanvasContext('shareCanvas')
         ctx.setFillStyle('#fff')
         ctx.fillRect(0, 0, cWidth, cHeight)
-        ctx.drawImage(res.path, 10, 10, cWidth - 20, imgHeight - 10)
+        ctx.drawImage(res.path, 10, 10, cWidth - 30, imgHeight - 20)
         ctx.setFillStyle('#fff')
         ctx.fillRect(0, imgHeight, cWidth, difValue - imgHeight)
         ctx.drawImage(tempPath, cWidth * 2 / 3, cHeight - 40 * hpx - qrWidth, qrWidth - 10, qrWidth - 10)

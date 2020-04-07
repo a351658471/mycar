@@ -24,14 +24,14 @@
         <!-- 图片内容 -->
         <view class="imgContent" wx:if="{{item.type == 'image'}}">
             <view class="videoDelete" bindtap="imgDelete" data-index="{{index}}">
-              <image src="/assets/删除.png" mode="widthFix"></image>
+              <image src="/assets/del.png" mode="widthFix"></image>
             </view>
             <image src="{{item.content}}" mode="widthFix" style="width:100%"></image>
         </view>
         <!-- 视频 -->
         <view class="imgContent" wx:if="{{item.type == 'video'}}">
           <view class="videoDelete" bindtap="videoDelete" data-index="{{index}}">
-              <image src="/assets/删除.png" mode="widthFix"></image>
+              <image src="/assets/del.png" mode="widthFix"></image>
             </view>
             <video src="{{item.content}}" style="width:100%"></video>
         </view>
