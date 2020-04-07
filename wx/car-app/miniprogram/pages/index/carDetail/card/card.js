@@ -172,7 +172,8 @@ Page({
     let hpx = this.data.hpx
     let name = this.data.carData[0].name
     let type = this.data.carData[0].type == 0 ? '全新' : '二手'
-    let label = this.data.carData[0].data.labelList
+    let label = this.data.carData[0].data.labelList.join(" | ")
+    // label = label.join(" | ")
     let price = this.data.carData[0].price
     let src = this.data.carData[0].data.imgList[0]
     wx.getImageInfo({
