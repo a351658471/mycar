@@ -23,7 +23,6 @@ Page({
     //   userdCar: 1
     // },
     id:'',
-    textCache: null,
     textValue: ''
   },
   onLoad(options) {
@@ -106,9 +105,7 @@ Page({
         type: 'text',
         content: e.detail.value
       }
-      this.setData({
-        textCache: data
-      })
+      this.data.carData[0].data.detail.push(data)
     }
 
   },
@@ -116,9 +113,6 @@ Page({
   insertImage() {
     app.globalFunc.uploadImg((r, res) => {
       if (r) {
-        if (this.data.textCache != null) {
-          this.data.carData[0].data.detail.push(this.data.textCache)
-        }
         for (let index = 0; index < res.fileIDs.length; index++) {
           const element = res.fileIDs[index];
           let data = {
@@ -130,7 +124,6 @@ Page({
         this.setData({
           carData: this.data.carData,
           textValue: '',
-          textCache: null
         })
       }
     })
@@ -155,14 +148,10 @@ Page({
           content: res.fileIDs[0],
           type: 'video'
         }
-        if (this.data.textCache != null) {
-          this.data.carData[0].data.detail.push(this.data.textCache)
-        }
         this.data.carData[0].data.detail.push(data)
         this.setData({
           carData: this.data.carData,
           textValue: '',
-          textCache: null
         })
       }
     })

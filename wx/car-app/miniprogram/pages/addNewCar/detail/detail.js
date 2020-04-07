@@ -6,7 +6,6 @@ Page({
    */
   data: {
     reqData:[],
-    textCache: null,
     textValue: '',
     dataList: [],
     name:'',
@@ -160,9 +159,6 @@ Page({
   insertImage() {
     app.globalFunc.uploadImg((r, res) => {
       if (r) { 
-        if (this.data.textCache != null) {
-          this.data.dataList.push(this.data.textCache)
-        }
         for (let index = 0; index < res.fileIDs.length; index++) {
           const element = res.fileIDs[index];
           let data = {
@@ -174,7 +170,6 @@ Page({
         this.setData({
           dataList: this.data.dataList,
           textValue: '',
-          textCache: null
         })
       }
     })
@@ -194,14 +189,10 @@ Page({
           content: res.fileIDs[0],
           type: 'video'
         }
-        if (this.data.textCache != null) {
-          this.data.dataList.push(this.data.textCache)
-        }
         this.data.dataList.push(data)
         this.setData({
           dataList: this.data.dataList,
           textValue: '',
-          textCache: null
         })
       }
     })
@@ -220,11 +211,8 @@ Page({
         type: 'text',
         content: e.detail.value
       }
-      this.setData({
-        textCache: data
-      })
+      this.data.dataList.push(data)
     }
-
   },
 
   //保存成功后刷新管理页面数据
