@@ -5,14 +5,15 @@ Page({
    * 页面的初始数据
    */
   data: {
-    Height: 0,
+    carWidth: 270,
+    carHeight: 480,
     imgBase64: null,
     cHeight: 0,
     cWidth: 0,
     imagePath: '',
-    itemid:'',
-    carData:[],
-    isShow:false
+    itemid: '',
+    carData: [],
+    isShow: false
   },
 
   /**
@@ -51,7 +52,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-   
+
   },
 
   /**
@@ -118,7 +119,7 @@ Page({
       }
     })
   },
-   //二维码生成
+  //二维码生成
   getQrCode() {
     let wpx = this.data.wpx
     let hpx = this.data.hpx
@@ -135,7 +136,7 @@ Page({
       },
       success: res => {
         console.log('[云函数] [openapi.getQRCode] : ', res)
-    
+
         this.setData({
           imgBase64: wx.arrayBufferToBase64(res.result.buffer)
         })
@@ -147,7 +148,7 @@ Page({
             wx.getImageInfo({
               src: tempPath,
               success: (res) => {
-                var qrWidth = 270 * wpx / 4*1.2
+                var qrWidth = this.data.carWidth * wpx / 4 * 1.2
                 this.canvasFunc(tempPath, qrWidth)
               }
             })
@@ -166,22 +167,24 @@ Page({
       }
     })
   },
+  
 
   canvasFunc(tempPath, qrWidth) {
     let wpx = this.data.wpx
     let hpx = this.data.hpx
     let name = this.data.carData[0].name
     let type = this.data.carData[0].type == 0 ? '全新' : '二手'
-    let label = this.data.carData[0].data.labelList.slice(0, 1).join()
+    let label = this.data.carData[0].data.labelList.slice(0, 3).join('   ')
     let price = this.data.carData[0].price
     let src = this.data.carData[0].data.imgList[0]
     wx.getImageInfo({
       src: src,
       success: (res) => {
-        let imgHeight = res.height * (270 * wpx / res.width)
-        let cWidth = 270 * wpx;
-        let cHeight = 480*hpx;
-        let difValue = cHeight*2/3
+        let imgHeight = res.height * (this.data.carWidth * wpx / res.width)
+        let cWidth = this.data.carWidth * wpx;
+        let cHeight = this.data.carHeight * hpx;
+        let difValue = cHeight * 2 / 3
+        console.log("cWidth", cWidth, "cHeight", cHeight)
         this.setData({
           cWidth: cWidth,
           cHeight: cHeight,
@@ -190,26 +193,36 @@ Page({
         const ctx = wx.createCanvasContext('shareCanvas')
         ctx.setFillStyle('#fff')
         ctx.fillRect(0, 0, cWidth, cHeight)
-        ctx.drawImage(res.path, 0, 0, cWidth, imgHeight)
+        ctx.drawImage(res.path, 10, 10, cWidth - 20, imgHeight - 10)
         ctx.setFillStyle('#fff')
         ctx.fillRect(0, imgHeight, cWidth, difValue - imgHeight)
-        ctx.drawImage(tempPath, cWidth * 2 / 3, cHeight - 50 * hpx - qrWidth , qrWidth, qrWidth)
-        ctx.setFillStyle('#7B7575') 
-        ctx.setFontSize(12* wpx) 
-        ctx.fillText('扫描/长按识别', cWidth * 2 / 3, cHeight -25*hpx)
-        // ctx.setTextAlign('center')    // 文字居中
+        ctx.drawImage(tempPath, cWidth * 2 / 3, cHeight - 40 * hpx - qrWidth, qrWidth - 10, qrWidth - 10)
+        ctx.setFillStyle('#5C5C5C')
+        ctx.setFontSize(12 * wpx)
+        ctx.fillText('扫码/长按识别', cWidth * 2 / 3, cHeight - 25 * hpx)
+        // 标题
         ctx.setFillStyle('#000000')  // 文字颜色：黑色
-        ctx.setFontSize(17 * wpx)         // 文字字号：22px
+        ctx.setFontSize(16 * wpx)         // 文字字号：22px
         ctx.fillText(name, 10, difValue)
+        // 类型
+        ctx.setFontSize(13 * wpx)
         ctx.fillText(type, 10, difValue + 45 * hpx)
+        // 标签
+        ctx.measureText(label).width 
+        ctx.setStrokeStyle('#F95D74')
+        // ctx.strokeRect(10, difValue + 30 * hpx * 2, label.length, 10)
+        ctx.setFontSize(13 * wpx)
+        ctx.setFillStyle('#F95D74')
         ctx.fillText(label, 10, difValue + 45 * hpx * 2)
-        ctx.setFillStyle('#ff5777')  // 文字颜色
-        ctx.setFontSize(20 * wpx)         // 文字字号
+        // 价格
+        ctx.setFillStyle('#F95D74')  // 文字颜色
+        ctx.setFontSize(18 * wpx)         // 文字字号
+        ctx.font='18px bold'
         ctx.fillText('￥' + price, 10, cHeight - 25 * hpx)
         ctx.draw();
         wx.hideLoading({});
         this.setData({
-          isShow:true
+          isShow: true
         })
       }
     })
@@ -218,14 +231,15 @@ Page({
   canvasTempPath() {
     let wpx = this.data.wpx
     let hpx = this.data.hpx
-    let Height = this.data.Height
+    let carWidth = this.data.carWidth
+    let carHeight = this.data.carHeight
     wx.canvasToTempFilePath({
       x: 0,
       y: 0,
-      width: 270 * 3 * wpx,
-      height: Height * 3 * hpx,
-      destWidth: 270 * 3 * wpx,
-      destHeight: Height * 3 * hpx,
+      width: carWidth * 3 * wpx,
+      height: carHeight * 3 * hpx,
+      destWidth: carWidth * 2 * wpx,
+      destHeight: carHeight * 2 * hpx,
       canvasId: 'shareCanvas',
 
       success: (res) => {
@@ -248,15 +262,15 @@ Page({
           console.log(111)
           wx.authorize({
             scope: 'scope.writePhotosAlbum',
-            success() {
+            success: () => {
               wx.saveImageToPhotosAlbum({
                 filePath: this.data.imagePath,
-                success() {
+                success: () => {
                   wx.showToast({
                     title: '保存成功'
                   })
                 },
-                fail() {
+                fail: () => {
                   wx.showToast({
 
                     title: '保存失败',
@@ -265,7 +279,7 @@ Page({
                 }
               })
             },
-            fail() {
+            fail: () => {
               // 如果用户拒绝过或没有授权，则再次打开授权窗口
               //（ps：微信api又改了现在只能通过button才能打开授权设置，以前通过openSet就可打开，下面有打开授权的button弹窗代码）
               that.setData({

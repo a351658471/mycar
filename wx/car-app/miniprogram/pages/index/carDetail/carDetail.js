@@ -4,7 +4,7 @@ Page({
   * 页面的初始数据
   */
   data: {
-    
+    // share:'/assets/分享.png',
     isCanvas:false,
     isShare:false,
     filterList: [],
@@ -86,15 +86,7 @@ Page({
   onReachBottom: function () {
 
   },
-  onShareAppMessage(res) {
-    if (res.from === 'button') {
-      console.log(res.target);
-    }
-    return {
-      title: '厦门车之居',
-      path: '/pages/index/index?scene=' + this.data.itemid
-    };
-  },
+
   //根据id调用接口获取数据
   getCarData() {
     // 调用云函数  商品列表
@@ -160,16 +152,13 @@ Page({
   //分享好友
   onShareAppMessage(res) {
     if (res.from === 'button') {
+      console.log(res.target);
     }
     return {
       title: '厦门车之居',
-      path: '/pages/index/index',
-      success: function (res) {
-        console.log('成功', res)
-      }
-    }
+      path: '/pages/index/index?scene=' + this.data.itemid
+    };
   },
-
   makeCard(){
     wx.navigateTo({
       url: 'card/card?id='+this.data.carData[0]._id,
