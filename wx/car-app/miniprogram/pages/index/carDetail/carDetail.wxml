@@ -48,7 +48,7 @@
         <video src="{{item.content}}" style="width:100%" show-mute-btn="true" enable-play-gesture="true" vslide-gesture-in-fullscreen="true"></video>
       </view>
 
-      <view style='width:90%; margin:1vw auto; font-size:14px' wx:if="{{item.type == 'text'}}">
+      <view style='width:90%; margin:0 auto; padding:20rpx; font-size:14px' wx:if="{{item.type == 'text'}}">
          {{item.content}}
       </view>
    </view>
