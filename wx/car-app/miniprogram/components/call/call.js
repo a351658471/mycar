@@ -6,7 +6,11 @@ Component({
     callIcon: {
       type: String,
       value: '/assets/dh.png'
-    }
+    },
+    phoneNumber:{
+      type: String,
+      value: ''
+    },
   },
 
   /**
@@ -23,7 +27,7 @@ Component({
 
     call() {
       wx.makePhoneCall({
-        phoneNumber: '18650883333',
+        phoneNumber:  this.properties.phoneNumber,
         success: (res_makephone) => {
           this.setData({
             hideShare: !this.data.hideShare

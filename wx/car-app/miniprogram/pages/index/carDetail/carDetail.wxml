@@ -70,7 +70,7 @@
   </view>
   <view class="boxBox"></view>
   </scroll-view>
-  <my-call class="callIcon" bind:call="call"></my-call>
+  <my-call class="callIcon" bind:call="call" phoneNumber="{{shop.phone}}"></my-call>
 </view>
 <view class="shareBox" wx:if="{{isShare}}">
   <view class="nullBox" bindtap="cancel"></view>
