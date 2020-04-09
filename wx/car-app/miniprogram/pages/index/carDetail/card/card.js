@@ -1,4 +1,5 @@
 // miniprogram/pages/index/carDetail/card/card.js
+const app = getApp()
 Page({
 
   /**
@@ -10,7 +11,6 @@ Page({
     imgBase64: null,
     cHeight: 0,
     cWidth: 0,
-    imagePath: '',
     itemid: '',
     carData: [],
     isShow: false
@@ -139,7 +139,7 @@ Page({
       }
     })
   },
-  
+
   dealWords: function (options) {
     options.ctx.setFontSize(options.fontSize);//设置字体大小
     var allRow = Math.ceil(options.ctx.measureText(options.word).width / options.maxWidth);//实际总共能分多少行
@@ -207,7 +207,7 @@ Page({
           word: name,
           maxWidth: 250,
           x: 10,
-          y: difValue-15,
+          y: difValue - 15,
           maxLine: 1
         })
         // 类型
@@ -216,18 +216,18 @@ Page({
         // 标签
         ctx.setFillStyle('#F95D74')
         this.dealWords({
-          ctx:ctx,
-          fontSize:13,
-          word:label,
-          maxWidth:178,
-          x:10,
-          y: difValue + 45 * hpx*1.2,
-          maxLine:1
+          ctx: ctx,
+          fontSize: 13,
+          word: label,
+          maxWidth: 178,
+          x: 10,
+          y: difValue + 45 * hpx * 1.2,
+          maxLine: 1
         })
         // 价格
         ctx.setFillStyle('#F95D74')  // 文字颜色
         ctx.setFontSize(18 * wpx)         // 文字字号
-        ctx.font='18px bold'
+        ctx.font = '18px bold'
         ctx.fillText('￥' + price, 10, cHeight - 25 * hpx)
         ctx.draw();
         wx.hideLoading({});
@@ -237,8 +237,10 @@ Page({
       }
     })
   },
-  //卡片临时路径
-  canvasTempPath() {
+  
+  //点击保存到相册
+  save() {
+    // 卡片临时路径
     let wpx = this.data.wpx
     let hpx = this.data.hpx
     let carWidth = this.data.carWidth
@@ -252,72 +254,12 @@ Page({
       destHeight: carHeight * 2 * hpx,
       canvasId: 'shareCanvas',
 
-      success: (res) => {
-        this.data.imagePath = res
-
+      success: (res) => { 
+        app.globalFunc.savePicToAlbum(this, res.tempFilePath)
       },
       fail: function (res) {
         console.log('临时路径生成失败')
       }
     });
-  },
-  //点击保存到相册
-  save() {
-    this.canvasTempPath()
-    // 获取用户是否开启用户授权相册
-    wx.getSetting({
-      success: (res) => {
-        // 如果没有则获取授权
-        if (!res.authSetting['scope.writePhotosAlbum']) {
-          console.log(111)
-          wx.authorize({
-            scope: 'scope.writePhotosAlbum',
-            success: () => {
-              wx.saveImageToPhotosAlbum({
-                filePath: this.data.imagePath,
-                success: () => {
-                  wx.showToast({
-                    title: '保存成功'
-                  })
-                },
-                fail: () => {
-                  wx.showToast({
-
-                    title: '保存失败',
-                    icon: 'none'
-                  })
-                }
-              })
-            },
-            fail: () => {
-              // 如果用户拒绝过或没有授权，则再次打开授权窗口
-              //（ps：微信api又改了现在只能通过button才能打开授权设置，以前通过openSet就可打开，下面有打开授权的button弹窗代码）
-              that.setData({
-                openSet: true
-              })
-            }
-          })
-        } else {
-          // 有则直接保存
-          wx.saveImageToPhotosAlbum({
-            filePath: this.data.imagePath.tempFilePath,
-            success: (res) => {
-              console.log(res)
-              wx.showToast({
-                title: '保存成功'
-              })
-            },
-            fail: (err) => {
-              console.log(this.data.imagePath.tempFilePath)
-              console.log(err)
-              wx.showToast({
-                title: '保存失败',
-                icon: 'none'
-              })
-            }
-          })
-        }
-      }
-    })
   },
 })
