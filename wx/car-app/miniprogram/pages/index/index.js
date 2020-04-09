@@ -15,7 +15,8 @@ Page({
     isLoading: false,
     noMore: false,
     hideShare: false,
-    state:null
+    state:null,
+    tabflag:0
   },
   onLoad(options) {
     if(options && options.scene){
@@ -69,6 +70,7 @@ Page({
     } else {
       type = [app.globalData.type.newCar]
     }
+    let tabflag = this.data.tabflag
     // 调用云函数  商品列表
     wx.cloud.callFunction({
       name: 'item',
@@ -93,6 +95,9 @@ Page({
         order: 0
       },
       success: res => {
+        if(tabflag != this.data.tabflag){
+          return
+        }
         this.data.flag = true;
         if (res.result.data.length < 5) {
           this.data.noMore = true
@@ -103,6 +108,7 @@ Page({
           noMore: this.data.noMore,
           isLoading: false
         })
+        
         // console.log('[云函数] [item.itemList] : ', res.result)
         res.result.data.forEach(item => {
           item.data = JSON.parse(item.data)
@@ -122,6 +128,7 @@ Page({
   //tab事件
   tabClick: function (e) {
     this.data.page =1
+    this.data.tabflag ++
     if (e.detail.tabCurrent == 0) {
       this.setData({
         isNew: true
