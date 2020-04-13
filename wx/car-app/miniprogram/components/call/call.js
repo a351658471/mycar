@@ -11,6 +11,10 @@ Component({
       type: String,
       value: ''
     },
+    sameNumber: {
+      type: Boolean,
+      value: false
+    },
   },
 
   /**
