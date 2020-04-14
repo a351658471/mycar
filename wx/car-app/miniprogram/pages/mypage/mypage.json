@@ -1,8 +1,8 @@
 {
-  "navigationBarBackgroundColor": "#FA4154",
+  "navigationStyle": "custom",
   "navigationBarTextStyle": "white",
   "navigationBarTitleText": "",
-  "backgroundColorTop":"#FA4154",
+  "backgroundColorTop":"#286CF3",
   "backgroundColorBottom": "#FFFFFF",
   "usingComponents": {
     "my-call": "/components/call/call"

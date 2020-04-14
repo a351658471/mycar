@@ -18,7 +18,7 @@
   content:'';
   width:40rpx;
   height:2rpx;
-  background:#FE2A45;
+  background:linear-gradient(to right,#3377FE,#3377FE);
   bottom:-0.5rem;
   left:1rem;
   border-radius:25%;
