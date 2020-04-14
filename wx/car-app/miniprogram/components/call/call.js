@@ -6,14 +6,22 @@ Component({
     callIcon: {
       type: String,
       value: '/assets/dh.png'
-    }
+    },
+    phoneNumber: {
+      type: String,
+      value: ''
+    },
+    sameNumber: {
+      type: Boolean,
+      value: false
+    },
   },
 
   /**
    * 组件的初始数据
    */
   data: {
-    hideShare: false
+    showMenu: false
   },
 
   /**
@@ -22,17 +30,40 @@ Component({
   methods: {
 
     call() {
+      wx.getSystemInfo({
+        success: (res) => {
+          if (res.platform == "ios") {
+            this.callEvent()
+          }
+          else {
+            this.setData({
+              showMenu: true
+            })
+          }
+        }
+      })
+    },
+    callEvent() {
       wx.makePhoneCall({
-        phoneNumber: '18650883333',
+        phoneNumber: this.properties.phoneNumber,
         success: (res_makephone) => {
           this.setData({
-            hideShare: !this.data.hideShare
+            showMenu: false
           })
           console.log("呼叫电话返回：", res_makephone)
         }
       })
-
     },
+    copyEvent() {
+      wx.setClipboardData({
+        data: this.properties.phoneNumber,
+      });
+    },
+    backEvent() {
+      this.setData({
+        showMenu: false
+      })
+    }
 
   }
 })

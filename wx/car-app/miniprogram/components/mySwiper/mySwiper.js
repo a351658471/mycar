@@ -10,7 +10,7 @@ Component({
     },
     bRadius:{
       type:String,
-      value:"20rpx"
+      value:"6rpx"
     },
     swiperHeight:{
       type:String,

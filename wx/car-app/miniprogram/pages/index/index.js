@@ -6,7 +6,7 @@ Page({
     //   userdCar: 1
     // },
     shop: {},
-    isNew: true,
+    tabCurrent: 0,
 
     resData: [],
     newcar: [],
@@ -15,7 +15,8 @@ Page({
     isLoading: false,
     noMore: false,
     hideShare: false,
-    state:null
+    state:null,
+    tabflag:0
   },
   onLoad(options) {
     if(options && options.scene){
@@ -63,36 +64,49 @@ Page({
         resData: []
       })
     }
-    let type = 0
-    if (!this.data.isNew) {
+    let type
+    let status = [0]
+    if(this.data.tabCurrent == 0){
       type = [app.globalData.type.userCar]
-    } else {
+    }
+    else if(this.data.tabCurrent == 1){
       type = [app.globalData.type.newCar]
     }
+    else if(this.data.tabCurrent == 2){
+      status = [1]
+    }
+   
+    let data = {
+      action: "itemList",
+      istotal: 0,   //  返回总数
+      // 查询条件
+      condition: {
+        shopId: this.data.shop._id,
+        // 名称模糊搜素
+        // name: {
+        //   $regex: ".*13.*",
+        //   $options: 'i'
+        // }
+      },
+      status: status,    // 商品状态 0在售 1已售 2未上架 
+      // 分页
+      page,
+      perpage: 5,
+      // 是否排序
+      order: 0
+    }
+    if(type){
+      data.type = type
+    }
+    let tabflag = this.data.tabflag
     // 调用云函数  商品列表
     wx.cloud.callFunction({
       name: 'item',
-      data: {
-        action: "itemList",
-        istotal: 0,   //  返回总数
-        // 查询条件
-        condition: {
-          shopId: this.data.shop._id,
-          // 名称模糊搜素
-          // name: {
-          //   $regex: ".*13.*",
-          //   $options: 'i'
-          // }
-        },
-        status: [0],    // 商品状态 0在售 1已售 2未上架 
-        type,
-        // 分页
-        page,
-        perpage: 5,
-        // 是否排序
-        order: 0
-      },
+      data: data,
       success: res => {
+        if(tabflag != this.data.tabflag){
+          return
+        }
         this.data.flag = true;
         if (res.result.data.length < 5) {
           this.data.noMore = true
@@ -103,6 +117,7 @@ Page({
           noMore: this.data.noMore,
           isLoading: false
         })
+        
         // console.log('[云函数] [item.itemList] : ', res.result)
         res.result.data.forEach(item => {
           item.data = JSON.parse(item.data)
@@ -122,15 +137,8 @@ Page({
   //tab事件
   tabClick: function (e) {
     this.data.page =1
-    if (e.detail.tabCurrent == 0) {
-      this.setData({
-        isNew: true
-      })
-    } else {
-      this.setData({
-        isNew: false
-      })
-    }
+    this.data.tabflag ++
+    this.data.tabCurrent = e.detail.tabCurrent
     this.getCarData()
   },
 

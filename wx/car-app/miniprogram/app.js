@@ -13,8 +13,8 @@ App({
         traceUser: true,
       }
       const accountInfo = wx.getAccountInfoSync();
-      console.log('accountInfo',accountInfo)
-      if(accountInfo.miniProgram.envVersion == "release"){
+      console.log('accountInfo', accountInfo)
+      if (accountInfo.miniProgram.envVersion == "release") {
         config.env = 'release-8n393'
       }
       wx.cloud.init(config)
@@ -27,7 +27,7 @@ App({
         userCar: 1
       },
       state: 0,
-      stateChange:function(){
+      stateChange: function () {
         this.state++
       },
       eventShopUpdate: "eventShopUpdate",
@@ -63,8 +63,8 @@ App({
         }
       },
       shop: {}, //  商店信息
-      user:{},// 用户信息
-      feedbacks:[], // 反馈信息
+      user: {},// 用户信息
+      feedbacks: [], // 反馈信息
     }
     let that = this
     this.globalFunc = {
@@ -93,14 +93,14 @@ App({
       uploadRes: async function (filePaths, callback) {
         // 上传图片
         let data = {
-          fileIDs:[],
-          errors:[]
+          fileIDs: [],
+          errors: []
         }
         for (let index = 0; index < filePaths.length; index++) {
           const filePath = filePaths[index];
           const name = new Date().getTime().toString() + "_" + Math.floor(Math.random() * 100000);
           const cloudPath = name + filePath.match(/\.[^.]+?$/)[0]
-         
+
           await wx.cloud.uploadFile({
             cloudPath,
             filePath,
@@ -109,7 +109,7 @@ App({
           }).catch(error => {
             // handle error
           })
-          
+
         }
         wx.hideLoading()
         callback(true, data)
@@ -153,6 +153,125 @@ App({
           }
         })
       },
+      // 保存图片到本地
+      savePicToAlbum: function (that, tempFilePath) {
+        wx.getSetting({
+          success(res) {
+            if (!res.authSetting['scope.writePhotosAlbum']) {
+              wx.authorize({
+                scope: 'scope.writePhotosAlbum',
+                success() {
+                  console.log('授权相册')
+                  wx.saveImageToPhotosAlbum({
+                    filePath: tempFilePath,
+                    success(res) {
+
+                      that.setData({
+                        onShare: false
+                      });
+
+                      wx.hideLoading()
+                      console.log('保存图片成功回调')
+                      wx.showToast({
+                        title: '保存成功'
+                      });
+
+                    },
+                    fail(res) {
+                      wx.hideLoading()
+                      console.log('保存图片失败回调')
+                      console.log(res);
+
+                      that.setData({
+                        onShare: false
+                      });
+                    }
+                  })
+                },
+                fail() {
+                  wx.hideLoading();
+                  wx.showModal({
+                    title: '温馨提示',
+                    content: '您已拒绝授权，是否去设置打开？',
+                    confirmText: "确认",
+                    cancelText: "取消",
+                    success: function (res) {
+                      console.log(res);
+                      if (res.confirm) {
+                        console.log('用户点击确认')
+                        wx.openSetting({
+                          success: (res) => {
+                            console.log(res)
+                            res.authSetting = {
+                              "scope.writePhotosAlbum": true,
+                            }
+                            console.log("openSetting: success");
+                            wx.saveImageToPhotosAlbum({
+                              filePath: tempFilePath,
+                              success(res) {
+
+                                that.setData({
+                                  onShare: false
+                                });
+
+                                wx.hideLoading()
+                                wx.showToast({
+                                  title: '保存成功'
+                                });
+                              },
+                              fail(res) {
+                                wx.hideLoading()
+                                console.log(res);
+
+                                that.setData({
+                                  onShare: false
+                                });
+                              }
+                            })
+                          }
+                        });
+                      } else {
+                        console.log('用户点击取消')
+                      }
+                    }
+                  });
+
+                }
+              })
+            } else {
+              console.log('保存图片')
+              wx.saveImageToPhotosAlbum({
+                filePath: tempFilePath,
+                success(res) {
+                  wx.hideLoading()
+                  console.log('保存图片成功回调')
+                  wx.showToast({
+                    title: '保存成功',
+                  });
+
+                  that.setData({
+                    onShare: false
+                  });
+                },
+                fail(res) {
+                  wx.hideLoading()
+                  console.log('saveImageToPhotosAlbum 失败回调')
+                  console.log(res);
+
+                  that.setData({
+                    onShare: false
+                  });
+                }
+              })
+            }
+          },
+          fail(res) {
+            wx.hideLoading()
+            console.log('wx.getSetting 失败回调')
+            console.log(res);
+          }
+        })
+      }
     }
   }
 })

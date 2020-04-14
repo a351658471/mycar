@@ -1,63 +1,56 @@
 <view class="wrap">
-	<!-- 头部 -->
-	<view class="header">
-		<view class="head">
-          <button open-type="getUserInfo" 
-                  bindgetuserinfo="onGetUserInfo" 
-                  class="userinfo-avatar" 
-                  style="background-image: url({{userInfo.avatarUrl?userInfo.avatarUrl:background}})" 
-                  size="default">
-    </button>
-			<text class="headName">{{userInfo.nickName}}</text>
-			<view class="noregist" hidden="{{isregist}}">
-				 <button open-type="getUserInfo" bindgetuserinfo="onGetUserInfo" size="mini" hover-class="none">登录/注册</button>
-			</view>
-			<!-- <image class="headIcon" src="../../assets/mypage/mypage-vipicon.png"/> -->
-		</view>
-		<view class="infors">
-			<view class="infor">
-				<text>动态</text>
-				<text>{{trends}}</text>
-			</view>
-			<view class="infor">
-				<text>关注</text>
-				<text>{{follow}}</text>
-			</view>
-			<view class="infor">
-				<text>粉丝</text>
-				<text>{{fans}}</text>
-			</view>
-		</view>
-	</view>
-	<!-- 签到积分 -->
-	<view class="signcontain">
-		<view class="sign">
-			<text>积分</text>
-			<text class="signNum">{{signNum}}</text>
-		</view>
-		<button size="mini" disabled="{{control}}" catchtap="signButton">签到</button>
-	</view>
-	<view class="middleline"></view>
-	<!-- 我的服务 -->
-	<view class="myserve">
-		<view class="myservetitle">我的服务</view>
-		<view class="myserveItem">
-			<view wx:for="{{menus}}" wx:key="key" class="Item" data-src="{{item}}" bindtap="bindtapMenu">
-				<image src="../../assets/mypage/{{item.icon}}" />
-				<text>{{item.name}}</text>
-			</view>
-		</view>
-	</view>
-  <view class="myserve" style="padding: 0 0 100rpx 0;"  wx:if="{{adminhide}}">
-		<view class="myservetitle admintitle">车行管理</view>
-		<view class="myserveItem">
-			<view wx:for="{{adminMenus}}" wx:key="key" class="Item" data-src="{{item}}" bindtap="bindtapMenu">
-				<image src="../../assets/mypage/{{item.icon}}" />
-				<text>{{item.name}}</text>
-			</view>
-		</view>
-	</view>
+  <!-- 头部 -->
+  <image src="../../assets/bcg.png" mode="aspectFit" style="width:100%; height:202rpx"></image>
+  <view class="header">
+    <view class="head">
+
+      <!-- 头像部分 -->
+      <view class="headpart">
+        <button open-type="getUserInfo" bindgetuserinfo="onGetUserInfo" class="userinfo-avatar" style="background-image: url({{userInfo.avatarUrl?userInfo.avatarUrl:background}})" size="default">
+        </button>
+        <!-- 签到积分 -->
+        <view class="signcontain">
+          <text>积分</text>
+          <text class="signNum">{{signNum}}</text>
+        </view>
+      </view>
+      
+      <!-- 名字部分 -->
+      <view class="headName">{{userInfo.nickName}}</view>
+      <view class="noregist" hidden="{{isregist}}">
+        <button open-type="getUserInfo" bindgetuserinfo="onGetUserInfo" size="mini" hover-class="none">登录/注册</button>
+      </view>
+
+      <!-- 手机号/签到部分 -->
+      <view class="signpart">
+        <view class="modify"><text>手机号：{{userInfo.phone}}</text><view class="modified">修改</view></view>
+        <button size="mini" disabled="{{control}}" catchtap="signButton">签到</button>
+      </view>
+    </view>
+    <view class="middleline"></view>
+
+  </view>
+
+  <!-- 我的服务 -->
+  <view class="myserve">
+    <view class="myservetitle">我的服务</view>
+    <view class="myserveItem">
+      <view wx:for="{{menus}}" wx:key="key" class="Item" data-src="{{item}}" bindtap="bindtapMenu">
+        <image src="../../assets/mypage/{{item.icon}}" />
+        <text>{{item.name}}</text>
+      </view>
+    </view>
+  </view>
+  <view class="myserve" style="padding: 0 0 100rpx 0;" wx:if="{{adminhide}}">
+    <view class="myservetitle admintitle">车行管理</view>
+    <view class="myserveItem">
+      <view wx:for="{{adminMenus}}" wx:key="key" class="Item" data-src="{{item}}" bindtap="bindtapMenu">
+        <image src="../../assets/mypage/{{item.icon}}" />
+        <text>{{item.name}}</text>
+      </view>
+    </view>
+  </view>
 </view>
-<my-call class="callIcon" bind:call="call"></my-call>
-
-
+<view class="call">
+  <my-call class="callIcon" bind:call="call" phoneNumber="{{shop.phone}}"></my-call>
+</view>

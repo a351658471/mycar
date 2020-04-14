@@ -1,45 +1,48 @@
 /* mypage.wxss */
-
 .wrap {
   display: flex;
   flex-direction: column;
 }
 
 .header {
-  background: #fa4154;
+  background: #ffffff;
   box-sizing: border-box;
 }
-
-.header .head {
+/* 头像部分 */
+.header .head .headpart{
   display: flex;
-  align-items: center;
+  justify-content: space-between;
 }
-
-.header .head .userinfo-avatar {
-  width: 100rpx;
-  height: 100rpx;
+/* 积分部分 */
+.header .head .headpart .signcontain{
+  position: absolute;
+  right: 65rpx;
+  top: 230rpx;
+  font-size: 28rpx;
+}
+.header .head .headpart .signcontain .signNum{
+  font-size: 54rpx;
+  font-weight: bold;
+  margin-left: 26rpx;
+}
+.header .head .headpart button{
+  width: 127rpx;
+  height: 127rpx;
   border-radius: 50%;
   background-size: cover;
   background-color: white;
-  margin: 0;
-  padding: 0;
-  margin-left: 62rpx;
+  margin-left: 54rpx;
+  border:4rpx solid #fff;
+  position: absolute;
+  top: 160rpx;
 }
-
-.header .head .userinfo-avatar[size] {
-  width: 100rpx;
-}
-
-.header .head .userinfo-avatar:after {
-  border: none;
-}
-
+/* 名字部分 */
 .header .head .headName {
-  font-size: 36rpx;
-  color: #fff;
-  margin-left: 28rpx;
+  font-size: 40rpx;
+  color: #000000;
+  font-weight: bold;
+  margin: 130rpx 60rpx 18rpx 60rpx;
 }
-
 .header .head .noregist button {
   width: 140rpx;
   padding: 5rpx;
@@ -48,67 +51,52 @@
   color: #fff;
   font-size: 25rpx;
 }
-
-.header .infors {
+/* 手机/签到部分 */
+.header .head .signpart{
+  width: 100%;
   display: flex;
-  font-size: 24rpx;
-  box-sizing: border-box;
-  padding: 48rpx 0 48rpx 62rpx;
-}
-
-.header .infors .infor {
-  margin-right: 18rpx;
-}
-
-.header .infors .infor text {
-  margin-right: 8rpx;
-}
-
-.signcontain {
-  display: flex;
-  align-items: center;
   justify-content: space-between;
-  padding: 36rpx 20rpx 36rpx 62rpx;
-  font-size: 28rpx;
-  background-color: #fff;
+  align-items: flex-end;
+  padding: 0 60rpx 34rpx 60rpx;
 }
-
-.signcontain .sign {
-  flex: 1;
+.header .head .modify{
+  display: flex;
 }
-
-.signcontain .sign .signNum {
-  font-weight: bold;
+.header .head .modify text{
+  font-size: 24rpx;
+  color: #9B9B9B;
+}
+.header .head .modify .modified{
+  font-size: 24rpx;
+  color: #000000;
   margin-left: 18rpx;
 }
-
-.signcontain button {
-  width: 120rpx;
-  height: 60rpx;
-  background: #FE2A45;
-  font-size: 28rpx;
+.header .head .signpart button{
+  width: 122rpx;
+  height: 50rpx;
+  background-color: #1974FF;
   color: #fff;
+  font-size: 24rpx;
   font-weight: normal;
+  border-radius: 30rpx;
+  margin-right: 120rpx;
 }
-
 .middleline {
   width: 100%;
   height: 16rpx;
   background: rgba(247, 247, 247, 1);
 }
-
 .myserve {
   background: #fff;
 }
-
 .myserve .myservetitle {
-  font-size: 32rpx;
+  font-size: 30rpx;
   color: #333;
   font-weight: bold;
-  padding: 46rpx 30rpx;
+  padding: 46rpx 60rpx;
 }
 .myserve .admintitle{
-  padding: 38rpx 30rpx 46rpx 30rpx;
+  padding: 38rpx 30rpx 46rpx 60rpx;
 }
 
 .myserve .myserveItem {
@@ -125,16 +113,18 @@
 }
 
 .myserve .myserveItem .Item image {
-  width: 65rpx;
-  height: 65rpx;
+  width: 80rpx;
+  height: 80rpx;
 }
 
 .myserve .myserveItem .Item text {
-  font-size: 28rpx;
+  font-size: 22rpx;
   color: #686666;
-  padding: 24rpx 0 64rpx 0;
+  padding: 24rpx 0 34rpx 0;
 }
-
-
-
+.call{
+  position: fixed;
+  right: 28rpx;
+  bottom: 100rpx;
+}
 

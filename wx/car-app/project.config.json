@@ -36,7 +36,11 @@
 	"debugOptions": {
 		"hidedInDevtools": []
 	},
-	"scripts": {},
+	"scripts": {
+		"beforeCompile": "",
+		"beforePreview": "tsc",
+		"beforeUpload": ""
+	},
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
 	"condition": {

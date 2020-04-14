@@ -16,7 +16,7 @@
   <view class="userItem" wx:for="{{userList}}" wx:key="key">
     <view class="userInfo pd">
       <view>{{item.nickName}}</view>
-      <view style="margin-top:24rpx">{{item.phone}}</view>
+      <view style="margin-top:24rpx;color:#7C7777;font-size:26rpx">{{item.phone}}</view>
     </view>
     <view class="setMg pd" bind:tap="serMg" data-index="{{index}}" data-src="{{item}}">
       {{isAdmin? "设为普通用户":"设为管理员"}}

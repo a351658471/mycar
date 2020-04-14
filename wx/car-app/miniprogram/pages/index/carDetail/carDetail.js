@@ -1,4 +1,5 @@
 // const rpx2px = createRpx2px()
+const app = getApp()
 Page({
   /**
   * 页面的初始数据
@@ -22,7 +23,8 @@ Page({
     currentIndex: 0,
     currentCar: {},
     hideShare: false,
-    myList: []
+    myList: [],
+    shop: {},
   },
 
   /**
@@ -38,6 +40,8 @@ Page({
     // })
     // console.log(this.data.currentCar)
     this.data.itemid = options.carId
+    this.data.shop = app.globalData.shop
+    this.setData(this.data)
     this.getCarData()
   },
 
