@@ -1,0 +1,16 @@
+var formatTime = function(time,format){
+  var ftime = 0
+  if (('' + time).length === 10) {
+    ftime = parseInt(time) * 1000
+  } else {
+    ftime = time
+  }
+  var d = getDate(ftime)
+  var Month = parseInt(d.getMonth()) + 1
+  if (format == 'yyyy/mm/dd') return (d.getFullYear() + '/' + Month + '/' + d.getDate())
+  if (format == 'yyyy-mm-dd') return (d.getFullYear() + '-' + Month + '-' + d.getDate())
+ 
+}
+module.exports={
+  formatTime:formatTime
+};

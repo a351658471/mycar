@@ -20,7 +20,9 @@
     "pages/carManage/carManage",
     "pages/editCarInfo/editCarInfo",
     "pages/addNewCar/detail/detail",
-    "pages/index/carDetail/card/card"
+    "pages/index/carDetail/card/card",
+    "pages/information/information",
+    "pages/information/detail/detail"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
@@ -32,20 +34,26 @@
   "tabBar": {
     "backgroundColor": "#fff",
     "borderStyle": "white",
-    "selectedColor": "#FF547B",
+    "selectedColor": "#3377FE",
     "color": "#999999",
     "list": [
       {
+        "pagePath": "pages/information/information",
+        "text": "资讯",
+        "iconPath": "/assets/information.png",
+        "selectedIconPath": "/assets/information_active.png"
+      },
+      {
         "pagePath": "pages/index/index",
         "text": "买车",
-        "iconPath": "/assets/car1.png",
-        "selectedIconPath": "/assets/car1_active.png"
+        "iconPath": "/assets/car.png",
+        "selectedIconPath": "/assets/car_active.png"
       },
       {
         "pagePath": "pages/mypage/mypage",
         "text": "我的",
-        "iconPath": "/assets/my.png",
-        "selectedIconPath": "/assets/my_active.png"
+        "iconPath": "/assets/mine.png",
+        "selectedIconPath": "/assets/mine_active.png"
       }
     ]
   },
