@@ -70,33 +70,20 @@ radio .wx-radio-input.wx-radio-input-checked::before{
   background: #FFFEFF;
   font-size: 24rpx;
   padding: 25rpx 44rpx 40rpx 44rpx;
-  color: #3377FE;
+  color: #6C6C6C;
   flex-wrap: wrap;
 }
 .labelText{
-  border: 1px solid #3377FE;
+  background:#F8F8FA;
   padding: 2rpx 14rpx;
   border-radius: 6rpx;
   text-align: center;
   font-size: 24rpx;
   margin-top: 15rpx; 
 }
-.deleteIcon{
-  height:1rem;
-  width: 1rem;
-  margin-left: 0.3rem;
-  border-radius: 50%;
-  border: 1px solid #3377FE;
-  position: relative
-}
-.deleteIcon::after{
-  content: '';
-  width: 0.5rem;
-  height:1px;
-  background: #3377FE;
-  position: absolute;
-  top: 50%;
-  left: 25%
+.deleteIcon image{
+  width: 28rpx;
+  height: 28rpx;
 }
 .labelHeader{
   display: flex;
@@ -118,47 +105,40 @@ radio .wx-radio-input.wx-radio-input-checked::before{
   margin:3vw 3vw 0 0;
   text-align: center;
   position: relative;
-  margin-bottom: 1vw
-  
+  margin-bottom: 1vw 
 }
 .itemImg{
   width: 100%;
   height: 100%;
-  border: 1px solid #9A979B;
-  border-radius: 5px;
-  
+  border: 2rpx solid #979797;
+  margin-left: 10rpx;
 }
 .deleteImg{
-  width: 15%;
+  width: 26rpx;
+  height: 26rpx;
   position: absolute;
-  right:0;
-  top: 0;
-  
+  right:-12rpx;
+  top: -5rpx;
 }
 .deleteImg image{
   width: 100%;
   background: #fff
 }
 .itemAdd{
-  width: 25%;
-  height:10vh;
-  border: 1px solid #B5B2B5;
-  text-align: center;
-  line-height: 10vh;
-  font-size: 14px;
-  color: #B5B2B5;
-  margin-top: 3vw;
-  background: #F2F2F2;
+  width: 30%;
+  height:25vw;
+  margin-top: 5vw;
+  margin-left: 20rpx;
 }
 .itemAdd image{
-  width:60%
+  width:100%
 }
 .next{
   width: 90%;
   height:12vw;
   text-align: center;
   line-height: 12vw;
-  background: linear-gradient(to right,rgb(83, 147, 243),#3377FE);
+  background: linear-gradient(to right,#3377FE,#3377FE);
   color: #fff;
   border-radius: 10px;
   margin: 5vw auto

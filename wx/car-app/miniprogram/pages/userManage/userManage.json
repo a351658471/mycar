@@ -1,7 +1,7 @@
 {
   "navigationBarBackgroundColor": "#ffffff",
   "navigationBarTextStyle": "black",
-  "navigationBarTitleText": "",
+  "navigationBarTitleText": "账号管理",
   "usingComponents": {
     "my-tab":"../carManage/components/leftTab/leftTab"
   }

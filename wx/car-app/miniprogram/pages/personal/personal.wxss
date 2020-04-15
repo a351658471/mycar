@@ -25,7 +25,7 @@ page{
 .personalMsg .personalDetail button{
     font-size: 25rpx;
     color: white;
-    background: linear-gradient(to right,#FD7493,#FE2A45);
+    background: linear-gradient(to right,#3377FE,#3377FE);
     padding: 5rpx 10rpx;
 }
 
@@ -52,5 +52,5 @@ input{
     color: #FFFFFF;
     font-size: 36rpx;
     font-weight: normal;
-    background: linear-gradient(to right,#FD7493,#FE2A45)
+    background: linear-gradient(to right,#3377FE,#3377FE)
 }

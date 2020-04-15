@@ -4,19 +4,21 @@
     <!-- 轮播图组件 -->
     <view>
       <my-swiper imgList="{{carData[0].data.imgList}}" isMyDots="{{true}}" swiperWidth="100%" bRadius="0"></my-swiper>
+      <image class="sold" wx:if="{{isSold}}" src="/assets/sold.png" />
     </view>
     <!-- 报价 -->
     <view class='carDetail'>
       <view class='detail-heard'>
         <view class="detail-in">
-          <view class="heard-name" style="max-width:80%">{{carData[0].name}}</view>
-          <view style="margin-left:30rpx;">{{carData[0].type ==0 ?'全新':'二手'}}</view>
+          <!-- <view style="margin-left:30rpx;">{{carData[0].type ==0 ?'全新 · ':'二手 · '}}</view> -->
+          <view class="heard-name">{{carData[0].type ==0 ?'全新':'二手'}} · {{carData[0].name}}</view>
         </view>
-        <!-- <view class="heard-right">
+        <view class="heard-right">
           <view class="share" bindtap="shareEvent">
-            <image src="/assets/share.png" mode="widthFix" style="width:80%;height:20rpx;margin-top:6rpx"></image>
+            <image src="/assets/share.png" mode="widthFix"></image>
+            <text>分享</text>
           </view>
-        </view> -->
+        </view>
       </view>
       <view class='detail-body'>
         <view class='body-left'>
@@ -24,7 +26,7 @@
             <view class='left-item'>{{item}}</view>
           </block>
         </view>
-        <view class='body-right' style='color:#FE2A45;font-weight:bold; margin-top: 5rpx;'>
+        <view class='body-right' style='color:#EA1919;font-weight:bold; margin-top: 5rpx;'>
           ￥{{carData[0].price}}
         </view>
       </view>
@@ -32,11 +34,11 @@
     <!-- detail -->
     <view class="bottomBox">
       <!-- tab -->
-      <view style="margin: 18rpx auto 42rpx 38rpx">
+      <view style="margin: 0 auto 42rpx 38rpx">
         <my-tab tabList="{{tabList}}" fontSize="14px" bind:tabClick="tabClick"></my-tab>
       </view>
-      <view wx:if="{{currentIndex == 0}}" style='background:#fff; width:100%;padding-top:2vw'>
-        <view wx:for="{{carData[0].data.detail}}" wx:key="index" style="margin-top:1rem">
+      <view wx:if="{{currentIndex == 0}}" style='background:#fff; width:100%;padding-top:1vw'>
+        <view wx:for="{{carData[0].data.detail}}" wx:key="index" style="margin-top:20rpx">
           <!-- 图片内容 -->
           <view style='width:90%; margin:0 auto' wx:if="{{item.type == 'image'}}">
             <image src='{{item.content}}' mode="widthFix" style='width:100%' bindtap="previewImage" data-content="{{item.content}}"></image>

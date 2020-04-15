@@ -4,6 +4,7 @@
     "pages/index/carDetail/carDetail",
     "pages/mypage/mypage",
     "pages/personal/personal",
+    "pages/shopMessage/shopMessage",
     "pages/gif/gif",
     "pages/userFeedback/userFeedback",
     "pages/userFeedbackDetail/userFeedbackDetail",

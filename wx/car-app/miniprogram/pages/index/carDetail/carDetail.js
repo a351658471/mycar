@@ -8,6 +8,7 @@ Page({
     // share:'/assets/分享.png',
     isCanvas:false,
     isShare:false,
+    isSold:false,
     filterList: [],
     i: 0,
     // lastTapTime:0,
@@ -45,52 +46,6 @@ Page({
     this.getCarData()
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow() {
-    // this.data.carData[0].data.detail.forEach((item, index) => {
-    //   if (item.type == 'image') {
-    //     this.data.filterList.push(item.content)
-    //   }
-    // })
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
   //根据id调用接口获取数据
   getCarData() {
     // 调用云函数  商品列表
@@ -105,7 +60,7 @@ Page({
         }
       },
       success: res => {
-        // console.log('[云函数] [item.itemList] : ', res.result)
+        console.log('[云函数] [item.itemList] : ', res.result)
         res.result.data.forEach(item => {
           item.data = JSON.parse(item.data)
           this.data.carData.push(item)
@@ -122,7 +77,7 @@ Page({
     })
   },
   tabClick(e) {
-    // console.log(e)
+    console.log(e)
     this.setData({
       currentIndex: e.detail.tabCurrent
     })
