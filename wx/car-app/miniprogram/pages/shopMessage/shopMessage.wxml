@@ -2,26 +2,26 @@
 <view class="shopmessage">
   <view class="msg">
     <text>商家名称：</text>
-    <input disabled="{{!isAdmin}}">{{}}</input>
+    <input disabled="{{!isAdmin}}" value="{{name}}" class="msgname" bindinput="inputBindName"></input>
   </view>
   <view class="msg">
     <text>商家电话：</text>
-    <input ></input>
-    <view class="copybtn" wx:if="{{isAdmin}}"><button>复制</button></view>
+    <input value="{{phone}}" bindinput="inputBindPhone"></input>
+    <view class="copybtn" wx:if="{{isAdmin}}"><button bindtap="copyText" data-text="{{phone}}">复制</button></view>
   </view>
   <view class="msg">
     <text>微信号：</text>
-    <input></input>
-    <view class="copybtn" wx:if="{{isAdmin}}"><button>复制</button></view>
+    <input value="{{wechat}}" bindinput="inputBindWechat"></input>
+    <view class="copybtn" wx:if="{{isAdmin}}"><button bindtap="copyText" data-text="{{wechat}}">复制</button></view>
   </view>
 </view>
 <view class="shopaddress">
   <view class="address">
     <view class="copyaddress">
       <text>商家地址：</text>
-      <view class="copybtn" wx:if="{{isAdmin}}"><button>复制</button></view>
+      <view class="copybtn" wx:if="{{isAdmin}}"><button bindtap="copyText" data-text="{{address}}">复制</button></view>
     </view>
-    <textarea></textarea>
+    <textarea value="{{address}}" bindinput="inputBindAddress"></textarea>
   </view>
 </view>
 <view class="shopMessageBtn" bindtap="submit">

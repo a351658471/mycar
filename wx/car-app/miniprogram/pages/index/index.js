@@ -140,12 +140,13 @@ Page({
     this.data.tabflag ++
     this.data.tabCurrent = e.detail.tabCurrent
     this.getCarData()
+    console.log(this.data.tabCurrent)
   },
 
   caritemClick: function (e) {
     let carId = e.detail.itemData
     wx.navigateTo({
-      url: '/pages/index/carDetail/carDetail?carId=' + carId
+      url: '/pages/index/carDetail/carDetail?carId=' + carId + '&tab=' + this.data.tabCurrent
     })
   },
 

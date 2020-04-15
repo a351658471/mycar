@@ -26,7 +26,7 @@
             <view class='left-item'>{{item}}</view>
           </block>
         </view>
-        <view class='body-right' style='color:#EA1919;font-weight:bold; margin-top: 5rpx;'>
+        <view class='body-right' style='color:#EA1919;font-weight:bold; margin-top: 10rpx;'>
           ￥{{carData[0].price}}
         </view>
       </view>
