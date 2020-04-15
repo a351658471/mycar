@@ -2,20 +2,19 @@
 
 .carItem{
   width: 100%;
-  background: #fff;
-  margin-bottom: 3vw;
   display: flex;
-  align-items: center;
-  border-radius: 20rpx;
   box-sizing: border-box;
-  padding: 20rpx 10rpx;
+  padding: 44rpx 0;
+  border-bottom: 2rpx solid #EEEEEE;
+}
+.carItem:last-child{
+  border: none;
 }
 
 .carImg{
   position: relative;
-  width: 60%;
-  height:35vw;
-  margin-left: 24rpx;
+  width: 45%;
+  height:30vw;
 }
 
 .carImg image{
@@ -25,28 +24,40 @@
 }
 
 .carMsg{
-  width: 35%;
-  height: 35vw;
-  margin-left: 18rpx;
+  width: 46%;
+  margin-left: 44rpx;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-
 }
-
-.itemCars{
-  max-width: 120rpx;
-  color: #FE2A45;
-  border-radius: 6rpx;
-  border: 1px solid #FE2A45;
-  padding: 0 8rpx;
-  margin:0 18rpx 10rpx 0;
+.carMsgname{
+  font-size:32rpx; 
+  font-weight: bold;
   text-overflow:ellipsis; 
   overflow:hidden; 
-  white-space:nowrap;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+
 }
-.itemCars:nth-child(n+3){
+.itemCars{
+  max-width: 130rpx;
+  color: #6C6C6C;
+  border-radius: 4rpx;
+  background: #F8F8FA;
+  box-sizing: border-box;
+  padding: 5rpx 8rpx;
+  margin:0 15rpx 10rpx 0;
+  word-wrap: break-word;
+}
+.itemCars:nth-child(n+4){
   display: none;
+}
+.carMsgprice{
+  color:#EA1919;
+  font-size:30rpx;
+  font-weight:bold
 }
 .loadMore{
   width: 100;

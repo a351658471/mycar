@@ -1,6 +1,7 @@
 const app = getApp()
 Page({
   data: {
+    isAdd:true,
       value1: '', //价格
       value2: '',//车型
       value3: '',//里程
@@ -15,9 +16,9 @@ Page({
     // isOld: true,
     typeValue: '',
     isEnter: false,
+    isTEnter:false,
     showUpload: true,
     isNext: false,
-    reqData: null,
     // type: {
     //   newCar: 0,
     //   userdCar: 1
@@ -99,15 +100,29 @@ Page({
     })
   },
 
+  // textBulr(e) {
+  //   if (e.detail.value != "") {
+  //     let data = {
+  //       type: 'text',
+  //       content: e.detail.value
+  //     }
+  //     this.data.carData[0].data.detail.push(data)
+  //   }
+  // },
   textBulr(e) {
+    console.log(e)
     if (e.detail.value != "") {
       let data = {
         type: 'text',
         content: e.detail.value
       }
       this.data.carData[0].data.detail.push(data)
-    }
+      this.setData({
+        carData: this.data.carData,
+        isTEnter: false
+      })
 
+    }
   },
   //添加详情图片
   insertImage() {
@@ -130,16 +145,30 @@ Page({
   },
 
   // 删除详情图片
-  imgDelete(e) {
-   
-    let index = e.currentTarget.dataset.index
-    this.data.carData[0].data.detail.splice(index, 1)
+  // imgDelete(e) {
+  //   let index = e.currentTarget.dataset.index
+  //   this.data.carData[0].data.detail.splice(index, 1)
     
-    this.setData({
-      carData: this.data.carData
+  //   this.setData({
+  //     carData: this.data.carData
+  //   })
+  // },
+  deleteDetail(e) {
+    wx.showModal({
+      title: '提示',
+      content: '是否确定删除',
+      success:(res)=>{
+        if(res.confirm){
+          let index = e.currentTarget.dataset.index
+          this.data.carData[0].data.detail.splice(index, 1)
+          this.setData({
+            carData: this.data.carData
+          })
+        }
+      }
     })
+    
   },
-
   //添加详情视频
   insertVideo() {
     app.globalFunc.uploadVideo((r, res) => {
@@ -156,20 +185,20 @@ Page({
       }
     })
   },
-  videoDelete(e) {
-    let index = e.currentTarget.dataset.index
-    this.data.carData[0].data.detail.splice(index, 1)
+  // videoDelete(e) {
+  //   let index = e.currentTarget.dataset.index
+  //   this.data.carData[0].data.detail.splice(index, 1)
 
-    this.setData({
-      carData: this.data.carData
-    })
+  //   this.setData({
+  //     carData: this.data.carData
+  //   })
     // let index = e.currentTarget.dataset.index;
     // console.log(index)
     // this.data.dataList.splice(index, 1)
     // this.setData({
     //   dataList: this.data.dataList
     // })
-  },
+  // },
   //保存
   saveEvent() {
     // console.log(this.data.carData[0])
@@ -451,5 +480,77 @@ Page({
         currentText: null
       })
     }
+  },
+
+  //详情文本点击 出现输入框
+  textEvent(e) {
+    console.log(e)
+    if (this.data.currentText == null) {
+      this.setData({
+        currentText: e.currentTarget.dataset.index,
+        textContent: e.currentTarget.dataset.item.content
+      })
+    }
+  },
+
+  //输入框失焦
+  editTextBulr(e) {
+    console.log(e)
+    let content = {
+      type: 'text',
+      content: e.detail.value
+    }
+    let index = this.data.currentText
+    if (e.detail.content != '') {
+      this.data.carData[0].data.detail[index] = content
+      this.setData({
+        carData: this.data.carData,
+        currentText: null
+      })
+    } else {
+      this.data.carData[0].data.detail.splice(index, 1)
+      this.setData({
+        carData: this.data.carData,
+        currentText: null
+      })
+    }
+  },
+  insertText() {
+    this.setData({
+      isTEnter: true
+    })
+  },
+  changeAdd() {
+    this.setData({
+      isAdd: false
+    })
+  },
+  deleteTextArea() {
+    this.setData({
+      isTEnter: false,
+      isAdd: false,
+    })
+  },
+  toTop(e) {
+    console.log(e)
+    let index1 = e.currentTarget.dataset.index;
+    console.log(index1)
+    let index2 = index1 - 1
+    if (index1 == 0) return
+    let arr = this.data.carData[0].data.detail
+    this.data.carData[0].data.detail.splice(index2, 1, ...this.data.carData[0].data.detail.splice(index1, 1, arr[index2]))
+    this.setData({
+      carData: this.data.carData,
+    })
+  },
+  toDown(e) {
+    let index1 = e.currentTarget.dataset.index;
+    let index2 = index1 + 1;
+    let arr = this.data.carData[0].data.detail
+    if (index2 == this.data.carData[0].data.detail.length) return
+    this.data.carData[0].data.detail.splice(index2, 1, ...this.data.carData[0].data.detail.splice(index1, 1, arr[index2]))
+    this.setData({
+      carData: this.data.carData,
+    })
   }
 })

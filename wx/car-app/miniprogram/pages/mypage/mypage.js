@@ -16,17 +16,14 @@ Page({
     isregist: false,
     hideShare: false,
     adminhide:false,
-    trends: '-',
-    follow: '-',
-    fans: '-',
-    menu_personal: {
-      name: "个人信息",
-      icon: "mypage-personal.png",
-      link: "/pages/personal/personal"
-    },
     menu_reward: {
       name: "积分奖励",
       icon: "mypage-reward.png"
+    },
+    menu_shopMessage: {
+      name: "商家信息",
+      icon: "mypage-personal.png",
+      link: "/pages/shopMessage/shopMessage"
     },
     menu_back: {
       name: "建议反馈",
@@ -79,7 +76,7 @@ Page({
     })
     
     this.data.menus = [
-      this.data.menu_personal, this.data.menu_reward, this.data.menu_back
+      this.data.menu_reward, this.data.menu_shopMessage, this.data.menu_back
     ]
     this.setData(this.data)
     // 获取用户信息
@@ -108,8 +105,8 @@ Page({
     this.data.shop = shop
     if (!this.data.userInfo._id) {
       this.data.menus = [
-        this.data.menu_personal,
         this.data.menu_reward,
+        this.data.menu_shopMessage,
         this.data.menu_back,
       ]
       this.setData(this.data)
@@ -117,12 +114,12 @@ Page({
     }
     if (shop.isOwner || shop.isAdmin) {
       this.data.menus = [
-        this.data.menu_personal,
         this.data.menu_reward,
         this.data.menu_back,
       ];
       this.data.adminMenus =[
         this.data.menu_car,
+        this.data.menu_shopMessage,
         this.data.menu_picture,
         this.data.menu_safe,
         this.data.menu_feedback
@@ -131,12 +128,12 @@ Page({
     }
     else if (shop.isManagers) {
       this.data.menus = [
-        this.data.menu_personal,
         this.data.menu_reward,
         this.data.menu_back,
       ];
       this.data.adminMenus = [
         this.data.menu_car,
+        this.data.menu_shopMessage,
         this.data.menu_picture,
         this.data.menu_feedback
       ]
@@ -144,8 +141,8 @@ Page({
     }
     else {
       this.data.menus = [
-        this.data.menu_personal,
         this.data.menu_reward,
+        this.data.menu_shopMessage,
         this.data.menu_back,
       ]
     }
@@ -172,9 +169,6 @@ Page({
         this.data.logged = true
         this.data.isregist = true
         this.data.control = false
-        this.data.trends = '0'
-        this.data.follow = '0'
-        this.data.fans = '0'
         this.data.signNum = 0
         this.onUpdateShop()
       },
@@ -202,6 +196,10 @@ Page({
       })
     }
   },
-
+  modified(){
+    wx.navigateTo({
+      url: '/pages/personal/personal',
+    })
+  }
 
 })

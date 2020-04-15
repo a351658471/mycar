@@ -3,7 +3,7 @@
   "navigationBarTextStyle": "black",
   "usingComponents": {
     "my-swiper": "/components/mySwiper/mySwiper",
-    "my-tab": "/components/leftTab/leftTab",
+    "my-tab": "../index/components/leftTab/leftTab",
     "my-call":"/components/call/call"
   }
 }

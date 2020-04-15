@@ -1,52 +1,74 @@
 .labelHeader{
+  margin:.5rem auto;
+  width: 90%;
   display: flex;
   justify-content: space-between;
 }
 .labelTitle,.labelAdd{
-  padding: 3vw;
   font-size: 1rem;
 }
 .detailSave{
   display: flex;
-  width: 30%;
+  width: 40%;
   justify-content: space-around;
   align-items: center
 }
 .rightItem{
   height:7vw;
   line-height: 7vw;
-  background: #FE2A46;
+  background: #3377FE;
   color: #fff;
-  width: 40%; 
+  width: 15vw!important; 
   border-radius: 5px;
   font-size: 13px;
   text-align: center
 }
 .container1 {
+  margin-top: .5rem;
+  box-sizing: border-box;
   background: #fff;
-  padding: 0 3vw
+  width: 90%;
+  height:25vh;
+  padding: 10px;
+  margin: auto;
+  overflow-y: hidden
 }
 .toolbar {
+  width: 90%;
+  margin: auto;
+  border: 1px solid #F3F3F5;
   box-sizing: border-box;
   padding: 0 10px;
-  height: 50px;
-  width: 100%;
+  height: 40px;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   /* justify-content: space-between; */
   /* border: 1px solid #ECECEC; */
   border-left: none;
   border-right: none;
   background: #fff
 }
+.toAnywhere{
+  display: flex
+}
+.toolbarDelete{
+  color: #999999
+}
 .iconfont{
   font-size: 20px !important
 }
 .iconItem{
-  margin-right: 3vw
+  margin-right: 3vw;
+  width: 12vw;
+  height: 3.5vh;
+  line-height: 3.5vh;
+  text-align: center;
+  border: 1px solid #EEEEEE
 }
 .imgContent{
   width: 100%;
+  height: 100%;
   position: relative;
   border: 1px solid #F5F5F5
 }
@@ -63,7 +85,33 @@
 .videoDelete image{
   width: 100%
 }
-
+.bAdd{
+  margin:1.5rem auto; 
+  width: 20vw;
+  text-align: center;
+  background: #3377FE;
+  color: white;
+  height:6vh;
+  line-height: 6vh;
+  border: 1px solid #275EBD;
+  border-radius: 3px;
+}
+.buttonBox{
+  width: 80%;
+  display: flex;
+  margin: 1.5rem auto
+}
+.bItem{
+  width: 33%;
+  height:6vh;
+  text-align: center;
+  line-height: 6vh;
+  background: #3377FE;
+  color: white;
+  border: 1px solid #275EBD;
+  border-radius: 3px;
+  
+}
 @font-face {font-family: "iconfont";
   src: url('iconfont.eot?t=1585040915270'); /* IE9 */
   src: url('iconfont.eot?t=1585040915270#iefix') format('embedded-opentype'), /* IE6-IE8 */

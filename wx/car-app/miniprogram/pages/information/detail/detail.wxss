@@ -1,0 +1,51 @@
+/* miniprogram/pages/information/detail/detail.wxss */
+page{
+  background: white
+}
+.detailPage{
+  width: 90%;
+  margin: auto
+}
+.header{
+  letter-spacing: 1px;
+}
+.imgBox{
+  width: 100%;
+  margin-top: 1rem
+}
+.videoBox{
+  width: 100%
+}
+.textBox{
+  margin-top: 1rem
+}
+.title{
+  
+  height:9vh;
+  line-height: 9vh;
+  font-size: 16px;
+  color: black;
+  font-weight: bold;
+}
+.header_author{
+  display: flex;
+  font-size: 13px;
+  color: #969696
+}
+.share{
+  width: 40vw!important;
+  height:6vh;
+  background: #F58423;
+  color: #FFFFFF;
+  font-weight: normal;
+  border-radius: 20px;
+  position: fixed;
+  bottom: 3vh;
+  left: 50%;
+  transform: translateX(-50%)
+}
+.bottomFill{
+  width: 100%;
+  height:13vh;
+  background: white
+}

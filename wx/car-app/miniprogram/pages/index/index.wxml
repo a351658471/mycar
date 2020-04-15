@@ -2,11 +2,11 @@
   <scroll-view class='crollView' scroll-y style="height:100%">
 
     <!-- 轮播图 -->
-    <view style="margin-top:36rpx;">
+    <view style="margin-top:18rpx;">
       <my-swiper imgList="{{shop.swipers}}" isDots="{{true}}" bind:previewImage="previewImage"></my-swiper>
     </view>
     <!-- tab -->
-    <view style="margin:68rpx auto 30rpx 46rpx;">
+    <view style="margin:34rpx auto 22rpx 46rpx;">
         <my-ltab bind:tabClick="tabClick"></my-ltab>
     </view>
 
@@ -15,4 +15,6 @@
   </scroll-view>
 
 </view>
-<my-call class="callIcon" bind:call="call" phoneNumber="{{shop.phone}}"></my-call>
+<view class="call">
+    <my-call class="callIcon" bind:call="call" phoneNumber="{{shop.phone}}"></my-call>
+  </view>

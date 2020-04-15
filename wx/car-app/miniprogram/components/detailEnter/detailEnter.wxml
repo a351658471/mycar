@@ -1,0 +1,44 @@
+<!--components/detailEnter/detailEnter.wxml-->
+  <view wx:if="{{dataList.length !=0}}">
+  <view style="margin-bottom:.5rem" wx:for="{{dataList}}" >
+      <view class="container1">
+        <view wx:if="{{item.type == 'text'}}" style="font-size:30rpx; padding:20rpx 0">
+            <textarea wx:if="{{currentText == index}}" bindblur="editTextBulr" style="width:100%" focus value="{{textContent}}"></textarea>
+            <view wx:else data-item="{{item}}" data-index="{{index}}" bindtap="textEvent">{{item.content}}</view>
+          </view>
+        <!-- 图片内容 -->
+        <view class="imgContent" wx:if="{{item.type == 'image'}}">
+            <image src="{{item.content}}" mode="widthFix" style="width:100%;height:100%"></image>
+        </view>
+        <!-- 视频 -->
+        <view class="imgContent" wx:if="{{item.type == 'video'}}">
+            <video src="{{item.content}}" style="height:100%"></video>
+        </view>
+      </view>
+      <view class="toolbar">
+        <view class="toAnywhere">
+          <view class=" iconItem" bindtap="toTop" data-index="{{index}}"><image src="/assets/toTop.png" mode="widthFix" style="width:40%"></image></view>
+          <view class=" iconItem"  bindtap="toDown"data-index="{{index}}"><image src="/assets/toDown.png" mode="widthFix" style="width:40%"></image></view>
+        </view>
+        <view class="toolbarDelete" catchtouchend="deleteDetail" data-index="{{index}}">删除</view>
+    </view>
+  </view>
+</view>
+<view wx:if="{{isEnter}}">
+      <view class="container1" id="container">
+       <textarea placeholder="请输入车辆详情..." bindblur="textBulr" style="width:100%" value="{{textValue}}"></textarea>
+      </view>
+      <view class="toolbar">
+        <view class="toAnywhere">
+          <view class=" iconItem"><image src="/assets/toTop.png" mode="widthFix" style="width:40%"></image></view>
+          <view class=" iconItem" ><image src="/assets/toDown.png" mode="widthFix" style="width:40%"></image></view>
+        </view>
+        <view class="toolbarDelete" catchtouchend="deleteTextArea">删除</view>
+    </view>
+  </view>
+    <view class="bAdd" wx:if="{{isAdd}}" bindtap="changeAdd">添加</view>
+    <view class="buttonBox" wx:else>
+      <view class="bItem" catchtouchend="insertText">文字</view>
+      <view class="bItem" catchtouchend="insertVideo">视频</view>
+      <view class="bItem" catchtouchend="insertImage">图片</view>
+    </view>

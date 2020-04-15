@@ -21,7 +21,7 @@
           <view class="baseItem">
             <view class="ItemName">销售价格</view>
             <view class="inputItem">
-              <input type="text" name="cPrice" bindblur="blurEvnet1" placeholder="必填" placeholder-style="color:#FE2A45;font-size:0.95rem;font-weight:bolder"></input>
+              <input type="text" name="cPrice" bindblur="blurEvnet1" placeholder="必填" placeholder-style="color:#3377FE;font-size:0.95rem;font-weight:bolder"></input>
             </view>
           </view>
         </view>
@@ -30,7 +30,7 @@
           <view class="baseItem">
             <view class="ItemName">品牌车型</view>
             <view class="inputItem">
-              <input type="text" name="cBrand" bindblur="blurEvnet2" placeholder="必填" placeholder-style="color:#FE2A45;font-size:0.95rem;font-weight:bolder"></input>
+              <input type="text" name="cBrand" bindblur="blurEvnet2" placeholder="必填" placeholder-style="color:#3377FE;font-size:0.95rem;font-weight:bolder"></input>
             </view>
           </view>
         </view>
@@ -39,7 +39,7 @@
           <view class="baseItem">
             <view class="ItemName">表显里程</view>
             <view class="inputItem">
-              <input type="text" name="cmileage" bindblur="blurEvnet3" placeholder="必填" placeholder-style="color:#FE2A45;font-size:0.95rem;font-weight:bolder"></input>
+              <input type="text" name="cmileage" bindblur="blurEvnet3" placeholder="必填" placeholder-style="color:#3377FE;font-size:0.95rem;font-weight:bolder"></input>
             </view>
           </view>
         </view>
@@ -58,7 +58,7 @@
             <view class="inputItem">
               <view class="section">
                 <picker mode="date" fields="month" value="{{date}}" bindchange="bindDateChange">
-                  <view class="picker" style="color:{{date ==''?'#FE2A45':''}};font-size:0.95rem;font-weight:{{date ==''?'bolder':''}}">
+                  <view class="picker" style="color:{{date ==''?'#3377FE':''}};font-size:0.95rem;font-weight:{{date ==''?'bolder':''}}">
                     {{date ==''?"必填":date}}
                   </view>
                 </picker>
@@ -109,7 +109,9 @@
         <view class="labelItem">
           <view wx:for="{{reqData.labelList}}" wx:key="index" style="display:flex;margin-right:1.5rem; align-items:center;">
             <view class="labelText">{{item}}</view>
-            <view class="deleteIcon" bindtap="deleteLabel" data-index="{{index}}"></view>
+            <view class="deleteIcon" bindtap="deleteLabel" data-index="{{index}}">
+              <image src="../../assets/delete_c.png"></image>
+            </view>
           </view>
           <view style="width:4rem" wx:if="{{isEnter}}">
             <input type="text" confirm-type="done" focus="true" bindblur="enterBlur"></input>
@@ -134,8 +136,7 @@
             </view>
 
             <view class="itemAdd" bindtap="addImg">
-              <image src="/assets/picture.png" mode="widthFix"></image>
-              <view>{{imgList.length==0 ?"添加图片":"继续添加"}}</view>
+              <image src="/assets/pic.png" mode="widthFix"></image>
             </view>
 
           </view>

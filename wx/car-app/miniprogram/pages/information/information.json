@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "tab":"./components/leftTab/leftTab",
+    "infoList":"./components/carList02/carList02"
+  }
+}

@@ -23,7 +23,6 @@
 }
 .userBox{
   background: #FFFFFF;
-  padding: 0 0 200rpx 0;
 }
 .userItem{
   display: flex;
@@ -33,12 +32,12 @@
 }
 .userInfo{
   color: #575454;
-  font-size: 28rpx;
+  font-size: 30rpx;
 }
 .pd{
-  padding: 26rpx 20rpx 26rpx 48rpx;
+  padding: 26rpx 26rpx 26rpx 48rpx;
 }
 .setMg{
   font-size: 30rpx;
-  color: #FE2A45;
+  color: #3377FE;
 }
