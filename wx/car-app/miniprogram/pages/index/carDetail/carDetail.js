@@ -32,7 +32,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // console.log(options)
+    console.log(options)
     // let cardata = this.data.allCarData.filter((item) => {
     //   return options.carId == item.carId
     // })
@@ -41,6 +41,9 @@ Page({
     // })
     // console.log(this.data.currentCar)
     this.data.itemid = options.carId
+    if (options.tab==2){
+      this.data.isSold = true;
+    }
     this.data.shop = app.globalData.shop
     this.setData(this.data)
     this.getCarData()

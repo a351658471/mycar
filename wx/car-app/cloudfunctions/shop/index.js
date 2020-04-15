@@ -27,6 +27,9 @@ exports.main = async (event, context) => {
     case 'swiperEdit': {
       return swiperEdit(event)
     }
+    case 'infoEdit': {
+      return infoEdit(event)
+    }
     default: {
       return
     }
@@ -145,6 +148,38 @@ async function swiperEdit(event) {
       data: {
         swipers: swipers
       }
+    }).then(res => {
+      return res
+    })
+  })
+}
+
+// 商店信息编辑
+async function infoEdit(event) {
+  const wxContext = cloud.getWXContext()
+  let { shopid, swipers, phone, wechat, address } = event
+  return db.collection('shop').doc(shopid).get().then(res => {
+    let shop = res.data
+    if (shop.owner != wxContext.OPENID
+      && (!shop.admins || shop.admins.indexOf(wxContext.OPENID) == -1)
+      && (!shop.managers || shop.managers.indexOf(wxContext.OPENID) == -1)) {
+      return { errMsg: "permission denied" }
+    }
+    let data = {}
+    if(swipers){
+      data.swipers = swipers
+    }
+    if(phone){
+      data.phone = phone
+    }
+    if(wechat){
+      data.wechat = wechat
+    }
+    if(address){
+      data.address = address
+    }
+    return db.collection('shop').doc(shopid).update({
+      data: data
     }).then(res => {
       return res
     })
