@@ -5,6 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+    isEnter:true,
+    isAdd:true,
     reqData: [],
     textValue: '',
     dataList: [],
@@ -174,13 +176,14 @@ Page({
       }
     })
   },
-  imgDelete(e) {
-    // console.log(e)
+  deleteDetail(e) {
+    console.log(e)
     let index = e.currentTarget.dataset.index
     this.data.dataList.splice(index, 1)
     this.setData({
       dataList: this.data.dataList
     })
+    console.log(this.data.dataList)
   },
   insertVideo() {
     app.globalFunc.uploadVideo((r, res) => {
@@ -197,14 +200,14 @@ Page({
       }
     })
   },
-  videoDelete(e) {
-    let index = e.currentTarget.dataset.index;
-    // console.log(index)
-    this.data.dataList.splice(index, 1)
-    this.setData({
-      dataList: this.data.dataList
-    })
-  },
+  // videoDelete(e) {
+  //   let index = e.currentTarget.dataset.index;
+  //   // console.log(index)
+  //   this.data.dataList.splice(index, 1)
+  //   this.setData({
+  //     dataList: this.data.dataList
+  //   })
+  // },
   textBulr(e) {
     if (e.detail.value != "") {
       let data = {
@@ -212,6 +215,10 @@ Page({
         content: e.detail.value
       }
       this.data.dataList.push(data)
+      this.setData({
+        dataList:this.data.dataList,
+        isEnter:false
+      })
     }
   },
 
@@ -255,5 +262,44 @@ Page({
         currentText: null
       })
     }
+  },
+  insertText(){
+    this.setData({
+      isEnter:true
+    })
+  },
+  changeAdd(){
+    this.setData({
+      isAdd:false
+    })
+  },
+  deleteTextArea(){
+    this.setData({
+      isEnter:false,
+      isAdd:false,
+    })
+  },
+  toTop(e){
+    console.log(e)
+    let index1 = e.currentTarget.dataset.index;
+    console.log(index1)
+    let index2 = index1 -1
+    if(index1 == 0) return
+    let arr = this.data.dataList
+    this.data.dataList.splice(index2,1,...this.data.dataList.splice(index1,1,arr[index2]))
+    this.setData({
+      dataList: this.data.dataList
+    })
+    console.log(this.data.dataList)
+  },
+  toDown(e){
+    let index1 = e.currentTarget.dataset.index;
+    let index2 = index1+1;
+    let arr = this.data.dataList
+    if(index2 == this.data.dataList.length) return
+    this.data.dataList.splice(index2, 1, ...this.data.dataList.splice(index1, 1,arr[index2]))
+    this.setData({
+      dataList:this.data.dataList
+    })
   }
 })
