@@ -24,6 +24,9 @@ exports.main = async (event, context) => {
     case 'masterRemove': {
       return superMaster(event)
     }
+    case 'swiperEdit': {
+      return swiperEdit(event)
+    }
     case 'infoEdit': {
       return infoEdit(event)
     }
@@ -128,6 +131,27 @@ async function masterRemove(event, shop) {
       return res
     })
   }
+}
+
+// 轮播图编辑
+async function swiperEdit(event) {
+  const wxContext = cloud.getWXContext()
+  let { shopid, swipers } = event
+  return db.collection('shop').doc(shopid).get().then(res => {
+    let shop = res.data
+    if (shop.owner != wxContext.OPENID
+      && (!shop.admins || shop.admins.indexOf(wxContext.OPENID) == -1)
+      && (!shop.managers || shop.managers.indexOf(wxContext.OPENID) == -1)) {
+      return { errMsg: "permission denied" }
+    }
+    return db.collection('shop').doc(shopid).update({
+      data: {
+        swipers: swipers
+      }
+    }).then(res => {
+      return res
+    })
+  })
 }
 
 // 商店信息编辑

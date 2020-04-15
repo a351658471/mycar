@@ -19,7 +19,7 @@ Page({
     wx.cloud.callFunction({
       name: 'shop',
       data: {
-        action: "swiperEdit",
+        action: "infoEdit",
         shopid: app.globalData.shop._id,
         swipers: that.data.swipers
       },
@@ -47,7 +47,7 @@ Page({
     wx.cloud.callFunction({
       name: 'shop',
       data: {
-        action: "swiperEdit",
+        action: "infoEdit",
         shopid: app.globalData.shop._id,
         swipers: that.data.swipers
       },
