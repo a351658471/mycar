@@ -1,0 +1,43 @@
+<wxs src="../../../../utils/filter.wxs" module="formatTime"></wxs>
+  <view>
+    <block wx:for="{{newsList}}">
+       <view class='item'>
+        <view class='topText'>
+          {{item.msg}}
+        </view>
+        
+        <!-- video -->
+         <view wx:if="{{item.cover[0].type == 'video'}}">
+             <video src="{{item.cover[0].content}}" object-fit='fill' direction style='width:100%'></video>
+        </view> 
+        <!-- image -->
+        <view wx:else class='carBox' bindtap='detail' data-imgurl="{{item.cover}}">
+          <view class="imgBox" wx:for="{{item.cover}}" wx:for-item="imgItem">
+              <image class="carImg" src="{{imgItem.content}}" mode="widthFix" style="width:100%"></image>
+          </view>
+          
+        </view>
+
+        <view class='bottom'>
+          <view class='bottomLeft'>
+            {{item.author}}
+          </view>
+         <view class='bottomRight'>
+            {{formatTime.formatTime(item.timeago,'yyyy/mm/dd')}}
+              <!-- <view class='zf bottomRightItem'>
+                <view class='iconfont icon-zhuanfa'></view>
+                <view class='mtext'>{{item.zf}}</view>
+              </view>
+              <view class='pl bottomRightItem'>
+                <view class='iconfont icon-pinglun'></view>
+                <view class='mtext'>{{item.pl}}</view>
+              </view>
+              <view class='dz bottomRightItem ' bindtap='dzClick' data-index="{{index}}">
+                <view class='iconfont icon-dianzan'></view>
+                <view class='mtext'>{{item.dz}}</view>
+              </view> -->
+          </view>
+        </view>
+      </view>
+      </block>
+    </view>
