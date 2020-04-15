@@ -172,10 +172,10 @@ async function infoEdit(event) {
     if(phone){
       data.phone = phone
     }
-    if(swipers){
+    if(wechat){
       data.wechat = wechat
     }
-    if(swipers){
+    if(address){
       data.address = address
     }
     return db.collection('shop').doc(shopid).update({
