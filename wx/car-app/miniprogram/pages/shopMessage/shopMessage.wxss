@@ -1,0 +1,28 @@
+/* pages/shopMessage/shopMessage.wxss */
+.shopmessage{
+  background: #fff;
+  padding: 0 32rpx;
+}
+.msg{
+  border-top: 2rpx solid #DDDDDD;
+  display: flex;
+  padding: 20rpx 5rpx;
+}
+.shopaddress{
+  background: #fff;
+  margin-top: 18rpx;
+  padding: 20rpx 5rpx;
+}
+.shopMessageBtn{
+  width: 100%;
+  position: absolute;
+  bottom: 44rpx;
+}
+.btn{
+  height: 88rpx;
+  color: #FFFFFF;
+  font-size: 36rpx;
+  font-weight: normal;
+  border-radius: 16rpx;
+  background: linear-gradient(to right,#3377FE,#3377FE)
+}

@@ -1,7 +1,8 @@
 /* miniprogram/pages/carManage/carManage.wxss */
 
 .rightBox{
-  color: #FE2A45;
+  font-size: 24rpx;
+  color: #3377FE;
 }
 .tablist{
   margin: 34rpx 46rpx;

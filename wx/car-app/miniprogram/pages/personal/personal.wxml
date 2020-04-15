@@ -1,12 +1,12 @@
 <!--pages/personal/personal.wxml-->
 <view class="personalTitle">
-  <text>个人信息</text>
+  <text>信息修改</text>
 </view>
 <view class="content">
   <view class="personalMsg">
     <view class="personalDetail">
       <text>姓名</text>
-      <input placeholder="请输入姓名" value="{{userInfo.nickName}}" disabled="true"></input>
+      <input  value="{{userInfo.nickName}}" disabled="true"></input>
     </view>
   </view>
   <view class="personalMsg">

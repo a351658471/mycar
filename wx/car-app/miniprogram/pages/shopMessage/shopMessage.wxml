@@ -1,0 +1,12 @@
+<!--pages/shopMessage/shopMessage.wxml-->
+<view class="shopmessage">
+  <view class="msg"><text>商家名称：</text><input></input></view>
+  <view class="msg"><text>商家电话：</text><input></input></view>
+  <view class="msg"><text>微信号：</text><input></input></view>
+</view>
+<view class="shopaddress">
+  <view><text>商家地址：</text><textarea></textarea></view>
+</view>
+<view class="shopMessageBtn" bindtap="submit">
+  <button style="width:680rpx" class="btn">保存</button>
+</view>

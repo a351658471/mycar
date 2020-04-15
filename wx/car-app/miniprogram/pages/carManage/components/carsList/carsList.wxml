@@ -17,22 +17,22 @@
               </image>
             </view>
             <view class='carMsg'>
-              <view style='font-size:28rpx; text-overflow:ellipsis; overflow:hidden; white-space:nowrap'>{{item.name}}</view>
-              <view style='color:#BBBBBB; font-size:24rpx;'>{{item.type==0?'全新':'二手'}}</view>
+              <view class="carMsgname">{{item.name}}</view>
+              <!-- <view style='color:#BBBBBB; font-size:24rpx;'>{{item.type==0?'全新':'二手'}}</view> -->
               <view style='display:flex; font-size:20rpx;text-overflow:ellipsis; overflow:hidden; white-space:nowrap;'>
                 <view class='itemCars' wx:for="{{item.data.labelList}}" wx:key="index">{{item}}</view>
                 <!-- <view class='itemCars'>{{item.data.labelList[1]}}</view> -->
               </view>
-              <view style='color:#FE2A45;font-size:30rpx;font-weight:bolder'>￥{{item.price}}</view>
+              <view class="carMsgprice">￥{{item.price}}</view>
             </view>
           </view>
         </movable-view>
       </movable-area>
       <view class="menu">
-        <view wx:if="{{item.status != 0}}" class="tShelves menu-item" style="background:#3CB371" catchtap="saleGoods" data-id="{{item._id}}">在售</view>
-        <view wx:if="{{item.status != 1}}" class="sold menu-item" style="background:#9F9C9D" catchtap="soldGoods" data-id="{{item._id}}">已售</view>
-        <view wx:if="{{item.status != 2}}" class="tShelves menu-item" style="background:#6A3ABC" catchtap="lowGoods" data-id="{{item._id}}">下架</view>
-        <view class="delete menu-item" style="background:#FE2A44" catchtap="deleteGoods" data-id="{{item._id}}">删除</view>
+        <view wx:if="{{item.status != 1}}" class="sold menu-item" style="background:#979797" catchtap="soldGoods" data-id="{{item._id}}">已售</view>
+        <!-- <view wx:if="{{item.status != 0}}" class="tShelves menu-item" style="background:#3CB371" catchtap="saleGoods" data-id="{{item._id}}">在售</view> -->
+        <view wx:if="{{item.status != 2}}" class="tShelves menu-item" style="background:#5B7AC2" catchtap="lowGoods" data-id="{{item._id}}">下架</view>
+        <view class="delete menu-item" style="background:#E94D61" catchtap="deleteGoods" data-id="{{item._id}}">删除</view>
       </view>
     </view>
     <view class="loadMore" bindtap="loadMore" wx:if="{{!noMore}}">{{isLoading?'加载中...':'加载更多'}}</view>

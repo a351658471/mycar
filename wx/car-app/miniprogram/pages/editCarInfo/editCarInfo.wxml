@@ -22,7 +22,7 @@
           <view class="baseItem">
             <view class="ItemName">销售价格</view>
             <view class="inputItem">
-              <input type="text" disabled="{{disabled}}" name="cPrice" bindblur="blurEvnet1" value="{{value1}}" placeholder="必填" placeholder-style="color:#FE2A45;font-size:0.95rem;font-weight:bolder"></input>
+              <input type="text" disabled="{{disabled}}" name="cPrice" bindblur="blurEvnet1" value="{{value1}}" placeholder="必填" placeholder-style="color:#3377FE;font-size:0.95rem;font-weight:bolder"></input>
             </view>
           </view>
         </view>
@@ -31,7 +31,7 @@
           <view class="baseItem">
             <view class="ItemName">品牌车型</view>
             <view class="inputItem">
-              <input type="text" name="cBrand" disabled="{{disabled}}" bindblur="blurEvnet2" value="{{value2}}" placeholder="必填" placeholder-style="color:#FE2A45;font-size:0.95rem;font-weight:bolder"></input>
+              <input type="text" name="cBrand" disabled="{{disabled}}" bindblur="blurEvnet2" value="{{value2}}" placeholder="必填" placeholder-style="color:#3377FE;font-size:0.95rem;font-weight:bolder"></input>
             </view>
           </view>
         </view>
@@ -40,20 +40,11 @@
           <view class="baseItem">
             <view class="ItemName">表显里程</view>
             <view class="inputItem">
-              <input type="text" name="cmileage" disabled="{{disabled}}" bindblur="blurEvnet3" value="{{value3}}" placeholder="必填" placeholder-style="color:#FE2A45;font-size:0.95rem;font-weight:bolder"></input>
+              <input type="text" name="cmileage" disabled="{{disabled}}" bindblur="blurEvnet3" value="{{value3}}" placeholder="必填" placeholder-style="color:#3377FE;font-size:0.95rem;font-weight:bolder"></input>
             </view>
           </view>
         </view>
-
-        <!-- <view class="borderBottom">
-          <view class="baseItem" wx:if="{{carData[0].oldlevel==1}}">
-                <view class="ItemName">初次上牌</view>
-                <view class="inputItem">
-                  <input type="text" name="cFirst" disabled="{{disabled}}" bindblur="blurEvnet4" value="{{value4}}" placeholder="必填" placeholder-style="color:#FE2A45;font-size:0.95rem;font-weight:bolder"></input>
-                </view>
-          </view>
-        </view> -->
-
+        
         <view class="borderBottom">
           <view class="baseItem" wx:if="{{carData[0].type==1}}">
             <view class="ItemName">初次上牌</view>
@@ -112,7 +103,9 @@
         <view class="labelItem">
           <view wx:for="{{carData[0].data.labelList}}" wx:key="index" style="display:flex;margin-right:1.5rem;align-items:center">
             <view class="labelText">{{item}}</view>
-            <view wx:if="{{!disabled}}" class="deleteIcon" bindtap="deleteLabel" data-index="{{index}}"></view>
+            <view wx:if="{{!disabled}}" class="deleteIcon" bindtap="deleteLabel" data-index="{{index}}">
+              <image src="../../assets/delete_c.png"></image>
+            </view>
           </view>
           <view style="width:4rem" wx:if="{{isEnter}}">
             <input type="text" confirm-type="done" focus="true" bindblur="enterBlur"></input>
@@ -120,31 +113,6 @@
         </view>
       </view>
     </view>
-
-    <!-- 滚动图 -->
-    <!-- <view class="imgBox">
-          <view class="labelTitle">
-                滚动图
-          </view>
-          <view style="width:100%; background:#fff">
-          <view style="padding:0 5vw">
-          <view class="addImgBox">
-            <view class="imgItem" wx:for="{{carData[0].data.imgList}}" wx:key="index">
-              <image class="itemImg" src="{{item}}" mode="aspectFill"></image>
-              <view class="deleteImg" bindtap="deleteImg" data-index="{{index}}" wx:if="{{!disabled}}">
-                <image src="/assets/删除.png" mode="widthFix"></image>
-            </view>
-            </view>
-
-            <view class="itemAdd" bindtap="addImg" wx:if="{{carData[0].data.imgList.length <3 && !disabled}}">
-              <image src="/assets/picture.png" mode="widthFix"></image>
-              <view>{{imgList.length==0 ?"添加图片":"继续添加"}}</view>
-            </view>
-
-          </view>
-          </view>
-          </view>
-    </view> -->
     <!-- 滚动图 -->
     <view class="imgBox">
       <view class="labelTitle">
@@ -161,8 +129,7 @@
             </view>
 
             <view class="itemAdd" bindtap="addImg" wx:if="{{!disabled}}">
-              <image src="/assets/picture.png" mode="widthFix"></image>
-              <view>{{imgList.length==0 ?"添加图片":"继续添加"}}</view>
+              <image src="/assets/pic.png" mode="widthFix"></image>
             </view>
 
           </view>
@@ -187,14 +154,14 @@
           <!-- 图片内容 -->
           <view class="imgContent" wx:if="{{item.type == 'image'}}">
             <view class="videoDelete" bindtap="imgDelete" data-index="{{index}}" wx:if="{{!disabled}}">
-              <image src="/assets/del.png" mode="widthFix"></image>
+              <image src="/assets/delete.png" mode="widthFix"></image>
             </view>
             <image src="{{item.content}}" mode="widthFix" style="width:100%"></image>
           </view>
           <!-- 视频 -->
           <view class="imgContent" wx:if="{{item.type == 'video'}}">
             <view class="videoDelete" bindtap="videoDelete" data-index="{{index}}" wx:if="{{!disabled}}">
-              <image src="/assets/del.png" mode="widthFix"></image>
+              <image src="/assets/delete.png" mode="widthFix"></image>
             </view>
             <video src="{{item.content}}" style="width:100%" show-mute-btn="true" enable-play-gesture="true" vslide-gesture-in-fullscreen="true"></video>
           </view>
