@@ -532,7 +532,9 @@ Page({
     })
   },
   toTop(e) {
-    console.log(e)
+    this.setData({
+      currentText: null
+    })
     let index1 = e.currentTarget.dataset.index;
     console.log(index1)
     let index2 = index1 - 1
@@ -544,6 +546,9 @@ Page({
     })
   },
   toDown(e) {
+    this.setData({
+      currentText: null
+    })
     let index1 = e.currentTarget.dataset.index;
     let index2 = index1 + 1;
     let arr = this.data.carData[0].data.detail
