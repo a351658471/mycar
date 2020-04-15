@@ -171,9 +171,8 @@ Page({
     let wpx = this.data.wpx
     let hpx = this.data.hpx
     let name = this.data.carData[0].name
-    let type = this.data.carData[0].type == 0 ? '全新' : '二手'
+    // let type = this.data.carData[0].type == 0 ? '全新' : '二手'
     let label = this.data.carData[0].data.labelList.join(" | ")
-    // label = label.join(" | ")
     let price = this.data.carData[0].price
     let src = this.data.carData[0].data.imgList[0]
     wx.getImageInfo({
@@ -211,10 +210,10 @@ Page({
           maxLine: 1
         })
         // 类型
-        ctx.setFontSize(13 * wpx)
-        ctx.fillText(type, 10, difValue + 44 * hpx)
+        // ctx.setFontSize(13 * wpx)
+        // ctx.fillText(type, 10, difValue + 44 * hpx)
         // 标签
-        ctx.setFillStyle('#F95D74')
+        ctx.setFillStyle('#6C6C6C')
         this.dealWords({
           ctx: ctx,
           fontSize: 13,
@@ -225,9 +224,9 @@ Page({
           maxLine: 1
         })
         // 价格
-        ctx.setFillStyle('#F95D74')  // 文字颜色
+        ctx.setFillStyle('#EA1934')  // 文字颜色
         ctx.setFontSize(18 * wpx)         // 文字字号
-        ctx.font = '18px bold'
+        ctx.font = '20px bold'
         ctx.fillText('￥' + price, 10, cHeight - 25 * hpx)
         ctx.draw();
         wx.hideLoading({});

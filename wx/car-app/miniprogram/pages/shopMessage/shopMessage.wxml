@@ -1,12 +1,29 @@
-<!--pages/shopMessage/shopMessage.wxml-->
+<!-- pages/shopMessage/shopMessage.wxml -->
 <view class="shopmessage">
-  <view class="msg"><text>商家名称：</text><input></input></view>
-  <view class="msg"><text>商家电话：</text><input></input></view>
-  <view class="msg"><text>微信号：</text><input></input></view>
+  <view class="msg">
+    <text>商家名称：</text>
+    <input disabled="{{!isAdmin}}">{{}}</input>
+  </view>
+  <view class="msg">
+    <text>商家电话：</text>
+    <input ></input>
+    <view class="copybtn" wx:if="{{isAdmin}}"><button>复制</button></view>
+  </view>
+  <view class="msg">
+    <text>微信号：</text>
+    <input></input>
+    <view class="copybtn" wx:if="{{isAdmin}}"><button>复制</button></view>
+  </view>
 </view>
 <view class="shopaddress">
-  <view><text>商家地址：</text><textarea></textarea></view>
+  <view class="address">
+    <view class="copyaddress">
+      <text>商家地址：</text>
+      <view class="copybtn" wx:if="{{isAdmin}}"><button>复制</button></view>
+    </view>
+    <textarea></textarea>
+  </view>
 </view>
 <view class="shopMessageBtn" bindtap="submit">
-  <button style="width:680rpx" class="btn">保存</button>
+  <button style="width:680rpx" class="btn" wx:if="{{isAdmin}}" bindtap="preserve">保存</button>
 </view>

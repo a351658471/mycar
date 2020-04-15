@@ -1,6 +1,7 @@
 {
   "navigationBarBackgroundColor": "#ffffff",
   "navigationBarTextStyle": "black",
+  "navigationBarTitleText": "车辆管理",
   "usingComponents": {
     "mg-tab":"../index/components/leftTab/leftTab",
     "my-carslist": "./components/carsList/carsList"

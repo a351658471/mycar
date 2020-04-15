@@ -6,6 +6,14 @@ page{
 .outbox{
   height: 100%
 }
+.sold{
+  position: absolute;
+  z-index: 99999;
+  width: 174rpx;
+  height: 178rpx;
+  top: 0;
+  left: 0;
+}
 .carDetail{
   box-sizing: border-box;
   padding: 24rpx 42rpx 44rpx 42rpx;
@@ -13,7 +21,8 @@ page{
   background-color: #FFFFFF;
 }
 .heard-name{
-  font-size: 40rpx;
+  width: 95%;
+  font-size: 34rpx;
   font-weight: bold;
 }
 .heard-right{
@@ -23,18 +32,28 @@ page{
   height:5vw
 }
 .share{
-  width: 20px;
-  height: 20px;
   margin: auto;
-  margin-left:2vw
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.share image{
+  width: 46rpx;
+  height: 46rpx;
+}
+.share text{
+  font-size: 22rpx;
+  color: #4A4A4A;
 }
 .detail-heard{
   width: 100%;
   margin: 0 auto;
   display: flex;
-  justify-content: space-between
+  justify-content: space-between;
+  align-items: flex-start;
 }
 .detail-in{
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
