@@ -289,19 +289,26 @@ Page({
     })
   },
   toTop(e){
-    console.log(e)
+    this.setData({
+      currentText:null
+    })
     let index1 = e.currentTarget.dataset.index;
-    console.log(index1)
     let index2 = index1 -1
     if(index1 == 0) return
     let arr = this.data.dataList
+    console.log(this.data.dataList[index1])
+    console.log(this.data.dataList[index2])
     this.data.dataList.splice(index2,1,...this.data.dataList.splice(index1,1,arr[index2]))
+    console.log(this.data.dataList)
     this.setData({
       dataList: this.data.dataList
     })
-    console.log(this.data.dataList)
+    
   },
   toDown(e){
+    this.setData({
+      currentText: null
+    })
     let index1 = e.currentTarget.dataset.index;
     let index2 = index1+1;
     let arr = this.data.dataList

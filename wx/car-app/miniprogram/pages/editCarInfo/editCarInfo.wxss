@@ -168,7 +168,7 @@ radio .wx-radio-input.wx-radio-input-checked::before{
   height:88rpx;
   text-align: center;
   line-height: 88rpx;
-  background: linear-gradient(to right,#FD7493,#FE2A45);
+  background: linear-gradient(to right,rgb(83, 147, 243),#3377FE);
   color: #fff;
   font-size: 36rpx;
   border-radius: 16rpx;
