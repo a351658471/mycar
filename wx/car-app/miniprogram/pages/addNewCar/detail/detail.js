@@ -177,13 +177,20 @@ Page({
     })
   },
   deleteDetail(e) {
-    console.log(e)
-    let index = e.currentTarget.dataset.index
-    this.data.dataList.splice(index, 1)
-    this.setData({
-      dataList: this.data.dataList
-    })
-    console.log(this.data.dataList)
+   wx.showModal({
+     title: '提示',
+     content: '是否确定删除',
+     success:(res)=>{
+       if(res.confirm){
+         let index = e.currentTarget.dataset.index
+         this.data.dataList.splice(index, 1)
+         this.setData({
+           dataList: this.data.dataList
+         })
+       }
+     }
+   })
+    
   },
   insertVideo() {
     app.globalFunc.uploadVideo((r, res) => {
@@ -209,6 +216,7 @@ Page({
   //   })
   // },
   textBulr(e) {
+    console.log(e)
     if (e.detail.value != "") {
       let data = {
         type: 'text',
@@ -219,6 +227,7 @@ Page({
         dataList:this.data.dataList,
         isEnter:false
       })
+      
     }
   },
 

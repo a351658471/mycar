@@ -120,31 +120,7 @@
         </view>
       </view>
     </view>
-
-    <!-- 滚动图 -->
-    <!-- <view class="imgBox">
-          <view class="labelTitle">
-                滚动图
-          </view>
-          <view style="width:100%; background:#fff">
-          <view style="padding:0 5vw">
-          <view class="addImgBox">
-            <view class="imgItem" wx:for="{{carData[0].data.imgList}}" wx:key="index">
-              <image class="itemImg" src="{{item}}" mode="aspectFill"></image>
-              <view class="deleteImg" bindtap="deleteImg" data-index="{{index}}" wx:if="{{!disabled}}">
-                <image src="/assets/删除.png" mode="widthFix"></image>
-            </view>
-            </view>
-
-            <view class="itemAdd" bindtap="addImg" wx:if="{{carData[0].data.imgList.length <3 && !disabled}}">
-              <image src="/assets/picture.png" mode="widthFix"></image>
-              <view>{{imgList.length==0 ?"添加图片":"继续添加"}}</view>
-            </view>
-
-          </view>
-          </view>
-          </view>
-    </view> -->
+    
     <!-- 滚动图 -->
     <view class="imgBox">
       <view class="labelTitle">
@@ -177,37 +153,52 @@
           详情介绍
         </view>
       </view>
-      <view class="container1" id="container">
-        <view wx:for="{{carData[0].data.detail}}" wx:key="index">
-          <!-- 文本内容 -->
-          <view wx:if="{{item.type == 'text'}}" style="font-size:30rpx; padding:20rpx 0">
-            <textarea wx:if="{{currentText == index}}" bindblur="editTextBulr" data-index="{{index}}" style="width:100%" focus value="{{item.content}}"></textarea>
+       <view wx:if="{{carData[0].data.detail.length !=0}}">
+  <view style="margin-bottom:.5rem" wx:for="{{carData[0].data.detail}}" >
+      <view class="container1">
+        <view wx:if="{{item.type == 'text'}}" style="font-size:30rpx; padding:20rpx 0">
+            <textarea wx:if="{{currentText == index}}" bindblur="editTextBulr" style="width:100%" focus value="{{textContent}}"></textarea>
             <view wx:else data-item="{{item}}" data-index="{{index}}" bindtap="textEvent">{{item.content}}</view>
           </view>
-          <!-- 图片内容 -->
-          <view class="imgContent" wx:if="{{item.type == 'image'}}">
-            <view class="videoDelete" bindtap="imgDelete" data-index="{{index}}" wx:if="{{!disabled}}">
-              <image src="/assets/del.png" mode="widthFix"></image>
-            </view>
-            <image src="{{item.content}}" mode="widthFix" style="width:100%"></image>
-          </view>
-          <!-- 视频 -->
-          <view class="imgContent" wx:if="{{item.type == 'video'}}">
-            <view class="videoDelete" bindtap="videoDelete" data-index="{{index}}" wx:if="{{!disabled}}">
-              <image src="/assets/del.png" mode="widthFix"></image>
-            </view>
-            <video src="{{item.content}}" style="width:100%" show-mute-btn="true" enable-play-gesture="true" vslide-gesture-in-fullscreen="true"></video>
-          </view>
+       
+        <view class="imgContent" wx:if="{{item.type == 'image'}}">
+            <image src="{{item.content}}" mode="widthFix" style="width:100%;height:100%"></image>
         </view>
-        <textarea disabled="{{disabled}}" placeholder="{{placeholder}}" bindblur="textBulr" style="width:100%" value="{{textValue}}"></textarea>
+       
+        <view class="imgContent" wx:if="{{item.type == 'video'}}">
+            <video src="{{item.content}}" style="height:100%"></video>
+        </view>
       </view>
-
-
-      <view class="toolbar" catchtouchend="format" wx:if="{{!disabled}}">
-        <i class="iconfont icon-tupian iconItem" catchtouchend="insertImage"></i>
-        <i class="iconfont icon-dilanxianxingiconyihuifu_huabanfuben iconItem" catchtouchend="insertVideo"></i>
-      </view>
+      <view class="toolbar" wx:if="{{!disabled}}">
+        <view class="toAnywhere">
+          <view class=" iconItem" bindtap="toTop" data-index="{{index}}"><image src="/assets/toTop.png" mode="widthFix" style="width:40%"></image></view>
+          <view class=" iconItem"  bindtap="toDown"data-index="{{index}}"><image src="/assets/toDown.png" mode="widthFix" style="width:40%"></image></view>
+        </view>
+        <view class="toolbarDelete" catchtouchend="deleteDetail" data-index="{{index}}">删除</view>
     </view>
+  </view>
+</view>
+
+    <view wx:if="{{isTEnter}}">
+      <view class="container1" id="container">
+       <textarea placeholder="请输入车辆详情..." bindblur="textBulr" style="width:100%" value="{{textValue}}"></textarea>
+      </view>
+      <view class="toolbar">
+        <view class="toAnywhere">
+          <view class=" iconItem"><image src="/assets/toTop.png" mode="widthFix" style="width:40%"></image></view>
+          <view class=" iconItem" ><image src="/assets/toDown.png" mode="widthFix" style="width:40%"></image></view>
+        </view>
+        <view class="toolbarDelete" catchtouchend="deleteTextArea">删除</view>
+    </view>
+  </view>
+    <view class="bAdd" wx:if="{{isAdd && !disabled}}" bindtap="changeAdd">添加</view>
+    <view class="buttonBox" wx:if="{{!isAdd}}">
+      <view class="bItem" catchtouchend="insertText">文字</view>
+      <view class="bItem" catchtouchend="insertVideo">视频</view>
+      <view class="bItem" catchtouchend="insertImage">图片</view>
+    </view>
+    </view>
+    <view style="width:100%;height:15vh"></view>
     <view class="next" bindtap="edit" wx:if="{{disabled}}">
       编辑车辆信息
     </view>

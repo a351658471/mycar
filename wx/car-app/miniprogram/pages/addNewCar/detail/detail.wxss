@@ -1,9 +1,10 @@
 .labelHeader{
+  margin:.5rem auto;
+  width: 90%;
   display: flex;
   justify-content: space-between;
 }
 .labelTitle,.labelAdd{
-  padding: 3vw;
   font-size: 1rem;
 }
 .detailSave{
