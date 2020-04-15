@@ -1,11 +1,14 @@
 // miniprogram/pages/information/detail/detail.js
+const PAGECOUNT = 10;
+const PAGE=1
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    isVideo:true,
+    
+    isVideo:false,
     resData:{
       title:'全球十大好车，麦考论、法拉第垫底',
       author:'新华社',
@@ -31,7 +34,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    let id = options.id;
+    let isVideo = false
+    this.getData(id)
+    this.setData({
+      isVideo: isVideo
+    })
   },
 
   /**
@@ -81,5 +89,31 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  getData(id) {
+    wx.request({
+      url: 'https://car.xichenshiji.com/content/query_by_id',
+      method: 'POST',
+      header: { "content-type": "application/x-www-form-urlencoded" },
+      data: {
+        id:id
+      },
+      success: (res) => {
+        
+        res.data.msg.content = JSON.parse(res.data.msg.content)
+        console.log(res.data.msg.content )
+        if(this.isVideo){
+           this.setData({
+             videoUrl: res.data.msg.content[0],
+             textContent: res.data.msg.content[1],
+             resData:res.msg
+           })
+        }else{
+          this.setData({
+            resData: res.data.msg
+          })
+        }
+      }
+    })
   },
 })

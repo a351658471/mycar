@@ -151,10 +151,11 @@ Page({
 
   //上拉加载更多
   loadMore() {
-    if (this.data.flag)
+    if (this.data.flag){
       this.data.flag = false;
-    this.data.page++;
-    this.getCarData(this.data.page)
+      this.data.page++;
+      this.getCarData(this.data.page)
+    }
   },
 
   backEvent() {

@@ -17,13 +17,14 @@ page{
   width: 100%
 }
 .textBox{
+  font-size: 15px;
   margin-top: 1rem
 }
 .title{
   
   height:9vh;
   line-height: 9vh;
-  font-size: 16px;
+  font-size: 18px;
   color: black;
   font-weight: bold;
 }

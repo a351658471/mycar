@@ -17,7 +17,7 @@ Component({
 
     fontSize: {
       type: String,
-      value: '14px'
+      value: '17px'
     },
     ltabHeight:{
       type:String,
