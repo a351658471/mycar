@@ -1,12 +1,13 @@
 /* miniprogram/pages/information/detail/detail.wxss */
 page{
-  background: white
+  background: white;
+  padding-bottom: 200rpx;
 }
 .detailPage{
   width: 90%;
   margin: auto
 }
-.header{
+.header{ 
   letter-spacing: 1px;
 }
 .imgBox{
@@ -29,22 +30,19 @@ page{
 .header_author{
   display: flex;
   font-size: 13px;
-  color: #969696
+  color: #969696;
+  margin-top: 30rpx;
 }
 .share{
-  width: 40vw!important;
-  height:6vh;
+  margin: 0;
+  padding: 0 50rpx;
   background: #F58423;
   color: #FFFFFF;
   font-weight: normal;
-  border-radius: 20px;
+  border-radius: 38rpx;
   position: fixed;
   bottom: 3vh;
   left: 50%;
-  transform: translateX(-50%)
-}
-.bottomFill{
-  width: 100%;
-  height:13vh;
-  background: white
+  transform: translateX(-50%);
+  font-size: 32rpx;
 }
