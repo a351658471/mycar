@@ -305,6 +305,14 @@ radio .wx-radio-input.wx-radio-input-checked::before{
   border-radius: 3px;
   
 }
+.showDetail{
+  width: 100%;
+  background: #fff;
+}
+.showItem{
+  width: 90%;
+  margin: 0 auto .5rem auto;
+}
 
 @font-face {font-family: "iconfont";
   src: url('iconfont.eot?t=1585040915270'); /* IE9 */
