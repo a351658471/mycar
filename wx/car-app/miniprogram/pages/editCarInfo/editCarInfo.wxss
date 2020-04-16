@@ -184,19 +184,17 @@ radio .wx-radio-input.wx-radio-input-checked::before{
   background: #fff;
   padding: 20rpx 20rpx 120rpx 20rpx;
 }
-.toolbar {
+/* .toolbar {
   box-sizing: border-box;
   padding: 0 20rpx 150rpx 20rpx;
   height: 50px;
   width: 100%;
   display: flex;
   align-items: center;
-  /* justify-content: space-between; */
-  /* border: 1px solid #ECECEC; */
   border-left: none;
   border-right: none;
   background: #fff
-}
+} */
 .iconfont{
   font-size: 20px !important
 }
@@ -241,10 +239,9 @@ radio .wx-radio-input.wx-radio-input-checked::before{
 .toolbar {
   width: 90%;
   margin: auto;
-  border: 1px solid #F3F3F5;
+  border: 1px solid #E7E7E7;
   box-sizing: border-box;
-  padding: 0 10px;
-  height: 40px;
+  padding: 10rpx 26rpx;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -252,20 +249,26 @@ radio .wx-radio-input.wx-radio-input-checked::before{
   /* border: 1px solid #ECECEC; */
   border-left: none;
   border-right: none;
-  background: #fff
+  background: linear-gradient(to right,#FFFFFF,#F8F8F8);
 }
 .toAnywhere{
-  display: flex
+  display: flex;
+  align-items: center;
 }
 .iconItem{
   margin-right: 3vw;
-  width: 12vw;
-  height: 3.5vh;
-  line-height: 3.5vh;
+  width: 78rpx;
+  height: 42rpx;
   text-align: center;
-  border: 1px solid #EEEEEE
+  border: 1rpx solid #E1E1E1;
+  border-radius: 6rpx;
+}
+.iconItem image{
+  width: 34rpx;
+  height: 20rpx;
 }
 .toolbarDelete{
+  font-size: 24rpx;
   color: #999999
 }
 .container1 {
@@ -279,15 +282,25 @@ radio .wx-radio-input.wx-radio-input-checked::before{
   overflow-y: hidden
 }
 .bAdd{
-  margin:1.5rem auto; 
-  width: 20vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin:76rpx auto; 
+  width: 168rpx;
   text-align: center;
   background: #3377FE;
-  color: white;
-  height:6vh;
-  line-height: 6vh;
-  border: 1px solid #275EBD;
-  border-radius: 3px;
+  border: 1px solid #2478D5;
+  border-radius: 6rpx;
+  padding: 24rpx 0;
+}
+.bAdd image{
+  width: 32rpx;
+  height: 32rpx;
+}
+.bAdd text{
+  font-size: 32rpx;
+  color: #FFFFFF;
+  padding-left: 16rpx;
 }
 .buttonBox{
   width: 80%;

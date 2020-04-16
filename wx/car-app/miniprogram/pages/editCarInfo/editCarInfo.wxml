@@ -161,7 +161,7 @@
       <!-- 编辑详情 -->
       <view wx:else>
        <view wx:if="{{carData[0].data.detail.length !=0}}">
-  <view style="margin-bottom:.5rem" wx:for="{{carData[0].data.detail}}" >
+  <view style="margin-bottom:.5rem" wx:for="{{carData[0].data.detail}}" wx:key="index">
       <view class="container1">
         <view wx:if="{{item.type == 'text'}}" style="font-size:30rpx; padding:20rpx 0">
             <textarea maxlength="{{-1}}" wx:if="{{currentText == index}}" bindblur="editTextBulr" style="width:100%" focus value="{{textContent}}"></textarea>
@@ -192,13 +192,13 @@
       </view>
       <view class="toolbar">
         <view class="toAnywhere">
-          <view class=" iconItem"><image src="/assets/toTop.png" mode="widthFix" style="width:40%"></image></view>
-          <view class=" iconItem" ><image src="/assets/toDown.png" mode="widthFix" style="width:40%"></image></view>
+          <view class=" iconItem" ><image src="/assets/toDown.png" mode="widthFix"></image></view>
+          <view class=" iconItem"><image src="/assets/toTop.png" mode="widthFix"></image></view>
         </view>
         <view class="toolbarDelete" catchtouchend="deleteTextArea">删除</view>
     </view>
   </view>
-    <view class="bAdd" wx:if="{{isAdd}}" bindtap="changeAdd">添加</view>
+    <view class="bAdd" wx:if="{{isAdd}}" bindtap="changeAdd"><image src="/assets/add.png" /><text>添加</text></view>
     <view class="buttonBox" wx:if="{{!isAdd}}">
       <view class="bItem" catchtouchend="insertText">文字</view>
       <view class="bItem" catchtouchend="insertVideo">视频</view>

@@ -32,7 +32,7 @@ Page({
         wx.getClipboardData({
           success:res=>{
             wx.showToast({
-              title: '复制成功',
+              title: '已复制到粘贴板',
             })
           }
         })
