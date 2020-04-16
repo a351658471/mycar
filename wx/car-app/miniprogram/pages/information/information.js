@@ -85,18 +85,17 @@ Page({
       },
       success: (res) => {
         console.log(res)
-        if (res.data.msg.length < 5) {
-          this.data.noMore = true
+        if (res.data.msg instanceof Array && res.data.msg.length == PAGECOUNT) {
+           this.data.noMore = false
         } else {
-          this.data.noMore = false
+          this.data.noMore = true
         }
-        if(res.count!=0){
+        if(res.data.count!=0){
           res.data.msg.forEach(item=>{
             item.cover = JSON.parse(item.cover)
             this.data.newsList.push(item)
           })
         }
-        console.log(this.data.newsList)
       this.setData({
         newsList:this.data.newsList,
         isLoading:false,
@@ -122,7 +121,9 @@ Page({
   },
   //加载更多
   loadMore() {
-    this.data.page++;
-    this.getData(this.data.page,this.data.type)
+    if(this.data.flag){
+      this.data.page++;
+      this.getData(this.data.page, this.data.type)
+    }
   },
 })
