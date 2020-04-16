@@ -24,4 +24,4 @@
   </view>
   <view class="bottomFill"></view>
      <button class="contentItem" open-type="share" class="share">分享至好友</button>
-</view>
+  </view>

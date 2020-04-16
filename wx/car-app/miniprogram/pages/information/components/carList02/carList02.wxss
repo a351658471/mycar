@@ -3,12 +3,13 @@
   border-radius:10px;
   width: 90%;
   margin-bottom: .5rem;
-  margin-left: 1rem;
+  margin: 0 auto;
   border-bottom: 1px solid #f6f6f6
 }
 .topText{
   width: 90%;
   font-size: 17px;
+  padding: 20rpx 0;
   color: #505050;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -28,11 +29,6 @@
   width:95%;
   height: 10rem
 }
-.topText{
-  margin-left: 0.5rem;
-  height: 3rem;
-  line-height: 3rem;
-}
 .bottom{
   font-size: 14px;
   height: 2rem;
@@ -40,15 +36,9 @@
   display: flex;
   justify-content : space-between;
   color: #9B9B9B;
-  margin-left: 0.5rem;
-}
-.bottomRight{
 }
 .bottomRightItem{
   display: flex;
-}
-.mtext{
-  margin-left: 3px;
 }
 .loadMore{
   width: 100;

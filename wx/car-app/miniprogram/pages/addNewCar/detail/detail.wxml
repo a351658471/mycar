@@ -32,8 +32,8 @@
       </view>
       <view class="toolbar">
         <view class="toAnywhere">
-          <view class=" iconItem" bindtap="toTop" data-index="{{index}}"><image src="/assets/toTop.png" mode="widthFix" style="width:100%"></image></view>
-          <view class=" iconItem"  bindtap="toDown"data-index="{{index}}"><image src="/assets/toDown.png" mode="widthFix" style="width:100%"></image></view>
+          <view class=" iconItem"  bindtap="toDown"data-index="{{index}}"><image src="/assets/toDown{{isDown?'_active':''}}.png" mode="widthFix"></image></view>
+          <view class=" iconItem" bindtap="toTop" data-index="{{index}}"><image src="/assets/toTop{{isTop?'_active':''}}.png" mode="widthFix"></image></view>
         </view>
         <view class="toolbarDelete" catchtouchend="deleteDetail" data-index="{{index}}">删除</view>
     </view>
@@ -42,12 +42,12 @@
 
     <view wx:if="{{isEnter}}">
       <view class="container1" id="container">
-       <textarea placeholder="请输入车辆详情..." bindblur="textBulr" style="width:100%" value="{{textValue}}"></textarea>
+       <textarea placeholder="请输入车辆详情..." bindblur="textBulr" style="width:95%; padding:10rpx 20rpx; font-size:30rpx" value="{{textValue}}"></textarea>
       </view>
       <view class="toolbar">
         <view class="toAnywhere">
-          <view class=" iconItem" ><image src="/assets/toDown.png" mode="widthFix"></image></view>
-          <view class=" iconItem"><image src="/assets/toTop.png" mode="widthFix"></image></view>
+          <view class=" iconItem" ><image src="/assets/toDown{{isDown?'_active':''}}.png" mode="widthFix"></image></view>
+          <view class=" iconItem"><image src="/assets/toTop{{isTop?'_active':''}}.png" mode="widthFix"></image></view>
         </view>
         <view class="toolbarDelete" catchtouchend="deleteTextArea">删除</view>
     </view>
@@ -55,7 +55,7 @@
     <view class="bAdd" wx:if="{{isAdd}}" bindtap="changeAdd"><image src="/assets/add.png" /><text>添加</text></view>
     <view class="buttonBox" wx:else>
       <view class="bItem" catchtouchend="insertText">文字</view>
-      <view class="bItem" catchtouchend="insertVideo">视频</view>
+      <view class="bItem" catchtouchend="insertVideo" style="border-left:1px solid #175DD2;border-right:1px solid #175DD2;">视频</view>
       <view class="bItem" catchtouchend="insertImage">图片</view>
     </view>
 </view>

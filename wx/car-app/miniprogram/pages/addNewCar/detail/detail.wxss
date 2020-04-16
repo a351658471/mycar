@@ -33,6 +33,9 @@
   margin: auto;
   overflow-y: hidden
 }
+input::placeholder{
+  color: #E1E1E1;
+}
 .toolbar {
   width: 90%;
   margin: auto;
@@ -100,7 +103,7 @@
   background: #3377FE;
   border: 1px solid #2478D5;
   border-radius: 6rpx;
-  padding: 24rpx 0;
+  padding: 18rpx 0;
 }
 .bAdd image{
   width: 32rpx;
@@ -114,17 +117,17 @@
 .buttonBox{
   width: 80%;
   display: flex;
-  margin: 1.5rem auto
+  margin: 1.5rem auto;
+  border-radius: 6rpx;
+  background: #3377FE;
+  border: 1px solid #175DD2;
 }
 .bItem{
   width: 33%;
-  height:6vh;
   text-align: center;
-  line-height: 6vh;
-  background: #3377FE;
   color: white;
-  border: 1px solid #275EBD;
-  border-radius: 3px;
+  padding: 16rpx 0;
+  font-size: 32rpx;
   
 }
 @font-face {font-family: "iconfont";
