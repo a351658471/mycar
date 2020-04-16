@@ -1,6 +1,6 @@
 <wxs src="../../../../utils/filter.wxs" module="formatTime"></wxs>
   <view>
-    <block wx:for="{{newsList}}">
+    <block wx:for="{{newsList}}" wx:key="index">
        <view class='item' bindtap='detail' data-item="{{item}}">
         <view class='topText'>
           {{item.title}}
@@ -12,7 +12,7 @@
         </view> 
         <!-- image -->
         <view wx:else class='carBox' data-imgurl="{{item.cover}}">
-          <view class="imgBox" wx:for="{{item.cover}}" wx:for-item="imgItem">
+          <view class="imgBox" wx:for="{{item.cover}}" wx:for-item="imgItem" wx:key="index">
               <image class="carImg" src="{{imgItem}}" mode="widthFix" style="width:100%;"></image>
           </view>
           

@@ -51,7 +51,7 @@ Component({
   */
   methods: {
     changeCurrent(e){
-      let current=e.detail
+      let {current}=e.detail
       this.setData({
         currentIndex: e.detail.current + 1,
         current
