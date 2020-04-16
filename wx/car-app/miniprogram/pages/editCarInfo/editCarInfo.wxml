@@ -147,7 +147,7 @@
 
       <!-- 展示详情 -->
       <view class="showDetail"  wx:if="{{disabled}}">
-        <view class="showItem" wx:for="{{carData[0].data.detail}}">
+        <view class="showItem" wx:for="{{carData[0].data.detail}}" wx:key="index">
            <view wx:if="{{item.type == 'text'}}">{{item.content}}</view>
            <view wx:if="{{item.type == 'image'}}">
               <image src="{{item.content}}" mode="widthFix" style="width:100%;height:100%"></image>
