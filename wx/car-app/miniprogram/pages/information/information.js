@@ -1,5 +1,5 @@
 // miniprogram/pages/information/information.js
-const PAGECOUNT = 10;
+const PAGECOUNT = 5;
 Page({
 
   /**
@@ -84,6 +84,7 @@ Page({
         type: type
       },
       success: (res) => {
+        console.log(res)
         if (res.data.msg.length < 5) {
           this.data.noMore = true
         } else {
@@ -108,6 +109,7 @@ Page({
     console.log(e)
     let id = e.detail.id;
     let isVideo = e.detail.isVideo
+    console.log(isVideo)
     wx.navigateTo({
       url: 'detail/detail?id='+id+'&isVideo='+isVideo
     })

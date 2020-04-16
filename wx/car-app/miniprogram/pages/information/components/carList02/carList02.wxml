@@ -8,7 +8,7 @@
         
         <!-- video -->
          <view wx:if="{{item.cover[0].type== 'video'}}">
-             <video src="{{item.cover[0].content}}" object-fit='fill' direction style='width:100%;border-radius:4px;'></video>
+             <video src="{{item.cover[0].content}}" controls="{{false}}" direction style='width:100%;height:194px;border-radius:4px;'></video>
         </view> 
         <!-- image -->
         <view wx:else class='carBox' data-imgurl="{{item.cover}}">

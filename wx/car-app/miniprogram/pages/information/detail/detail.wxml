@@ -2,7 +2,7 @@
 <wxs src="../../../utils/filter.wxs" module="formatTime"></wxs>
 <view class="detailPage">
   <view class="videoBox" wx:if="{{isVideo}}">
-      <video style="width:100%" object-fit='fill' src="{{}}"></video>
+      <video style="width:100%" src="{{videoUrl.content}}"></video>
   </view>
   <view class="header">
      <view class="title">{{resData.title}}</view>
@@ -12,7 +12,7 @@
      </view>
   </view>
    <view class="content" wx:if="{{isVideo}}">
-        <view class="textBox">{{textContent}}</view> 
+        <view class="textBox">{{textContent.content}}</view> 
   </view>
   <view class="content" wx:else>
     <block wx:for="{{resData.content}}" wx:for-item="item">

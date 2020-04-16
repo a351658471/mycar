@@ -28,7 +28,7 @@ Component({
     //跳转到详情页
     detail(e) {
       let id = e.currentTarget.dataset.item.id;
-      let isVideo = e.currentTarget.dataset.item.cover[0].type == 'video'? true:false;
+      let isVideo = e.currentTarget.dataset.item.cover[0].type == 'video'?true:false;
       this.triggerEvent('detail',{
         id:id,
         isVideo:isVideo

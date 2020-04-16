@@ -21,9 +21,7 @@ page{
   margin-top: 1rem
 }
 .title{
-  
-  height:9vh;
-  line-height: 9vh;
+  margin:.5rem 0;
   font-size: 18px;
   color: black;
   font-weight: bold;
