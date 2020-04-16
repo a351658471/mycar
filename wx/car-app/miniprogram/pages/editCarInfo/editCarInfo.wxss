@@ -122,8 +122,8 @@ radio .wx-radio-input.wx-radio-input-checked::before{
   width: 26rpx;
   height: 26rpx;
   position: absolute;
-  right:-12rpx;
-  top: -5rpx;
+  right:-14rpx;
+  top: -8rpx;
   z-index: 1;
 }
 .deleteImg image{

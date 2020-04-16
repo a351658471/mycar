@@ -150,7 +150,6 @@ page{
   bottom: 0;
   left: 0;
   right:0;
-  height:30vh;
   background: #fff;
   display: flex;
   flex-direction:column;
@@ -165,7 +164,7 @@ page{
   display: flex;
   justify-content: space-around;
   align-items: center;
-  height:20vh
+  padding: 30rpx 0;
 }
 .shareImg{
   width:13vw;
