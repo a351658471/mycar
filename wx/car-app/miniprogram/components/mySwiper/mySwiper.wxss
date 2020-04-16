@@ -16,3 +16,24 @@
   color: #FFFFFF;
   font-size: 26rpx;
 }
+.swpDot{
+  display: flex;
+  justify-content: center;
+  height: 50rpx;
+  position: absolute;
+  bottom: -55rpx;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+.swpDotItem{
+  width: 12rpx;
+  height: 12rpx;
+  background: #D3CEC0;
+  border-radius: 50%;
+  margin-left: 7rpx;
+}
+.active{
+  width: 30rpx;
+  background-color: #FFFFFF;
+  border-radius: 20rpx;
+}

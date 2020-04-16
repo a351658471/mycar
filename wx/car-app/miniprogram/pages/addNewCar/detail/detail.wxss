@@ -103,7 +103,7 @@ input::placeholder{
   background: #3377FE;
   border: 1px solid #2478D5;
   border-radius: 6rpx;
-  padding: 24rpx 0;
+  padding: 18rpx 0;
 }
 .bAdd image{
   width: 32rpx;

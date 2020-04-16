@@ -15,6 +15,8 @@ Page({
     passData: null,
     currentText: null,
     textContent: '',
+    isDown:false,
+    isTop:false
   },
 
   /**
@@ -40,6 +42,7 @@ Page({
     this.data.reqData = this.data.passData.reqData
     // console.log(this.data.passData)
     // console.log(this.data.reqData)
+    
   },
 
   /**

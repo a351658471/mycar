@@ -3,7 +3,7 @@
 
     <!-- 轮播图 -->
     <view style="margin-top:18rpx;">
-      <my-swiper imgList="{{shop.swipers}}" isDots="{{true}}" bind:previewImage="previewImage"></my-swiper>
+      <my-swiper imgList="{{shop.swipers}}" isSwpDot="{{true}}" bind:previewImage="previewImage"></my-swiper>
     </view>
     <!-- tab -->
     <view style="margin:34rpx auto 22rpx 46rpx;">

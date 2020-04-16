@@ -27,6 +27,14 @@ Component({
     isDots: {
       type: Boolean,
       value: false
+    },
+    isSwpDot:{
+      type: Boolean,
+      value: false
+    },
+    current:{
+      type:Number,
+      value:0
     }
   },
 
@@ -43,8 +51,10 @@ Component({
   */
   methods: {
     changeCurrent(e){
+      let current=e.detail
       this.setData({
-        currentIndex: e.detail.current + 1
+        currentIndex: e.detail.current + 1,
+        current
       })
     },
     //点击轮播图放大
