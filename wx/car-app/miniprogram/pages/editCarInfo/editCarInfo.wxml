@@ -201,7 +201,7 @@
     <view class="bAdd" wx:if="{{isAdd}}" bindtap="changeAdd"><image src="/assets/add.png" /><text>添加</text></view>
     <view class="buttonBox" wx:if="{{!isAdd}}">
       <view class="bItem" catchtouchend="insertText">文字</view>
-      <view class="bItem" catchtouchend="insertVideo">视频</view>
+      <view class="bItem" catchtouchend="insertVideo" style="border-left:1px solid #175DD2;border-right:1px solid #175DD2;">视频</view>
       <view class="bItem" catchtouchend="insertImage">图片</view>
     </view>
     </view>
