@@ -8,7 +8,7 @@
 }
 .topText{
   width: 90%;
-  font-size: 14px;
+  font-size: 17px;
   color: #505050;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -22,7 +22,7 @@
   align-items: center
 }
 .imgBox{
-  width: 30%
+  width: 32%
 }
 .carImg{
   width:95%;
@@ -34,12 +34,12 @@
   line-height: 3rem;
 }
 .bottom{
-  font-size: 13px;
+  font-size: 14px;
   height: 2rem;
   line-height: 2rem;
   display: flex;
   justify-content : space-between;
-  color: #999;
+  color: #9B9B9B;
   margin-left: 0.5rem;
 }
 .bottomRight{
@@ -49,6 +49,14 @@
 }
 .mtext{
   margin-left: 3px;
+}
+.loadMore{
+  width: 100;
+  text-align: center;
+  height: 8vw;
+  line-height: 8vw;
+  color: #777;
+  font-size: 30rpx;
 }
 
 /* 引入阿里巴巴图标 */

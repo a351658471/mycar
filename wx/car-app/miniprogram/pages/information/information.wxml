@@ -1,7 +1,7 @@
 <!--miniprogram/pages/information/information.wxml-->
 <view class="information">
   <view class="infoContent">
-    <tab tabList="{{tabList}}" ></tab>
-    <infoList bind:tap="detail"></infoList>
+    <tab tabList="{{tabList}}" bind:tabClick="tabClick"></tab>
+    <infoList bind:detail="detail" newsList="{{newsList}}" bind:loadMore="loadMore" isLoading="{{isLoading}}" noMore="{{noMore}}"></infoList>
   </view>
 </view>

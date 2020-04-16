@@ -2,18 +2,20 @@
 <wxs src="../../../utils/filter.wxs" module="formatTime"></wxs>
 <view class="detailPage">
   <view class="videoBox" wx:if="{{isVideo}}">
-      <video style="width:100%" object-fit='fill' src="http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400"></video>
+      <video style="width:100%" src="{{videoUrl.content}}"></video>
   </view>
   <view class="header">
      <view class="title">{{resData.title}}</view>
      <view class="header_author">
-      <view style="margin-right:1rem">{{resData.author}}</view>
-      <view>{{formatTime.formatTime(resData.time,'yyyy/mm/dd')}}</view>
+      <view style="margin-right:1rem">{{resData.provide}}</view>
+      <view>{{formatTime.formatTime(resData.update_time,'yyyy/mm/dd')}}</view>
      </view>
   </view>
-
-  <view class="content">
-    <block wx:for="{{resData.detail}}" wx:for-item="item">
+   <view class="content" wx:if="{{isVideo}}">
+        <view class="textBox">{{textContent.content}}</view> 
+  </view>
+  <view class="content" wx:else>
+    <block wx:for="{{resData.content}}" wx:for-item="item">
         <view class="textBox" wx:if="{{item.type == 'text'}}">{{item.content}}</view> 
          <view class="imgBox" wx:if="{{item.type == 'image'}}">
           <image src="{{item.content}}" mode="widthFix" style="width:100%"></image>
