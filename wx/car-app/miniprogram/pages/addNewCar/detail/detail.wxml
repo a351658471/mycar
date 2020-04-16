@@ -32,8 +32,8 @@
       </view>
       <view class="toolbar">
         <view class="toAnywhere">
-          <view class=" iconItem" bindtap="toTop" data-index="{{index}}"><image src="/assets/toTop.png" mode="widthFix" style="width:40%"></image></view>
-          <view class=" iconItem"  bindtap="toDown"data-index="{{index}}"><image src="/assets/toDown.png" mode="widthFix" style="width:40%"></image></view>
+          <view class=" iconItem" bindtap="toTop" data-index="{{index}}"><image src="/assets/toTop.png" mode="widthFix" style="width:100%"></image></view>
+          <view class=" iconItem"  bindtap="toDown"data-index="{{index}}"><image src="/assets/toDown.png" mode="widthFix" style="width:100%"></image></view>
         </view>
         <view class="toolbarDelete" catchtouchend="deleteDetail" data-index="{{index}}">删除</view>
     </view>
@@ -46,13 +46,13 @@
       </view>
       <view class="toolbar">
         <view class="toAnywhere">
-          <view class=" iconItem"><image src="/assets/toTop.png" mode="widthFix" style="width:40%"></image></view>
-          <view class=" iconItem" ><image src="/assets/toDown.png" mode="widthFix" style="width:40%"></image></view>
+          <view class=" iconItem" ><image src="/assets/toDown.png" mode="widthFix"></image></view>
+          <view class=" iconItem"><image src="/assets/toTop.png" mode="widthFix"></image></view>
         </view>
         <view class="toolbarDelete" catchtouchend="deleteTextArea">删除</view>
     </view>
   </view>
-    <view class="bAdd" wx:if="{{isAdd}}" bindtap="changeAdd">添加</view>
+    <view class="bAdd" wx:if="{{isAdd}}" bindtap="changeAdd"><image src="/assets/add.png" /><text>添加</text></view>
     <view class="buttonBox" wx:else>
       <view class="bItem" catchtouchend="insertText">文字</view>
       <view class="bItem" catchtouchend="insertVideo">视频</view>
