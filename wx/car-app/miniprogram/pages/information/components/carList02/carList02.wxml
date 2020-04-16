@@ -7,8 +7,9 @@
         </view>
         
         <!-- video -->
-         <view wx:if="{{item.cover.length ==1}}">
-             <image src="{{item.cover[0]}}"  mode="widthFix" style='width:100%;height:194px;border-radius:4px;'></image>
+         <view wx:if="{{item.cover.length ==1}}" style="position: relative;">
+             <image src="{{item.cover[0]}}"  mode="aspectFill" style='width:100%;height:186px;border-radius:4px;'></image>
+             <view class="stop"><image src="../../../../assets/stop.png" /></view>
         </view> 
         <!-- image -->
         <view wx:else class='carBox' data-imgurl="{{item.cover}}">

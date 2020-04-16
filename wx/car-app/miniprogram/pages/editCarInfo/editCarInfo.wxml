@@ -124,7 +124,7 @@
             <view class="imgItem" wx:for="{{carData[0].data.imgList}}" wx:key="index">
               <image class="itemImg" src="{{item}}" mode="aspectFill"></image>
               <view class="deleteImg" bindtap="deleteImg" data-index="{{index}}" wx:if="{{!disabled}}">
-                <image src="/assets/delete.png" mode="widthFix"></image>
+                <image src="/assets/delete.png" ></image>
               </view>
             </view>
 

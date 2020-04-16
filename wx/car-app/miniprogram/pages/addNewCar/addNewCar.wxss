@@ -103,26 +103,24 @@ radio .wx-radio-input.wx-radio-input-checked::before{
 .imgItem{
   width:30%;
   height:20vw;
-  position: relative;
-  margin: 0 20rpx 20rpx 0;
+  
+  
 }
 .itemImg{
   width: 100%;
   height: 100%;
   border: 2rpx solid #979797;
-  margin-left: 10rpx;
 }
 .deleteImg{
   width: 26rpx;
   height: 26rpx;
   position: absolute;
-  right:-12rpx;
-  top: -5rpx;
+  right: 0;
+  top: 0;
 }
 .deleteImg image{
   width: 100%;
   height: 100%;
-  background: #fff
 }
 .itemAdd{
   width: 30%;
