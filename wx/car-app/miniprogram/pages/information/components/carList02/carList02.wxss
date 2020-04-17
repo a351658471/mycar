@@ -33,14 +33,16 @@
   text-align: center;
   display: flex;
   justify-content: space-between;
-  align-items: center
+  align-items: center;
+  border-radius: 10px;
+  overflow: hidden
 }
 .imgBox{
-  width: 32%
+  width: 33%;
 }
 .carImg{
-  width:95%;
-  height: 10rem
+  display: block;
+  width:100%;
 }
 .bottom{
   font-size: 28rpx;

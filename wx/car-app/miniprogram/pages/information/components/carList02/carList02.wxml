@@ -14,7 +14,7 @@
         <!-- image -->
         <view wx:else class='carBox' data-imgurl="{{item.cover}}">
           <view class="imgBox" wx:for="{{item.cover}}" wx:for-item="imgItem" wx:key="index">
-              <image class="carImg" src="{{imgItem}}" mode="widthFix" style="width:100%;"></image>
+              <image class="carImg" src="{{imgItem}}" mode="widthFix"></image>
           </view>
           
         </view>
