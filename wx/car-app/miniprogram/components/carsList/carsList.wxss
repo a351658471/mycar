@@ -5,7 +5,7 @@
   display: flex;
   box-sizing: border-box;
   padding: 44rpx 0;
-  border-bottom: 2rpx solid #EEEEEE;
+  border-bottom: 1.4rpx solid #EEEEEE;
 }
 .carItem:last-child{
   border: none;
@@ -44,10 +44,10 @@
 .itemCars{
   max-width: 130rpx;
   color: #6C6C6C;
-  border-radius: 4rpx;
+  border-radius: 8rpx;
   background: #F8F8FA;
   box-sizing: border-box;
-  padding: 5rpx 8rpx;
+  padding: 6rpx 11rpx 8rpx 11rpx;
   margin:0 15rpx 10rpx 0;
   word-wrap: break-word;
 }
