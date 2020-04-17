@@ -32,8 +32,8 @@
       </view>
       <view class="toolbar">
         <view class="toAnywhere">
-          <view class=" iconItem"  bindtap="toDown"data-index="{{index}}"><image src="/assets/toDown{{isDown?'_active':''}}.png" mode="widthFix"></image></view>
-          <view class=" iconItem" bindtap="toTop" data-index="{{index}}"><image src="/assets/toTop{{isTop?'_active':''}}.png" mode="widthFix"></image></view>
+          <view class=" iconItem"  bindtap="toDown"data-index="{{index}}"><image src="/assets/toDown{{index==dataList.length-1?'_active':''}}.png" mode="widthFix"></image></view>
+          <view class=" iconItem" bindtap="toTop" data-index="{{index}}"><image src="/assets/toTop{{index==0?'_active':''}}.png" mode="widthFix"></image></view>
         </view>
         <view class="toolbarDelete" catchtouchend="deleteDetail" data-index="{{index}}">删除</view>
     </view>
@@ -46,8 +46,8 @@
       </view>
       <view class="toolbar">
         <view class="toAnywhere">
-          <view class=" iconItem" ><image src="/assets/toDown{{isDown?'_active':''}}.png" mode="widthFix"></image></view>
-          <view class=" iconItem"><image src="/assets/toTop{{isTop?'_active':''}}.png" mode="widthFix"></image></view>
+          <view class=" iconItem" ><image src="/assets/toDown.png" mode="widthFix"></image></view>
+          <view class=" iconItem"><image src="/assets/toTop.png" mode="widthFix"></image></view>
         </view>
         <view class="toolbarDelete" catchtouchend="deleteTextArea">删除</view>
     </view>

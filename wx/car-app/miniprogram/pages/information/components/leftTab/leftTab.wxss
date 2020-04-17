@@ -21,11 +21,11 @@
 }
 .active::after{
   content: '';
-  width: 50%;
-  height:4px;
+  width: 35%;
+  height:5px;
   position: absolute;
   bottom: -25rpx;
-  left: 25%;
+  left: 30%;
   background: linear-gradient(to right,#3377FE,#3377FE);
   border-radius: 10rpx;
   box-shadow: 0px 4rpx 6rpx 0px rgba(51,119,254,0.33);

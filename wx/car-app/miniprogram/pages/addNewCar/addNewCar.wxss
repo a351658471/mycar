@@ -125,9 +125,9 @@ radio .wx-radio-input.wx-radio-input-checked::before{
   display: block;
 }
 .itemAdd{
-  width: 30%;
-  height:20vw;
-  margin-bottom: 20rpx;
+  width: 31%;
+  height:24vw;
+  margin-top: 10rpx;
 }
 .itemAdd image{
   width:100%;

@@ -4,10 +4,12 @@ page{
   padding-bottom: 200rpx;
 }
 .detailPage{
-  width: 90%;
-  margin: auto
+  width: 100%;
+  margin: auto;
 }
 .header{ 
+  width: 90%;
+  margin: auto;
   letter-spacing: 1px;
 }
 .imgBox{
@@ -22,9 +24,9 @@ page{
   margin-top: 1rem
 }
 .title{
-  margin:.5rem 0;
+  margin: 32rpx 0 16rpx 0;
   font-size: 18px;
-  color: black;
+  color: #333333;
   font-weight: bold;
 }
 .header_author{
@@ -32,6 +34,12 @@ page{
   font-size: 13px;
   color: #969696;
   margin-top: 30rpx;
+}
+.content{
+  width: 90%;
+  margin: auto;
+  font-size: 30rpx;
+  color: #333333;
 }
 .share{
   margin: 0;
