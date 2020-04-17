@@ -13,6 +13,7 @@ Page({
     type:0,
     noMore: false,
     isLoading: false,
+    flag:true
   },
 
   /**
@@ -85,12 +86,13 @@ Page({
       },
       success: (res) => {
         console.log(res)
+        this.data.flag =true
         if (res.data.msg instanceof Array && res.data.msg.length == PAGECOUNT) {
            this.data.noMore = false
         } else {
           this.data.noMore = true
         }
-        if(res.data.count!=0){
+        if (res.data.msg.constructor == Array){
           res.data.msg.forEach(item=>{
             item.cover = JSON.parse(item.cover)
             this.data.newsList.push(item)
@@ -124,6 +126,7 @@ Page({
     if(this.data.flag){
       this.data.page++;
       this.getData(this.data.page, this.data.type)
+      this.data.flag=false
     }
   },
 })
