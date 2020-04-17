@@ -20,8 +20,8 @@
 }
 .active::after{
   content: '';
-  width: 50%;
-  height:4px;
+  width: 45%;
+  height:5px;
   position: absolute;
   bottom: -25rpx;
   left: 25%;
