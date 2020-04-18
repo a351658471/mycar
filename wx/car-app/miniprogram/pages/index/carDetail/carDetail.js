@@ -20,7 +20,7 @@ Page({
       4: '最高马力',
     },
     carData: [],
-    tabList: ['车辆参数','详情介绍'],
+    tabList: ['详情介绍','车辆参数'],
     currentIndex: 0,
     currentCar: {},
     hideShare: false,
@@ -123,7 +123,7 @@ Page({
   },
   makeCard(){
     wx.navigateTo({
-      url: 'card/card?id='+this.data.carData[0]._id,
+      url: 'card/card?id='+this.data.carData[0]._id+'&sold='+this.data.isSold
     })
   }
 })

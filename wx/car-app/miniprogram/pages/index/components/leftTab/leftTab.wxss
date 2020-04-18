@@ -15,7 +15,6 @@
   font-weight: bolder;
   position: relative;
   font-size: 34rpx;
-  top: -3rpx;
 }
 .active::after{
   content: '';

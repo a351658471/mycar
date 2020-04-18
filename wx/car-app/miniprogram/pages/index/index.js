@@ -7,7 +7,6 @@ Page({
     // },
     shop: {},
     tabCurrent: 0,
-
     resData: [],
     newcar: [],
     oldcar: [],
@@ -16,7 +15,15 @@ Page({
     noMore: false,
     hideShare: false,
     state:null,
-    tabflag:0
+    tabflag:0,
+    isSell:false,
+    tabScrollTop: '100px',
+    tabFixed:false
+  },
+  onPageScroll: function(e) {
+    if(e.scrollTop>this.data.tabScrollTop){
+      this.data.tabFixed = true
+    }
   },
   onLoad(options) {
     if(options && options.scene){
@@ -27,7 +34,6 @@ Page({
         })
       }
     }
-   
     app.globalData.addListener(app.globalData.eventShopUpdate, this.onShopInfo)
     app.globalFunc.getShopInfo();
   },
@@ -46,6 +52,9 @@ Page({
   },
   onUnload() {
     app.globalData.removeListener(app.globalData.eventShopUpdate, this.onShopInfo)
+    wx.pageScrollTo({
+      scrollTop: 300,
+    })
   },
   onShopInfo() {
     this.data.shop = app.globalData.shop
@@ -144,6 +153,13 @@ Page({
     this.data.tabCurrent = e.detail.tabCurrent
     this.getCarData()
     console.log(this.data.tabCurrent)
+    if (e.detail.tabCurrent==2){
+      this.data.isSell = true
+    }
+    else{
+      this.data.isSell = false
+    }
+    this.setData(this.data)
   },
 
   caritemClick: function (e) {

@@ -36,6 +36,7 @@ page{
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 6rpx;
 }
 .share image{
   width: 46rpx;
@@ -75,8 +76,8 @@ page{
 .left-item{
   font-size: 22rpx;
   background: #F8F8FA;
-  border-radius: 4rpx;
-  padding: 0 20rpx;
+  border-radius: 8rpx;
+  padding: 6rpx 20rpx 8rpx 20rpx;
   color: #6C6C6C;
   margin-right: 30rpx;
   margin-top: 15rpx;

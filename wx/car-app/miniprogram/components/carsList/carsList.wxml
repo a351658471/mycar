@@ -3,8 +3,8 @@
     <block wx:for="{{carData}}" wx:key="index">
       <view class='carItem' bind:tap="caritemClick" data-item='{{item}}'>
         <view class='carImg'>
-          <image src='{{item.data.imgList[0]}}' mode="aspectFill" style='width:100%;height:90%'>
-          </image>
+          <image src='{{item.data.imgList[0]}}' mode="scaleToFill" style='width:100%;height:90%;'></image>
+          <image class="sold" wx:if="{{isSell}}" src="/assets/sold.png" />
         </view>
         <view class='carMsg'>
           <view class="carMsgname">{{item.name}}</view>

@@ -5,7 +5,7 @@
   display: flex;
   box-sizing: border-box;
   padding: 44rpx 0;
-  border-bottom: 2rpx solid #EEEEEE;
+  border-bottom: 1.4rpx solid #EEEEEE;
 }
 .carItem:last-child{
   border: none;
@@ -14,15 +14,21 @@
 .carImg{
   position: relative;
   width: 45%;
-  height:30vw;
+  height: 200rpx;
 }
 
 .carImg image{
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
+  margin-top: 10rpx;
+  border-radius: 12rpx;
 }
-
+.sold{
+  position: absolute;
+  z-index: 99999;
+  width: 104rpx;
+  height: 104rpx;
+  top: 0;
+  left: 0;
+}
 .carMsg{
   width: 46%;
   margin-left: 44rpx;
@@ -44,10 +50,10 @@
 .itemCars{
   max-width: 130rpx;
   color: #6C6C6C;
-  border-radius: 4rpx;
+  border-radius: 8rpx;
   background: #F8F8FA;
   box-sizing: border-box;
-  padding: 5rpx 8rpx;
+  padding: 6rpx 11rpx 8rpx 11rpx;
   margin:0 15rpx 10rpx 0;
   word-wrap: break-word;
 }
