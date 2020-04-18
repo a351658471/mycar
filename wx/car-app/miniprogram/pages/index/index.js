@@ -17,12 +17,18 @@ Page({
     state:null,
     tabflag:0,
     isSell:false,
-    tabScrollTop: '100px',
+    tabScrollTop: 0,
     tabFixed:false
   },
   onPageScroll: function(e) {
     if(e.scrollTop>this.data.tabScrollTop){
-      this.data.tabFixed = true
+      this.setData({
+        tabFixed:true
+      })
+    }else{
+      this.setData({
+        tabFixed:false
+      })
     }
   },
   onLoad(options) {
@@ -39,16 +45,14 @@ Page({
   },
   onShow() {
     //获取车列表
-    // if (this.data.resData.length == 0 && this.data.shop._id != null) {
-    //   this.getCarData()
-    // }
     if (this.state != app.globalData.state && this.data.shop._id != null) {
       this.getCarData()
       this.state = app.globalData.state
     }
-  },
-  onPageScroll(e){
-    console.log(e)
+    // setTimeout(()=>{})
+    wx.createSelectorQuery().select('#tab').boundingClientRect(rect=>{
+      this.data.tabScrollTop = rect.top
+    }).exec()
   },
   onUnload() {
     app.globalData.removeListener(app.globalData.eventShopUpdate, this.onShopInfo)
@@ -151,6 +155,9 @@ Page({
     this.data.page =1
     this.data.tabflag ++
     this.data.tabCurrent = e.detail.tabCurrent
+    this.setData({
+      tabCurrent:this.data.tabCurrent
+    })
     this.getCarData()
     console.log(this.data.tabCurrent)
     if (e.detail.tabCurrent==2){
