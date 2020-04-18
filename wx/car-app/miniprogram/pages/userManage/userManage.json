@@ -3,6 +3,6 @@
   "navigationBarTextStyle": "black",
   "navigationBarTitleText": "账号管理",
   "usingComponents": {
-    "my-tab":"../carManage/components/leftTab/leftTab"
+    "my-tab":"./components/leftTab/leftTab"
   }
 }

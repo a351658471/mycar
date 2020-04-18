@@ -3,7 +3,16 @@
 .rightBox{
   font-size: 24rpx;
   color: #3377FE;
+  margin-left: 230rpx;
 }
-.tablist{
+/* .tablist{
   margin: 34rpx 46rpx;
+} */
+.infoTab{
+  width: 100%;
+  padding:0 46rpx;
+  box-sizing: border-box;
+  position: fixed;
+  z-index: 99999;
+  background: #f6f6f6;
 }
