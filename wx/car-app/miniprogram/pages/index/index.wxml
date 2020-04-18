@@ -6,9 +6,13 @@
       <my-swiper imgList="{{shop.swipers}}" isSwpDot="{{true}}" bind:previewImage="previewImage"></my-swiper>
     </view>
     <!-- tab -->
-    <view style="margin:34rpx auto 22rpx 46rpx;" class="tab {{tabFixed? 'tabFixed':''}}">
-        <my-ltab bind:tabClick="tabClick"></my-ltab>
+    <view id="tab">
+        <my-ltab bind:tabClick="tabClick" tabCurrent="{{tabCurrent}}"></my-ltab>
     </view>
+    <view class="tabFixed" wx:if="{{tabFixed}}"> 
+        <my-ltab bind:tabClick="tabClick" tabCurrent="{{tabCurrent}}"></my-ltab>
+    </view>
+
 
     <!-- 车列表 -->
     <my-carslist carData="{{resData}}" bind:caritemClick="caritemClick" bind:loadMore="loadMore" isLoading="{{isLoading}}" noMore="{{noMore}}" isSell="{{isSell}}"></my-carslist>

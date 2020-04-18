@@ -9,7 +9,8 @@
   margin: 34rpx 46rpx;
 } */
 .infoTab{
-  padding:34rpx 46rpx 44rpx 46rpx;
+  width: 100%;
+  padding:0 46rpx;
   box-sizing: border-box;
   position: fixed;
   z-index: 99999;

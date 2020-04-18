@@ -6,8 +6,8 @@ Component({
 
     tabList: {
       type: Array,
-      value: ['二手车', '新车', '已售']
-      // value: ['二手车', '新车'],
+      value: ['新车', '二手车'],
+
     },
 
     tabCurrent: {

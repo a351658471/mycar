@@ -22,7 +22,10 @@ page{
   bottom: 44rpx;
 }
 .tabFixed{
-  width: 100%;
   position: fixed;
-  z-index: 9999;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #fff;
 }
