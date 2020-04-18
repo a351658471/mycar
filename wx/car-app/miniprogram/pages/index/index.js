@@ -163,7 +163,7 @@ Page({
   tabClick: function (e) {
 
     this.data.page =1
-    this.data.tabflag ++
+    this.data.tabflag ++ 
     this.data.tabCurrent = e.detail.tabCurrent
     this.setData({
       tabCurrent:this.data.tabCurrent,

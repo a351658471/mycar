@@ -11,7 +11,8 @@ Page({
     tabCurrent:0,
     page:1,
     isLoading:false,
-    noMore:false
+    noMore:false,
+    isShow:false
   },
   //生命周期函数初次渲染完成
   onLoad: function () {
@@ -27,7 +28,10 @@ Page({
     this.data.page=1
     this.data.tabCurrent = e.detail.tabCurrent
     let status = [e.detail.tabCurrent];
-    this.getCarData(status)
+    this.getCarData(status),
+    this.setData({
+      isShow:false
+    })
    
   },
 
@@ -84,11 +88,12 @@ Page({
           this.data.items.push({ xmove: 0, isOpen: false })
           item.data = JSON.parse(item.data)
           this.data.carData.push(item)
-          this.setData({
-            carData: this.data.carData,
-            items:this.data.items
-          })
-
+        })
+        this.data.carData.length ==0?this.data.isShow=true:this.data.isShow=false
+        this.setData({
+          carData: this.data.carData,
+          items:this.data.items,
+          isShow:this.data.isShow
         })
       },
       fail: err => {
