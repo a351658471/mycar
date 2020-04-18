@@ -24,6 +24,8 @@ Page({
   onLoad: function (options) {
     this.data.itemid = options.id
     this.data.isSold = options.sold
+
+    this.setData(this.data)
     console.log(this.data.isSold)
     this.getCarData()
     wx.showLoading({
@@ -200,7 +202,11 @@ Page({
         ctx.drawImage(res.path, 10, 10, cWidth - 20, imgHeight - 10)
         // ctx.setFillStyle('#fff')
         // ctx.fillRect(0, imgHeight-10, cWidth, difValue - imgHeight)
-        if(this.data.isSold = true){
+        // debugger
+        
+        console.log(typeof(this.data.isSold))
+        if(this.data.isSold  == 'true'){
+          console.log(this.data.isSold)
           ctx.drawImage(this.data.soldImage,10,10,100,100)
         }
         ctx.drawImage(tempPath, cWidth * 2 / 3 + 10, cHeight - 30 * hpx - qrWidth, qrWidth - 20, qrWidth - 20)
