@@ -125,80 +125,28 @@ Page({
     }
   },
   //添加详情图片
-  insertImage() {
-    app.globalFunc.uploadImg((r, res) => {
-      if (r) {
-        for (let index = 0; index < res.fileIDs.length; index++) {
-          const element = res.fileIDs[index];
-          let data = {
-            content: element,
-            type: 'image'
-          }
-          this.data.carData[0].data.detail.push(data)
-        }
-        this.setData({
-          carData: this.data.carData,
-          textValue: '',
-        })
-      }
+  insertVideo(e) {
+    console.log(e)
+    this.data.carData[0].data.detail.push(e.detail)
+    this.setData({
+      carData: this.data.carData
     })
   },
-
-  // 删除详情图片
-  // imgDelete(e) {
-  //   let index = e.currentTarget.dataset.index
-  //   this.data.carData[0].data.detail.splice(index, 1)
-    
-  //   this.setData({
-  //     carData: this.data.carData
-  //   })
-  // },
+  insertImage(e) {
+    this.data.carData[0].data.detail.push(e.detail)
+    this.setData({
+      carData: this.data.carData
+    })
+  },
   deleteDetail(e) {
-    wx.showModal({
-      title: '提示',
-      content: '是否确定删除',
-      success:(res)=>{
-        if(res.confirm){
-          let index = e.currentTarget.dataset.index
-          this.data.carData[0].data.detail.splice(index, 1)
-          this.setData({
-            carData: this.data.carData
-          })
-        }
-      }
+    console.log(e)
+    let index = e.detail
+    this.data.carData[0].data.detail.splice(index, 1)
+    this.setData({
+      carData: this.data.carData
     })
-    
-  },
-  //添加详情视频
-  insertVideo() {
-    app.globalFunc.uploadVideo((r, res) => {
-      if (r) {
-        let data = {
-          content: res.fileIDs[0],
-          type: 'video'
-        }
-        this.data.carData[0].data.detail.push(data)
-        this.setData({
-          carData: this.data.carData,
-          textValue: '',
-        })
-      }
-    })
-  },
-  // videoDelete(e) {
-  //   let index = e.currentTarget.dataset.index
-  //   this.data.carData[0].data.detail.splice(index, 1)
 
-  //   this.setData({
-  //     carData: this.data.carData
-  //   })
-    // let index = e.currentTarget.dataset.index;
-    // console.log(index)
-    // this.data.dataList.splice(index, 1)
-    // this.setData({
-    //   dataList: this.data.dataList
-    // })
-  // },
+  },
   //保存
   saveEvent() {
     // console.log(this.data.carData[0])
@@ -451,37 +399,6 @@ Page({
       disabled: false
     })
   },
-  textEvent(e){
-    console.log(e)
-    if (!this.data.disabled && this.data.currentText == null){
-         this.setData({
-           currentText: e.currentTarget.dataset.index,
-         })
-    }
-  },
-  editTextBulr(e){
-    console.log(e)
-    console.log(this.data.currentText)
-    let content={
-      type: 'text',
-      content:e.detail.value
-    }
-    let index = this.data.currentText
-    if(e.detail.content !=''){
-      this.data.carData[0].data.detail[index] = content
-      this.setData({
-        carData: this.data.carData,
-        currentText:null
-      })
-    }else{
-      this.data.carData[0].data.detail.splice(index,1)
-      this.setData({
-        carData: this.data.carData,
-        currentText: null
-      })
-    }
-  },
-
   //详情文本点击 出现输入框
   textEvent(e) {
     console.log(e)
@@ -496,28 +413,20 @@ Page({
   //输入框失焦
   editTextBulr(e) {
     console.log(e)
-    let content = {
-      type: 'text',
-      content: e.detail.value
-    }
-    let index = this.data.currentText
-    if (e.detail.content != '') {
-      this.data.carData[0].data.detail[index] = content
-      this.setData({
-        carData: this.data.carData,
-        currentText: null
-      })
-    } else {
-      this.data.carData[0].data.detail.splice(index, 1)
-      this.setData({
-        carData: this.data.carData,
-        currentText: null
-      })
-    }
+    this.data.carData[0].data.detail[e.detail.index] = e.detail.data
+    this.setData({
+      carData: this.data.carData[0].data.detail,
+    })
+
   },
   insertText() {
+    let data = {
+      type: 'text',
+      content: ''
+    }
+    this.data.carData[0].data.detail.push(data)
     this.setData({
-      isTEnter: true
+      carData: this.data.carData
     })
   },
   changeAdd() {
@@ -527,35 +436,28 @@ Page({
   },
   deleteTextArea() {
     this.setData({
-      isTEnter: false,
+      isEnter: false,
       isAdd: false,
     })
   },
   toTop(e) {
-    this.setData({
-      currentText: null
-    })
-    let index1 = e.currentTarget.dataset.index;
-    console.log(index1)
-    let index2 = index1 - 1
-    if (index1 == 0) return
+    console.log(e)
     let arr = this.data.carData[0].data.detail
+    let index1 = e.detail.index1
+    let index2 = e.detail.index2
     this.data.carData[0].data.detail.splice(index2, 1, ...this.data.carData[0].data.detail.splice(index1, 1, arr[index2]))
     this.setData({
-      carData: this.data.carData,
+      carData: this.data.carData
     })
+
   },
   toDown(e) {
-    this.setData({
-      currentText: null
-    })
-    let index1 = e.currentTarget.dataset.index;
-    let index2 = index1 + 1;
+    let index1 = e.detail.index1
+    let index2 = e.detail.index2
     let arr = this.data.carData[0].data.detail
-    if (index2 == this.data.carData[0].data.detail.length) return
     this.data.carData[0].data.detail.splice(index2, 1, ...this.data.carData[0].data.detail.splice(index1, 1, arr[index2]))
     this.setData({
-      carData: this.data.carData,
+      carData: this.data.carData
     })
   }
 })

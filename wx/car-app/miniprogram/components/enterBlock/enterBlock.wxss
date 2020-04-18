@@ -1,10 +1,13 @@
-/* components/detailEnter/detailEnter.wxss */
+.enterBlock{
+  width: 100%;
+  height: 100%
+}
 .container1 {
   margin-top: .5rem;
   box-sizing: border-box;
   background: #fff;
   width: 90%;
-  height:25vh;
+  height:125px;
   padding: 10px;
   margin: auto;
   overflow-y: hidden
@@ -18,10 +21,9 @@
 .toolbar {
   width: 90%;
   margin: auto;
-  border: 1px solid #F3F3F5;
+  border: 1px solid #E7E7E7;
   box-sizing: border-box;
-  padding: 0 10px;
-  height: 40px;
+  padding: 10rpx 26rpx;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -29,56 +31,50 @@
   /* border: 1px solid #ECECEC; */
   border-left: none;
   border-right: none;
-  background: #fff
+  background: linear-gradient(to right,#FFFFFF,#F8F8F8);
 }
 .toAnywhere{
-  display: flex
+  display: flex;
+  align-items: center;
 }
 .iconItem{
   margin-right: 3vw;
-  width: 12vw;
-  height: 3.5vh;
-  line-height: 3.5vh;
+  width: 78rpx;
+  height: 42rpx;
   text-align: center;
-  border: 1px solid #EEEEEE
+  border: 1rpx solid #E1E1E1;
+  border-radius: 6rpx;
 }
 .toolbarDelete{
+  font-size: 24rpx;
   color: #999999
 }
-.container1 {
-  margin-top: .5rem;
-  box-sizing: border-box;
-  background: #fff;
-  width: 90%;
-  height:25vh;
-  padding: 10px;
-  margin: auto;
-  overflow-y: hidden
-}
 .bAdd{
-  margin:1.5rem auto; 
-  width: 20vw;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin:76rpx auto; 
+  width: 168rpx;
   text-align: center;
   background: #3377FE;
-  color: white;
-  height:6vh;
-  line-height: 6vh;
-  border: 1px solid #275EBD;
-  border-radius: 3px;
+  border: 1px solid #2478D5;
+  border-radius: 6rpx;
+  padding: 18rpx 0;
 }
 .buttonBox{
   width: 80%;
   display: flex;
-  margin: 1.5rem auto
+  margin: 3rem auto;
+  border-radius: 6rpx;
+  background: #3377FE;
+  border: 1px solid #175DD2;
 }
 .bItem{
   width: 33%;
-  height:6vh;
   text-align: center;
-  line-height: 6vh;
-  background: #3377FE;
   color: white;
-  border: 1px solid #275EBD;
-  border-radius: 3px;
+  padding: 16rpx 0;
+  font-size: 32rpx;
   
 }

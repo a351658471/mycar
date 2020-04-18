@@ -9,7 +9,12 @@ Page({
     isAdd:true,
     reqData: [],
     textValue: '',
-    dataList: [],
+    dataList: [
+      {
+        type:'text',
+        content:''
+      }
+    ],
     name: '',
     price: 0,
     passData: null,
@@ -109,7 +114,7 @@ Page({
 
   //调用增加商品接口
   send(status) {
-
+    // if(this.data.dataList.length!=0)this.data.dataList.forEach((item,index)=>{if(item.content =='')this.data.dataList.splice(index,1)})
     let type = 0
     if (this.data.passData.isOld) {
       type = app.globalData.type.userCar
@@ -161,53 +166,26 @@ Page({
       }
     })
   },
-  insertImage() {
-    app.globalFunc.uploadImg((r, res) => {
-      if (r) { 
-        for (let index = 0; index < res.fileIDs.length; index++) {
-          const element = res.fileIDs[index];
-          let data = {
-            content: element,
-            type: 'image'
-          }
-          this.data.dataList.push(data)
-        }
-        this.setData({
-          dataList: this.data.dataList,
-          textValue: '',
-        })
-      }
+  insertImage(e) {
+    this.data.dataList.push(e.detail)
+    this.setData({
+      dataList: this.data.dataList
     })
   },
   deleteDetail(e) {
-   wx.showModal({
-     title: '提示',
-     content: '是否确定删除',
-     success:(res)=>{
-       if(res.confirm){
-         let index = e.currentTarget.dataset.index
-         this.data.dataList.splice(index, 1)
+    console.log(e)
+    let index = e.detail
+    this.data.dataList.splice(index, 1)
          this.setData({
            dataList: this.data.dataList
          })
-       }
-     }
-   })
     
   },
-  insertVideo() {
-    app.globalFunc.uploadVideo((r, res) => {
-      if (r) {
-        let data = {
-          content: res.fileIDs[0],
-          type: 'video'
-        }
-        this.data.dataList.push(data)
-        this.setData({
-          dataList: this.data.dataList,
-          textValue: '',
-        })
-      }
+  insertVideo(e) {
+    console.log(e)
+    this.data.dataList.push(e.detail)
+    this.setData({
+      dataList:this.data.dataList
     })
   },
   // videoDelete(e) {
@@ -256,28 +234,32 @@ Page({
   //输入框失焦
   editTextBulr(e) {
     console.log(e)
-    let content = {
-      type: 'text',
-      content: e.detail.value
-    }
-    let index = this.data.currentText
-    if (e.detail.content != '') {
-      this.data.dataList[index] = content
+    this.data.dataList[e.detail.index] = e.detail.data
       this.setData({
         dataList: this.data.dataList,
-        currentText: null
       })
-    } else {
-      this.data.dataList.splice(index, 1)
-      this.setData({
-        dataList: this.data.dataList,
-        currentText: null
-      })
-    }
+    // if (e.detail.data.content != '') {
+    //   this.data.dataList[e.detail.index] = e.detail.data
+    //   this.setData({
+    //     dataList: this.data.dataList,
+    //     currentText: null
+    //   })
+    // } else {
+    //   this.data.dataList.splice(e.detail.index, 1)
+    //   this.setData({
+    //     dataList: this.data.dataList,
+    //     currentText: null
+    //   })
+    // }
   },
   insertText(){
+    let data = {
+      type:'text',
+      content:''
+    }
+    this.data.dataList.push(data)
     this.setData({
-      isEnter:true
+      dataList: this.data.dataList
     })
   },
   changeAdd(){
@@ -292,33 +274,49 @@ Page({
     })
   },
   toTop(e){
-    this.setData({
-      currentText:null
-    })
-    let index1 = e.currentTarget.dataset.index;
-    let index2 = index1 -1
-    if(index1 == 0) return
-    let arr = this.data.dataList
-    console.log(this.data.dataList[index1])
-    console.log(this.data.dataList[index2])
+    console.log(e)
+    let arr= this.data.dataList
+    let index1 = e.detail.index1
+    let index2 = e.detail.index2
     this.data.dataList.splice(index2,1,...this.data.dataList.splice(index1,1,arr[index2]))
-    console.log(this.data.dataList)
     this.setData({
-      dataList: this.data.dataList
-    })
+        dataList: this.data.dataList
+      })
+    // this.setData({
+    //   currentText:null
+    // })
+    // let index1 = e.currentTarget.dataset.index;
+    // let index2 = index1 -1
+    // if(index1 == 0) return
+    // let arr = this.data.dataList
+    // console.log(this.data.dataList[index1])
+    // console.log(this.data.dataList[index2])
+    // this.data.dataList.splice(index2,1,...this.data.dataList.splice(index1,1,arr[index2]))
+    // console.log(this.data.dataList)
+    // this.setData({
+    //   dataList: this.data.dataList
+    // })
     
   },
   toDown(e){
-    this.setData({
-      currentText: null
-    })
-    let index1 = e.currentTarget.dataset.index;
-    let index2 = index1+1;
+    console.log(e)
+    let index1 = e.detail.index1
+    let index2 = e.detail.index2
     let arr = this.data.dataList
-    if(index2 == this.data.dataList.length) return
-    this.data.dataList.splice(index2, 1, ...this.data.dataList.splice(index1, 1,arr[index2]))
+    this.data.dataList.splice(index2, 1, ...this.data.dataList.splice(index1, 1, arr[index2]))
     this.setData({
-      dataList:this.data.dataList
+      dataList: this.data.dataList
     })
+    // this.setData({
+    //   currentText: null
+    // })
+    // let index1 = e.currentTarget.dataset.index;
+    // let index2 = index1+1;
+    // let arr = this.data.dataList
+    // if(index2 == this.data.dataList.length) return
+    // this.data.dataList.splice(index2, 1, ...this.data.dataList.splice(index1, 1,arr[index2]))
+    // this.setData({
+    //   dataList:this.data.dataList
+    // })
   }
 })
