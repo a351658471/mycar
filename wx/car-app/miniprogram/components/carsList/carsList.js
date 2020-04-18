@@ -14,6 +14,10 @@ Component({
     isLoading: {
       type: Boolean,
       value: false
+    },
+    isSell:{
+      type:Boolean,
+      value:false
     }
   },
   /**

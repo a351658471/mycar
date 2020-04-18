@@ -16,7 +16,6 @@
   position: relative;
   font-size: 34rpx;
   color: #3377FE;
-  top: -3rpx;
 }
 .active::after{
   content: '';

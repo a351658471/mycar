@@ -21,3 +21,8 @@ page{
   right: 28rpx;
   bottom: 44rpx;
 }
+.tabFixed{
+  width: 100%;
+  position: fixed;
+  z-index: 9999;
+}

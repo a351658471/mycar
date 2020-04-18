@@ -28,10 +28,11 @@
   box-sizing: border-box;
   background: #fff;
   width: 90%;
-  height:25vh;
+  height:250rpx;
   padding: 10px;
   margin: auto;
-  overflow-y: hidden
+  overflow-y: hidden;
+  border: 1px;
 }
 input::placeholder{
   color: #E1E1E1;
@@ -49,7 +50,7 @@ input::placeholder{
   /* border: 1px solid #ECECEC; */
   border-left: none;
   border-right: none;
-  background: linear-gradient(to right,#FFFFFF,#F8F8F8);
+  background: linear-gradient(to bottom,#FFFFFF,#F8F8F8);
 }
 .toAnywhere{
   display: flex;
@@ -73,6 +74,7 @@ input::placeholder{
 .iconItem image{
   width: 34rpx;
   height: 20rpx;
+  line-height: 42rpx;
 }
 .imgContent{
   width: 100%;

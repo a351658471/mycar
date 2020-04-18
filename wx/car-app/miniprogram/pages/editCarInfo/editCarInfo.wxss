@@ -247,7 +247,7 @@ radio .wx-radio-input.wx-radio-input-checked::before{
   /* border: 1px solid #ECECEC; */
   border-left: none;
   border-right: none;
-  background: linear-gradient(to right,#FFFFFF,#F8F8F8);
+  background: linear-gradient(to bottom,#FFFFFF,#F8F8F8);
 }
 .toAnywhere{
   display: flex;
@@ -264,6 +264,7 @@ radio .wx-radio-input.wx-radio-input-checked::before{
 .iconItem image{
   width: 34rpx;
   height: 20rpx;
+  line-height: 42rpx;
 }
 .toolbarDelete{
   font-size: 24rpx;

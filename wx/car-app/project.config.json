@@ -89,8 +89,8 @@
 				},
 				{
 					"id": 3,
-					"name": "pages/addNewCar/addNewCar",
-					"pathName": "pages/addNewCar/addNewCar",
+					"name": "pages/index/carDetail/card/card",
+					"pathName": "pages/index/carDetail/card/card",
 					"query": "",
 					"scene": null
 				},
@@ -126,6 +126,27 @@
 					"id": 8,
 					"name": "pages/addNewCar/detail/detail",
 					"pathName": "pages/addNewCar/detail/detail",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/carManage/carManage",
+					"pathName": "pages/carManage/carManage",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/information/detail/detail",
+					"pathName": "pages/information/detail/detail",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/addNewCar/addNewCar/detail",
+					"pathName": "pages/addNewCar/addNewCar/detail",
 					"query": "",
 					"scene": null
 				}
