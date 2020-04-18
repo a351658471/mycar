@@ -34,7 +34,7 @@
     <!-- detail -->
     <view class="bottomBox">
       <!-- tab -->
-      <view style="margin: 0 auto 42rpx 38rpx">
+      <view style="margin: 0">
         <my-tab tabList="{{tabList}}" fontSize="14px" bind:tabClick="tabClick"></my-tab>
       </view>
       <view wx:if="{{currentIndex == 0}}" style='background:#fff; width:100%;padding-top:1vw'>

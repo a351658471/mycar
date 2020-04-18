@@ -23,7 +23,7 @@
 }
 .sold{
   position: absolute;
-  z-index: 99999;
+  z-index: 0;
   width: 104rpx;
   height: 104rpx;
   top: 0;
@@ -48,7 +48,7 @@
 
 }
 .itemCars{
-  max-width: 130rpx;
+  /* max-width: 130rpx; */
   color: #6C6C6C;
   border-radius: 8rpx;
   background: #F8F8FA;

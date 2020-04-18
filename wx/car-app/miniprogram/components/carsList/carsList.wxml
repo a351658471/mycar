@@ -8,7 +8,7 @@
         </view>
         <view class='carMsg'>
           <view class="carMsgname">{{item.name}}</view>
-          <!-- <view style='color:#BBBBBB; font-size:24rpx'>{{item.type==0?'全新':'二手'}}</view> -->
+          <view style='color:#BBBBBB; font-size:24rpx'>{{item.type==0?'全新':'二手'}}</view>
           <view style='display:flex; font-size:22rpx; text-overflow:ellipsis; overflow:hidden; white-space:nowrap;'>
             <view class='itemCars' wx:for="{{item.data.labelList}}" wx:key="index">{{item}}</view>
           </view>
