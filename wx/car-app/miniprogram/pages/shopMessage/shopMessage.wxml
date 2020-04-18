@@ -1,8 +1,8 @@
 <!-- pages/shopMessage/shopMessage.wxml -->
 <view class="shopmessage">
-  <view class="msg">
+  <view class="msg" style="display: flex; align-items: flex-start;">
     <text>商家名称：</text>
-    <input disabled="{{!isAdmin}}" value="{{name}}" class="msgname" bindinput="inputBindName"></input>
+    <textarea style="height:70rpx;width:70%" disabled="{{!isAdmin}}" value="{{name}}" class="msgname" bindinput="inputBindName"></textarea>
   </view>
   <view class="msg">
     <text>商家电话：</text>
