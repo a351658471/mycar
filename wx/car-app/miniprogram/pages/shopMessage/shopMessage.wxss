@@ -10,7 +10,7 @@
   padding: 20rpx;
 }
 .shopmessage .msg input{
-  width: 54.2%;
+  width: 54%;
   font-size: 30rpx;
   color: #4A4A4A;
 }
