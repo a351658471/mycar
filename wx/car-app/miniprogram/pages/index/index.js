@@ -41,6 +41,9 @@ Page({
       this.state = app.globalData.state
     }
   },
+  onPageScroll(e){
+    console.log(e)
+  },
   onUnload() {
     app.globalData.removeListener(app.globalData.eventShopUpdate, this.onShopInfo)
   },
