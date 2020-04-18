@@ -19,7 +19,8 @@ Page({
     isSell:false,
     tabScrollTop: 0,
     tabFixed:false,
-    fist:true
+    fist:true,
+    isShow:false
   },
   onPageScroll: function(e) {
     // console.log(e.scrollTop)
@@ -144,11 +145,13 @@ Page({
         res.result.data.forEach(item => {
           item.data = JSON.parse(item.data)
           this.data.resData.push(item)
-          this.setData({
-            resData: this.data.resData
-          })
-
         })
+        this.data.resData.length ==0?this.data.isShow=true:this.data.isShow=false
+        this.setData({
+          resData: this.data.resData,
+          isShow:this.data.isShow
+        })
+        
       },
       fail: err => {
         // console.error('[云函数] [item.itemList] 调用失败', err)
@@ -158,11 +161,13 @@ Page({
 
   //tab事件
   tabClick: function (e) {
+
     this.data.page =1
     this.data.tabflag ++
     this.data.tabCurrent = e.detail.tabCurrent
     this.setData({
-      tabCurrent:this.data.tabCurrent
+      tabCurrent:this.data.tabCurrent,
+      isShow:false
     })
     this.getCarData()
     // console.log(this.data.tabCurrent)
