@@ -2,7 +2,7 @@
 <view class="shopmessage">
   <view class="msg" style="display: flex;">
     <text>商家名称：</text>
-    <textarea auto-height="true" disabled="{{!isAdmin}}" value="{{name}}" class="msgname" bindinput="inputBindName"></textarea>
+    <textarea auto-height="true" disable-default-padding="true" disabled="{{!isAdmin}}" value="{{name}}" class="msgname" bindinput="inputBindName"></textarea>
   </view>
   <view class="msg">
     <text>商家电话：</text>
