@@ -18,9 +18,11 @@ Page({
     tabflag:0,
     isSell:false,
     tabScrollTop: 0,
-    tabFixed:false
+    tabFixed:false,
+    fist:true
   },
   onPageScroll: function(e) {
+    // console.log(e.scrollTop)
     if(e.scrollTop>this.data.tabScrollTop){
       this.setData({
         tabFixed:true
@@ -50,9 +52,13 @@ Page({
       this.state = app.globalData.state
     }
     // setTimeout(()=>{})
-    wx.createSelectorQuery().select('#tab').boundingClientRect(rect=>{
+    if(this.data.fist){
+      this.data.fist = false
+      wx.createSelectorQuery().select('#tab').boundingClientRect(rect=>{
       this.data.tabScrollTop = rect.top
     }).exec()
+    }
+    
   },
   onUnload() {
     app.globalData.removeListener(app.globalData.eventShopUpdate, this.onShopInfo)
@@ -159,7 +165,7 @@ Page({
       tabCurrent:this.data.tabCurrent
     })
     this.getCarData()
-    console.log(this.data.tabCurrent)
+    // console.log(this.data.tabCurrent)
     if (e.detail.tabCurrent==2){
       this.data.isSell = true
     }
@@ -193,7 +199,7 @@ Page({
   ,
   onShareAppMessage(res) {
     if (res.from === 'button') {
-      console.log(res.target);
+      // console.log(res.target);
     }
     return {
       title: '厦门车之居',

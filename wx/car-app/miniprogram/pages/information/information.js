@@ -85,7 +85,7 @@ Page({
         type: type
       },
       success: (res) => {
-        console.log(res)
+        // console.log(res)
         this.data.flag =true
         if (res.data.msg instanceof Array && res.data.msg.length == PAGECOUNT) {
            this.data.noMore = false
@@ -107,10 +107,10 @@ Page({
     })
   },
   detail(e){
-    console.log(e)
+    // console.log(e)
     let id = e.detail.id;
     let isVideo = e.detail.isVideo
-    console.log(isVideo)
+    // console.log(isVideo)
     wx.navigateTo({
       url: 'detail/detail?id='+id+'&isVideo='+isVideo
     })
