@@ -51,38 +51,33 @@ Component({
     },
     //上移
     toTop(e) {
-      this.setData({
-        currentText: null
-      })
-      let index1 = e.currentTarget.dataset.index;
-      let index2 = index1 - 1
-      if (index1 == 0) return
-      this.triggerEvent('toTop', {
-        index1:index1,
-        index2:index2
-      })
-      // this.data.dataList.splice(index2, 1, ...this.data.dataList.splice(index1, 1, arr[index2]))
       // this.setData({
-      //   dataList: this.data.dataList
+      //   currentText: null
       // })
-      
+      setTimeout(()=>{
+        let index1 = e.currentTarget.dataset.index;
+        let index2 = index1 - 1
+        if (index1 == 0) return
+        this.triggerEvent('toTop', {
+          index1:index1,
+          index2:index2
+        })
+      },50)
     },
     //下移
     toDown(e) {
-      this.setData({
-        currentText: null
-      })
-      let index1 = e.currentTarget.dataset.index;
-      let index2 = index1 + 1;
+      // this.setData({
+      //   currentText: null
+      // })
+      setTimeout(()=>{
+        let index1 = e.currentTarget.dataset.index;
+       let index2 = index1 + 1;
       if (index2 == this.data.dataList.length) return
       this.triggerEvent('toDown', {
         index1: index1,
         index2: index2
       })
-      // this.data.dataList.splice(index2, 1, ...this.data.dataList.splice(index1, 1, arr[index2]))
-      // this.setData({
-      //   dataList: this.data.dataList
-      // })
+      },50)
     },
     //删除块
     deleteDetail(e) {
@@ -92,10 +87,6 @@ Component({
         success: (res) => {
           if (res.confirm) {
             let index = e.currentTarget.dataset.index
-            // this.data.dataList.splice(index, 1)
-            // this.setData({
-            //   dataList: this.data.dataList
-            // })
             this.triggerEvent('deleteDetail',index)
           }
         }
@@ -114,10 +105,6 @@ Component({
         type: 'text',
         content: ''
       }
-      // this.data.dataList.push(data)
-      // this.setData({
-      //   dataList: this.data.dataList
-      // })
       this.triggerEvent('insertText', data)
     },
     //添加视频
@@ -128,11 +115,6 @@ Component({
             content: res.fileIDs[0],
             type: 'video'
           }
-          // this.data.dataList.push(data)
-          // this.setData({
-          //   dataList: this.data.dataList,
-          //   textValue: '',
-          // })
           this.triggerEvent('insertVideo', data)
         }
       })
@@ -148,15 +130,22 @@ Component({
               type: 'image'
             }
             this.triggerEvent('insertImage', data)
-            // this.data.dataList.push(data)
           }
-          // this.setData({
-          //   dataList: this.data.dataList,
-          //   textValue: '',
-          // })
           
         }
       })
     },
+    //大图展示
+    topic_preview(e){
+      console.log(e)
+      let urls = []
+      this.data.dataList.forEach(item=>{ 
+        if(item.type == 'image') urls.push(item.content)
+      })
+      wx.previewImage({
+        current:e.currentTarget.dataset.url,
+        urls:urls
+      })
+    }
   }
 })

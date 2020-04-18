@@ -8,7 +8,7 @@
         
         <!-- 图片展示 -->
           <view class="imgContent" wx:if="{{item.type == 'image'}}">
-              <image src="{{item.content}}" mode="widthFix" style="width:100%;height:100%"></image>
+              <image src="{{item.content}}" mode="widthFix" style="width:100%;height:100%" bindtap='topic_preview' data-url="{{item.content}}"></image>
           </view>
         
         <!-- 视频展示 -->
@@ -18,8 +18,8 @@
       </view>
       <view class="toolbar">
           <view class="toAnywhere">
-              <view class=" iconItem"  bindtap="toDown"data-index="{{index}}"><image src="/assets/toDown{{index==dataList.length-1?'_active':''}}.png" mode="widthFix" style="width:50%"></image></view>
-              <view class=" iconItem" bindtap="toTop" data-index="{{index}}"><image src="/assets/toTop{{index==0?'_active':''}}.png" mode="widthFix" style="width:50%"></image></view>
+              <view class=" iconItem"  bindtap="toDown"data-index="{{index}}"><image src="/assets/toDown{{index==dataList.length-1?'_active':''}}.png" mode="widthFix" style="width:50%;margin-bottom:1px"></image></view>
+              <view class=" iconItem" bindtap="toTop" data-index="{{index}}"><image src="/assets/toTop{{index==0?'_active':''}}.png" mode="widthFix" style="width:50%;margin-bottom:1px"></image></view>
           </view>
             <view class="toolbarDelete" catchtouchend="deleteDetail" data-index="{{index}}">删除</view>
         </view>
