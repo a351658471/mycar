@@ -26,7 +26,7 @@
             <view class='left-item'>{{item}}</view>
           </block>
         </view>
-        <view class='body-right' style='color:#EA1919;font-weight:bold; margin-top: 5rpx;'>
+        <view class='body-right' style='color:#EA1919;font-weight:bold; margin-top: 10rpx;'>
           ￥{{carData[0].price}}
         </view>
       </view>
@@ -34,14 +34,14 @@
     <!-- detail -->
     <view class="bottomBox">
       <!-- tab -->
-      <view style="margin: 0 auto 42rpx 38rpx">
+      <view style="margin: 0">
         <my-tab tabList="{{tabList}}" fontSize="14px" bind:tabClick="tabClick"></my-tab>
       </view>
       <view wx:if="{{currentIndex == 0}}" style='background:#fff; width:100%;padding-top:1vw'>
         <view wx:for="{{carData[0].data.detail}}" wx:key="index" style="margin-top:20rpx">
           <!-- 图片内容 -->
           <view style='width:90%; margin:0 auto' wx:if="{{item.type == 'image'}}">
-            <image src='{{item.content}}' mode="widthFix" style='width:100%' bindtap="previewImage" data-content="{{item.content}}"></image>
+            <image src='{{item.content}}' mode="aspectFit" style='width:100%' bindtap="previewImage" data-content="{{item.content}}"></image>
           </view>
           <!-- 视频 -->
           <view style='width:90%;  margin:0 auto' wx:if="{{item.type == 'video'}}">
@@ -52,9 +52,9 @@
           </view>
         </view>
       </view>
-      <view wx:elif="{{currentIndex == 1}}" style='width:100%; background:#fff'>
+      <view wx:elif="{{currentIndex == 1}}" style='width:100%; background:#fff;'>
         <view style='width:90%; margin:0 auto;border-top:1px solid #E8E5E9'>
-          <view wx:for="{{carData[0].data.params}}" wx:key="index" style='padding:0.5rem 0; border-bottom:1px solid #E8E5E9; font-size:14px;display: flex;'>
+          <view wx:for="{{carData[0].data.params}}" wx:key="index" style='padding:20rpx 0; border-bottom:1px solid #E8E5E9; font-size:12px;display: flex;'>
             <view style='width:5rem'>{{paramsEnum[item.type]}}</view>
             <view>{{item.content}}</view>
           </view>

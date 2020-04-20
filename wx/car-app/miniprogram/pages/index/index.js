@@ -7,7 +7,6 @@ Page({
     // },
     shop: {},
     tabCurrent: 0,
-
     resData: [],
     newcar: [],
     oldcar: [],
@@ -16,7 +15,24 @@ Page({
     noMore: false,
     hideShare: false,
     state:null,
-    tabflag:0
+    tabflag:0,
+    isSell:false,
+    tabScrollTop: 0,
+    tabFixed:false,
+    fist:true,
+    isShow:false
+  },
+  onPageScroll: function(e) {
+    // console.log(e.scrollTop)
+    if(e.scrollTop>this.data.tabScrollTop){
+      this.setData({
+        tabFixed:true
+      })
+    }else{
+      this.setData({
+        tabFixed:false
+      })
+    }
   },
   onLoad(options) {
     if(options && options.scene){
@@ -27,22 +43,29 @@ Page({
         })
       }
     }
-   
     app.globalData.addListener(app.globalData.eventShopUpdate, this.onShopInfo)
     app.globalFunc.getShopInfo();
   },
   onShow() {
     //获取车列表
-    // if (this.data.resData.length == 0 && this.data.shop._id != null) {
-    //   this.getCarData()
-    // }
     if (this.state != app.globalData.state && this.data.shop._id != null) {
       this.getCarData()
       this.state = app.globalData.state
     }
+    // setTimeout(()=>{})
+    if(this.data.fist){
+      this.data.fist = false
+      wx.createSelectorQuery().select('#tab').boundingClientRect(rect=>{
+      this.data.tabScrollTop = rect.top
+    }).exec()
+    }
+    
   },
   onUnload() {
     app.globalData.removeListener(app.globalData.eventShopUpdate, this.onShopInfo)
+    wx.pageScrollTo({
+      scrollTop: 300,
+    })
   },
   onShopInfo() {
     this.data.shop = app.globalData.shop
@@ -122,11 +145,13 @@ Page({
         res.result.data.forEach(item => {
           item.data = JSON.parse(item.data)
           this.data.resData.push(item)
-          this.setData({
-            resData: this.data.resData
-          })
-
         })
+        this.data.resData.length ==0?this.data.isShow=true:this.data.isShow=false
+        this.setData({
+          resData: this.data.resData,
+          isShow:this.data.isShow
+        })
+        
       },
       fail: err => {
         // console.error('[云函数] [item.itemList] 调用失败', err)
@@ -136,25 +161,39 @@ Page({
 
   //tab事件
   tabClick: function (e) {
+
     this.data.page =1
-    this.data.tabflag ++
+    this.data.tabflag ++ 
     this.data.tabCurrent = e.detail.tabCurrent
+    this.setData({
+      tabCurrent:this.data.tabCurrent,
+      isShow:false
+    })
     this.getCarData()
+    // console.log(this.data.tabCurrent)
+    if (e.detail.tabCurrent==2){
+      this.data.isSell = true
+    }
+    else{
+      this.data.isSell = false
+    }
+    this.setData(this.data)
   },
 
   caritemClick: function (e) {
     let carId = e.detail.itemData
     wx.navigateTo({
-      url: '/pages/index/carDetail/carDetail?carId=' + carId
+      url: '/pages/index/carDetail/carDetail?carId=' + carId + '&tab=' + this.data.tabCurrent
     })
   },
 
   //上拉加载更多
   loadMore() {
-    if (this.data.flag)
+    if (this.data.flag){
       this.data.flag = false;
-    this.data.page++;
-    this.getCarData(this.data.page)
+      this.data.page++;
+      this.getCarData(this.data.page)
+    }
   },
 
   backEvent() {
@@ -165,7 +204,7 @@ Page({
   ,
   onShareAppMessage(res) {
     if (res.from === 'button') {
-      console.log(res.target);
+      // console.log(res.target);
     }
     return {
       title: '厦门车之居',

@@ -1,15 +1,28 @@
 .item{
   background: #fff;
-  border-radius:10px;
   width: 90%;
   margin-bottom: .5rem;
-  margin-left: 1rem;
+  margin: 0 auto;
   border-bottom: 1px solid #f6f6f6
+}
+.stop{
+  width: 142rpx;
+  height: 142rpx;
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+.stop image{
+  width: 100%;
+  height: 100%;
 }
 .topText{
   width: 90%;
-  font-size: 14px;
-  color: #505050;
+  font-size: 34rpx;
+  padding: 20rpx 0;
+  color: #131E33;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -19,36 +32,34 @@
   text-align: center;
   display: flex;
   justify-content: space-between;
-  align-items: center
+  align-items: center;
+  border-radius: 8rpx;
+  overflow: hidden
 }
 .imgBox{
-  width: 30%
+  width: 32%;
+  height: 156rpx;
 }
 .carImg{
-  width:95%;
-  height: 10rem
-}
-.topText{
-  margin-left: 0.5rem;
-  height: 3rem;
-  line-height: 3rem;
+  display: block;
+  width:100%;
+  height: 100%;
 }
 .bottom{
-  font-size: 13px;
-  height: 2rem;
-  line-height: 2rem;
+  font-size: 26rpx;
+  padding: 20rpx 0;
   display: flex;
   justify-content : space-between;
-  color: #999;
-  margin-left: 0.5rem;
+  color: #838690;
 }
-.bottomRight{
-}
-.bottomRightItem{
-  display: flex;
-}
-.mtext{
-  margin-left: 3px;
+
+.loadMore{
+  width: 100;
+  text-align: center;
+  height: 8vw;
+  line-height: 8vw;
+  color: #777;
+  font-size: 30rpx;
 }
 
 /* 引入阿里巴巴图标 */

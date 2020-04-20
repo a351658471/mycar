@@ -13,7 +13,9 @@ Page({
     cWidth: 0,
     itemid: '',
     carData: [],
-    isShow: false
+    isShow: false,
+    soldImage:'../../../../assets/sold.png',
+    isSold:false
   },
 
   /**
@@ -21,6 +23,10 @@ Page({
    */
   onLoad: function (options) {
     this.data.itemid = options.id
+    this.data.isSold = options.sold
+
+    this.setData(this.data)
+    console.log(this.data.isSold)
     this.getCarData()
     wx.showLoading({
       title: '正在生成中...',
@@ -170,8 +176,8 @@ Page({
   canvasFunc(tempPath, qrWidth) {
     let wpx = this.data.wpx
     let hpx = this.data.hpx
+    let type = this.data.carData[0].type == 0 ? '全新 ' : '二手 '
     let name = this.data.carData[0].name
-    // let type = this.data.carData[0].type == 0 ? '全新' : '二手'
     let label = this.data.carData[0].data.labelList.join(" | ")
     let price = this.data.carData[0].price
     let src = this.data.carData[0].data.imgList[0]
@@ -189,15 +195,27 @@ Page({
           isCanvas: true
         })
         const ctx = wx.createCanvasContext('shareCanvas')
-        ctx.setFillStyle('#fff')
+        ctx.setFillStyle('#7EA9FF')
         ctx.fillRect(0, 0, cWidth, cHeight)
-        ctx.drawImage(res.path, 10, 10, cWidth - 20, imgHeight - 10)
         ctx.setFillStyle('#fff')
-        ctx.fillRect(0, imgHeight, cWidth, difValue - imgHeight)
+        ctx.fillRect(10, 10, cWidth-20, cHeight-20)
+        ctx.drawImage(res.path, 10, 10, cWidth - 20, imgHeight - 10)
+        // ctx.setFillStyle('#fff')
+        // ctx.fillRect(0, imgHeight-10, cWidth, difValue - imgHeight)
+        // debugger
+        
+        console.log(typeof(this.data.isSold))
+        if(this.data.isSold  == 'true'){
+          console.log(this.data.isSold)
+          ctx.drawImage(this.data.soldImage,10,10,100,100)
+        }
         ctx.drawImage(tempPath, cWidth * 2 / 3 + 10, cHeight - 30 * hpx - qrWidth, qrWidth - 20, qrWidth - 20)
         ctx.setFillStyle('#5C5C5C')
         ctx.setFontSize(12 * wpx)
         ctx.fillText('扫码/长按识别', cWidth * 2 / 3, cHeight - 25 * hpx)
+        // 类型
+        ctx.setFontSize(13 * wpx)
+        ctx.fillText(type, 15, difValue + 44 * hpx)
         // 标题
         ctx.setFillStyle('#000000')  // 文字颜色：黑色
         this.dealWords({
@@ -205,21 +223,18 @@ Page({
           fontSize: 16,
           word: name,
           maxWidth: 250,
-          x: 10,
+          x: 15,
           y: difValue - 15,
           maxLine: 1
         })
-        // 类型
-        // ctx.setFontSize(13 * wpx)
-        // ctx.fillText(type, 10, difValue + 44 * hpx)
         // 标签
         ctx.setFillStyle('#6C6C6C')
         this.dealWords({
           ctx: ctx,
           fontSize: 13,
           word: label,
-          maxWidth: 178,
-          x: 10,
+          maxWidth: 170,
+          x: 15,
           y: difValue + 45 * hpx * 1.2,
           maxLine: 1
         })
@@ -227,7 +242,7 @@ Page({
         ctx.setFillStyle('#EA1934')  // 文字颜色
         ctx.setFontSize(18 * wpx)         // 文字字号
         ctx.font = '20px bold'
-        ctx.fillText('￥' + price, 10, cHeight - 25 * hpx)
+        ctx.fillText('￥' + price, 15, cHeight - 25 * hpx)
         ctx.draw();
         wx.hideLoading({});
         this.setData({

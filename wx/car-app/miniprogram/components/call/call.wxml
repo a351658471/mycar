@@ -4,7 +4,7 @@
   </view>
 </view>
   <!-- call -->
-  <view class="backgournd" wx:if="{{showMenu}}">
+  <view class="backgournd" wx:if="{{showMenu}}" bindtap="noshow">
     <view class="binner">
       <view bind:tap="copyEvent" hover-class="hoverClass" hover-stay-time="100" style="height:15vw;line-height:15vw;border-bottom:1px solid #E9E6EA;border-radius:10px 10px 0 0;text-align:center">
         {{phoneNumber}}<block wx:if="{{sameNumber}}">(微信同号)</block><i class="iconfont icon-ai-copy" style="margin-left:2vw"></i>

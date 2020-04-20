@@ -39,16 +39,16 @@
     "color": "#999999",
     "list": [
       {
-        "pagePath": "pages/information/information",
-        "text": "资讯",
-        "iconPath": "/assets/information.png",
-        "selectedIconPath": "/assets/information_active.png"
-      },
-      {
         "pagePath": "pages/index/index",
         "text": "买车",
         "iconPath": "/assets/car.png",
         "selectedIconPath": "/assets/car_active.png"
+      },
+      {
+        "pagePath": "pages/information/information",
+        "text": "资讯",
+        "iconPath": "/assets/information.png",
+        "selectedIconPath": "/assets/information_active.png"
       },
       {
         "pagePath": "pages/mypage/mypage",
@@ -58,6 +58,5 @@
       }
     ]
   },
-  "sitemapLocation": "sitemap.json",
-  "style": "v2"
+  "sitemapLocation": "sitemap.json"
 }

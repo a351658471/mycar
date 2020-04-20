@@ -17,10 +17,10 @@ Page({
       1: '初次上牌',
       2: '排放标准',
       3: '发动机',
-      4: '马力',
+      4: '最高马力',
     },
     carData: [],
-    tabList: ['详情介绍', '车辆参数'],
+    tabList: ['详情介绍','车辆参数'],
     currentIndex: 0,
     currentCar: {},
     hideShare: false,
@@ -32,7 +32,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // console.log(options)
+    console.log(options)
     // let cardata = this.data.allCarData.filter((item) => {
     //   return options.carId == item.carId
     // })
@@ -41,6 +41,9 @@ Page({
     // })
     // console.log(this.data.currentCar)
     this.data.itemid = options.carId
+    if (options.tab==2){
+      this.data.isSold = true;
+    }
     this.data.shop = app.globalData.shop
     this.setData(this.data)
     this.getCarData()
@@ -120,7 +123,7 @@ Page({
   },
   makeCard(){
     wx.navigateTo({
-      url: 'card/card?id='+this.data.carData[0]._id,
+      url: 'card/card?id='+this.data.carData[0]._id+'&sold='+this.data.isSold
     })
   }
 })

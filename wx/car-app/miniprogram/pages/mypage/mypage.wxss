@@ -1,12 +1,17 @@
 /* mypage.wxss */
 .wrap {
+  width: 100%;
   display: flex;
   flex-direction: column;
 }
 
 .header {
+  width: 100%;
   background: #ffffff;
   box-sizing: border-box;
+}
+.header .head{
+  width: 100%;
 }
 /* 头像部分 */
 .header .head .headpart{
@@ -57,6 +62,7 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
+  box-sizing: border-box;
   padding: 0 60rpx 34rpx 60rpx;
 }
 .header .head .modify{
@@ -72,6 +78,8 @@
   margin-left: 18rpx;
 }
 .header .head .signpart button{
+  margin: 0;
+  padding: 0;
   width: 122rpx;
   height: 50rpx;
   background-color: #1974FF;
@@ -79,7 +87,6 @@
   font-size: 24rpx;
   font-weight: normal;
   border-radius: 30rpx;
-  margin-right: 120rpx;
 }
 .middleline {
   width: 100%;

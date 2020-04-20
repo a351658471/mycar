@@ -63,6 +63,11 @@ Component({
       this.setData({
         showMenu: false
       })
+    },
+    noshow(){
+      this.setData({
+        showMenu: false
+      })
     }
 
   }

@@ -1,5 +1,5 @@
 {
   "usingComponents": {
-    "denter":"/components/detailEnter/detailEnter"
+    "eblock": "/components/enterBlock/enterBlock"
   }
 }

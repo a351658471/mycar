@@ -3,7 +3,7 @@
   "navigationBarTextStyle": "black",
   "navigationBarTitleText": "车辆管理",
   "usingComponents": {
-    "mg-tab":"../index/components/leftTab/leftTab",
+    "mg-tab":"../carManage/components/leftTab/leftTab",
     "my-carslist": "./components/carsList/carsList"
   }
 }

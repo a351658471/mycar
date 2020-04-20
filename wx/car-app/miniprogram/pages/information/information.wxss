@@ -1,7 +1,12 @@
 /* miniprogram/pages/information/information.wxss */
 page{
-  background: white
+  background: white;
 }
-.information{
-  border-top: 1px solid #f6f6f6
+.infoTab{
+  margin-bottom:30rpx;
+  width:100%; 
+  position:fixed; 
+  z-index:999;
+  background:#fff;
+  padding-bottom: 20rpx;
 }

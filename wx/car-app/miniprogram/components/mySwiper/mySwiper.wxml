@@ -7,4 +7,7 @@
   <view class='myDots' wx:if="{{isMyDots}}">
     {{currentIndex}}/{{imgList.length}}
   </view>
+  <view class="swpDot" wx:if="{{isSwpDot}}">
+    <view class="swpDotItem {{current == index?'active':''}}" wx:for="{{imgList}}" wx:key="index"></view>
+  </view>
 </view>
