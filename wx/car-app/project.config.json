@@ -156,6 +156,18 @@
 					"pathName": "pages/shopMessage/shopMessage",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/components/enterBlock/enterBlock",
+					"pathName": "pages/components/enterBlock/enterBlock",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/components/enterBlock",
+					"pathName": "pages/components/enterBlock",
+					"scene": null
 				}
 			]
 		}

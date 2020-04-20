@@ -1,5 +1,5 @@
 <view class="enterBlock">
- <view wx:for="{{dataList}}" style="margin-bottom:.5rem">
+ <view wx:for="{{dataList}}" style="margin-bottom:.5rem" wx:key="index">
       <view class="container1">
           <view wx:if="{{item.type == 'text'}}" style="height:100%;font-size:30rpx; padding:10rpx 0">
               <textarea wx:if="{{currentText == index}}" bindblur="editTextBulr" style="width:100%" focus value="{{textContent}}"></textarea>
@@ -18,8 +18,8 @@
       </view>
       <view class="toolbar">
           <view class="toAnywhere">
-              <view class=" iconItem"  bindtap="toDown"data-index="{{index}}"><image src="/assets/toDown{{index==dataList.length-1?'_active':''}}.png" mode="widthFix" style="width:50%;margin-bottom:1px"></image></view>
-              <view class=" iconItem" bindtap="toTop" data-index="{{index}}"><image src="/assets/toTop{{index==0?'_active':''}}.png" mode="widthFix" style="width:50%;margin-bottom:1px"></image></view>
+              <view class=" iconItem"  bindtap="toDown"data-index="{{index}}"><image src="/assets/toDown{{index==dataList.length-1?'_active':''}}.png" mode="widthFix" style="width:50%;height:100%;margin-bottom:1px"></image></view>
+              <view class=" iconItem" bindtap="toTop" data-index="{{index}}"><image src="/assets/toTop{{index==0?'_active':''}}.png" mode="widthFix" style="width:50%;height:100%; margin-bottom:1px"></image></view>
           </view>
             <view class="toolbarDelete" catchtouchend="deleteDetail" data-index="{{index}}">删除</view>
         </view>
