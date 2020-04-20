@@ -57,11 +57,11 @@
   justify-content: center;
   margin:76rpx auto; 
   width: 168rpx;
+  height: 76rpx;
   text-align: center;
   background: #3377FE;
   border: 1px solid #2478D5;
   border-radius: 6rpx;
-  padding: 18rpx 0;
 }
 .buttonBox{
   width: 80%;
