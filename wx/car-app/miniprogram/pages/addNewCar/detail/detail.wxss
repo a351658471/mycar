@@ -118,6 +118,7 @@ input::placeholder{
 }
 .buttonBox{
   width: 80%;
+  height: 76rpx;
   display: flex;
   margin: 1.5rem auto;
   border-radius: 6rpx;
