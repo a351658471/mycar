@@ -8,10 +8,23 @@ Page({
     logged: false,
     takeSession: false,
     requestResult: '',
-    imgBase64:""
+    imgBase64: ""
   },
 
   onLoad: function () {
+    wx.request({
+      url: 'https://car.xichenshiji.com:30080',
+      complete: (res) => { },
+     
+      fail: (res) => {
+        console.log("++++++++++++++++")
+        console.log(res)
+      },
+      success: (result) => {
+        console.log("++++++++++++++++")
+        console.log(result)
+      },
+    })
     if (!wx.cloud) {
       wx.redirectTo({
         url: '../chooseLib/chooseLib',
@@ -69,13 +82,13 @@ Page({
       name: 'openapi',
       data: {
         action: "getQRCode",
-        scene:"itemid=1",
+        scene: "itemid=1",
       },
       success: res => {
         console.log('[云函数] [openapi.getQRCode] : ', res)
         this.setData({
           imgBase64: wx.arrayBufferToBase64(res.result.buffer)
-      })
+        })
       },
       fail: err => {
         console.error('[云函数] [openapi.getQRCode] 调用失败', err)
