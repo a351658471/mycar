@@ -157,7 +157,7 @@ async function swiperEdit(event) {
 // 商店信息编辑
 async function infoEdit(event) {
   const wxContext = cloud.getWXContext()
-  let { shopid, swipers, phone, wechat, address } = event
+  let { shopid, name, phone, wechat, address, swipers } = event
   return db.collection('shop').doc(shopid).get().then(res => {
     let shop = res.data
     if (shop.owner != wxContext.OPENID
@@ -166,8 +166,8 @@ async function infoEdit(event) {
       return { errMsg: "permission denied" }
     }
     let data = {}
-    if(swipers){
-      data.swipers = swipers
+    if(name){
+      data.name = name
     }
     if(phone){
       data.phone = phone
@@ -177,6 +177,9 @@ async function infoEdit(event) {
     }
     if(address){
       data.address = address
+    }
+    if(swipers){
+      data.swipers = swipers
     }
     return db.collection('shop').doc(shopid).update({
       data: data
