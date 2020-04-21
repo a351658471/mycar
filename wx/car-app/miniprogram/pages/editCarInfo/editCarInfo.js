@@ -153,16 +153,22 @@ Page({
     
     if (this.data.carData[0].type == 1) {
       if (this.data.value1 && this.data.value2 && this.data.value3 && this.data.value4) {
-        wx.showModal({
-          title: '提示',
-          content: '是否确认保存',
-          success:(res)=>{
-            if (res.confirm){
-               this.editSaveFunc()
+        if (this.data.carData[0].data.imgList != ''){
+          wx.showModal({
+            title: '提示',
+            content: '是否确认保存',
+            success: (res) => {
+              if (res.confirm) {
+                this.editSaveFunc()
+              }
             }
-          }
-        })
-       
+          })
+        }else{
+          wx.showToast({
+            title: '至少传一张图',
+            icon: 'none'
+          })
+        }
       } else {
         wx.showToast({
           title: '必填项不能为空',

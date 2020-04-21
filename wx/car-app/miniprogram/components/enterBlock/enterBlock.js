@@ -18,8 +18,19 @@ Component({
     currentText: null,
     textContent: '',
     isAdd: true,
+    animation:'',
+    currentIndex:null,
   },
-
+  lifetimes:{
+    ready(){
+      this.animation = wx.createAnimation({
+        duration:600,
+        timingFunction:'ease',
+        delay:0,
+        transformOrigin:'50% 0'
+      })
+    }
+  },
   /**
    * 组件的方法列表
    */
@@ -54,6 +65,28 @@ Component({
       // this.setData({
       //   currentText: null
       // })
+      console.log(e.currentTarget.dataset.index)
+      if (e.currentTarget.dataset.index >=1){
+       this.animation.translateY(-170).opacity(0.6).step()
+       this.animation.translateY(0).opacity(1).step({ duration: 1, timingFunction: 'step-end' })
+       this.setData({
+         animation: this.animation.export(),
+         currentIndex: e.currentTarget.dataset.index,
+       })
+       this.animation.translateY(170).opacity(0.6).step()
+       this.animation.translateY(0).opacity(1).step({ duration: 1, timingFunction: 'step-end' })
+       this.setData({
+         animation: this.animation.export(),
+         currentIndex: e.currentTarget.dataset.index - 1,
+       })
+     }
+     else{
+       this.animation.translateY(0).step()
+       this.setData({
+         animation: this.animation.export()
+       })
+     }
+      
       setTimeout(()=>{
         let index1 = e.currentTarget.dataset.index;
         let index2 = index1 - 1
@@ -62,13 +95,32 @@ Component({
           index1:index1,
           index2:index2
         })
-      },50)
+      },500)
     },
     //下移
     toDown(e) {
       // this.setData({
       //   currentText: null
       // })
+      if (e.currentTarget.dataset.index < this.data.dataList.length-1){
+        this.animation.translateY(170).opacity(0.6).step()
+        this.animation.translateY(0).opacity(1).step({ duration: 1, timingFunction: 'step-end' })
+        this.setData({
+          animation: this.animation.export(),
+          currentIndex: e.currentTarget.dataset.index,
+        })
+        this.animation.translateY(-170).opacity(0.6).step()
+        this.animation.translateY(0).opacity(1).step({ duration: 1, timingFunction: 'step-end' })
+        this.setData({
+          animation: this.animation.export(),
+          currentIndex: e.currentTarget.dataset.index + 1,
+        })
+      }else{
+        this.animation.translateY(0).step()
+        this.setData({
+          animation: this.animation.export()
+        })
+      }
       setTimeout(()=>{
         let index1 = e.currentTarget.dataset.index;
        let index2 = index1 + 1;
@@ -77,7 +129,7 @@ Component({
         index1: index1,
         index2: index2
       })
-      },50)
+      },500)
     },
     //删除块
     deleteDetail(e) {
@@ -101,6 +153,9 @@ Component({
     },
     //添加文字按钮
     insertText() {
+      this.setData({
+        currentIndex: null
+      })
       let data = {
         type: 'text',
         content: ''
@@ -109,6 +164,9 @@ Component({
     },
     //添加视频
     insertVideo() {
+      this.setData({
+        currentIndex: null
+      })
       app.globalFunc.uploadVideo((r, res) => {
         if (r) {
           let data = {
@@ -121,6 +179,9 @@ Component({
     },
     //添加图片
     insertImage() {
+      this.setData({
+        currentIndex: null
+      })
       app.globalFunc.uploadImg((r, res) => {
         if (r) {
           for (let index = 0; index < res.fileIDs.length; index++) {
