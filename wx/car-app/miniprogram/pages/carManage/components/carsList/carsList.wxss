@@ -33,8 +33,8 @@
 }
 
 .carMsg{
-  width:  46%;
-  margin-left: 44rpx;
+  width:  55%;
+  margin-left: 40rpx;
   display: flex;
   flex-direction:column;
   justify-content: space-between;
@@ -49,19 +49,6 @@
   -webkit-line-clamp: 2;
   line-clamp: 2;
 
-}
-.itemCars{
-  max-width: 130rpx;
-  color: #6C6C6C;
-  border-radius: 4rpx;
-  background: #F8F8FA;
-  box-sizing: border-box;
-  padding: 5rpx 8rpx;
-  margin:0 15rpx 10rpx 0;
-  word-wrap: break-word;
-}
-.itemCars:nth-child(n+4){
-  display: none;
 }
 .carMsgprice{
   color:#EA1919;

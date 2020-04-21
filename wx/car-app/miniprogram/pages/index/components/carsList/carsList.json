@@ -1,6 +1,6 @@
 {
   "component": true,
   "usingComponents": {
-    "my-label": "/components/label/label"
+    "my-label":"/components/label/label"
   }
 }

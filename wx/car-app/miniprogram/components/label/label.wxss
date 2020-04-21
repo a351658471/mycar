@@ -1,0 +1,23 @@
+/* components/call/call.wxss */
+.lebal{
+  display: flex;
+  flex-wrap: wrap;
+}
+.lebalItem{
+  background: #F8F8FA;
+  color: #6C6C6C;
+  border-radius: 8rpx;
+  box-sizing: border-box;
+  padding: 6rpx 11rpx 7rpx 11rpx;
+  font-size: 22rpx;
+  margin: 15rpx 12rpx 0 0;
+}
+.deleteIcon image{
+  width: 28rpx;
+  height: 28rpx;
+  margin-left: -15rpx;
+}
+.Labelcontent{
+  display: flex;
+  margin: 10rpx 30rpx 0 0;
+}

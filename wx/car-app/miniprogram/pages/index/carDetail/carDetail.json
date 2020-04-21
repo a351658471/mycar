@@ -4,6 +4,7 @@
   "usingComponents": {
     "my-swiper": "/components/mySwiper/mySwiper",
     "my-tab": "../../components/leftTab/leftTab",
-    "my-call":"/components/call/call"
+    "my-call":"/components/call/call",
+    "my-label": "/components/label/label"
   }
 }

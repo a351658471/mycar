@@ -68,19 +68,10 @@ page{
   justify-content: space-between
 }
 .body-left{
-  max-width: 75%;
+  max-width: 76%;
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-}
-.left-item{
-  font-size: 22rpx;
-  background: #F8F8FA;
-  border-radius: 8rpx;
-  padding: 6rpx 20rpx 8rpx 20rpx;
-  color: #6C6C6C;
-  margin-right: 30rpx;
-  margin-top: 15rpx;
 }
 
 .bottomBox{

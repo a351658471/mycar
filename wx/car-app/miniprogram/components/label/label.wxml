@@ -1,0 +1,13 @@
+<view class="lebal" wx:if="{{change}}">
+  <view class="lebalItem" wx:for="{{isDetail?newItemData:Items}}" wx:key="index">{{item}}</view>
+</view>
+
+<view class="lebal">
+  <view class="Labelcontent" wx:if="{{!change}}" wx:for="{{Items}}" wx:key="index">
+    <view class="lebalItem">{{item}}</view>
+    <view wx:if="{{disabled}}" class="deleteIcon" bindtap="deleteLabel" data-label="{{index}}">
+      <image src="../../assets/delete_c.png"></image>
+    </view>
+  </view> 
+  <solt />
+</view>

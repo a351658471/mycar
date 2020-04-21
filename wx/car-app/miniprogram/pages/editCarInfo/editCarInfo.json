@@ -1,5 +1,6 @@
 {
   "usingComponents": {
-    "eblock": "/components/enterBlock/enterBlock"
+    "eblock": "/components/enterBlock/enterBlock",
+    "my-label": "/components/label/label"
   }
 }

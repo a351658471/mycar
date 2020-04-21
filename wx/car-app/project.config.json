@@ -161,12 +161,20 @@
 					"id": -1,
 					"name": "pages/components/enterBlock/enterBlock",
 					"pathName": "pages/components/enterBlock/enterBlock",
+					"query": "",
 					"scene": null
 				},
 				{
 					"id": -1,
 					"name": "pages/components/enterBlock",
 					"pathName": "pages/components/enterBlock",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "components/label/label",
+					"pathName": "components/label/label",
 					"scene": null
 				}
 			]

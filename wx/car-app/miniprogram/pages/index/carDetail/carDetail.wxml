@@ -22,9 +22,7 @@
       </view>
       <view class='detail-body'>
         <view class='body-left'>
-          <block wx:for="{{carData[0].data.labelList}}" wx:key="index">
-            <view class='left-item'>{{item}}</view>
-          </block>
+          <my-label Items="{{carData[0].data.labelList}}" isDetail="{{false}}"></my-label>
         </view>
         <view class='body-right' style='color:#EA1919;font-weight:bold; margin-top: 10rpx;'>
           ￥{{carData[0].price}}

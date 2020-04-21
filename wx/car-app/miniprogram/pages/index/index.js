@@ -161,7 +161,6 @@ Page({
 
   //tab事件
   tabClick: function (e) {
-
     this.data.page =1
     this.data.tabflag ++ 
     this.data.tabCurrent = e.detail.tabCurrent

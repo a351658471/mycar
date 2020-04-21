@@ -24,7 +24,8 @@ Page({
     //   userdCar: 1
     // },
     id:'',
-    textValue: ''
+    textValue: '',
+    label:0
   },
   onLoad(options) {
     this.data.id= options.id;
@@ -149,7 +150,7 @@ Page({
   },
   //保存
   saveEvent() {
-    // console.log(this.data.carData[0])
+    console.log(this.data.carData[0])
     
     if (this.data.carData[0].type == 1) {
       if (this.data.value1 && this.data.value2 && this.data.value3 && this.data.value4) {
@@ -362,13 +363,14 @@ Page({
     })
   },
   deleteLabel(e) {
+    // console.log(e)
+    // let index = e.detail.label
     let index = e.currentTarget.dataset.index
     this.data.carData[0].data.labelList.splice(index, 1)
     let labellist = "carData[0].data.labelList"
     this.setData({
       [labellist]: this.data.carData[0].data.labelList
     })
-
   },
   enterBlur(e) {
     if (e.detail.value != '') {

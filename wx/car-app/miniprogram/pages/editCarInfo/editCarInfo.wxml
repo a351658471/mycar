@@ -101,12 +101,14 @@
         </view>
 
         <view class="labelItem">
-          <view wx:for="{{carData[0].data.labelList}}" wx:key="index" style="display:flex;margin-right:1.5rem;align-items:center">
+          <!-- <view wx:for="{{carData[0].data.labelList}}" wx:key="index" style="display:flex;margin-right:1.5rem;align-items:center">
             <view class="labelText">{{item}}</view>
             <view wx:if="{{!disabled}}" class="deleteIcon" bindtap="deleteLabel" data-index="{{index}}">
               <image src="../../assets/delete_c.png"></image>
             </view>
-          </view>
+          </view> -->
+          <my-label Items="{{carData[0].data.labelList}}" bind:deleteLabel="deleteLabel" disabled="{{!disabled}}" change="{{false}}" label="{{label}}">
+          </my-label>
           <view style="width:4rem" wx:if="{{isEnter}}">
             <input type="text" confirm-type="done" focus="true" bindblur="enterBlur"></input>
           </view>

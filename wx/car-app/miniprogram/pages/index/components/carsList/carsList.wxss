@@ -13,8 +13,8 @@
 
 .carImg{
   position: relative;
-  width: 42%;
-  height: 210rpx;
+  width: 45%;
+  height: 230rpx;
 }
 
 .carImg image{
@@ -30,8 +30,8 @@
   left: 0;
 }
 .carMsg{
-  width: 51%;
-  margin-left: 44rpx;
+  width: 54%;
+  margin-left: 40rpx;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -47,23 +47,11 @@
   line-clamp: 2;
 
 }
-.itemCars{
-  /* max-width: 130rpx; */
-  color: #6C6C6C;
-  border-radius: 8rpx;
-  background: #F8F8FA;
-  box-sizing: border-box;
-  padding: 6rpx 11rpx 8rpx 11rpx;
-  margin:0 15rpx 10rpx 0;
-  word-wrap: break-word;
-}
-.itemCars:nth-child(n+4){
-  display: none;
-}
 .carMsgprice{
   color:#EA1919;
   font-size:30rpx;
-  font-weight:bold
+  font-weight: bold;
+  margin-top: 8rpx;
 }
 .loadMore{
   width: 100;

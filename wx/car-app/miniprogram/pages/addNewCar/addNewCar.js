@@ -12,6 +12,7 @@ Page({
     isNext:false,
     gl:'',
     sp:'',
+    label:0,
     reqData:{
       imgList: [],
       labelList: [],
@@ -129,7 +130,8 @@ Page({
     })
   },
   deleteLabel(e) {
-    let index = e.currentTarget.dataset.index
+    let index = e.detail.label
+    // let index = e.currentTarget.dataset.index
     this.data.reqData.labelList.splice(index, 1)
     let labellist = "reqData.labelList"
     this.setData({
