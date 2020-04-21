@@ -157,7 +157,7 @@ async function swiperEdit(event) {
 // 商店信息编辑
 async function infoEdit(event) {
   const wxContext = cloud.getWXContext()
-  let { shopid, name, phone, wechat, address, swipers } = event
+  let { shopid, name, phone, wechat, address, swipers, location} = event
   return db.collection('shop').doc(shopid).get().then(res => {
     let shop = res.data
     if (shop.owner != wxContext.OPENID
@@ -177,6 +177,9 @@ async function infoEdit(event) {
     }
     if(address){
       data.address = address
+    }
+    if(location){
+      data.location = location
     }
     if(swipers){
       data.swipers = swipers

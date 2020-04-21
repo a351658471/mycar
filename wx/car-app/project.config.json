@@ -124,8 +124,8 @@
 				},
 				{
 					"id": 8,
-					"name": "pages/addNewCar/detail/detail",
-					"pathName": "pages/addNewCar/detail/detail",
+					"name": "pages/mypage/mypage",
+					"pathName": "pages/mypage/mypage",
 					"query": "",
 					"scene": null
 				},

@@ -84,3 +84,29 @@ text{
   color: #333333;
   font-weight: normal;
 }
+.addressBox{
+  display: flex;
+  margin-top: 1rem;
+}
+.addressIcon{
+  width: 10%;
+  margin-top: 2px;
+}
+.addressContent{
+  height:2.5vh
+}
+.editAddress{
+  margin-top: 1rem;
+  width: 20vw;
+  height: 22px;
+  line-height: 22px;
+  position: relative;
+  left:67vw;
+  border:1px solid #3377FE;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 14px;
+}
+.setColor{
+  color: #3377FE;
+}
