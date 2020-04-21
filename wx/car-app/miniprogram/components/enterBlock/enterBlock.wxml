@@ -1,35 +1,42 @@
 <view class="enterBlock">
- <view wx:for="{{dataList}}" style="margin-bottom:.5rem">
-      <view class="container1">
-          <view wx:if="{{item.type == 'text'}}" style="height:100%;font-size:30rpx; padding:10rpx 0">
-              <textarea wx:if="{{currentText == index}}" bindblur="editTextBulr" style="width:100%" focus value="{{textContent}}"></textarea>
-              <view wx:else data-item="{{item}}" data-index="{{index}}" catchtap="textEvent" style="height:100%;color:{{item.content==''?'#C5C5C5':''}}">{{item.content==""?'请输入正文内容...':item.content}}</view>
-            </view>
-        
-        <!-- 图片展示 -->
-          <view class="imgContent" wx:if="{{item.type == 'image'}}">
-              <image src="{{item.content}}" mode="widthFix" style="width:100%;height:100%" bindtap='topic_preview' data-url="{{item.content}}"></image>
-          </view>
-        
-        <!-- 视频展示 -->
-          <view class="imgContent" wx:if="{{item.type == 'video'}}">
-              <video src="{{item.content}}" style="height:100%"></video>
-          </view>
+  <view wx:for="{{dataList}}" style="margin-bottom:.5rem;" wx:key="index" data-index="{{index}}" animation="{{currentIndex ==index? animation:''}}">
+    <view class="container1">
+      <view wx:if="{{item.type == 'text'}}" style="height:100%;font-size:30rpx; padding:10rpx 0">
+        <textarea wx:if="{{currentText == index}}" bindblur="editTextBulr" style="width:100%" focus value="{{textContent}}"></textarea>
+        <view wx:else data-item="{{item}}" data-index="{{index}}" catchtap="textEvent" style="height:100%;color:{{item.content==''?'#C5C5C5':''}}">{{item.content==""?'请输入正文内容...':item.content}}</view>
       </view>
-      <view class="toolbar">
-          <view class="toAnywhere">
-              <view class=" iconItem"  bindtap="toDown"data-index="{{index}}"><image src="/assets/toDown{{index==dataList.length-1?'_active':''}}.png" mode="widthFix" style="width:50%;margin-bottom:1px"></image></view>
-              <view class=" iconItem" bindtap="toTop" data-index="{{index}}"><image src="/assets/toTop{{index==0?'_active':''}}.png" mode="widthFix" style="width:50%;margin-bottom:1px"></image></view>
-          </view>
-            <view class="toolbarDelete" catchtouchend="deleteDetail" data-index="{{index}}">删除</view>
+
+      <!-- 图片展示 -->
+      <view class="imgContent" wx:if="{{item.type == 'image'}}">
+        <image src="{{item.content}}" mode="widthFix" style="width:100%;height:100%" bindtap='topic_preview' data-url="{{item.content}}"></image>
+      </view>
+
+      <!-- 视频展示 -->
+      <view class="imgContent" wx:if="{{item.type == 'video'}}">
+        <video src="{{item.content}}" style="height:100%"></video>
+      </view>
+    </view>
+    <view class="toolbar">
+      <view class="toAnywhere">
+        <view class=" iconItem" bindtap="toDown" data-index="{{index}}">
+          <image src="/assets/toDown{{index==dataList.length-1?'_active':''}}.png" mode="widthFix" style="width:50%;height:100%;margin-bottom:1px"></image>
         </view>
+        <view class=" iconItem" bindtap="toTop" data-index="{{index}}">
+          <image src="/assets/toTop{{index==0?'_active':''}}.png" mode="widthFix" style="width:50%;height:100%; margin-bottom:1px"></image>
+        </view>
+      </view>
+      <view class="toolbarDelete" catchtouchend="deleteDetail" data-index="{{index}}">删除</view>
+    </view>
 
   </view>
-    <view class="bAdd" wx:if="{{isAdd}}" bindtap="changeAdd"><image src="/assets/add.png" mode="widthFix" style="width:20%" /><text>添加</text></view>
+  <view class="bAdd" wx:if="{{isAdd}}" bindtap="changeAdd">
+    <image src="/assets/add.png" mode="widthFix" style="width:20%;height:76rpx" />
+    <text>添加</text>
+  </view>
 
-    <view class="buttonBox" wx:else>
-      <view class="bItem" catchtouchend="insertText">文字</view>
-      <view class="bItem" catchtouchend="insertVideo" style="border-left:1px solid #175DD2;border-right:1px solid #175DD2;">视频</view>
-      <view class="bItem" catchtouchend="insertImage">图片</view>
-    </view>
+  <view class="buttonBox" wx:else>
+    <view class="bItem" catchtouchend="insertText">文字</view>
+    <view class="bItem" catchtouchend="insertVideo" style="border-left:1px solid #175DD2;border-right:1px solid #175DD2;">视频</view>
+    <view class="bItem" catchtouchend="insertImage">图片</view>
+  </view>
 </view>

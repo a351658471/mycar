@@ -59,9 +59,9 @@ Page({
     this.data.address = shop.address
     this.data.latitude = shop.location.latitude,
     this.data.longitude =shop.location.longitude
-    // if (app.globalData.shop.isAdmin  || app.globalData.shop.isManagers){
-    //   this.data.isAdmin = true;
-    // }
+    if (app.globalData.shop.isAdmin  || app.globalData.shop.isManagers){
+      this.data.isAdmin = true;
+    }
     this.setData(this.data)
   },
   preserve:function(){
@@ -118,6 +118,7 @@ Page({
     })
   },
   setTitle(){
+    if(this.data.isAdmin ==false) return
     this.setData({
       titleEnter:true
     })

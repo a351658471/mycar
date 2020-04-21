@@ -13,8 +13,8 @@
 
 .carImg{
   position: relative;
-  width: 45%;
-  height: 200rpx;
+  width: 42%;
+  height: 210rpx;
 }
 
 .carImg image{
@@ -30,7 +30,7 @@
   left: 0;
 }
 .carMsg{
-  width: 46%;
+  width: 51%;
   margin-left: 44rpx;
   display: flex;
   flex-direction: column;

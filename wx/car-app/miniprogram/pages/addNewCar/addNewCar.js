@@ -183,9 +183,17 @@ Page({
   next(){
     if(this.data.isOld){
       if (this.data.priceValue && this.data.typeValue && this.data.gl && this.data.sp) {
-        wx.navigateTo({
-          url: 'detail/detail',
-        })
+        if (this.data.reqData.imgList!=''){
+          wx.navigateTo({
+            url: 'detail/detail',
+          })
+        }
+        else{
+          wx.showToast({
+            title: '至少传一张图',
+            icon: 'none'
+          })
+        }
       }else{
         wx.showToast({
           title: '必填项不能为空',
@@ -193,10 +201,18 @@ Page({
         })
       }
     }else{
-      if (this.data.priceValue && this.data.typeValue && this.data.gl){
-        wx.navigateTo({
-          url: 'detail/detail',
-        })
+      if (this.data.priceValue && this.data.typeValue && this.data.gl && this.data.reqData.imgList){
+        if (this.data.reqData.imgList != '') {
+          wx.navigateTo({
+            url: 'detail/detail',
+          })
+        }
+        else {
+          wx.showToast({
+            title: '至少传一张图',
+            icon: 'none'
+          })
+        }
       }else{
         wx.showToast({
           title: '必填项不能为空',

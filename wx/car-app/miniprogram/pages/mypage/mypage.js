@@ -197,9 +197,18 @@ Page({
     }
   },
   modified(){
-    wx.navigateTo({
-      url: '/pages/personal/personal',
-    })
+    if (!this.data.userInfo._id) {
+      wx.showToast({
+        icon: "none",
+        title: '您还未登录',
+      })
+      return
+    }
+    else{
+      wx.navigateTo({
+        url: '/pages/personal/personal',
+      })
+    }
   }
 
 })
