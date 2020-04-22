@@ -32,6 +32,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+
     console.log(options)
     // let cardata = this.data.allCarData.filter((item) => {
     //   return options.carId == item.carId
@@ -48,6 +49,8 @@ Page({
     this.setData(this.data)
     this.getCarData()
   },
+
+
 
   //根据id调用接口获取数据
   getCarData() {
@@ -72,7 +75,7 @@ Page({
           })
 
         })
-        // console.log(this.data.carData)
+        console.log(this.data.carData)
       },
       fail: err => {
         // console.error('[云函数] [item.itemList] 调用失败', err)

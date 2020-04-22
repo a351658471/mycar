@@ -200,8 +200,11 @@ Page({
         prePage.setData({
           carData: info
         })
+        console.log(234234234)
+        console.log(info[index])
       }
     })
+    
     
   },
 

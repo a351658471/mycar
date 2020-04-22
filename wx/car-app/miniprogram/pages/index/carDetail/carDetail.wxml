@@ -22,7 +22,7 @@
       </view>
       <view class='detail-body'>
         <view class='body-left'>
-          <my-label Items="{{carData[0].data.labelList}}" isDetail="{{false}}"></my-label>
+          <my-label Items="{{carData[0].data.labelList}}"></my-label>
         </view>
         <view class='body-right' style='color:#EA1919;font-weight:bold; margin-top: 10rpx;'>
           ￥{{carData[0].price}}

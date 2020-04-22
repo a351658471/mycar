@@ -19,7 +19,7 @@
             <view class='carMsg'>
               <view class="carMsgname">{{item.name}}</view>
               <view style='color:#BBBBBB; font-size:24rpx;'>{{item.type==0?'全新':'二手'}}</view>
-              <my-label Items="{{item.data.labelList}}" isDetail="{{true}}"></my-label>
+              <my-label Items="{{item.data.labelList}}"></my-label>
               <view class="carMsgprice">￥{{item.price}}</view>
             </view>
           </view>
