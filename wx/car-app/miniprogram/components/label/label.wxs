@@ -1,0 +1,18 @@
+var formatlabel = function(item,length){
+  if(length < 3){
+    if(item.length <10) return item;
+  }else{
+      return item.slice(0,6)
+  }
+}
+var isShow = function(index){
+  if(index >2){
+    return false
+  }else{
+    return true
+  }
+}
+module.exports={
+  formatlabel:formatlabel,
+  isShow:isShow
+};

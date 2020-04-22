@@ -1,5 +1,6 @@
+<wxs src="./label.wxs" module="formatlabel"></wxs>
 <view class="lebal" wx:if="{{change}}">
-  <view class="lebalItem" wx:for="{{Items}}" wx:key="index">{{item}}</view>
+  <view class="lebalItem" wx:for="{{Items}}" wx:key="index" wx:if="{{formatlabel.isShow(index)}}">{{formatlabel.formatlabel(item,Items.length)}}</view>
 </view>
 
 <view class="lebal">
