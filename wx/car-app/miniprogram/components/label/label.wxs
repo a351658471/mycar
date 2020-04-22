@@ -1,9 +1,8 @@
-var formatlabel = function(item,length){
+var formatlabel = function(item,length,min,max){
   if(length < 3){
-     return item.slice(0,10);
-
+     return item.slice(0,max);
   }else{
-      return item.slice(0,6)
+      return item.slice(0,min)
   }
 }
 var isShow = function(index){
