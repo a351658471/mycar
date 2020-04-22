@@ -5,7 +5,7 @@ Component({
   properties: {
     Items:{
       type:Array,
-      value: ['2.0T-H4', '250000000P', '2.0T-H5', 'aaaaaaaaaaa']
+      value: []
     },
     newItemData: {
       type: Array,
@@ -39,12 +39,27 @@ Component({
     ready(){
       let arr = []
       this.data.Items.forEach((item)=>{
-         if(item.length>5){
-           arr.push(item.substring(0, 5))
-           this.data.newItemData = arr
+         if(this.data.Items.length<=2){
+           if (item.length > 11) {
+             arr.push(item.substring(0, 11))
+             this.data.newItemData = arr
+           }
+           else {
+             arr.push(item)
+           }
          }
          else{
-           arr.push(item)
+          //  if (item.length > 5) {
+          //    arr.push(item.substring(0, 5))
+          //    this.data.newItemData = arr
+          //  }
+          //  else {
+          //    arr.push(item)
+          //  }
+          arr.push(this.data.Items[0].substring(0,7))
+          arr.push(this.data.Items[1].substring(0, 7))
+          arr.push(this.data.Items[2].substring(0, 4))
+          this.data.newItemData = arr
          }
       })
       if (this.data.isDetail){

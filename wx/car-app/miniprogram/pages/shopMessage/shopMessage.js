@@ -15,7 +15,8 @@ Page({
     longitude:0,
     current:false,
     location:null,
-    titleEnter:false
+    titleEnter:false,
+    disabled:true
   },  
   inputBindName: function (e) {
     this.data.name = e.detail.value

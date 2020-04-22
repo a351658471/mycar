@@ -7,12 +7,12 @@
   </view>
   <view class="msg">
     <text>商家电话：</text>
-    <input value="{{phone}}" bindinput="inputBindPhone"></input>
+    <input disabled="{{isAdmin?'':disabled}}" value="{{phone}}" bindinput="inputBindPhone"></input>
     <view class="copybtn" wx:if="{{!isAdmin}}"><button bindtap="copyText" data-text="{{phone}}">复制</button></view>
   </view>
   <view class="msg">
     <text>微信号：</text>
-    <input value="{{wechat}}" bindinput="inputBindWechat"></input>
+    <input disabled="{{isAdmin?'':disabled}}" value="{{wechat}}" bindinput="inputBindWechat"></input>
     <view class="copybtn" wx:if="{{!isAdmin}}"><button bindtap="copyText" data-text="{{wechat}}">复制</button></view>
   </view>
 </view>
@@ -25,8 +25,8 @@
       <view class="setColor" wx:if="{{isAdmin && address ==''}}" bindtap="addAddress">添加地址</view>
     </view>
     <view class="addressBox" wx:if="{{address}}">
-       <view class="addressIcon"><image src="/assets/location.png" mode="widthFix" style="width:18px"></image></view>
-       <textarea wx:if="{{current}}" value="{{address}}" bindblur="contentBlur" focus></textarea>
+       <view class="addressIcon"><image src="/assets/location.png" mode="widthFix" style="width:18px;height:18px;"></image></view>
+       <textarea disabled="{{isAdmin?'':disabled}}" wx:if="{{current}}" value="{{address}}" bindblur="contentBlur" focus></textarea>
        <view class="{{address!=''? '':addressContent}}" style="width:90%" wx:else bindtap="changeCurrent">{{address}}</view>
     </view>
     <view class="editAddress setColor" wx:if="{{address && isAdmin}}" bindtap="addAddress">修改地址</view>

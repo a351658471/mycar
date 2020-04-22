@@ -68,7 +68,7 @@ page{
   justify-content: space-between
 }
 .body-left{
-  max-width: 76%;
+  max-width: 74%;
   display: flex;
   align-items: center;
   flex-wrap: wrap;
