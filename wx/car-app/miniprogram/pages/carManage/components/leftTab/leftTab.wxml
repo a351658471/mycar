@@ -5,6 +5,6 @@
         <view class='tabItem {{tabCurrent == index? "active" : ""}}' bindtap='tabClick' data-index='{{index}}'>{{item}}</view>
       </block>
     </view>
-    <slot name="rightBox"></slot>
+    <slot/>
   </view>
 </view>

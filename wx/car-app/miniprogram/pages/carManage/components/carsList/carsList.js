@@ -98,6 +98,13 @@ Component({
         id: e.currentTarget.dataset.id
       })
     },
+    //置顶商品
+    stickGoods(e){
+      console.log(e)
+      this.triggerEvent("stickGoods",{
+        id:e.currentTarget.dataset.id
+      })
+    },
     //删除商品
     deleteGoods(e){
       this.triggerEvent("deleteGoods",{

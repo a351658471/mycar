@@ -176,6 +176,11 @@ Page({
       }
     })
   },
+  //置顶商品
+  stickGoods(e){
+    console.log(e)
+    let id = e.detail.id;
+  },
   //删除商品
   deleteGoods(e){
    let id = e.detail.id

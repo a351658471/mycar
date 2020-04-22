@@ -1,20 +1,14 @@
 /* miniprogram/pages/carManage/carManage.wxss */
 
 .rightBox{
-  font-size: 24rpx;
-  color: #3377FE;
-  margin-left: 230rpx;
-}
-/* .tablist{
-  margin: 34rpx 46rpx;
-} */
-.infoTab{
   width: 100%;
-  padding:0 46rpx;
-  box-sizing: border-box;
   position: fixed;
-  z-index: 99999;
-  background: #f6f6f6;
+  bottom: 0;
+  background: #3377FE;
+  color: #FFFFFF;
+  font-size: 36rpx;
+  text-align: center;
+  padding: 16rpx 0 22rpx 0;
 }
 .isShow{
   width: 100%;

@@ -6,8 +6,8 @@ Component({
 
     tabList: {
       type: Array,
-      value: ['二手车', '新车', '已售']
-      // value: ['二手车', '新车'],
+      value: ['二手车','新车'],
+
     },
 
     tabCurrent: {
@@ -17,12 +17,8 @@ Component({
 
     fontSize: {
       type: String,
-      value: '15px'
+      value: '14px'
     },
-    ltabHeight:{
-      type:String,
-      value:'6vw'
-    }
   },
   /**
   * 启用插槽
