@@ -1,6 +1,7 @@
 var formatlabel = function(item,length){
   if(length < 3){
-    if(item.length <10) return item;
+     return item.slice(0,10);
+
   }else{
       return item.slice(0,6)
   }
