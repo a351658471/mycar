@@ -19,7 +19,16 @@ Component({
     isLoading:{
       type:Boolean,
       value:false
+    },
+    disabled:{
+      type:Boolean,
+      value:false
+    },
+    stickid:{
+      type:String,
+      value:''
     }
+
   },
   data: {
     startX: 0, //开始坐标
@@ -106,6 +115,11 @@ Component({
     },
     //置顶商品
     stickGoods(e){
+      if (this.data.minSort > app.globalData.sort){
+        this.data.disabled = true
+      }else{
+        this.data.minSort = app.globalData.sort + 1
+      }
       console.log(e)
       this.triggerEvent("stickGoods",{
         id:e.currentTarget.dataset.id

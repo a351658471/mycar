@@ -18,7 +18,9 @@
     bind:loadMore="loadMore" 
     isLoading="{{isLoading}}" 
     noMore="{{noMore}}" 
-    bind:toEdit="toEdit"></my-carslist>
+    bind:toEdit="toEdit"
+    stickid="{{stickid}}"
+    ></my-carslist>
   </view>
   <view class="rightBox" bindtap="jumpToAddcar">添加新车</view>
 </view>
