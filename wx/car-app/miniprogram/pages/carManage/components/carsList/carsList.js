@@ -1,3 +1,4 @@
+const app = getApp()
 Component({
   /**
    * 组件的属性列表
@@ -23,12 +24,17 @@ Component({
   data: {
     startX: 0, //开始坐标
     startY: 0,
+    minSort:0
 
   },
   /**
    * 组件的方法列表
    */
-  ready: function () {},
+  ready: function () {
+    this.setData({
+      minSort: app.globalData.sort
+    })
+  },
   methods: {
     caritemClick: function (e){
      let index = e.currentTarget.dataset.index;

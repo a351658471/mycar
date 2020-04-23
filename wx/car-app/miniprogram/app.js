@@ -26,6 +26,7 @@ App({
         newCar: 0,
         userCar: 1
       },
+      sort:0,
       state: 0,
       stateChange: function () {
         this.state++
