@@ -1,46 +1,44 @@
 /* components/carsList/carsList.wxss */
-.area{
-  width:38vw;
-  height:100%;
-  margin-bottom: 0.5rem;
+.carList{
+  box-sizing: border-box;
+  padding: 0 32rpx 100rpx 32rpx;
+}
+.Item{
+  margin-bottom: 16rpx;
 }
 .mview{
-  width: 100vw;
-  height: 35vw;
-  z-index: 999;
-  background: #fff
+  
+  background: #fff;
 }
 .carItem{
   width: 100%;
   display: flex;
-  margin-top: 20rpx;
   box-sizing: border-box;
-  padding: 0 44rpx;
+  padding:14rpx;
+  border: 2rpx solid #E1E1E1;
+  border-bottom:none;
+  border-radius:6px 6px 0px 0px; 
 }
 
 .carImg{
-  position: relative;
-  width: 45%;
-  height:30vw;
-  box-sizing: border-box;
+  width: 236rpx;
+  height:158rpx;
 }
 
 .carImg image{
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  border-radius: 12rpx;
+  width: 100%;
+  height: 100%;
 }
 
 .carMsg{
   width:  55%;
-  margin-left: 40rpx;
+  margin-left: 24rpx;
   display: flex;
   flex-direction:column;
   justify-content: space-between;
 }
 .carMsgname{
-  font-size:32rpx; 
+  font-size:26rpx; 
   font-weight: bold;
   text-overflow:ellipsis; 
   overflow:hidden; 
@@ -57,22 +55,35 @@
 }
 .menu{
   display: flex;
-  height: 35vw;
-  width: 60vw;
-  line-height: 38vw;
-  font-size: 24rpx;
+  justify-content: space-between;
+  align-items: center;
+  background: #fff;
+  box-sizing: border-box;
+  padding: 12rpx 18rpx;
+  border: 2rpx solid #E1E1E1;
+  border-radius:0px 0px 6px 6px
 }
-.menu-item{
-  width: 33.3%;
-  text-align: center;
-  color: #FFFAFF
+.menu .menu-block{
+  display: flex;
+}
+.menu .menu-block .menu-item{
+  color: #717171;
+  font-size: 26rpx;
+}
+.menu .menu-block .tShelves,.menu .menu-block .sold{
+  border: 2rpx solid #E3E3E3;
+  box-sizing: border-box;
+  padding: 6rpx 11rpx;
+  border-radius: 6rpx;
+}
+.menu .menu-block .stick{
+  padding-right: 88rpx;
 }
 .loadMore{
   width: 100;
   text-align: center;
   height: 10vw;
   line-height: 10vw;
-  background: #fff;
   color: #777;
   font-size: 30rpx;
 }

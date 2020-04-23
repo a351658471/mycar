@@ -1,36 +1,38 @@
-<!--components/carsList/carsList.wxml-->
+<!-- components/carsList/carsList.wxml -->
 <view class='carList' style=' width:100%'>
-    <view wx:for="{{carData}}" style="display:flex;margin-bottom:2vw;" wx:key="index">
-      <movable-area class="area">
-        <movable-view class="mview" 
-                      x="{{items[index].xmove}}"
-                      inertia="true"
-                      bindtouchstart="handleTouchStart"
-                      bindtouchend="handleTouchEnd"
-                      direction="horizontal"
-                      out-of-bounds="true"
-                      data-index="{{index}}"
-                      data-item='{{item}}'>
-          <view class='carItem' bindtap="boxClick" data-item='{{item}}' data-index="{{index}}">
-            <view class='carImg'>
-              <image src='{{item.data.imgList[0]}}' mode="aspectFill" style='width:100%;height:90%'>
-              </image>
-            </view>
-            <view class='carMsg'>
-              <view class="carMsgname">{{item.name}}</view>
-              <view style='color:#BBBBBB; font-size:24rpx;'>{{item.type==0?'全新':'二手'}}</view>
-              <my-label Items="{{item.data.labelList}}"></my-label>
-              <view class="carMsgprice">￥{{item.price}}</view>
-            </view>
-          </view>
-        </movable-view>
-      </movable-area>
-      <view class="menu">
-        <view wx:if="{{item.status != 1}}" class="sold menu-item" style="background:#979797" catchtap="soldGoods" data-id="{{item._id}}">已售</view>
-        <view wx:if="{{item.status != 0}}" class="tShelves menu-item" style="background:#3CB371" catchtap="saleGoods" data-id="{{item._id}}">在售</view>
-        <view wx:if="{{item.status != 2}}" class="tShelves menu-item" style="background:#5B7AC2" catchtap="lowGoods" data-id="{{item._id}}">下架</view>
-        <view class="delete menu-item" style="background:#E94D61" catchtap="deleteGoods" data-id="{{item._id}}">删除</view>
+  <view class="Item" wx:for="{{carData}}" wx:key="index">
+    <!-- <movable-area class="area"> -->
+    <view class="mview" x="{{items[index].xmove}}" inertia="true" bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd" direction="horizontal" out-of-bounds="true" data-index="{{index}}" data-item='{{item}}'>
+      <view class='carItem' bindtap="boxClick" data-item='{{item}}' data-index="{{index}}">
+        <view class='carImg'>
+          <image src='{{item.data.imgList[0]}}' mode="aspectFill"></image>
+        </view>
+        <view class='carMsg'>
+          <view class="carMsgname">{{item.name}}</view>
+          <!-- <view style='color:#BBBBBB; font-size:24rpx;'>{{item.type==0?'全新':'二手'}}</view> -->
+          <my-label Items="{{item.data.labelList}}"></my-label>
+          <view class="carMsgprice">￥{{item.price}}</view>
+        </view>
       </view>
     </view>
-    <view class="loadMore" bindtap="loadMore" wx:if="{{!noMore}}">{{isLoading?'加载中...':'加载更多'}}</view>
+    <!-- </movable-area> -->
+    <view class="menu">
+      <view class="menu-block">
+        <view wx:if="{{item.status != 2}}" class="tShelves menu-item" style="margin-right: 44rpx;" catchtap="lowGoods" data-id="{{item._id}}">
+          下架
+        </view>
+        <view wx:if="{{item.status != 1}}" class="sold menu-item" catchtap="soldGoods" data-id="{{item._id}}">
+          已售
+        </view>
+        <view wx:if="{{item.status != 0}}" class="tShelves menu-item" style="margin-left: 44rpx;" catchtap="saleGoods" data-id="{{item._id}}">
+        在售
+      </view>
+      </view>
+      <view class="menu-block">
+        <view class="stick menu-item" catchtap="stickGoods" data-index="{{index}}">置顶</view>
+        <view class="delete menu-item" catchtap="deleteGoods" data-id="{{item._id}}">删除</view>
+      </view>
+    </view>
   </view>
+  <view class="loadMore" bindtap="loadMore" wx:if="{{!noMore}}">{{isLoading?'加载中...':'加载更多'}}</view>
+</view>
