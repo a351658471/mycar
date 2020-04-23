@@ -24,6 +24,9 @@ exports.main = async (event, context) => {
     case 'itemRemove': {
       return itemManage(event)
     }
+    case 'itemTotop':{
+      return itemManage(event)
+    }
     default: {
       return
     }
@@ -114,6 +117,9 @@ async function itemManage(event) {
       case 'itemRemove': {
         return itemRemove(event)
       }
+      case 'itemTotop': {
+        return itemTotop(event)
+      }
       default: {
         return
       }
@@ -175,12 +181,28 @@ async function itemEdit(event) {
   )
 }
 
-// 删除商品
-async function itemRemove(event) {
-  let {
-    ids
-  } = event
-  return db.collection('item').where({ _id: db.command.in(ids) }).remove().then(res => {
-    return res
-  })
+//置顶
+async function itemTotop(event){
+  // {
+  //   toTop:Number 0置顶  1取消置顶
+  // }
+  if(event.toTop==0){
+     return db.collection('item').orderBy('sort','desc').limit(1).get().then(res=>{
+        let max = res.data[0].sort + 1
+        return db.collection('item').doc(event._id).update({
+          data:{
+            sort:max
+          }
+        })
+      });
+  }else if(event.toTop ==1){
+    return db.collection('item').orderBy('sort','asc').limit(1).get().then(res=>{
+            let mix = res.data[0].sort
+            return db.collection('item').doc(event._id).update({
+              data:{
+                sort:mix
+              }
+            })
+          });
+  }
 }

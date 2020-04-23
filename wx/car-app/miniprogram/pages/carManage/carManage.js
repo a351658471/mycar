@@ -216,6 +216,8 @@ Page({
   stickGoods(e){
     console.log(e)
     let id = e.detail.id;
+    let toTop = 0  //0 置顶， 1 取消
+    this.whetherTotop(toTop,id)
   },
   //删除商品
   deleteGoods(e){
@@ -262,6 +264,22 @@ Page({
     let id = e.detail.id;
     wx.navigateTo({
       url: '/pages/editCarInfo/editCarInfo?id=' + id,
+    })
+  },
+  //置顶云函数
+  whetherTotop(toTop,id){
+    wx.cloud.callFunction({
+      name:'item',
+      data:{
+      action:'itemTotop',
+      shopid: app.globalData.shop._id,
+      toTop:toTop,
+      _id:id
+      }
+    }).then(res=>{
+      console.log(res)
+    }).catch(err=>{
+      console.log(err)
     })
   }
 })
