@@ -29,7 +29,7 @@
       </view>
       </view>
       <view class="menu-block">
-        <view class="stick menu-item" catchtap="stickGoods" data-index="{{index}}">置顶</view>
+        <view class="stick menu-item" catchtap="stickGoods" data-id="{{item._id}}">置顶</view>
         <view class="delete menu-item" catchtap="deleteGoods" data-id="{{item._id}}">删除</view>
       </view>
     </view>

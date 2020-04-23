@@ -126,7 +126,7 @@ Page({
       name: this.data.passData.typeValue, // 商品名
       price: this.data.passData.priceValue,// 价格
       stock: 1,       // 库存
-      sort: 1002,      // 排序 值越大排越前面
+      sort: app.globalData.sort,      // 排序 值越大排越前面
       data: JSON.stringify(this.data.reqData),     // 数据
       status: status,
       type: type,
