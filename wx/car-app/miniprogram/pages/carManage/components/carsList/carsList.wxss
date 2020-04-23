@@ -15,7 +15,7 @@
   display: flex;
   box-sizing: border-box;
   padding:14rpx;
-  border: 2rpx solid #E1E1E1;
+  border: 1rpx solid #E1E1E1;
   border-bottom:none;
   border-radius:6px 6px 0px 0px; 
 }
@@ -57,10 +57,10 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #fff;
+  background: linear-gradient(to bottom,#FFFFFF,#F8F8F8);
   box-sizing: border-box;
   padding: 12rpx 18rpx;
-  border: 2rpx solid #E1E1E1;
+  border: 1rpx solid #E1E1E1;
   border-radius:0px 0px 6px 6px
 }
 .menu .menu-block{
@@ -72,7 +72,7 @@
   font-size: 26rpx;
 }
 .menu .menu-block .tShelves,.menu .menu-block .sold{
-  border: 2rpx solid #E3E3E3;
+  border: 1rpx solid #E3E3E3;
   box-sizing: border-box;
   padding: 6rpx 11rpx;
   border-radius: 6rpx;

@@ -4,6 +4,7 @@
   background: #FFFFFF;
   padding: 20rpx 0;
   box-sizing: border-box;
+  border-top: 1rpx solid #E1E1E1;
 }
 .leftTab{
   display: flex;

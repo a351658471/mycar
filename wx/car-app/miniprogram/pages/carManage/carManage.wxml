@@ -19,7 +19,6 @@
     isLoading="{{isLoading}}" 
     noMore="{{noMore}}" 
     bind:toEdit="toEdit"
-    disabled="{{disabled}}"
     ></my-carslist>
   </view>
   <view class="rightBox" bindtap="jumpToAddcar">添加新车</view>

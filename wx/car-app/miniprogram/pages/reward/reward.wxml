@@ -1,0 +1,16 @@
+<!--miniprogram/pages/reward/reward.wxml-->
+<view>
+  <view>1000</view>
+  <view>积分</view>
+</view>
+<view>
+  <view>
+    <view>转发资讯获得10积分</view>
+    <view>（每日限三次）</view>
+  </view>
+  <view>
+    <view>转发资讯获得10积分</view>
+    <view>（每日限三次）</view>
+  </view>
+  <view>转发资讯获得10积分</view>
+</view>
