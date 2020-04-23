@@ -218,6 +218,7 @@ Page({
     let id = e.detail.id;
     let toTop = 0  //0 置顶， 1 取消
     this.whetherTotop(toTop,id)
+    console.log(e.detail.id)
   },
   //删除商品
   deleteGoods(e){
