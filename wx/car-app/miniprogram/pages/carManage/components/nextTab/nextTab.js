@@ -7,9 +7,7 @@ Component({
     tabList: {
       type: Array,
       value: ['二手车','新车'],
-
     },
-
     tabCurrents: {
       type: Number,
       value: 0
@@ -18,10 +16,6 @@ Component({
     fontSize: {
       type: String,
       value: '14px'
-    },
-    Num: {
-      type: Number,
-      value: 0
     },
     oldCarNum:{
       type:Number,
@@ -32,6 +26,9 @@ Component({
       value: 0
     }
   },
+  data:{
+    num:0
+  },
   /**
   * 启用插槽
   */
@@ -39,6 +36,14 @@ Component({
     multipleSlots: true
   },
 
+  ready(){
+    console.log(this.data.newCarNum)
+    console.log(this.data.tabCurrents)
+    if (this.data.tabCurrents == 0){
+      this.data.num = this.data.newCarNum
+      this.setData(this.data)
+    }
+  },
   /**
   * 组件的方法列表
   */

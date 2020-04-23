@@ -17,7 +17,8 @@ Page({
     isShow:false,
     soldLength:0,
     Num:0,
-    Nums:0
+    oldCarNum:0,
+    newCarNum:0
   },
   //生命周期函数初次渲染完成
   onLoad: function () {
@@ -98,10 +99,17 @@ Page({
         }else{
           this.data.noMore = false
         }
+        if(type == 0){
+          this.data.newCarNum = res.result.data.length
+        }
+        else if(type == 1){
+          this.data.oldCarNum = res.result.data.length
+        }
         this.setData({
           noMore:this.data.noMore,
           isLoading:false,
-          Num: res.result.data.length
+          oldCarNum: this.data.oldCarNum,
+          newCarNum: this.data.newCarNum
         })
         if (count != this.data.count) {
           return
