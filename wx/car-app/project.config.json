@@ -29,7 +29,7 @@
 	"projectname": "car-app",
 	"miniprogramRoot": "miniprogram/",
 	"cloudfunctionRoot": "cloudfunctions/",
-	"cloudfunctionTemplateRoot": "",
+	"cloudfunctionTemplateRoot": "cloudfunctionTemplate",
 	"watchOptions": {
 		"ignore": []
 	},
@@ -124,8 +124,8 @@
 				},
 				{
 					"id": 8,
-					"name": "pages/mypage/mypage",
-					"pathName": "pages/mypage/mypage",
+					"name": "pages/test/test",
+					"pathName": "pages/test/test",
 					"query": "",
 					"scene": null
 				},
@@ -175,6 +175,7 @@
 					"id": -1,
 					"name": "components/label/label",
 					"pathName": "components/label/label",
+					"query": "",
 					"scene": null
 				}
 			]

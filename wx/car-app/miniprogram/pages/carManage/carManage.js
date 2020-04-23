@@ -222,5 +222,21 @@ Page({
     wx.navigateTo({
       url: '/pages/editCarInfo/editCarInfo?id=' + id,
     })
-  }
+  },
+  //置顶云函数
+  // testtoTop(){
+  //   wx.cloud.callFunction({
+  //     name:'item',
+  //     data:{
+  //     action:'itemTotop',
+  //     shopid:'f841fd285e71d6900011f3b713c5a83f',
+  //     toTop:0,  0置顶  1取消置顶
+  //     _id:'3a573aaa5e83fbbd002d9a1f1319b4f4'
+  //     }
+  //   }).then(res=>{
+  //     console.log(res)
+  //   }).catch(err=>{
+  //     console.log(err)
+  //   })
+  // }
 })
