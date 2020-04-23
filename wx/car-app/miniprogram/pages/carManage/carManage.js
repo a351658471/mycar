@@ -4,6 +4,8 @@ Page({
   data: {
     tabList: ['在售', '已售', '未上架'],
     tabLists: ['二手车','新车'],
+    typeCount:[],
+    statusCount:[],
     carData:[],
     //模拟数据
     allData: [],
@@ -27,6 +29,10 @@ Page({
       [status]: 0,
     })
     this.getCarData([this.data.tabCurrent])
+  },
+  //生命周期onshow
+  onShow(){
+    this.getCountData()
   },
   tabClick: function (e) {
     this.data.count++;
@@ -129,7 +135,24 @@ Page({
       }
     })
   },
-
+  getCountData(){
+    this.data.statusCount = [];
+    this.data.typeCount=[];
+    wx.cloud.callFunction({
+      name: 'item',
+      data: {
+        action: "itemCount",
+        shopId: app.globalData.shop._id,
+      },
+    }).then(res=>{
+      res.result.forEach((item,index)=>{
+        index % 3 ==0?this.data.statusCount.push(item):this.data.typeCount.push(item)
+      })
+      console.log(res.result)
+      console.log(this.data.statusCount)
+      console.log(this.data.typeCount)
+    })
+  },
   //跳转新增页
   jumpToAddcar(){
     wx.navigateTo({

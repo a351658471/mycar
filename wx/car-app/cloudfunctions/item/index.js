@@ -24,8 +24,11 @@ exports.main = async (event, context) => {
     case 'itemRemove': {
       return itemManage(event)
     }
-    case 'itemTotop':{
+    case 'itemTotop': {
       return itemManage(event)
+    }
+    case 'itemCount': {
+      return itemCount(event)
     }
     default: {
       return
@@ -49,10 +52,10 @@ async function itemList(event) {
     condition = condition || {}
     condition.status = db.command.in(status)
   }
-  if(type){
+  if (type) {
     condition.type = db.command.in(type)
   }
-  
+
   if (istotal) {
     let countResult
     if (condition) {
@@ -142,7 +145,7 @@ async function itemAdd(event) {
   // }
   item.creatime = Date.parse(new Date())
   item.updatetime = item.creatime
-  if(item.sort == null){
+  if (item.sort == null) {
     item.sort = 0
   }
   return db.collection('item').add({
@@ -182,27 +185,49 @@ async function itemEdit(event) {
 }
 
 //置顶
-async function itemTotop(event){
+async function itemTotop(event) {
   // {
   //   toTop:Number 0置顶  1取消置顶
   // }
-  if(event.toTop==0){
-     return db.collection('item').orderBy('sort','desc').limit(1).get().then(res=>{
-        let max = res.data[0].sort + 1
-        return db.collection('item').doc(event._id).update({
-          data:{
-            sort:max
-          }
-        })
-      });
-  }else if(event.toTop ==1){
-    return db.collection('item').orderBy('sort','asc').limit(1).get().then(res=>{
-            let mix = res.data[0].sort
-            return db.collection('item').doc(event._id).update({
-              data:{
-                sort:mix
-              }
-            })
-          });
+  if (event.toTop == 0) {
+    return db.collection('item').orderBy('sort', 'desc').limit(1).get().then(res => {
+      let max = res.data[0].sort + 1
+      return db.collection('item').doc(event._id).update({
+        data: {
+          sort: max
+        }
+      })
+    });
+  } else if (event.toTop == 1) {
+    return db.collection('item').orderBy('sort', 'asc').limit(1).get().then(res => {
+      let mix = res.data[0].sort
+      return db.collection('item').doc(event._id).update({
+        data: {
+          sort: mix
+        }
+      })
+    });
   }
+}
+
+// 获取总数
+async function itemCount(event) {
+  let ret = []
+  let list = [
+    { status: 0 },
+    { status: 0, type: 0 },
+    { status: 0, type: 1 },
+    { status: 1 },
+    { status: 1, type: 0 },
+    { status: 1, type: 1 },
+    { status: 2 },
+    { status: 2, type: 0 },
+    { status: 2, type: 1 },
+  ]
+  for (let i = 0; i < list.length; i++) {
+    await db.collection('item').where(list[i]).count().then(res => {
+      ret[i] = res.total
+    })
+  }
+  return ret
 }
