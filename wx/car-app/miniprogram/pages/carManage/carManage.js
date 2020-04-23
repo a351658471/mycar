@@ -187,6 +187,7 @@ Page({
         // console.log('[云函数] [item.itemEdit] : ', res.result)
         this.getCarData([this.data.tabCurrent])
         app.globalData.stateChange()
+        this.getCountData()
       },
       fail: err => {
         // console.error('[云函数] [item.itemEdit] 调用失败', err)
@@ -271,6 +272,7 @@ Page({
         // this.data.page = 1
         // app.globalData.stateChange()
         this.data.carData.splice(index, 1)[0]
+        this.getCountData()
       },
       fail: err => {
         // console.error('[云函数] [item.itemRemove] 调用失败', err)
