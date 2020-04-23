@@ -3,7 +3,7 @@
   <!-- tab -->
   <view class="infoTab">
     <mg-tab tabList="{{tabList}}" bind:tabClick="tabClick" tabCurrent="{{tabCurrent}}" soldLength="{{soldLength}}" fontSize="28rpx"></mg-tab>
-    <my-nexttab tabList="{{tabLists}}" bind:tabClick="tabClicks" tabCurrents="{{tabCurrents}}" Num = "{{Num}}"></my-nexttab>
+    <my-nexttab tabList="{{tabLists}}" bind:tabClick="tabClicks" tabCurrents="{{tabCurrents}}" oldCarNum="{{oldCarNum}}" newCarNum="{{newCarNum}}"></my-nexttab>
   </view>
   <view class="isShow" wx:if="{{isShow}}">暂无车辆</view>
   <!-- 车列表 -->
@@ -18,7 +18,9 @@
     bind:loadMore="loadMore" 
     isLoading="{{isLoading}}" 
     noMore="{{noMore}}" 
-    bind:toEdit="toEdit"></my-carslist>
+    bind:toEdit="toEdit"
+    stickid="{{stickid}}"
+    ></my-carslist>
   </view>
   <view class="rightBox" bindtap="jumpToAddcar">添加新车</view>
 </view>

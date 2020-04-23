@@ -65,6 +65,7 @@
 }
 .menu .menu-block{
   display: flex;
+  align-items: center;
 }
 .menu .menu-block .menu-item{
   color: #717171;
@@ -77,7 +78,18 @@
   border-radius: 6rpx;
 }
 .menu .menu-block .stick{
+  padding: 0;
+  margin: 0;
+  border: 0;
+  outline: 0;
   padding-right: 88rpx;
+}
+button[disabled]{
+  color: #D3D3D3 !important;
+  background-color: #fff !important;
+}
+button::after{
+  border: none;
 }
 .loadMore{
   width: 100;
