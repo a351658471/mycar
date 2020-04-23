@@ -18,6 +18,7 @@ Page({
     soldLength:0,
     oldCarNum:0,
     newCarNum:0,
+    
   },
   //生命周期函数初次渲染完成
   onLoad: function () {
@@ -26,7 +27,7 @@ Page({
     let type = "carData[0].type"
     this.setData({
       [status]: 0,
-      [type]: 1
+      [type]: 1,
     })
     this.getCarData([this.data.tabCurrent])
   },
@@ -54,7 +55,7 @@ Page({
   },
 
   //根据状态调用接口获取数据
-  getCarData(status,page=1) {
+  getCarData(status,page=1,id) {
     this.setData({
       isLoading:true
     })
@@ -100,17 +101,17 @@ Page({
         }else{
           this.data.noMore = false
         }
-        if(type == 0){
-          this.data.newCarNum = res.result.data.length
-        }
-        else if(type == 1){
-          this.data.oldCarNum = res.result.data.length
-        }
+        // if(type == 0){
+        //   this.data.newCarNum = res.result.data.length
+        // }
+        // else if(type == 1){
+        //   this.data.oldCarNum = res.result.data.length
+        // }
         this.setData({
           noMore:this.data.noMore,
           isLoading:false,
-          oldCarNum: this.data.oldCarNum,
-          newCarNum: this.data.newCarNum
+          // oldCarNum: this.data.oldCarNum,
+          // newCarNum: this.data.newCarNum
         })
         if (count != this.data.count) {
           return
@@ -213,8 +214,14 @@ Page({
   stickGoods(e){
     console.log(e)
     let id = e.detail.id;
+    let index= e.detail.index
     let toTop = 0  //0 置顶， 1 取消
     this.whetherTotop(toTop,id)
+    this.data.carData.unshift(this.data.carData.splice(index,1)[0])
+    this.setData({
+      carData:this.data.carData
+    })
+    console.log(this.data.carData)
   },
   //删除商品
   deleteGoods(e){
@@ -234,9 +241,10 @@ Page({
       },
       success: res => {
         // console.log('[云函数] [item.itemRemove] : ', res.result);
-        this.getCarData([this.data.tabCurrent]);
-        this.data.page = 1
-        app.globalData.stateChange()
+        // this.getCarData([this.data.tabCurrent]);
+        // this.data.page = 1
+        // app.globalData.stateChange()
+        this.data.carData.splice(index, 1)[0]
       },
       fail: err => {
         // console.error('[云函数] [item.itemRemove] 调用失败', err)

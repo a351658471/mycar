@@ -24,16 +24,15 @@ Component({
       type:Boolean,
       value:false
     },
-    stickid:{
-      type:String,
-      value:''
+    minSort:{
+      type:Number,
+      value:0
     }
-
   },
   data: {
     startX: 0, //开始坐标
     startY: 0,
-    minSort:0
+    // minSort:0
 
   },
   /**
@@ -115,13 +114,9 @@ Component({
     },
     //置顶商品
     stickGoods(e){
-      if (this.data.minSort > app.globalData.sort){
-        this.data.disabled = true
-      }else{
-        this.data.minSort = app.globalData.sort + 1
-      }
       console.log(e)
       this.triggerEvent("stickGoods",{
+        index:e.currentTarget.dataset.index,
         id:e.currentTarget.dataset.id
       })
     },
@@ -138,7 +133,7 @@ Component({
     //点击事件
     boxClick(e){
         this.triggerEvent('toEdit', {
-          id: e.currentTarget.dataset.item._id
+          id: e.currentTarget.dataset.item._id,
         })
     }
 
