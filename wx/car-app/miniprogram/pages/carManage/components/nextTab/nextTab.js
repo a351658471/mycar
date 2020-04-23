@@ -10,7 +10,7 @@ Component({
 
     },
 
-    tabCurrent: {
+    tabCurrents: {
       type: Number,
       value: 0
     },
@@ -19,6 +19,18 @@ Component({
       type: String,
       value: '14px'
     },
+    Num: {
+      type: Number,
+      value: 0
+    },
+    oldCarNum:{
+      type:Number,
+      value:0
+    },
+    newCarNum: {
+      type: Number,
+      value: 0
+    }
   },
   /**
   * 启用插槽
@@ -33,10 +45,10 @@ Component({
   methods: {
     tabClick(e){
       this.setData({
-        tabCurrent: e.currentTarget.dataset.index
+        tabCurrents: e.currentTarget.dataset.index
       })
       this.triggerEvent('tabClick',{
-        tabCurrent:this.data.tabCurrent
+        tabCurrents:this.data.tabCurrents
       })
     }
   }

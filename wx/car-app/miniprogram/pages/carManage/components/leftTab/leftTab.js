@@ -22,6 +22,10 @@ Component({
     ltabHeight:{
       type:String,
       value:'6vw'
+    },
+    soldLength:{
+      type:Number,
+      value:0
     }
   },
   /**

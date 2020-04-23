@@ -3,23 +3,28 @@ const PERPAGE = 5
 Page({
   data: {
     tabList: ['在售', '已售', '未上架'],
+    tabLists: ['二手车','新车'],
     carData:[],
     //模拟数据
     allData: [],
     items:[],
     count:0,
     tabCurrent:0,
+    tabCurrents: 0,
     page:1,
     isLoading:false,
     noMore:false,
-    isShow:false
+    isShow:false,
+    soldLength:0,
+    Num:0,
+    Nums:0
   },
   //生命周期函数初次渲染完成
   onLoad: function () {
     this.data.page = 1
     let status = "carData[0].status"
     this.setData({
-      [status]: 0
+      [status]: 0,
     })
     this.getCarData([this.data.tabCurrent])
   },
@@ -32,7 +37,18 @@ Page({
     this.setData({
       isShow:false
     })
-   
+  },
+  tabClicks:function(e){
+    console.log(e)
+    this.data.page=1
+    this.data.count++ 
+    let status = [this.data.tabCurrent];
+    this.data.tabCurrents = e.detail.tabCurrents
+    this.setData({
+      tabCurrents: this.data.tabCurrents,
+      isShow:false
+    })
+    this.getCarData(status)
   },
 
   //根据状态调用接口获取数据
@@ -45,6 +61,13 @@ Page({
         carData: []
       })
     }
+    let type
+    if (this.data.tabCurrents == 0) {
+      type = [app.globalData.type.userCar]
+    }
+    else if (this.data.tabCurrents == 1) {
+      type = [app.globalData.type.newCar]
+    }
     let count = this.data.count;
     // 调用云函数  商品列表
     wx.cloud.callFunction({
@@ -56,16 +79,16 @@ Page({
         condition: {
           shopId: app.globalData.shop._id,
         },
-
         status:status,    // 商品状态 在售 已售 未上架 
         // oldlevel,
         // 分页
         page:page,
         perpage:PERPAGE,
         // 是否排序
-        order: 0
+        order: 0,
+        type:type
       },
-
+      
       success: res => {
         this.data.flag = true
         //没有数据则关闭下拉加载
@@ -77,12 +100,13 @@ Page({
         }
         this.setData({
           noMore:this.data.noMore,
-          isLoading:false
+          isLoading:false,
+          Num: res.result.data.length
         })
         if (count != this.data.count) {
           return
         }
-        // console.log('[云函数] [item.itemList] : ', res.result)
+        console.log('[云函数] [item.itemList] : ', res.result)
         
         res.result.data.forEach(item => {
           this.data.items.push({ xmove: 0, isOpen: false })
@@ -90,10 +114,14 @@ Page({
           this.data.carData.push(item)
         })
         this.data.carData.length ==0?this.data.isShow=true:this.data.isShow=false
+        if(status == 0){
+          this.data.soldLength = res.result.data.length
+        }
         this.setData({
           carData: this.data.carData,
           items:this.data.items,
-          isShow:this.data.isShow
+          isShow:this.data.isShow,
+          soldLength: this.data.soldLength
         })
       },
       fail: err => {

@@ -1,7 +1,7 @@
 /* components/carsList/carsList.wxss */
 .carList{
   box-sizing: border-box;
-  padding: 0 32rpx;
+  padding: 0 32rpx 100rpx 32rpx;
 }
 .Item{
   margin-bottom: 16rpx;
@@ -76,9 +76,6 @@
   padding: 6rpx 11rpx;
   border-radius: 6rpx;
 }
-.menu .menu-block .sold{
-  margin-left: 44rpx;
-}
 .menu .menu-block .stick{
   padding-right: 88rpx;
 }
@@ -87,7 +84,6 @@
   text-align: center;
   height: 10vw;
   line-height: 10vw;
-  background: #fff;
   color: #777;
   font-size: 30rpx;
 }

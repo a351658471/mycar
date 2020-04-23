@@ -18,16 +18,16 @@
     <!-- </movable-area> -->
     <view class="menu">
       <view class="menu-block">
-        <view wx:if="{{item.status != 2}}" class="tShelves menu-item" catchtap="lowGoods" data-id="{{item._id}}">
+        <view wx:if="{{item.status != 2}}" class="tShelves menu-item" style="margin-right: 44rpx;" catchtap="lowGoods" data-id="{{item._id}}">
           下架
         </view>
         <view wx:if="{{item.status != 1}}" class="sold menu-item" catchtap="soldGoods" data-id="{{item._id}}">
           已售
         </view>
-      </view>
-      <!-- <view wx:if="{{item.status != 0}}" class="tShelves menu-item" catchtap="saleGoods" data-id="{{item._id}}">
+        <view wx:if="{{item.status != 0}}" class="tShelves menu-item" style="margin-left: 44rpx;" catchtap="saleGoods" data-id="{{item._id}}">
         在售
-      </view> -->
+      </view>
+      </view>
       <view class="menu-block">
         <view class="stick menu-item" catchtap="stickGoods" data-index="{{index}}">置顶</view>
         <view class="delete menu-item" catchtap="deleteGoods" data-id="{{item._id}}">删除</view>
