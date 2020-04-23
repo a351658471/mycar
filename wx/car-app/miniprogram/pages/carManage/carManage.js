@@ -208,6 +208,8 @@ Page({
   stickGoods(e){
     console.log(e)
     let id = e.detail.id;
+    let toTop = 0  //0 置顶， 1 取消
+    this.whetherTotop(toTop,id)
   },
   //删除商品
   deleteGoods(e){
@@ -257,19 +259,19 @@ Page({
     })
   },
   //置顶云函数
-  // testtoTop(){
-  //   wx.cloud.callFunction({
-  //     name:'item',
-  //     data:{
-  //     action:'itemTotop',
-  //     shopid:'f841fd285e71d6900011f3b713c5a83f',
-  //     toTop:0,  0置顶  1取消置顶
-  //     _id:'3a573aaa5e83fbbd002d9a1f1319b4f4'
-  //     }
-  //   }).then(res=>{
-  //     console.log(res)
-  //   }).catch(err=>{
-  //     console.log(err)
-  //   })
-  // }
+  whetherTotop(toTop,id){
+    wx.cloud.callFunction({
+      name:'item',
+      data:{
+      action:'itemTotop',
+      shopid: app.globalData.shop._id,
+      toTop:toTop,
+      _id:id
+      }
+    }).then(res=>{
+      console.log(res)
+    }).catch(err=>{
+      console.log(err)
+    })
+  }
 })
