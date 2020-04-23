@@ -35,15 +35,6 @@ Component({
   options: {
     multipleSlots: true
   },
-
-  ready(){
-    console.log(this.data.newCarNum)
-    console.log(this.data.tabCurrents)
-    // if (this.data.tabCurrents == 0){
-    //   this.data.num = this.data.newCarNum
-    //   this.setData(this.data)
-    // }
-  },
   /**
   * 组件的方法列表
   */

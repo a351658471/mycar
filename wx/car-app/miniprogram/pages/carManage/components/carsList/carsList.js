@@ -123,6 +123,7 @@ Component({
     //删除商品
     deleteGoods(e){
       this.triggerEvent("deleteGoods",{
+        index: e.currentTarget.dataset.index,
         id:e.currentTarget.dataset.id
       })
     },

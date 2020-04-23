@@ -17,10 +17,6 @@ Page({
     isLoading:false,
     noMore:false,
     isShow:false,
-    soldLength:0,
-    Num:0,
-    Nums:0
-    
   },
   //生命周期函数初次渲染完成
   onLoad: function () {
@@ -269,7 +265,11 @@ Page({
         // this.getCarData([this.data.tabCurrent]);
         // this.data.page = 1
         // app.globalData.stateChange()
-        this.data.carData.splice(index, 1)[0]
+        let index = e.detail.index
+        this.data.carData.splice(index, 1)
+        this.setData({
+          carData: this.data.carData
+        })
       },
       fail: err => {
         // console.error('[云函数] [item.itemRemove] 调用失败', err)

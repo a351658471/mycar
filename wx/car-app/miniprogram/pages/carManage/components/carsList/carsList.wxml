@@ -30,7 +30,7 @@
       </view>
       <view class="menu-block">
         <button class="stick menu-item" catchtap="stickGoods" data-index="{{index}}" data-id="{{item._id}}" hover-class="none" disabled="{{item.sort==0?false:true}}">置顶</button>
-        <view class="delete menu-item" catchtap="deleteGoods" data-id="{{item._id}}">删除</view>
+        <view class="delete menu-item" catchtap="deleteGoods" data-index="{{index}}" data-id="{{item._id}}">删除</view>
       </view>
     </view>
   </view>
