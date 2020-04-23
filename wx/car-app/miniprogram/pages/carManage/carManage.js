@@ -48,6 +48,7 @@ Page({
   },
   myFillter(e){
    let arr = this.data.typeCount.slice(e*2,e*2+2)
+   arr.reverse()
   this.setData({
     newCarNum:arr
   })

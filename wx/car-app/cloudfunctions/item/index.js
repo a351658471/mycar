@@ -183,6 +183,23 @@ async function itemEdit(event) {
   }
   )
 }
+//删除商品
+async function itemRemove(event){
+  // let {
+  //   item
+  // } = event
+  // {
+  //   shopId: string,  // 所在商店
+  //   name: string,    // 商品名
+  //   price: number,   // 价格
+  //   stock: number,   // 库存
+  //   data:string,     // 数据
+  // }
+  let itemIds = event.ids;
+  console.log(event)
+  return db.collection('item').doc(itemIds[0]).remove()
+}
+
 
 //置顶
 async function itemTotop(event) {
