@@ -22,8 +22,10 @@ Page({
   onLoad: function () {
     this.data.page = 1
     let status = "carData[0].status"
+    let type = "carData.type"
     this.setData({
       [status]: 0,
+      [type]: 1
     })
     this.getCarData([this.data.tabCurrent])
   },
@@ -243,7 +245,7 @@ Page({
     this.setData({
       carData:this.data.carData
     })
-    console.log(this.data.carData)
+    this.getCarData([this.data.tabCurrent]);
   },
   //删除商品
   deleteGoods(e){
@@ -263,14 +265,14 @@ Page({
       },
       success: res => {
         // console.log('[云函数] [item.itemRemove] : ', res.result);
-        // this.getCarData([this.data.tabCurrent]);
-        // this.data.page = 1
-        // app.globalData.stateChange()
         let index = e.detail.index
         this.data.carData.splice(index, 1)
         this.setData({
           carData: this.data.carData
         })
+        // this.getCarData([this.data.tabCurrent]);
+        // this.data.page = 1
+        // app.globalData.stateChange()
       },
       fail: err => {
         // console.error('[云函数] [item.itemRemove] 调用失败', err)

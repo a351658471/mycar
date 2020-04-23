@@ -4,7 +4,15 @@
   display: flex;
   flex-direction: column;
 }
-
+.scancode{
+  position: absolute;
+  top: 58rpx;
+  left: 40rpx;
+}
+.scancode image{
+  width: 52rpx;
+  height: 52rpx;
+}
 .header {
   width: 100%;
   background: #ffffff;
@@ -87,6 +95,9 @@
   font-size: 24rpx;
   font-weight: normal;
   border-radius: 30rpx;
+}
+.header .head .signpart button[disabled]{
+  background: grey!important;
 }
 .middleline {
   width: 100%;

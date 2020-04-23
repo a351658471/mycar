@@ -23,7 +23,9 @@
     "pages/addNewCar/detail/detail",
     "pages/index/carDetail/card/card",
     "pages/information/information",
-    "pages/information/detail/detail"
+    "pages/information/detail/detail",
+    "pages/reward/reward",
+    "pages/coupon/coupon"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
