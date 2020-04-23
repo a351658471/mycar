@@ -2,7 +2,7 @@
   <view class="tab">
     <view class='leftTab'style='font-size:{{fontSize}};height:{{ltabHeight}};line-height:{{ltabHeight}}'>
       <block wx:for="{{tabList}}" wx:key="key" >
-        <view class='tabItem {{tabCurrent == index? "active" : ""}}' bindtap='tabClick' data-index='{{index}}'>{{item}}<text>({{soldLength}})</text></view>
+        <view class='tabItem {{tabCurrent == index? "active" : ""}}' bindtap='tabClick' data-index='{{index}}'>{{item}}<text>{{soldLength[index]==0?'':'('+soldLength[index]+')'}}</text></view>
       </block>
     </view>
     <slot/>

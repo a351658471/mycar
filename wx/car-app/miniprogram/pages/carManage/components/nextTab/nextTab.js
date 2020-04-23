@@ -22,8 +22,8 @@ Component({
       value:0
     },
     newCarNum: {
-      type: Number,
-      value: 0
+      type: Array,
+      value: []
     }
   },
   data:{

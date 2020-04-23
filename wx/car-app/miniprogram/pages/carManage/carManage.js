@@ -18,17 +18,15 @@ Page({
     noMore:false,
     isShow:false,
     soldLength:0,
-    oldCarNum:0,
-    newCarNum:0,
+    Num:0,
+    Nums:0
   },
   //生命周期函数初次渲染完成
   onLoad: function () {
     this.data.page = 1
     let status = "carData[0].status"
-    let type = "carData[0].type"
     this.setData({
       [status]: 0,
-      [type]: 1
     })
     this.getCarData([this.data.tabCurrent])
   },
@@ -40,11 +38,18 @@ Page({
     this.data.count++;
     this.data.page=1
     this.data.tabCurrent = e.detail.tabCurrent
+    this.myFillter(this.data.tabCurrent)
     let status = [e.detail.tabCurrent];
     this.getCarData(status),
     this.setData({
       isShow:false
     })
+  },
+  myFillter(e){
+   let arr = this.data.typeCount.slice(e*2,e*2+2)
+  this.setData({
+    newCarNum:arr
+  })
   },
   tabClicks:function(e){
     console.log(e)
@@ -106,17 +111,10 @@ Page({
         }else{
           this.data.noMore = false
         }
-        if(type == 0){
-          this.data.newCarNum = res.result.data.length
-        }
-        else if(type == 1){
-          this.data.oldCarNum = res.result.data.length
-        }
         this.setData({
           noMore:this.data.noMore,
           isLoading:false,
-          oldCarNum: this.data.oldCarNum,
-          newCarNum: this.data.newCarNum
+          Num: res.result.data.length
         })
         if (count != this.data.count) {
           return
@@ -129,10 +127,14 @@ Page({
           this.data.carData.push(item)
         })
         this.data.carData.length ==0?this.data.isShow=true:this.data.isShow=false
+        if(status == 0){
+          this.data.soldLength = res.result.data.length
+        }
         this.setData({
           carData: this.data.carData,
           items:this.data.items,
           isShow:this.data.isShow,
+          soldLength: this.data.soldLength
         })
       },
       fail: err => {
@@ -153,9 +155,11 @@ Page({
       res.result.forEach((item,index)=>{
         index % 3 ==0?this.data.statusCount.push(item):this.data.typeCount.push(item)
       })
-      console.log(res.result)
-      console.log(this.data.statusCount)
-      console.log(this.data.typeCount)
+      this.setData({
+        statusCount:this.data.statusCount,
+        typeCount:this.data.typeCount
+      })
+      this.myFillter(this.data.tabCurrent)
     })
   },
   //跳转新增页
@@ -164,8 +168,6 @@ Page({
       url: '/pages/addNewCar/addNewCar',
     })
   },
-
-
   editGoods(id,status){
          // 调用编辑云函数
     wx.cloud.callFunction({

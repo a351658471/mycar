@@ -2,8 +2,8 @@
 <view class="carManage">
   <!-- tab -->
   <view class="infoTab">
-    <mg-tab tabList="{{tabList}}" bind:tabClick="tabClick" tabCurrent="{{tabCurrent}}" soldLength="{{soldLength}}" fontSize="28rpx"></mg-tab>
-    <my-nexttab tabList="{{tabLists}}" bind:tabClick="tabClicks" tabCurrents="{{tabCurrents}}" oldCarNum="{{oldCarNum}}" newCarNum="{{newCarNum}}"></my-nexttab>
+    <mg-tab tabList="{{tabList}}" bind:tabClick="tabClick" tabCurrent="{{tabCurrent}}" soldLength="{{statusCount}}" fontSize="28rpx"></mg-tab>
+    <my-nexttab tabList="{{tabLists}}" fatherCurrent="{{tabCurrent}}" bind:tabClick="tabClicks" tabCurrents="{{tabCurrents}}" typeCount="{{typeCount}}" oldCarNum="{{oldCarNum}}" newCarNum="{{newCarNum}}"></my-nexttab>
   </view>
   <view class="isShow" wx:if="{{isShow}}">暂无车辆</view>
   <!-- 车列表 -->

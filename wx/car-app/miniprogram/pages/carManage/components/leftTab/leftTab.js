@@ -24,8 +24,8 @@ Component({
       value:'6vw'
     },
     soldLength:{
-      type:Number,
-      value:0
+      type:Array,
+      value:[]
     }
   },
   /**
