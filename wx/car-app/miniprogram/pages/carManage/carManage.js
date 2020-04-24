@@ -246,7 +246,6 @@ Page({
     this.setData({
       carData:this.data.carData
     })
-    this.getCarData([this.data.tabCurrent]);
   },
   //删除商品
   deleteGoods(e){

@@ -31,4 +31,130 @@
     flex-direction: column;
     align-items: center;
 }
+.rewardCenter{
+    background: #FFFFFF;
+    padding: 12rpx 48rpx 20rpx 48rpx;
+}
+.rewardTitle{
+    font-size: 30rpx;
+    color: #333333;
+    font-weight: bold;
+    padding: 28rpx 28rpx 16rpx 28rpx;
+}
+.rewardLR{
+    display: flex;
+    margin: 58rpx;
+    margin-top: 0;
+    position: relative;
+}
+.circle{
+    position: absolute;
+    width: 30rpx;
+    height: 30rpx;
+    background: #fff;
+    border-radius: 50%;
+    left: 69%;
+    top: -15rpx;
+    border-bottom: 2rpx solid #F78637;
+}
+.circle2{
+    position: absolute;
+    width: 30rpx;
+    height: 30rpx;
+    background: #fff;
+    border-radius: 50%;
+    left: 69%;
+    top: 155rpx;
+    border-top: 2rpx solid #F78637;
+}
 
+.rewardLeft{
+    background: #FFF6EF;
+    padding: 20rpx 40rpx 10rpx 22rpx;
+    border: 2rpx solid #F78637;
+    border-right: none;
+    border-radius: 10rpx 0 0 10rpx;
+}
+.rewardName{
+    font-size: 26rpx;
+    color: #131E33;
+    font-weight: bold;
+}
+.rewardMsg{
+    font-size: 24rpx;
+    color: #333333;
+}
+.rewardTime{
+    display: flex;
+    align-items: flex-end;
+}
+.rewardExpire{
+    font-size: 20rpx;
+    color: #7E7C81;
+    margin-top: 42rpx;
+}
+.rewardDetail{
+    font-size: 24rpx;
+    color: #FF7B00;
+    margin-left: 37rpx;
+}
+.rewardRight{
+    width: 148rpx;
+    text-align: center;
+    font-size: 24rpx;
+    color: #FFF8F8;
+    padding-top: 40rpx;
+    border-radius: 0 10rpx 10rpx 0;
+    border: 2rpx solid #F78637;
+    border-left: none;
+    background: linear-gradient(to bottom,#EE9657,#FE7B1F);
+}
+.rewardRight button{
+    width: 98rpx;
+    height: 38rpx;
+    color: #FC7E27;
+    font-size: 20rpx;
+    background: #FFF6EF;
+    border-radius: 20rpx;
+    text-align: center;
+    line-height: 38rpx;
+    margin: 26rpx 0;
+    margin: 26rpx auto;
+}
+.rewardLRs{
+    display: flex;
+    margin: 58rpx;
+    background: #FFF6EF;
+    border: 2rpx solid #9B9B9B;
+    border-radius: 10rpx;
+    position: relative;
+}
+.rewardLefts{
+    box-sizing: border-box;
+    padding: 20rpx 40rpx 10rpx 22rpx;
+}
+.rewardRights{
+    font-size: 28rpx;
+    color: #9B9B9B;
+    padding: 35rpx;
+}
+.circle3{
+    position: absolute;
+    width: 30rpx;
+    height: 30rpx;
+    background: #fff;
+    border-radius: 50%;
+    left: 69%;
+    top: -15rpx;
+    border-bottom: 2rpx solid #9B9B9B;
+}
+.circle4{
+    position: absolute;
+    width: 30rpx;
+    height: 30rpx;
+    background: #fff;
+    border-radius: 50%;
+    left: 69%;
+    top: 155rpx;
+    border-top: 2rpx solid #9B9B9B;
+}

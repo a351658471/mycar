@@ -61,8 +61,12 @@
   padding: 5rpx;
   border: 1rpx solid #fff;
   border-radius: 15rpx;
-  color: #fff;
+  color: #333;
   font-size: 25rpx;
+  background: #fff !important;
+  line-height: 45rpx;
+  border: 1rpx solid #333;
+  margin-left: 45rpx;
 }
 /* 手机/签到部分 */
 .header .head .signpart{
@@ -145,4 +149,9 @@
   right: 28rpx;
   bottom: 100rpx;
 }
-
+.usecouponbg{
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.4);
+  position: fixed;
+}

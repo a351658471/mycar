@@ -1,0 +1,43 @@
+<!-- miniprogram/pages/coupon/coupon.wxml -->
+<mg-tab tabList="{{tabList}}" bind:tabClick="tabClick" tabCurrent="{{tabCurrent}}" soldLength="{{statusCount}}" fontSize="28rpx"></mg-tab>
+<my-nexttab tabList="{{tabLists}}" fatherCurrent="{{tabCurrent}}" bind:tabClick="tabClicks" tabCurrents="{{tabCurrents}}" typeCount="{{typeCount}}" oldCarNum="{{oldCarNum}}" newCarNum="{{newCarNum}}"></my-nexttab>
+<block>
+    <view class="couponContent">
+        <view class="couponHead">
+            <view class="couponTitle">车之居价值50元深度洗车劵</view>
+            <view class="couponEdit">编辑</view>
+        </view>
+        <view class="couponDetail">提供洗车、除螨、</view>
+        <view class="couponNum">累计到店使用：5</view>
+        <view class="couponMsg">
+            <view class="couponIntegral">积分500</view>
+            <view class="couponLastTime">到期时间:2020.05.24</view>
+        </view>
+    </view>
+    <view class="couponControl">
+        <button class="couponStop">停用</button>
+        <view class="couponDelete">删除</view>
+    </view>
+</block>
+<view class="rightBox" bindtap="jumpToAddcoupon">添加卡券</view>
+<block wx:if="{{history}}">
+    <view class="couponContent">
+        <view class="couponHead">
+            <view class="couponTitle">车之居价值50元深度洗车劵</view>
+            <view class="couponQuery">已确认</view>
+        </view>
+        <view class="coupons">
+            <view class="couponone">
+                <view class="couponName">昵称：2313123</view>
+                <view class="couponphone">手机：15880290920</view>
+            </view>
+            <view class="coupontwo">
+                <view class="couponNumber">卡券号：123456789</view>
+                <view class="couponQueryTime">确认时间:2020.05.24</view>
+            </view>
+        </view>
+    </view>
+    <view class="couponControl" style="justify-content: flex-end">
+        <view class="couponDelete">删除</view>
+    </view>
+</block>

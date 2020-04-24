@@ -16,6 +16,7 @@ Page({
     isregist: false,
     hideShare: false,
     adminhide:false,
+    isUse:false,
     menu_reward: {
       name: "积分奖励",
       icon: "mypage-reward.png",
@@ -49,7 +50,7 @@ Page({
     menu_coupon: {
       name: "卡券管理",
       icon: "mypage-coupon.png",
-      link: "/pages/coupon/coupon"
+      link: "/pages/rewardcoupon/rewardcoupon"
     },
     menu_feedback: {
       name: "反馈列表",

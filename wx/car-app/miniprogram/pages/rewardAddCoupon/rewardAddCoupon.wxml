@@ -1,0 +1,32 @@
+<!--miniprogram/pages/rewardAddCoupon/rewardAddCoupon.wxml-->
+<view class="addCouponContent">
+    <view class="addCouponTitle">基本信息</view>
+    <view class="couponBtn">
+        <button class="couponSave">保存</button>
+        <button class="couponStar">启用</button>
+    </view>
+    <view class="addDetail">
+        <view class="coupon"> 
+            <text>卡券名称</text>
+            <input type="text" placeholder-style="color: #3377FE;" placeholder="必填" />
+        </view>
+        <view class="coupon">
+            <text>需要积分</text>
+            <input type="text" placeholder-style="color: #3377FE;" placeholder="必填" />
+        </view>
+        <view class="coupon">
+            <text>到期时间</text>
+            <input type="text" placeholder-style="color: #3377FE;" placeholder="必填" />
+        </view>
+        <view class="coupon">
+            <text>特点描述</text>
+            <input type="text" placeholder-style="color: #3377FE;" placeholder="必填" />
+        </view>
+        <view class="couponActive">
+            <text>活动规则</text>
+            <textarea></textarea>
+            <view class="num">0/150</view>
+        </view>
+    </view>
+</view>
+

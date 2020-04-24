@@ -5,6 +5,7 @@
   "backgroundColorTop":"#286CF3",
   "backgroundColorBottom": "#FFFFFF",
   "usingComponents": {
-    "my-call": "/components/call/call"
+    "my-call": "/components/call/call",
+    "my-coupon": "/components/useCoupon/useCoupon"
   }
 }

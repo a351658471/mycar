@@ -1,2 +1,17 @@
 <!--miniprogram/pages/rewardDetail/rewardDetail.wxml-->
-<text>miniprogram/pages/rewardDetail/rewardDetail.wxml</text>
+<view class="rewardDetail">
+    <view class="detailTitle">车之居价值50元深度洗车劵</view>
+    <view class="detailTime">到期时间：2020-08-27</view>
+    <view class="detailcontent">提供洗车、除螨哈哈的拉货费拉拉地方垃圾堆里</view>
+    <view class="smallTitle">权益规则</view>
+    <view class="details">1.好多详情好多详情好多详情好多详情好多详情好多详情好多详情好多详情好多3.详情好多详情好多详情好多详情好多详情好多详情</view>
+    <button wx:if="{{isExchange}}" bindtap="toCoupon">兑换</button>
+    <view wx:if="{{isExchange}}" class="code"></view>
+</view>
+ 
+<view class="shopMessageBtn">
+  <button style="width:680rpx" class="btn" bindtap="navigation">到店导航</button>
+</view>
+<view class="call">
+  <my-call class="callIcon" bind:call="call" phoneNumber="{{shop.phone}}"></my-call>
+</view>

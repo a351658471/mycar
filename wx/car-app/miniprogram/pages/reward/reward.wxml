@@ -1,39 +1,57 @@
-<!--miniprogram/pages/reward/reward.wxml-->
-<!-- 积分区域 -->
-<view class="reward">
-  <view class="rewardContent">
-    <view class="rewardNum"><text>1000</text></view>
-    <view class="rewards">积分</view>
-  </view>
-  <view class="rewardWarns">
-    <view class="rewardWarn">
-      <view class="warn">转发资讯获得10积分</view>
-      <view class="warnNum">（每日限三次）</view>
+<!-- miniprogram/pages/reward/reward.wxml -->
+<view class="rewardcontain">
+  <!-- 积分区域 -->
+  <view class="reward">
+    <view class="rewardContent">
+      <view class="rewardNum">1000</view>
+      <view class="rewards">积分</view>
     </view>
-    <view class="rewardWarn">
-      <view class="warn">转发资讯获得10积分</view>
-      <view class="warnNum">（每日限三次）</view>
-    </view>
-    <view class="rewardWarn">转发资讯获得10积分</view>
-  </view>
-</view>
-<!-- 奖励券 -->
-<view class="rewardCenter">
-  <view class="rewardTitle">奖励中心</view>
-  <view class="rewardLeft">
-    <view class="rewardName">车之居价值50元深度洗车劵</view>
-    <view class="rewardMsg">提供洗车、除螨、</view>
-    <view class="rewardTime">
-      <view class="rewardExpire">到期时间:2020.05.24</view>
-      <view class="rewardDetail">查看详细</view>
+    <view class="rewardWarns">
+      <view class="rewardWarn">
+        <view class="warn">转发资讯获得10积分</view>
+        <view class="warnNum">（每日限三次）</view>
+      </view>
+      <view class="rewardWarn">
+        <view class="warn">转发车辆获得10积分</view>
+        <view class="warnNum">（每日限三次）</view>
+      </view>
+      <view class="rewardWarn">每日签到获得15积分</view>
     </view>
   </view>
-
-  <view class="rewardRight">
-    <view wx:if="{{}}">500积分</view>
-    <view wx:if="{{}}">已兑换</view>
-    <view wx:else>{{condition? '已使用':'已过期'}}</view>
-    <button wx:if="{{}}">兑换</button>
-    <button wx:if="{{}}">去使用</button>
+  <!-- 奖励券 -->
+  <view class="rewardCenter">
+    <view class="rewardTitle">奖励中心</view>
+    <view class="rewardLR">
+      <view class="circle"></view>
+      <view class="circle2"></view>
+      <view class="rewardLeft">
+        <view class="rewardName">车之居价值50元深度洗车劵</view>
+        <view class="rewardMsg">提供洗车、除螨、</view>
+        <view class="rewardTime">
+          <view class="rewardExpire">到期时间:2020.05.24</view>
+          <view class="rewardDetail" bindtap="jumpToDetail">查看详细</view>
+        </view>
+      </view>
+      <view class="rewardRight">
+        <view class="rewardnum" wx:if="{{isCoupon}}">500积分</view>
+        <view class="rewardnum" wx:if="{{!isCoupon}}">已兑换</view>
+        <button wx:if="{{toCoupon}}" bindtap="jumpToDetail">兑换</button>
+        <button wx:if="{{!toCoupon}}" bindtap="jumpToDetail">去使用</button>
+      </view>
+    </view>
+    <view style="border:1rpx dashed #979797"></view>
+    <!-- 过期券 -->
+  <view class="rewardLRs">
+    <view class="circle3"></view>
+    <view class="circle4"></view>
+    <view class="rewardLefts">
+      <view class="rewardName">车之居价值50元深度洗车劵</view>
+      <view class="rewardMsg">提供洗车、除螨、</view>
+      <view class="rewardExpire">有效期:2020.02.14-2020.05.24</view>
+    </view>
+    <view class="rewardRights">
+      <view class="pass">{{condition? '已使用':'已过期'}}</view>
+    </view>
+  </view>
   </view>
 </view>

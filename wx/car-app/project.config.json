@@ -177,6 +177,34 @@
 					"pathName": "pages/reward/reward",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/rewardDetail/rewardDetail",
+					"pathName": "pages/rewardDetail/rewardDetail",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/rewardcoupon/rewardcoupon",
+					"pathName": "pages/rewardcoupon/rewardcoupon",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/rewardAddCoupon/rewardAddCoupon",
+					"pathName": "pages/rewardAddCoupon/rewardAddCoupon",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "components/useCoupon/useCoupon",
+					"pathName": "components/useCoupon/useCoupon",
+					"query": "",
+					"scene": null
 				}
 			]
 		}

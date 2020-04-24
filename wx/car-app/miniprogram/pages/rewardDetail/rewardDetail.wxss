@@ -1,1 +1,63 @@
 /* miniprogram/pages/rewardDetail/rewardDetail.wxss */
+.rewardDetail{
+    margin: 60rpx;
+    background: #FFF;
+    padding: 60rpx;
+    border-radius: 24rpx;
+}
+.detailTitle{
+    font-size: 32rpx;
+    color: #4A4A4A;
+    font-weight: bold;
+}
+.detailTime{
+    font-size: 28rpx;
+    color: #9B9B9B;
+    margin-top: 26rpx;
+}
+.detailcontent{
+    font-size: 28rpx;
+    color: #4A4A4A;
+    margin-top: 32rpx;
+}
+.smallTitle{
+    font-size: 30rpx;
+    font-weight: bold;
+    color: #4A4A4A;
+    margin-top: 64rpx;
+}
+.details{
+    font-size: 28rpx;
+    color: #9B9B9B;
+    margin-top: 26rpx;
+}
+.rewardDetail button{
+    margin: 90rpx auto 0 auto;
+    padding: 0;
+    width: 288rpx;
+    height: 72rpx;
+    border: 2rpx solid #F68739;
+    color: #FA822E;
+    border-radius: 36rpx;
+    line-height: 72rpx;
+    background: #FFF6EF;
+    font-size: 28rpx;
+}
+.call{
+    position: fixed;
+    right: 28rpx;
+    bottom: 200rpx;
+}
+.shopMessageBtn{
+    width: 100%;
+    position: absolute;
+    bottom: 44rpx;
+}
+.btn{
+    height: 88rpx;
+    color: #FFFFFF;
+    font-size: 36rpx;
+    font-weight: normal;
+    border-radius: 16rpx;
+    background: linear-gradient(to right,#3377FE,#3377FE)
+}

@@ -52,6 +52,9 @@
     </view>
   </view>
 </view>
+<view class="usecouponbg" wx:if="{{isUse}}">
+  <my-coupon></my-coupon>
+</view>
 <view class="call">
   <my-call class="callIcon" bind:call="call" phoneNumber="{{shop.phone}}"></my-call>
 </view>

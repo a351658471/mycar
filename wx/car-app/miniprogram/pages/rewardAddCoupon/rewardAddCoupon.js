@@ -1,4 +1,4 @@
-// miniprogram/pages/coupon/coupon.js
+// miniprogram/pages/rewardAddCoupon/rewardAddCoupon.js
 Page({
 
   /**

@@ -1,0 +1,26 @@
+/* components/leftTab/leftTab.wxss */
+.outerBox{
+  width: 100%;
+  background: #FFFFFF;
+  padding: 20rpx 0;
+  box-sizing: border-box;
+  border-top: 1rpx solid #E1E1E1;
+}
+.leftTab{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+}
+.tabItem{
+  width: 50%;
+  padding: 20rpx 0;
+  box-sizing: border-box;
+}
+.active{
+  font-weight: bolder;
+  position: relative;
+  color: #3377FE;
+  border-bottom: 6rpx solid #3377FE;
+}
+

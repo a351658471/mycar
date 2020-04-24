@@ -1,0 +1,112 @@
+/* miniprogram/pages/coupon/coupon.wxss */
+
+.couponContent{
+    box-sizing: border-box;
+    padding: 22rpx 24rpx;
+    margin: 34rpx 22rpx 0 22rpx;
+    background: #FFFFFF;
+    border: 1rpx solid #E1E1E1;
+    border-bottom: none;
+    border-radius: 6rpx 6rpx 0 0;
+}
+.couponHead{
+    display: flex;
+    justify-content: space-between;
+}
+.couponTitle{
+    font-size: 28rpx;
+    color: #131E33;
+    font-weight: bold;
+}
+.couponEdit{
+    font-size: 24rpx;
+    color: #717171;
+}
+.couponDetail{
+    font-size: 24rpx;
+    color: #333333;
+    margin-top: 2rpx;
+}
+.couponNum{
+    font-size: 30rpx;
+    color: #7B7575;
+    text-align: right;
+    font-weight: bold;
+}
+.couponMsg{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 18rpx;
+}
+.couponIntegral{
+    font-size: 24rpx;
+    color: #3377FE;
+}
+.couponLastTime{
+    font-size: 20rpx;
+    color: #7E7C81;
+}
+.couponControl{
+    box-sizing: border-box;
+    padding: 22rpx 24rpx;
+    margin: 0 22rpx;
+    background: linear-gradient(to bottom,#FFFFFF,#F8F8F8);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1rpx solid #E1E1E1;
+    border-radius: 0 0 6rpx 6rpx;
+}
+.couponStop{
+    margin: 0;
+    padding: 0;
+    width: 96rpx;
+    height: 50rpx;
+    color: #717171;
+    font-size: 26rpx;
+    line-height: 45rpx;
+    border: 1rpx solid #E3E3E3;
+}
+.couponDelete{
+    font-size: 26rpx;
+    color: #717171;
+}
+.rightBox{
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    background: #3377FE;
+    color: #FFFFFF;
+    font-size: 36rpx;
+    text-align: center;
+    padding: 16rpx 0 22rpx 0;
+}
+.couponQuery{
+    font-size: 24rpx;
+    color: #131E33;
+}
+.couponone,.coupontwo{
+    display: flex;
+    flex-direction: column;
+    font-size: 20rpx;
+}
+.coupontwo{
+    margin-right: 30rpx;
+}
+.coupons{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.couponphone{
+    margin-top: 6rpx;
+}
+.couponQueryTime{
+    margin-top: 10rpx;
+}
+.couponone{
+    margin-top: 20rpx;   
+}
+.couponNumber,.couponQueryTime{
+    color: #7E7C81;
+}

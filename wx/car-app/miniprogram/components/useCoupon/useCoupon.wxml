@@ -1,0 +1,17 @@
+<!-- components/useCoupon/useCoupon.wxml -->
+<view class="usecoupon">
+  <view wx:if="{{use}}" class="useTitle">有效</view>
+  <view wx:if="{{!use}}" class="useTitle used">{{isUse?'已使用':'已过期'}}</view>
+  <view class="useContent">车之居价值50元深度洗车劵</view>
+  <view class="useTime">到期时间:2020.05.24</view>
+  <view class="useName">昵称：2313123</view>
+  <view class="usePhone">手机：15880290920</view>
+  <view class="useNumber">卡券号：123456789</view>
+  <view class="btn" wx:if="{{cancel}}">
+    <button>确定</button>
+    <button class="cancle">取消</button>
+  </view>
+  <view class="btns" wx:if="{{!cancel}}">
+    <button>确定</button>
+  </view>
+</view>
