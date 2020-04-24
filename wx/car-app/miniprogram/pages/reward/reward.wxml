@@ -1,16 +1,39 @@
 <!--miniprogram/pages/reward/reward.wxml-->
-<view>
-  <view>1000</view>
-  <view>积分</view>
+<!-- 积分区域 -->
+<view class="reward">
+  <view class="rewardContent">
+    <view class="rewardNum"><text>1000</text></view>
+    <view class="rewards">积分</view>
+  </view>
+  <view class="rewardWarns">
+    <view class="rewardWarn">
+      <view class="warn">转发资讯获得10积分</view>
+      <view class="warnNum">（每日限三次）</view>
+    </view>
+    <view class="rewardWarn">
+      <view class="warn">转发资讯获得10积分</view>
+      <view class="warnNum">（每日限三次）</view>
+    </view>
+    <view class="rewardWarn">转发资讯获得10积分</view>
+  </view>
 </view>
-<view>
-  <view>
-    <view>转发资讯获得10积分</view>
-    <view>（每日限三次）</view>
+<!-- 奖励券 -->
+<view class="rewardCenter">
+  <view class="rewardTitle">奖励中心</view>
+  <view class="rewardLeft">
+    <view class="rewardName">车之居价值50元深度洗车劵</view>
+    <view class="rewardMsg">提供洗车、除螨、</view>
+    <view class="rewardTime">
+      <view class="rewardExpire">到期时间:2020.05.24</view>
+      <view class="rewardDetail">查看详细</view>
+    </view>
   </view>
-  <view>
-    <view>转发资讯获得10积分</view>
-    <view>（每日限三次）</view>
+
+  <view class="rewardRight">
+    <view wx:if="{{}}">500积分</view>
+    <view wx:if="{{}}">已兑换</view>
+    <view wx:else>{{condition? '已使用':'已过期'}}</view>
+    <button wx:if="{{}}">兑换</button>
+    <button wx:if="{{}}">去使用</button>
   </view>
-  <view>转发资讯获得10积分</view>
 </view>

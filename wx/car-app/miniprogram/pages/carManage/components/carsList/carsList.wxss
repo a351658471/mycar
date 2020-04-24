@@ -86,7 +86,7 @@
 }
 button[disabled]{
   color: #D3D3D3 !important;
-  background-color: #fff !important;
+  background: transparent !important;
 }
 button::after{
   border: none;
