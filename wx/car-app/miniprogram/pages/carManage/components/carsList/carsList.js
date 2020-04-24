@@ -114,7 +114,6 @@ Component({
     },
     //置顶商品
     stickGoods(e){
-      console.log(e)
       this.triggerEvent("stickGoods",{
         index:e.currentTarget.dataset.index,
         id:e.currentTarget.dataset.id
