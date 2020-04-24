@@ -8,13 +8,13 @@
         
         <!-- video -->
          <view wx:if="{{item.cover.length ==1}}" style="position: relative;">
-             <image src="{{item.cover[0]}}"  mode="aspectFill" style='width:100%;height:186px;border-radius:4px;'></image>
+             <image src="{{formatTime.foramtSrc(item.cover[0])}}"  mode="aspectFill" style='width:100%;height:186px;border-radius:4px;'></image>
              <view class="stop"><image src="../../../../assets/stop.png" /></view>
         </view> 
         <!-- image -->
         <view wx:else class='carBox' data-imgurl="{{item.cover}}">
           <view class="imgBox" wx:for="{{item.cover}}" wx:for-item="imgItem" wx:key="index">
-              <image class="carImg" src="{{imgItem}}" mode="scaleToFill"></image>
+              <image class="carImg" src="{{formatTime.foramtSrc(imgItem)}}" mode="scaleToFill"></image>
           </view>
           
         </view>
