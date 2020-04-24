@@ -16,7 +16,7 @@
   </view>
   <view class="content" wx:else>
     <block wx:for="{{resData.content}}" wx:for-item="item">
-        <view class="textBox" wx:if="{{item.type == 'text'}}">{{item.content}}</view> 
+        <view class="textBox" wx:if="{{item.type == 'text'}}"><text space="nbsp">{{item.content}}</text></view> 
          <view class="imgBox" wx:if="{{item.type == 'image'}}">
           <image src="{{formatTime.foramtSrc(item.content)}}" mode="widthFix" style="width:100%"></image>
         </view> 
