@@ -123,13 +123,6 @@
 					"scene": null
 				},
 				{
-					"id": 8,
-					"name": "pages/test/test",
-					"pathName": "pages/test/test",
-					"query": "",
-					"scene": null
-				},
-				{
 					"id": -1,
 					"name": "pages/carManage/carManage",
 					"pathName": "pages/carManage/carManage",
@@ -175,6 +168,13 @@
 					"id": -1,
 					"name": "components/label/label",
 					"pathName": "components/label/label",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/reward/reward",
+					"pathName": "pages/reward/reward",
 					"query": "",
 					"scene": null
 				}

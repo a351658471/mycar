@@ -23,7 +23,7 @@ Component({
     },
     newCarNum: {
       type: Array,
-      value: []
+      value: [0]
     }
   },
   data:{
