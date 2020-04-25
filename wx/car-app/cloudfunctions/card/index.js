@@ -7,6 +7,8 @@ const _ = db.command
 // 云函数入口函数
 exports.main = async (event, context) => {
   switch(event.action){
+    case 'getCount':
+      return getCount()
     case 'addCardTemplate':
        return cardManage(event);
     case 'getCardTemplate':
@@ -49,7 +51,8 @@ async function cardManage(event){
 async function getCardTemplate(event){
   let page = event.page - 1;
   let pageCount = event.pageCount;
-  return await db.collection('card').skip(page*pageCount).limit(pageCount).get()
+  let status = event.status
+  return await db.collection('card').where({status:status}).skip(page*pageCount).limit(pageCount).get()
 }
 //添加卡券
 async function addCardTemplate(event){
@@ -84,4 +87,17 @@ async function editCard(event){
 async function removeCard(event){
   let id = event._id
   return await db.collection('card').doc(id).remove()
+}
+//查询数量
+async function getCount(){
+  let list = [0,1];
+  let rul = []
+  for(let i=0;i<list.length;i++){
+    db.collection('card').where({
+      status:list[i]
+    }).count().then(res=>{
+      rul.push(res.total)
+    })
+  } 
+  return rel
 }

@@ -2,7 +2,7 @@
 <wxs src="../../../utils/filter.wxs" module="formatTime"></wxs>
 <view class="detailPage">
   <view class="videoBox" wx:if="{{isVideo}}">
-      <video style="width:100%" src="{{videoUrl.content}}" autoplay="{{true}}"></video>
+      <video style="width:100%" src="{{formatTime.foramtSrc(videoUrl.content)}}" autoplay="{{true}}"></video>
   </view>
   <view class="header">
      <view class="title">{{resData.title}}</view>
