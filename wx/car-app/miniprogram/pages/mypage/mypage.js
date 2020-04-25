@@ -20,7 +20,7 @@ Page({
     menu_reward: {
       name: "积分奖励",
       icon: "mypage-reward.png",
-      link: "/pages/reward/reward"
+      // link: "/pages/reward/reward"
     },
     menu_shopMessage: {
       name: "商家信息",
@@ -50,7 +50,7 @@ Page({
     menu_coupon: {
       name: "卡券管理",
       icon: "mypage-coupon.png",
-      link: "/pages/rewardcoupon/rewardcoupon"
+      // link: "/pages/rewardcoupon/rewardcoupon"
     },
     menu_feedback: {
       name: "反馈列表",
@@ -63,11 +63,11 @@ Page({
 
 
   signButton: function () {
-    // wx.showToast({
-    //   icon:"none",
-    //   title: '该功能暂未开放',
-    // })
-    // return
+    wx.showToast({
+      icon:"none",
+      title: '该功能暂未开放',
+    })
+    return
     this.setData({
       signNum: this.data.signNum + 10,
       control: true

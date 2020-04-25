@@ -1,22 +1,22 @@
 <!-- miniprogram/pages/coupon/coupon.wxml -->
 <mg-tab tabList="{{tabList}}" bind:tabClick="tabClick" tabCurrent="{{tabCurrent}}" soldLength="{{statusCount}}" fontSize="28rpx"></mg-tab>
-<my-nexttab tabList="{{tabLists}}" fatherCurrent="{{tabCurrent}}" bind:tabClick="tabClicks" tabCurrents="{{tabCurrents}}" typeCount="{{typeCount}}" oldCarNum="{{oldCarNum}}" newCarNum="{{newCarNum}}"></my-nexttab>
-<block>
+<my-nexttab wx:if="{{isTab}}" tabList="{{tabLists}}" bind:tabClick="tabClicks" tabCurrents="{{tabCurrents}}"></my-nexttab>
+<block wx:for="{{couponData}}" wx:key="index">
     <view class="couponContent">
         <view class="couponHead">
-            <view class="couponTitle">车之居价值50元深度洗车劵</view>
-            <view class="couponEdit">编辑</view>
+            <view class="couponTitle">{{item.name}}</view>
+            <view class="couponEdit" bindtap="couponEdit">编辑</view>
         </view>
-        <view class="couponDetail">提供洗车、除螨、</view>
-        <view class="couponNum">累计到店使用：5</view>
+        <view class="couponDetail">{{item.describe}}</view>
+        <view class="couponNum">{{item.rule}}</view>
         <view class="couponMsg">
-            <view class="couponIntegral">积分500</view>
-            <view class="couponLastTime">到期时间:2020.05.24</view>
+            <view class="couponIntegral">{{item.integral}}</view>
+            <view class="couponLastTime">{{item.validity}}</view>
         </view>
     </view>
     <view class="couponControl">
-        <button class="couponStop">停用</button>
-        <view class="couponDelete">删除</view>
+        <button class="couponStop" bindtap="couponStop">停用</button>
+        <view class="couponDelete" bindtap="couponDelete" data-id="{{item._id}}" data-index="{{index}}">删除</view>
     </view>
 </block>
 <view class="rightBox" bindtap="jumpToAddcoupon">添加卡券</view>

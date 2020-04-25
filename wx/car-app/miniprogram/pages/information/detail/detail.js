@@ -89,6 +89,7 @@ Page({
         id:id
       },
       success: (res) => {
+        console.log(res.data.msg.content)
         res.data.msg.content = JSON.parse(res.data.msg.content)
         if(this.data.isVideo){
           let videoUrl;

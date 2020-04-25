@@ -20,4 +20,6 @@
   color: #3377FE;
   position: relative;
   background: #fff;
+  border-radius: 6rpx;
+  border: 1rpx solid #F4F4F4;
 }

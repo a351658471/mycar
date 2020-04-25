@@ -32,7 +32,9 @@
 input{
     width: 70%;
     margin-left: 80rpx;
+    font-size: 28rpx;
 }
+
 input[placeholder]{
     font-size: 28rpx;
 }
