@@ -7,10 +7,16 @@ var formatTime = function(time,format){
     ftime = time
   }
   var d = getDate(ftime)
+  var nowYear= getDate().getFullYear()
   var Month = parseInt(d.getMonth()) + 1
-  if (format == 'yyyy/mm/dd') return (d.getFullYear() + '/' + Month + '/' + d.getDate())
+  if (format == 'yyyy/mm/dd'){
+     if(nowYear == d.getFullYear()){
+      return (Month + '/' + d.getDate())
+     }else{
+      return (d.getFullYear() + '/' + Month + '/' + d.getDate())
+     }
+  } 
   if (format == 'yyyy-mm-dd') return (d.getFullYear() + '-' + Month + '-' + d.getDate())
- 
 }
 
 var foramtSrc = function(src){

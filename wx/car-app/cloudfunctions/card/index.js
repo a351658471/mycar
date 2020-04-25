@@ -2,12 +2,20 @@
 const cloud = require('wx-server-sdk')
 
 cloud.init()
-
+const db = cloud.database()
+const _ = db.command
 // 云函数入口函数
 exports.main = async (event, context) => {
   switch(event.action){
-    case 'addCard':
-       return cardManage(event)
+    case 'addCardTemplate':
+       return cardManage(event);
+    case 'getCardTemplate':
+       return getCardTemplate(event);
+    case 'removeCard':
+       return cardManage(event);
+    case 'editCard':
+        console.log(1)
+      return cardManage(event)
   }
 }
 async function cardManage(event){
@@ -24,25 +32,56 @@ async function cardManage(event){
       return { errMsg: "permission denied" }
     }
     switch (event.action) {
-      case 'addCard': {
-        return addCard(event)
-      }
+      case 'addCardTemplate':
+        return addCardTemplate(event)
+      case 'removeCard':
+        return removeCard(event)
+      case 'editCard':
+        console.log(2)
+        return editCard(event)
       default: {
         return
       }
     }
   })
 }
-
+//获取卡券模板
+async function getCardTemplate(event){
+  let page = event.page - 1;
+  let pageCount = event.pageCount;
+  return await db.collection('card').skip(page*pageCount).limit(pageCount).get()
+}
+//添加卡券
 async function addCardTemplate(event){
-  let {item} = event
   return await db.collection('card').add({
     data:{
-      name:item.name,  //卡券名称
-      integral:item.integral,  //所需积分
-      validity:item.validity, //到期时间
-      describe:item.describe, //特点描述
-      rule:item.rule
+      name: event.name,  //卡券名称
+      integral: event.integral,  //所需积分
+      validity: event.validity, //到期时间
+      describe: event.describe, //特点描述
+      rule: event.rule, //活动规则
+      status: event.status //启用状态
     }
   })
+}
+//编辑卡券模板
+async function editCard(event){
+  let {item,_id} = event
+    // {     
+    //   name: event.name,  //卡券名称
+    //   integral: event.integral,  //所需积分
+    //   validity: event.validity, //到期时间
+    //   describe: event.describe, //特点描述
+    //   rule: event.rule, //活动规则
+    //   status: event.status //启用状态
+    // }
+  return db.collection('card').doc(_id).update({
+    data:item
+
+  })
+}
+// 删除卡券
+async function removeCard(event){
+  let id = event._id
+  return await db.collection('card').doc(id).remove()
 }
