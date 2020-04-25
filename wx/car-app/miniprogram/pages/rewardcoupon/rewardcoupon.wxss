@@ -3,7 +3,7 @@
 .couponContent{
     box-sizing: border-box;
     padding: 22rpx 24rpx;
-    margin: 34rpx 22rpx 0 22rpx;
+    margin: 22rpx 22rpx 0 22rpx;
     background: #FFFFFF;
     border: 1rpx solid #E1E1E1;
     border-bottom: none;
@@ -57,7 +57,7 @@
     border: 1rpx solid #E1E1E1;
     border-radius: 0 0 6rpx 6rpx;
 }
-.couponStop{
+.couponUse{
     margin: 0;
     padding: 0;
     width: 96rpx;
@@ -70,6 +70,15 @@
 .couponDelete{
     font-size: 26rpx;
     color: #717171;
+}
+.load{
+  width: 100%;
+}
+.loading{
+  text-align: center;
+  font-size: 28rpx;
+  color: #555;
+  padding: 20rpx;
 }
 .rightBox{
     width: 100%;
@@ -109,4 +118,13 @@
 }
 .couponNumber,.couponQueryTime{
     color: #7E7C81;
+}
+.historyInput{
+  border: 1rpx solid #979797;
+  background: #FFFFFF;
+  border-radius: 12rpx;
+  padding: 16rpx 30rpx;
+  font-size: 24rpx;
+  margin: 20rpx 40rpx 0 40rpx;
+  color: #7E7C81;
 }

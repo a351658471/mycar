@@ -1,0 +1,59 @@
+/* miniprogram/pages/rewardAddCoupon/rewardAddCoupon.wxss */
+.addCouponContent{
+    box-sizing: border-box;
+    padding: 24rpx;
+    background: #fff;
+}
+.addCouponTitle{
+    font-size: 32rpx;
+    color: #333333;
+    font-weight: bold;
+}
+.couponBtn{
+    display: flex;
+    justify-content: flex-end;
+}
+.couponBtn button{
+    margin: 0 18rpx;
+    padding: 0;
+    width: 124rpx;
+    height: 54rpx;
+    color: #FFFFFF;
+    font-size: 32rpx;
+    background: #3377FE;
+    line-height: 54rpx;
+    border-radius: 8rpx;
+}
+.coupon{
+    display: flex;
+    padding: 34rpx 0;
+    border-bottom: 2rpx solid #F7F7F7;
+}
+input{
+    width: 70%;
+    margin-left: 80rpx;
+    font-size: 28rpx;
+}
+
+input[placeholder]{
+    font-size: 28rpx;
+}
+text{
+    color: #7B7575;
+    font-size: 30rpx;
+    font-weight: bold;
+}
+.couponActive{
+    padding: 34rpx 0 0 0;
+}
+textarea{
+    width: 100%;
+    margin: 20rpx 0;
+    font-size: 28rpx;
+}
+.num{
+    font-size: 30rpx;
+    text-align: right;
+    color: #7B7575;
+    font-weight: bold;
+}

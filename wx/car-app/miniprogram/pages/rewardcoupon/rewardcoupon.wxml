@@ -1,11 +1,11 @@
 <!-- miniprogram/pages/coupon/coupon.wxml -->
-<mg-tab tabList="{{tabList}}" bind:tabClick="tabClick" tabCurrent="{{tabCurrent}}" soldLength="{{statusCount}}" fontSize="28rpx"></mg-tab>
-<my-nexttab wx:if="{{isTab}}" tabList="{{tabLists}}" bind:tabClick="tabClicks" tabCurrents="{{tabCurrents}}"></my-nexttab>
-<block wx:for="{{couponData}}" wx:key="index">
+<mg-tab tabList="{{tabList}}" bind:tabClick="tabClick" tabCurrent="{{tabCurrent}}" fontSize="28rpx"></mg-tab>
+<my-nexttab wx:if="{{isTab}}" tabList="{{tabLists}}" bind:tabClick="tabClicks" tabCurrents="{{tabCurrents}}" couponCount="{{couponCount}}"></my-nexttab>
+<block wx:for="{{couponData}}" wx:key="index" wx:if="{{isTab}}">
     <view class="couponContent">
         <view class="couponHead">
             <view class="couponTitle">{{item.name}}</view>
-            <view class="couponEdit" bindtap="couponEdit">编辑</view>
+            <view class="couponEdit" bindtap="couponEdit" data-id="{{item._id}}">编辑</view>
         </view>
         <view class="couponDetail">{{item.describe}}</view>
         <view class="couponNum">{{item.rule}}</view>
@@ -15,11 +15,16 @@
         </view>
     </view>
     <view class="couponControl">
-        <button class="couponStop" bindtap="couponStop">停用</button>
+        <button class="couponUse" bindtap="couponUse" data-id="{{item._id}}">{{isStar?'启用':'停用'}}</button>
         <view class="couponDelete" bindtap="couponDelete" data-id="{{item._id}}" data-index="{{index}}">删除</view>
     </view>
 </block>
+<view class="load">
+    <view class="loading" wx:if="{{!noMore}}" bindtap="loadMore">{{isLoading?'加载中...':'点击加载更多'}}</view>
+</view>
 <view class="rightBox" bindtap="jumpToAddcoupon">添加卡券</view>
+<!-- 历史卡券搜索框 -->
+<input wx:if="{{history}}" class="historyInput" placeholder="昵称/手机号/卡券号"></input>
 <block wx:if="{{history}}">
     <view class="couponContent">
         <view class="couponHead">

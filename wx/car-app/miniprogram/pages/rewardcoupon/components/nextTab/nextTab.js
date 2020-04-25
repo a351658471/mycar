@@ -6,7 +6,7 @@ Component({
 
     tabList: {
       type: Array,
-      value: ['二手车','新车'],
+      value: [],
     },
     tabCurrents: {
       type: Number,
@@ -17,17 +17,12 @@ Component({
       type: String,
       value: '14px'
     },
-    oldCarNum:{
-      type:Number,
-      value:0
-    },
-    newCarNum: {
+    couponCount: {
       type: Array,
       value: [0]
     }
   },
   data:{
-    num:0
   },
   /**
   * 启用插槽

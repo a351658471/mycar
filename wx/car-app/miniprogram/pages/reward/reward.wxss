@@ -50,21 +50,21 @@
 .circle{
     position: absolute;
     width: 30rpx;
-    height: 30rpx;
+    height: 15rpx;
     background: #fff;
-    border-radius: 50%;
+    border-radius:  0 0 30rpx 30rpx;
     left: 69%;
-    top: -15rpx;
+    top: 0;
     border-bottom: 2rpx solid #F78637;
 }
 .circle2{
     position: absolute;
     width: 30rpx;
-    height: 30rpx;
+    height: 15rpx;
     background: #fff;
-    border-radius: 50%;
+    border-radius: 30rpx 30rpx  0 0;
     left: 69%;
-    top: 155rpx;
+    bottom: 0;
     border-top: 2rpx solid #F78637;
 }
 
@@ -118,7 +118,6 @@
     border-radius: 20rpx;
     text-align: center;
     line-height: 38rpx;
-    margin: 26rpx 0;
     margin: 26rpx auto;
 }
 .rewardLRs{
@@ -141,20 +140,20 @@
 .circle3{
     position: absolute;
     width: 30rpx;
-    height: 30rpx;
+    height: 15rpx;
     background: #fff;
-    border-radius: 50%;
+    border-radius:0 0 30rpx 30rpx;
     left: 69%;
-    top: -15rpx;
+    top: -2rpx;
     border-bottom: 2rpx solid #9B9B9B;
 }
 .circle4{
     position: absolute;
     width: 30rpx;
-    height: 30rpx;
+    height: 15rpx;
     background: #fff;
-    border-radius: 50%;
+    border-radius: 30rpx 30rpx  0 0;
     left: 69%;
-    top: 155rpx;
+    bottom: -2rpx;
     border-top: 2rpx solid #9B9B9B;
 }
