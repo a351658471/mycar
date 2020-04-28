@@ -235,6 +235,5 @@ Page({
         console.log(res);
       }
     })
-  }
-
+  },
 })

@@ -58,7 +58,7 @@ async function userLogin(event) {
     wxUserInfo, // 微信端用户信息
   } = event
   const wxContext = cloud.getWXContext()
-
+  console.log(wxUserInfo)
   let data = {
     nickName: wxUserInfo.nickName,
     avatarUrl: wxUserInfo.avatarUrl,
@@ -69,9 +69,23 @@ async function userLogin(event) {
     city: wxUserInfo.city,
   }
   // 查询当前用户所有的 counters
-  return db.collection('user').where({ _openid: wxContext.OPENID }).get().then(res => {
+  // db.collection('user').where({ _openid: wxContext.OPENID }).get().then(res=>{
+  //   console.log(22233333)
+  //   console.log(res)
+  // })
+  return db.collection('user').where({ _openid: wxContext.OPENID }).get().then(res=>{
+    console.log('---')
+    console.log(res)
     let dbdata = res.data
     if (dbdata.length == 0) {
+      data.integral = {
+        score:0,
+        shareCarCount:0,
+        shareCarTime:0,
+        shareInfoCount:0,
+        shareInfoTime:0,
+        signTime:0
+      }
       data._openid = wxContext.OPENID
       data.creatime = Date.parse(new Date())
       return db.collection('user').add({
@@ -97,6 +111,7 @@ async function userLogin(event) {
         record.country = data.country
         record.province = data.province
         record.city = data.city
+        record.integral = data.integral
         return {
           data: record,
           msg: res
@@ -316,7 +331,7 @@ async function userFeedbackQueryUserInfo(res) {
 
 // 用户每日签到
 async function userSignIn(event){
-  let reward = 15
+  let reward = event.integral
   let signTime = event.signTime
   const wxContext = cloud.getWXContext()
   return db.collection('user').where({ _openid: wxContext.OPENID }).get().then(res => {
@@ -328,7 +343,7 @@ async function userSignIn(event){
       return db.collection('user').doc(record._id).update({
         data: {
           'integral.signTime':signTime,
-          'integral.score':_inc(reward)
+          'integral.score':_.inc(reward)
         }
       }).then(res => {
         console.log(res)
@@ -361,7 +376,7 @@ async function userShare(event){
   })
 }
 async function share(event,record,type){
-  let reward = 10
+  let reward = event.integral
   if(type == 0){
     let nowDate = new Date(event.shareCarTime).toDateString()
     let oldDate = new Date(record.integral.shareCarTime).toDateString()
@@ -417,7 +432,6 @@ async function share(event,record,type){
 
 async function payScore(event){
   const wxContext = cloud.getWXContext()
-  console.log(wxContext)
   return db.collection('user').where({ _openid: wxContext.OPENID }).get().then(res => {
     if (res.data.length == 0) {
       return "user is not login"
@@ -425,11 +439,22 @@ async function payScore(event){
     else {
       let record = res.data[0]
       return db.collection('user').doc(record._id).get().then(res=>{
-        if(res.integral.score < event.integral) return {succuss:false,msg:'积分不足'}
-        
+        let p = 0;
+       typeof(event.integral) == 'number'? p = event.integral : p = parseInt(event.integral)
+        if(record.integral.score < event.integral) return {succuss:false,msg:'积分不足'}
+        let a = -p
+        return db.collection('user').doc(record._id).update({
+          data:{
+            'integral.score':_.inc(a)
+          }
+        }).then(res=>{
+          return{
+            msg:'兑换成功',
+            currentScore:record.integral.score -p,
+            succuss:true
+          }
+        })
       })
     }
   })
-
-   
 }
