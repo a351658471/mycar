@@ -10,7 +10,7 @@ cloud.init({
 })
 
 const db = cloud.database()
-
+const _ = db.command
 /**
  * 这个示例将经自动鉴权过的小程序用户 openid 返回给小程序端
  * 
@@ -36,6 +36,15 @@ exports.main = (event, context) => {
     }
     case 'userFeedbackRead': {
       return userFeedbackRead(event)
+    }
+    case 'userSignIn':{
+      return userSignIn(event)
+    }
+    case 'userShare':{
+      return userShare(event)
+    }
+    case 'payScore':{
+      return payScore(event)
     }
     default: {
       return
@@ -302,4 +311,125 @@ async function userFeedbackQueryUserInfo(res) {
     })
   }
   return res
+}
+
+
+// 用户每日签到
+async function userSignIn(event){
+  let reward = 15
+  let signTime = event.signTime
+  const wxContext = cloud.getWXContext()
+  return db.collection('user').where({ _openid: wxContext.OPENID }).get().then(res => {
+    if (res.data.length == 0) {
+      return "user is not login"
+    }
+    else {
+      let record = res.data[0]
+      return db.collection('user').doc(record._id).update({
+        data: {
+          'integral.signTime':signTime,
+          'integral.score':_inc(reward)
+        }
+      }).then(res => {
+        console.log(res)
+        return res
+      }
+      )
+    }
+  })
+}
+
+//转发得积分
+async function userShare(event){
+  const wxContext = cloud.getWXContext()
+  console.log(wxContext)
+  return db.collection('user').where({ _openid: wxContext.OPENID }).get().then(res => {
+    if (res.data.length == 0) {
+      return "user is not login"
+    }
+    else {
+      let record = res.data[0]
+      if(event.shareCarTime){
+        let type = 0
+        return share(event,record,type)
+      }else if (event.shareInfoTime){
+        let type = 1;
+        return share(event,record,type)
+      }
+      
+    }
+  })
+}
+async function share(event,record,type){
+  let reward = 10
+  if(type == 0){
+    let nowDate = new Date(event.shareCarTime).toDateString()
+    let oldDate = new Date(record.integral.shareCarTime).toDateString()
+    let count = 0 
+    nowDate == oldDate ? count = record.integral.shareCarCount : ''
+    if(count < 3){
+      return db.collection('user').doc(record._id).update({
+        data: {
+          'integral.shareCarCount':count + 1,
+          'integral.shareCarTime': event.shareCarTime,
+          'integral.score':_.inc(reward)
+        }
+      }).then(res => {
+        return {
+          data:res,
+          succuss:true
+        }
+      }
+      )
+    }else {
+      return {
+        msg:'今日分享车辆已达三次',
+        time:record.integral.shareCarTime
+      }
+    }
+  }else if(type == 1){
+    let nowDate = new Date(event.shareInfoTime).toDateString()
+    let oldDate = new Date(record.integral.shareInfoTime).toDateString()
+    let count = 0 
+    nowDate == oldDate ? count = record.integral.shareInfoCount : ''
+    if(count < 3){
+      return db.collection('user').doc(record._id).update({
+        data: {
+          'integral.shareInfoCount':count + 1,
+          'integral.shareInfoTime': event.shareInfoTime,
+          'integral.score':_.inc(reward)
+        }
+      }).then(res => {
+        return {
+          data:res,
+          succuss:true
+        }
+      }
+      )
+    }else {
+      return {
+        msg:'今日转发已达三次',
+        time:record.integral.shareInfoTime
+      }
+    }
+  }
+}
+
+async function payScore(event){
+  const wxContext = cloud.getWXContext()
+  console.log(wxContext)
+  return db.collection('user').where({ _openid: wxContext.OPENID }).get().then(res => {
+    if (res.data.length == 0) {
+      return "user is not login"
+    }
+    else {
+      let record = res.data[0]
+      return db.collection('user').doc(record._id).get().then(res=>{
+        if(res.integral.score < event.integral) return {succuss:false,msg:'积分不足'}
+        
+      })
+    }
+  })
+
+   
 }
