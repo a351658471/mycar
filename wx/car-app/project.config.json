@@ -210,6 +210,13 @@
 					"id": -1,
 					"name": "pages/rewardEditCoupon/rewardEditCoupon",
 					"pathName": "pages/rewardEditCoupon/rewardEditCoupon",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/rewardMyCoupon/rewardMyCoupon",
+					"pathName": "pages/rewardMyCoupon/rewardMyCoupon",
 					"scene": null
 				}
 			]

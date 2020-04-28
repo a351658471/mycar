@@ -7,21 +7,22 @@ Page({
    */
   data: {
     couponName: '',  //卡券名称
-    couponIntegral: '',  //需要积分
-    date: '',  //到期时间
+    couponIntegral: 0,  //需要积分
+    date: 0,  //到期时间
     couponContent: '',  //特点描述
     couponActive: '' ,//活动规则
-    cardId:''
+    cardId:'',
+    localdate: 0 //添加卡券开始时间
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options)
+    this.data.localdate = new Date().toLocaleDateString()
     let id = options.id
     this.data.cardId = id
-    this.setData(this.data)
+    this.setData(this.data) 
     wx.cloud.callFunction({
       name: 'card',
       data: {
@@ -33,7 +34,7 @@ Page({
         console.log(res)
         this.data.couponName = res.result.data[0].name
         this.data.couponIntegral = res.result.data[0].integral
-        this.data.date = res.result.data[0].validity
+        this.data.date = new Date(res.result.data[0].validity).toLocaleDateString()
         this.data.couponContent = res.result.data[0].describe
         this.data.couponActive = res.result.data[0].rule
         this.setData(this.data)
@@ -51,6 +52,7 @@ Page({
     })
   },
   bindDateChange(e) {
+    console.log(e)
     this.setData({
       date: e.detail.value
     })
@@ -91,7 +93,9 @@ Page({
             duration: 3000,
             success: res => {
               setTimeout(() => {
-                wx.navigateBack()
+                wx.navigateTo({
+                  url: '/pages/rewardcoupon/rewardcoupon',
+                })
               }, 500)
             }
           })
@@ -102,7 +106,9 @@ Page({
             duration: 3000,
             success: res => {
               setTimeout(() => {
-                wx.navigateBack()
+                wx.navigateTo({
+                  url: '/pages/rewardcoupon/rewardcoupon',
+                })
               }, 500)
             }
           })

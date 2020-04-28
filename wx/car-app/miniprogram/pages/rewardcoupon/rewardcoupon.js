@@ -13,6 +13,7 @@ Page({
     tabCurrents: 0,
     history: false,
     couponData: [],
+    oldCardDate:[],
     isTab: true,
     isStar: false,
     couponCount: [],
@@ -20,6 +21,7 @@ Page({
     noMore: false,
     isLoading: false, 
     tabflag: 0,
+    searchCoupon:''
   },
 
   /**
@@ -32,6 +34,26 @@ Page({
     })
     this.getCard(this.data.page)
     this.couponCounts()
+  },
+  //搜索历史卡券
+  searchCoupon(e){
+    this.data.searchCoupon = e.detail.value
+    this.setData(this.data)
+  },
+  confirmCoupon(){
+    wx.cloud.callFunction({
+      name: 'cardVoucher',
+      data: {
+        action: 'queryCard',
+        shopid: app.globalData.shop._id,
+        keyWord: this.data.searchCoupon
+      },
+      success: (res) => {
+        console.log(res)
+        this.data.oldCardDate = res.result.data
+        this.setData(this.data)
+      }
+    })
   },
   // 添加卡券
   jumpToAddcoupon() {
@@ -46,6 +68,8 @@ Page({
     if (this.data.tabCurrent == 1) {
       this.data.isTab = false
       this.data.history = true
+      this.data.page = 1
+      this.getOldCard()
     }
     else {
       this.data.isTab = true
@@ -88,7 +112,24 @@ Page({
       }
     })
   },
-  //获取卡片数据
+  // 获取历史卡券数据
+  getOldCard(page = 1){
+    wx.cloud.callFunction({
+      name:'cardVoucher',
+      data:{
+        action:'queryCard',
+        shopid: app.globalData.shop._id,
+        page:page,
+        pageCount:PAGECOUNT
+      },
+      success:(res)=>{
+        console.log(res)
+        this.data.oldCardDate = res.result.data
+        this.setData(this.data)
+      }
+    })
+  },
+  //获取卡券数据
   getCard(page = 1) {
     this.setData({
       isLoading: true
@@ -130,9 +171,8 @@ Page({
           noMore: this.data.noMore,
           isLoading: false,
         })
-        res.result.data.forEach(item=>{
+        res.result.data.forEach((item)=>{
           this.data.couponData.push(item)
-          item.validity = new Date(item.validity).toLocaleDateString()
           this.setData(this.data)
         })
       }

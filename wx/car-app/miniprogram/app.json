@@ -27,7 +27,7 @@
     "pages/reward/reward",
     "pages/rewardcoupon/rewardcoupon",
     "pages/rewardDetail/rewardDetail",
-    "pages/rewardCode/rewardCode",
+    "pages/rewardMyCoupon/rewardMyCoupon",
     "pages/rewardAddCoupon/rewardAddCoupon",
     "pages/rewardEditCoupon/rewardEditCoupon"
   ],

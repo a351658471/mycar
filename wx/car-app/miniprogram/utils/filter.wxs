@@ -17,6 +17,7 @@ var formatTime = function(time,format){
      }
   } 
   if (format == 'yyyy-mm-dd') return (d.getFullYear() + '-' + Month + '-' + d.getDate())
+  if (format == 'yyyy.mm.dd') return (d.getFullYear() + '.' + Month + '.' + d.getDate())
 }
 
 var foramtSrc = function(src){

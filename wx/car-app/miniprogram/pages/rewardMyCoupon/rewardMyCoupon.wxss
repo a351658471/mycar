@@ -1,4 +1,4 @@
-/* miniprogram/pages/reward/reward.wxss */
+/* miniprogram/pages/rewardCode/rewardCode.wxss */
 .reward{
     box-sizing: border-box;
     padding: 12rpx 48rpx 20rpx 48rpx;
