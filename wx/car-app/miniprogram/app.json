@@ -25,9 +25,11 @@
     "pages/information/information",
     "pages/information/detail/detail",
     "pages/reward/reward",
-    "pages/coupon/coupon",
+    "pages/rewardcoupon/rewardcoupon",
     "pages/rewardDetail/rewardDetail",
-    "pages/rewardCode/rewardCode"
+    "pages/rewardCode/rewardCode",
+    "pages/rewardAddCoupon/rewardAddCoupon",
+    "pages/rewardEditCoupon/rewardEditCoupon"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",

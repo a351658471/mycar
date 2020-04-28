@@ -1,66 +1,73 @@
 // miniprogram/pages/reward/reward.js
+const app = getApp()
+const PAGECOUNT = 6
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    isCoupon:true,
+    toCoupon:true,
+    couponData:[],
+    showCouponData:[]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    console.log(app.globalData.user)
+    this.getCard()
+    this.getCouponCard()
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+  //获取卡券数据
+  getCard() {
+    let status = 0
+    wx.cloud.callFunction({
+      name: 'card',
+      data: {
+        action: 'getCardTemplate',
+        page:1,
+        pageCount: PAGECOUNT,
+        status: status
+      },
+      success: res => {
+        res.result.data.forEach(item=>{
+          this.data.couponData.push(item)
+          item.validity = new Date(item.validity).toLocaleDateString()
+          this.setData(this.data)
+        })
+      }
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
+  //获取我的卡券
+  getCouponCard(){
+    let userd
+    wx.cloud.callFunction({
+      name:'cardVoucher',
+      data:{
+        action:'showMyCard',
+        page:1,
+        pageCount:10,
+        shopid: app.globalData.shop._id,
+        userId: app.globalData.user._id,
+        userd:userd
+      },
+      success:res => {
+        // this.data.showCouponData = res.result.data
+        res.result.data.forEach(item=>{
+          item.validity = new Date(item.validity).toLocaleString
+          this.data.showCouponData.push(item)
+        })
+        console.log(res)
+      }
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  jumpToDetail(e){
+    let id = e.currentTarget.dataset.id
+    wx.redirectTo({
+      url: '/pages/rewardDetail/rewardDetail?cardId='+id,
+    })
   }
 })

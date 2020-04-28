@@ -89,8 +89,8 @@
 				},
 				{
 					"id": 3,
-					"name": "pages/test/test",
-					"pathName": "pages/test/test",
+					"name": "pages/index/carDetail/card/card",
+					"pathName": "pages/index/carDetail/card/card",
 					"query": "",
 					"scene": null
 				},
@@ -176,6 +176,40 @@
 					"name": "pages/reward/reward",
 					"pathName": "pages/reward/reward",
 					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/rewardDetail/rewardDetail",
+					"pathName": "pages/rewardDetail/rewardDetail",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/rewardcoupon/rewardcoupon",
+					"pathName": "pages/rewardcoupon/rewardcoupon",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/rewardAddCoupon/rewardAddCoupon",
+					"pathName": "pages/rewardAddCoupon/rewardAddCoupon",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "components/useCoupon/useCoupon",
+					"pathName": "components/useCoupon/useCoupon",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/rewardEditCoupon/rewardEditCoupon",
+					"pathName": "pages/rewardEditCoupon/rewardEditCoupon",
 					"scene": null
 				}
 			]

@@ -1,0 +1,81 @@
+/* components/useCoupon/useCoupon.wxss */
+.usecoupon{
+    width: 578rpx;
+    height: 520rpx;
+    position: fixed;
+    background: #FFF;
+    top: 35vh;
+    left: 11vw;
+    border-radius: 12rpx;
+    box-sizing: border-box;
+    padding: 30rpx 48rpx;
+    z-index: 9999;
+}
+.useTitle{  
+    width: 100%;
+    font-size: 36rpx;
+    color: #4A4A4A;
+    font-weight: bold;
+    box-sizing: border-box;
+    padding: 0 180rpx;
+    text-align: center;
+}
+.used{
+    color: #9B9B9B;
+}
+.useContent{
+    color: #131E33;
+    font-size: 28rpx;
+    top: 0;
+}
+.useContent{
+    font-size: 28rpx;
+    color: #131E33;
+    margin-top: 20rpx;
+}
+.useTime{
+    font-size: 20rpx;
+    color: #7E7C81;
+    margin-top: 30rpx;
+}
+.useName{
+    font-size: 24rpx;
+    color: #131E33;
+    margin-top: 26rpx;
+}
+.usePhone{
+    font-size: 24rpx;
+    color: #333333;
+    margin-top: 12rpx;
+}
+.useNumber{
+    font-size: 20rpx;
+    color: #7E7C81;
+    margin-top: 24rpx;
+}
+.btn{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 66rpx;
+}
+.btns{
+    display: flex;
+    justify-content: center;
+    margin-top: 66rpx;
+}
+button{
+    margin: 0;
+    padding: 0;
+    width: 172rpx;
+    height: 56rpx;
+    color: #FFFFFF;
+    background: #3377FE;
+    border-radius: 36rpx;
+    font-size: 24rpx;
+    line-height: 56rpx;
+}
+.cancle{
+    background: #D8D8D8 !important;
+    color: #9B9B9B !important;
+    font-weight: bold;
+}

@@ -1,2 +1,19 @@
 <!--miniprogram/pages/rewardDetail/rewardDetail.wxml-->
-<text>miniprogram/pages/rewardDetail/rewardDetail.wxml</text>
+<view class="rewardDetail">
+    <view class="detailTitle">{{couponName}}</view>
+    <view class="detailTime">{{date}}</view>
+    <view class="detailcontent">{{couponContent}}</view>
+    <view class="smallTitle">权益规则</view>
+    <view class="details">{{couponActive}}</view>
+    <button wx:if="{{isExchange}}" bindtap="toCoupon">兑换</button>
+    <view wx:if="{{!isExchange}}" class="code">
+      <canvas class="canvas-code"canvas-id="myQrcode" style="background:#fff;width: 150px;height: 150px;"/>
+    </view>
+</view>
+ 
+<view class="shopMessageBtn">
+  <button style="width:680rpx" class="btn" bindtap="navigation">到店导航</button>
+</view>
+<view class="call">
+  <my-call class="callIcon" bind:call="call" phoneNumber="{{shop.phone}}"></my-call>
+</view>

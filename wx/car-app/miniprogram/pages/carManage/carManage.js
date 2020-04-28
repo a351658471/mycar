@@ -3,20 +3,20 @@ const PERPAGE = 5
 Page({
   data: {
     tabList: ['在售', '已售', '未上架'],
-    tabLists: ['二手车','新车'],
-    typeCount:[],
-    statusCount:[],
-    carData:[],
+    tabLists: ['二手车', '新车'],
+    typeCount: [],
+    statusCount: [],
+    carData: [],
     //模拟数据
     allData: [],
-    items:[],
-    count:0,
-    tabCurrent:0,
+    items: [],
+    count: 0,
+    tabCurrent: 0,
     tabCurrents: 0,
-    page:1,
-    isLoading:false,
-    noMore:false,
-    isShow:false,
+    page: 1,
+    isLoading: false,
+    noMore: false,
+    isShow: false,
   },
   //生命周期函数初次渲染完成
   onLoad: function () {
@@ -30,46 +30,46 @@ Page({
     this.getCarData([this.data.tabCurrent])
   },
   //生命周期onshow
-  onShow(){
+  onShow() {
     this.getCountData()
   },
   tabClick: function (e) {
     this.data.count++;
-    this.data.page=1
+    this.data.page = 1
     this.data.tabCurrent = e.detail.tabCurrent
     this.myFillter(this.data.tabCurrent)
     let status = [e.detail.tabCurrent];
     this.getCarData(status),
+      this.setData({
+        isShow: false
+      })
+  },
+  myFillter(e) {
+    let arr = this.data.typeCount.slice(e * 2, e * 2 + 2)
+    arr.reverse()
     this.setData({
-      isShow:false
+      newCarNum: arr
     })
   },
-  myFillter(e){
-   let arr = this.data.typeCount.slice(e*2,e*2+2)
-   arr.reverse()
-  this.setData({
-    newCarNum:arr
-  })
-  },
-  tabClicks:function(e){
+  tabClicks: function (e) {
     console.log(e)
-    this.data.page=1
-    this.data.count++ 
+    this.data.page = 1
+    this.data.count++
     let status = [this.data.tabCurrent];
     this.data.tabCurrents = e.detail.tabCurrents
     this.setData({
       tabCurrents: this.data.tabCurrents,
-      isShow:false
+      isShow: false
     })
     this.getCarData(status)
   },
 
   //根据状态调用接口获取数据
-  getCarData(status,page=1,id) {
+  getCarData(status, page = 1, id) {
     this.setData({
-      isLoading:true
+      isLoading: true
     })
-    if(page==1){
+    if (page == 1) {
       this.setData({
         carData: []
       })
@@ -92,48 +92,48 @@ Page({
         condition: {
           shopId: app.globalData.shop._id,
         },
-        status:status,    // 商品状态 在售 已售 未上架 
+        status: status,    // 商品状态 在售 已售 未上架 
         // oldlevel,
         // 分页
-        page:page,
-        perpage:PERPAGE,
+        page: page,
+        perpage: PERPAGE,
         // 是否排序
         order: 0,
-        type:type
+        type: type
       },
-      
+
       success: res => {
         this.data.flag = true
         //没有数据则关闭下拉加载
         console.log(res.result.data.length)
-        if(res.result.data.length < PERPAGE){
+        if (res.result.data.length < PERPAGE) {
           this.data.noMore = true
-        }else{
+        } else {
           this.data.noMore = false
         }
         this.setData({
-          noMore:this.data.noMore,
-          isLoading:false,
+          noMore: this.data.noMore,
+          isLoading: false,
           Num: res.result.data.length
         })
         if (count != this.data.count) {
           return
         }
         console.log('[云函数] [item.itemList] : ', res.result)
-        
+
         res.result.data.forEach(item => {
           this.data.items.push({ xmove: 0, isOpen: false })
           item.data = JSON.parse(item.data)
           this.data.carData.push(item)
         })
-        this.data.carData.length ==0?this.data.isShow=true:this.data.isShow=false
-        if(status == 0){
+        this.data.carData.length == 0 ? this.data.isShow = true : this.data.isShow = false
+        if (status == 0) {
           this.data.soldLength = res.result.data.length
         }
         this.setData({
           carData: this.data.carData,
-          items:this.data.items,
-          isShow:this.data.isShow,
+          items: this.data.items,
+          isShow: this.data.isShow,
           soldLength: this.data.soldLength
         })
       },
@@ -142,44 +142,44 @@ Page({
       }
     })
   },
-  getCountData(){
+  getCountData() {
     this.data.statusCount = [];
-    this.data.typeCount=[];
+    this.data.typeCount = [];
     wx.cloud.callFunction({
       name: 'item',
       data: {
         action: "itemCount",
         shopId: app.globalData.shop._id,
       },
-    }).then(res=>{
-      res.result.forEach((item,index)=>{
-        index % 3 ==0?this.data.statusCount.push(item):this.data.typeCount.push(item)
+    }).then(res => {
+      res.result.forEach((item, index) => {
+        index % 3 == 0 ? this.data.statusCount.push(item) : this.data.typeCount.push(item)
       })
       this.setData({
-        statusCount:this.data.statusCount,
-        typeCount:this.data.typeCount
+        statusCount: this.data.statusCount,
+        typeCount: this.data.typeCount
       })
       this.myFillter(this.data.tabCurrent)
     })
   },
   //跳转新增页
-  jumpToAddcar(){
+  jumpToAddcar() {
     wx.navigateTo({
       url: '/pages/addNewCar/addNewCar',
     })
   },
-  editGoods(id,status){
-         // 调用编辑云函数
+  editGoods(id, status) {
+    // 调用编辑云函数
     wx.cloud.callFunction({
       name: 'item',
       data: {
         action: "itemEdit",
         shopid: app.globalData.shop._id,
-        item:{
-          _id:id,
-          status:status
+        item: {
+          _id: id,
+          status: status
         },
-        
+
       },
       success: res => {
         // console.log('[云函数] [item.itemEdit] : ', res.result)
@@ -193,7 +193,7 @@ Page({
     })
   },
   //已售商品
-  soldGoods(e){
+  soldGoods(e) {
     let id = e.detail.id;
     let status = 1
     wx.showModal({
@@ -208,21 +208,21 @@ Page({
   },
 
   //下架商品
-  lowGoods(e){
+  lowGoods(e) {
     let id = e.detail.id;
-    let status= 2
+    let status = 2
     wx.showModal({
       title: '提示',
       content: '是否确认下架',
-      success:(res)=>{
-        if(res.confirm){
+      success: (res) => {
+        if (res.confirm) {
           this.editGoods(id, status)
         }
       }
     })
   },
   //在售商品
-  saleGoods(e){
+  saleGoods(e) {
     let id = e.detail.id;
     let status = 0
     wx.showModal({
@@ -236,84 +236,83 @@ Page({
     })
   },
   //置顶商品
-  stickGoods(e){
+  stickGoods(e) {
     console.log(e)
     let id = e.detail.id;
-    let index= e.detail.index
+    let index = e.detail.index
     let toTop = 0  //0 置顶， 1 取消
-    this.whetherTotop(toTop,id)
-    this.data.carData.unshift(this.data.carData.splice(index,1)[0])
+    this.whetherTotop(toTop, id)
+    this.data.carData.unshift(this.data.carData.splice(index, 1)[0])
     this.setData({
-      carData:this.data.carData
+      carData: this.data.carData
     })
-    this.getCarData([this.data.tabCurrent]);
   },
   //删除商品
-  deleteGoods(e){
-   let id = e.detail.id
-   wx.showModal({
-     title: '提示',
-     content: '是否确认删除',
-     success:(res)=>{
-      if(res.confirm){
-           // 调用云函数
-    wx.cloud.callFunction({
-      name: 'item',
-      data: {
-        action: "itemRemove",
-        shopid: app.globalData.shop._id,
-        ids: [id],
-      },
-      success: res => {
-        // console.log('[云函数] [item.itemRemove] : ', res.result);
-        let index = e.detail.index
-        this.data.carData.splice(index, 1)
-        this.setData({
-          carData: this.data.carData
-        })
-        // this.getCarData([this.data.tabCurrent]);
-        // this.data.page = 1
-        // app.globalData.stateChange()
-        this.getCountData()
-      },
-      fail: err => {
-        // console.error('[云函数] [item.itemRemove] 调用失败', err)
+  deleteGoods(e) {
+    let id = e.detail.id
+    wx.showModal({
+      title: '提示',
+      content: '是否确认删除',
+      success: (res) => {
+        if (res.confirm) {
+          // 调用云函数
+          wx.cloud.callFunction({
+            name: 'item',
+            data: {
+              action: "itemRemove",
+              shopid: app.globalData.shop._id,
+              ids: [id],
+            },
+            success: res => {
+              // console.log('[云函数] [item.itemRemove] : ', res.result);
+              let index = e.detail.index
+              this.data.carData.splice(index, 1)
+              this.setData({
+                carData: this.data.carData
+              })
+              // this.getCarData([this.data.tabCurrent]);
+              // this.data.page = 1
+              // app.globalData.stateChange()
+              this.getCountData()
+            },
+            fail: err => {
+              // console.error('[云函数] [item.itemRemove] 调用失败', err)
+            }
+          })
+        }
       }
     })
-      }
-     }
-   })
-   
+
   },
 
   //加载更多
-  loadMore(){
-      if(this.data.flag){
-        this.data.flag = false
-        this.data.page++
-        this.getCarData([this.data.tabCurrent], this.data.page)
-      }
-      
+  loadMore() {
+    if (this.data.flag) {
+      this.data.flag = false
+      this.data.page++
+      this.getCarData([this.data.tabCurrent], this.data.page)
+    }
+
   },
-  toEdit(e){
+  toEdit(e) {
     let id = e.detail.id;
     wx.navigateTo({
       url: '/pages/editCarInfo/editCarInfo?id=' + id,
     })
   },
   //置顶云函数
-  whetherTotop(toTop,id){
+  whetherTotop(toTop, id) {
     wx.cloud.callFunction({
-      name:'item',
-      data:{
-      action:'itemTotop',
-      shopid: app.globalData.shop._id,
-      toTop:toTop,
-      _id:id
+      name: 'item',
+      data: {
+        action: 'itemTotop',
+        shopid: app.globalData.shop._id,
+        toTop: toTop,
+        _id: id
       }
-    }).then(res=>{
+    }).then(res => {
       console.log(res)
-    }).catch(err=>{
+    }).catch(err => {
       console.log(err)
     })
   }

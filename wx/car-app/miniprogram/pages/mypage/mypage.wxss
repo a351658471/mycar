@@ -59,10 +59,13 @@
 .header .head .noregist button {
   width: 140rpx;
   padding: 5rpx;
-  border: 1rpx solid #fff;
   border-radius: 15rpx;
-  color: #fff;
+  color: #333;
   font-size: 25rpx;
+  background: #fff !important;
+  line-height: 45rpx;
+  border: 1rpx solid #333;
+  margin-left: 45rpx;
 }
 /* 手机/签到部分 */
 .header .head .signpart{
@@ -97,7 +100,8 @@
   border-radius: 30rpx;
 }
 .header .head .signpart button[disabled]{
-  background: grey!important;
+  background: #EAF1FB!important;
+  color: #8A9EC8!important;
 }
 .middleline {
   width: 100%;
@@ -143,6 +147,11 @@
 .call{
   position: fixed;
   right: 28rpx;
-  bottom: 100rpx;
+  bottom: 20rpx;
 }
-
+.usecouponbg{
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.4);
+  position: fixed;
+}

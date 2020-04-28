@@ -425,10 +425,7 @@ Page({
   editTextBulr(e) {
     console.log(e)
     this.data.carData[0].data.detail[e.detail.index] = e.detail.data
-    this.setData({
-      carData: this.data.carData[0].data.detail,
-    })
-
+    this.setData(this.data)
   },
   insertText() {
     let data = {
