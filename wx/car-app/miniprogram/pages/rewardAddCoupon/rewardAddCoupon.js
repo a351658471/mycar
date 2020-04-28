@@ -7,17 +7,19 @@ Page({
    */
   data: {
     couponName:'',  //卡券名称
-    couponIntegral:'',  //需要积分
-    date:'',  //到期时间
+    couponIntegral:0,  //需要积分
+    date:0,  //到期时间
     couponContent:'',  //特点描述
-    couponActive:'' //活动规则
+    couponActive:'', //活动规则
+    localdate:0 //添加卡券开始时间
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+    this.data.localdate = new Date().toLocaleDateString()
+    this.setData(this.data)
   },
   couponName(e){
     this.setData({

@@ -1,0 +1,41 @@
+<!--miniprogram/pages/rewardCode/rewardCode.wxml-->
+
+   <wxs src="../../utils/filter.wxs" module="formatTime"></wxs>
+<view class="rewardcontain">
+  
+  <!-- 奖励中心 -->
+  <view class="rewardCenter">
+    <!-- 我的卡券 -->
+    <button class="rewardTitle" bindtap="toMyCoupon">我的卡券</button>
+    <!-- 已兑换 -->
+    <view class="rewardLR" wx:for="{{completeCoupon}}" wx:key="index">
+      <view class="circle"></view>
+      <view class="circle2"></view>
+      <view class="rewardLeft">
+        <view class="rewardName">{{item.name}}</view>
+        <view class="rewardMsg">{{item.describe}}</view>
+        <view class="rewardTime">
+          <view class="rewardExpire">到期时间: {{formatTime.formatTime(item.validity,'yyyy.mm.dd')}}</view>
+          <view class="rewardDetail" bindtap="jumpToDetail" data-id="{{item._id}}">查看详细</view>
+        </view>
+      </view>
+      <view class="rewardRight" style="background:#FFF6EF;">
+        <view class="rewardnum" style="color:#FC7E27;font-weight:bold;">已兑换</view>
+        <button style="background:#FC7E27; color:#FFFFFF;" bindtap="jumpToDetail" data-id="{{item._id}}">去使用</button>
+      </view>
+    </view>
+    <!-- 已使用/已过期 -->
+    <view class="rewardLRs" wx:for="{{noUseCoupon}}" wx:key="index">
+      <view class="circle3"></view>
+      <view class="circle4"></view>
+      <view class="rewardLefts">
+        <view class="rewardName">{{item.name}}</view>
+        <view class="rewardMsg">{{item.describe}}</view>
+        <view class="rewardExpire">到期时间: {{formatTime.formatTime(item.validity,'yyyy.mm.dd')}}</view>
+      </view>
+      <view class="rewardRights">
+        <view class="pass">{{condition? '已使用':'已过期'}}</view>
+      </view>
+    </view>
+  </view>
+</view>

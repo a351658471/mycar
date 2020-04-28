@@ -32,7 +32,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    
     console.log(options)
     // let cardata = this.data.allCarData.filter((item) => {
     //   return options.carId == item.carId
@@ -114,10 +114,24 @@ Page({
       isShare: false
     })
   },
+  //分享车辆 获取积分
+  shareCar(){
+    wx.cloud.callFunction({
+      name: 'user',
+      data: {
+        action: 'userShare',
+        shareCarTime: Date.parse(new Date()),
+        integral:10
+      },
+      success: (res) => {
+        console.log(res)
+      }
+    })
+  },
   //分享好友
   onShareAppMessage(res) {
     if (res.from === 'button') {
-      console.log(res.target);
+      this.shareCar()
     }
     return {
       title: '厦门车之居',

@@ -1,7 +1,8 @@
 <!--miniprogram/pages/rewardDetail/rewardDetail.wxml-->
+<wxs src="../../utils/filter.wxs" module="formatTime"></wxs>
 <view class="rewardDetail">
     <view class="detailTitle">{{couponName}}</view>
-    <view class="detailTime">{{date}}</view>
+    <view class="detailTime">{{formatTime.formatTime(date,'yyyy-mm-dd')}}</view>
     <view class="detailcontent">{{couponContent}}</view>
     <view class="smallTitle">权益规则</view>
     <view class="details">{{couponActive}}</view>

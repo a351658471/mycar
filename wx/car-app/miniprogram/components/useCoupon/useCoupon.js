@@ -15,6 +15,10 @@ Component({
     cancel:{
       type:Boolean,
       value:true
+    },
+    myCouponData:{
+      type:Array,
+      value:[]
     }
   },
 

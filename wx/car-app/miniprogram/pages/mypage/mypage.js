@@ -16,8 +16,12 @@ Page({
     isregist: false,
     hideShare: false,
     adminhide:false,
-    isUse:false,
+    toUse:false,
     change:true,
+    coupondId:'',
+    use:true,
+    isUse:true,
+    myCouponData:[],
     menu_reward: {
       name: "积分奖励",
       icon: "mypage-reward.png",
@@ -69,19 +73,39 @@ Page({
     //   title: '该功能暂未开放',
     // })
     // return
-    this.setData({
-      signNum: this.data.signNum + 15,
-      control: true,
-      change:false
+    if (!this.data.userInfo._id) {
+      wx.showToast({
+        icon: "none",
+        title: '您还未登录',
+      })
+      return
+    }
+    wx.cloud.callFunction({
+      name:'user',
+      data:{
+        action:'userSignIn',
+        signTime: Date.parse(new Date()),
+        integral:15
+      },
+      success:(res)=>{
+        console.log(res)
+        
+        this.setData({
+          signNum: this.data.signNum + 15,
+          control: true,
+          change: false
+        })
+      }
     })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    
     let base64 = 'data:image/png;base64,'+wx.getFileSystemManager().readFileSync(this.data.background,'base64');   
     this.setData({
-      background:base64
+      background:base64,
     })
     
     this.data.menus = [
@@ -182,6 +206,7 @@ Page({
         this.data.control = false
         this.data.signNum = 0
         this.onUpdateShop()
+        console.log(app.globalData.user)
       },
       fail: err => {
         console.error('[云函数] [user.userLogin] 调用失败', err)
@@ -221,15 +246,37 @@ Page({
       })
     }
   },
+  //获取我的卡券
+  getMyCoupon(){
+    let used
+    if(this.data.use){
+      used = 0
+    }else{
+      used = 1
+    }
+    wx.cloud.callFunction({
+      name:'',
+      data:{
+        action:'',
+        id:this.data.coupondId
+        
+      },
+      success:res=>{
+        console.log(res)
+        this.data.myCouponData = res.result.data
+        this.setData(this.data)
+      }
+    })
+  },
   //扫码
   scancode(){
     wx.scanCode({
       success:(res)=>{
         console.log(res)
-        this.data.isUse = true
+        this.data.coupondId = res.result
+        this.data.toUse = true
         this.setData(this.data)
-        // 调用云函数
-
+        this.getMyCoupon()
       },
       fail:(res)=>{
         console.log(res);

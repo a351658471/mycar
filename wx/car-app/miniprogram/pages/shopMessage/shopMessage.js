@@ -110,18 +110,18 @@ Page({
       }
     })
   },
-  deleteText() {
-    wx.showModal({
-      title: '提示',
-      content: '是否确认删除',
-      success: (res) => {
-        res.confirm ? this.data.address = '' : '',
-          this.setData({
-            address: this.data.address
-          })
-      }
-    })
-  },
+  // deleteText() {
+  //   wx.showModal({
+  //     title: '提示',
+  //     content: '是否确认删除',
+  //     success: (res) => {
+  //       res.confirm ? this.data.address = '' : '',
+  //         this.setData({
+  //           address: this.data.address
+  //         })
+  //     }
+  //   })
+  // },
   setTitle() {
     if (this.data.isAdmin == false) return
     this.setData({

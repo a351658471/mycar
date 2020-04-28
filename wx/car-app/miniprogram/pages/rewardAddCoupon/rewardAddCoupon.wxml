@@ -1,4 +1,5 @@
 <!--miniprogram/pages/rewardAddCoupon/rewardAddCoupon.wxml-->
+<wxs src="../../utils/filter.wxs" module="formatTime"></wxs>
 <view class="addCouponContent">
   <view class="addCouponTitle">基本信息</view>
   <view class="couponBtn">
@@ -16,7 +17,7 @@
     </view>
     <view class="coupon">
       <text>到期时间</text>
-      <picker mode="date" value="{{date}}" bindchange="bindDateChange">
+      <picker mode="date" value="{{date}}" start="{{formatTime.formatTime(localdate,'yyyy-mm-dd')}}" bindchange="bindDateChange">
         <input type="text" placeholder-style="color: #3377FE;" placeholder="必填" value="{{date}}"/>
       </picker>
     </view>

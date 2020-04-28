@@ -1,4 +1,5 @@
 <!-- miniprogram/pages/coupon/coupon.wxml -->
+<wxs src="../../utils/filter.wxs" module="formatTime"></wxs>
 <mg-tab tabList="{{tabList}}" bind:tabClick="tabClick" tabCurrent="{{tabCurrent}}" fontSize="28rpx"></mg-tab>
 <my-nexttab wx:if="{{isTab}}" tabList="{{tabLists}}" bind:tabClick="tabClicks" tabCurrents="{{tabCurrents}}" couponCount="{{couponCount}}"></my-nexttab>
 <view wx:for="{{couponData}}" wx:key="index" wx:if="{{isTab}}">
@@ -11,7 +12,7 @@
         <view class="couponNum">{{item.rule}}</view>
         <view class="couponMsg">
             <view class="couponIntegral">{{item.integral}}</view>
-            <view class="couponLastTime">{{item.validity}}</view>
+            <view class="couponLastTime">{{formatTime.formatTime(item.validity,'yyyy.mm.dd')}}</view>
         </view>
     </view>
     <view class="couponControl">
@@ -24,21 +25,21 @@
 </view>
 <view class="rightBox" bindtap="jumpToAddcoupon">添加卡券</view>
 <!-- 历史卡券搜索框 -->
-<input wx:if="{{history}}" class="historyInput" placeholder="昵称/手机号/卡券号"></input>
-<block wx:if="{{history}}">
+<input wx:if="{{history}}" class="historyInput" bindinput="searchCoupon" bindconfirm="confirmCoupon" value="{{searchCoupon}}" placeholder="昵称/手机号/卡券号"></input>
+<block wx:if="{{history}}" wx:for="{{oldCardDate}}" wx:key="index">
     <view class="couponContent">
         <view class="couponHead">
-            <view class="couponTitle">车之居价值50元深度洗车劵</view>
+            <view class="couponTitle">{{item.name}}</view>
             <view class="couponQuery">已确认</view>
         </view>
         <view class="coupons">
             <view class="couponone">
-                <view class="couponName">昵称：2313123</view>
-                <view class="couponphone">手机：15880290920</view>
+                <view class="couponName">昵称：{{item.nickName}}</view>
+                <view class="couponphone">手机：{{item.tel}}</view>
             </view>
             <view class="coupontwo">
                 <view class="couponNumber">卡券号：123456789</view>
-                <view class="couponQueryTime">确认时间:2020.05.24</view>
+                <view class="couponQueryTime">确认时间:  {{formatTime.formatTime(item.usedTime,'yyyy.mm.dd')}}</view>
             </view>
         </view>
     </view>

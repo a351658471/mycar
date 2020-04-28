@@ -21,7 +21,7 @@
     <view class="copyaddress">
       <text>商家地址：</text>
       <view class="copybtn" wx:if="{{!isAdmin}}"><button bindtap="copyText" data-text="{{address}}">复制</button></view>
-      <view class="setColor"  wx:if="{{isAdmin && address!=''}}" bindtap="deleteText">删除</view>
+      <!-- <view class="setColor"  wx:if="{{isAdmin && address!=''}}" bindtap="deleteText">删除</view> -->
       <view class="setColor" wx:if="{{isAdmin && address ==''}}" bindtap="addAddress">添加地址</view>
     </view>
     <view class="addressBox" wx:if="{{address}}">
