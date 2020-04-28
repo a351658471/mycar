@@ -3,7 +3,7 @@
   <view class="msg" style="display: flex;">
     <text>商家名称：</text>
     <input wx:if="{{titleEnter}}" focus style="width:75%;font-size:14px" disabled="{{!isAdmin}}" value="{{name}}" class="msgname" bindblur="inputBindName"></input>
-    <view wx:else bindtap="setTitle">{{name}}</view>
+    <view wx:else bindtap="setTitle" style="width:60%;height:45rpx">{{name}}</view>
   </view>
   <view class="msg">
     <text>商家电话：</text>
