@@ -17,6 +17,7 @@ Page({
     hideShare: false,
     adminhide:false,
     isUse:false,
+    change:true,
     menu_reward: {
       name: "积分奖励",
       icon: "mypage-reward.png",
@@ -63,14 +64,15 @@ Page({
 
 
   signButton: function () {
-    wx.showToast({
-      icon:"none",
-      title: '该功能暂未开放',
-    })
-    return
+    // wx.showToast({
+    //   icon:"none",
+    //   title: '该功能暂未开放',
+    // })
+    // return
     this.setData({
-      signNum: this.data.signNum + 10,
-      control: true
+      signNum: this.data.signNum + 15,
+      control: true,
+      change:false
     })
   },
   /**
@@ -222,8 +224,15 @@ Page({
   //扫码
   scancode(){
     wx.scanCode({
-      success(res) {
+      success:(res)=>{
         console.log(res)
+        this.data.isUse = true
+        this.setData(this.data)
+        // 调用云函数
+
+      },
+      fail:(res)=>{
+        console.log(res);
       }
     })
   }

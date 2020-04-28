@@ -73,6 +73,7 @@
 }
 .load{
   width: 100%;
+  padding: 0 0 100rpx 0;
 }
 .loading{
   text-align: center;

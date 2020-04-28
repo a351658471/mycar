@@ -18,40 +18,57 @@
       <view class="rewardWarn">每日签到获得15积分</view>
     </view>
   </view>
-  <!-- 奖励券 -->
+  <!-- 奖励中心 -->
   <view class="rewardCenter">
     <view class="rewardTitle">奖励中心</view>
-    <view class="rewardLR">
+    <view class="rewardLR" wx:for="{{couponData}}" wx:key="index">
       <view class="circle"></view>
       <view class="circle2"></view>
       <view class="rewardLeft">
-        <view class="rewardName">车之居价值50元深度洗车劵</view>
-        <view class="rewardMsg">提供洗车、除螨、</view>
+        <view class="rewardName">{{item.name}}</view>
+        <view class="rewardMsg">{{item.describe}}</view>
         <view class="rewardTime">
-          <view class="rewardExpire">到期时间:2020.05.24</view>
-          <view class="rewardDetail" bindtap="jumpToDetail">查看详细</view>
+          <view class="rewardExpire">到期时间: {{item.validity}}</view>
+          <view class="rewardDetail" bindtap="jumpToDetail" data-id="{{item._id}}">查看详细</view>
         </view>
       </view>
       <view class="rewardRight">
-        <view class="rewardnum" wx:if="{{isCoupon}}">500积分</view>
-        <view class="rewardnum" wx:if="{{!isCoupon}}">已兑换</view>
-        <button wx:if="{{toCoupon}}" bindtap="jumpToDetail">兑换</button>
-        <button wx:if="{{!toCoupon}}" bindtap="jumpToDetail">去使用</button>
+        <view class="rewardnum">{{item.integral}}</view>
+        <button bindtap="jumpToDetail" data-id="{{item._id}}">兑换</button>
       </view>
     </view>
     <view style="border:1rpx dashed #979797"></view>
-    <!-- 过期券 -->
-  <view class="rewardLRs">
-    <view class="circle3"></view>
-    <view class="circle4"></view>
-    <view class="rewardLefts">
-      <view class="rewardName">车之居价值50元深度洗车劵</view>
-      <view class="rewardMsg">提供洗车、除螨、</view>
-      <view class="rewardExpire">有效期:2020.02.14-2020.05.24</view>
+    <!-- 我的卡券 -->
+    <view class="rewardTitle">我的卡券</view>
+     <!-- 已兑换 -->
+     <view class="rewardLR" wx:for="{{showCouponData}}" wx:key="index">
+      <view class="circle"></view>
+      <view class="circle2"></view>
+      <view class="rewardLeft">
+        <view class="rewardName">{{item.name}}</view>
+        <view class="rewardMsg">{{item.describe}}</view>
+        <view class="rewardTime">
+          <view class="rewardExpire">到期时间: {{item.validity}}</view>
+          <view class="rewardDetail" bindtap="jumpToDetail">查看详细</view>
+        </view>
+      </view>
+      <view class="rewardRight" style="background:#FFF6EF;">
+        <view class="rewardnum" style="color:#FC7E27;font-weight:bold;">已兑换</view>
+        <button style="background:#FC7E27; color:#FFFFFF;" bindtap="jumpToDetail">去使用</button>
+      </view>
     </view>
-    <view class="rewardRights">
-      <view class="pass">{{condition? '已使用':'已过期'}}</view>
+    <!-- 已使用/已过期 -->
+    <view class="rewardLRs" wx:for="{{showCouponData}}" wx:key="index">
+      <view class="circle3"></view>
+      <view class="circle4"></view>
+      <view class="rewardLefts">
+        <view class="rewardName">{{item.name}}</view>
+        <view class="rewardMsg">{{item.describe}}</view>
+        <view class="rewardExpire">到期时间: {{item.validity}}</view>
+      </view>
+      <view class="rewardRights">
+        <view class="pass">{{condition? '已使用':'已过期'}}</view>
+      </view>
     </view>
-  </view>
   </view>
 </view>

@@ -43,8 +43,7 @@
 }
 .rewardLR{
     display: flex;
-    margin: 58rpx;
-    margin-top: 0;
+    margin: 0 58rpx 58rpx 58rpx;
     position: relative;
 }
 .circle{
@@ -53,9 +52,10 @@
     height: 15rpx;
     background: #fff;
     border-radius:  0 0 30rpx 30rpx;
-    left: 69%;
+    left: 72.5%;
     top: 0;
-    border-bottom: 2rpx solid #F78637;
+    border: 2rpx solid #F78637;
+    border-top: none;
 }
 .circle2{
     position: absolute;
@@ -63,12 +63,14 @@
     height: 15rpx;
     background: #fff;
     border-radius: 30rpx 30rpx  0 0;
-    left: 69%;
+    left: 72.5%;
     bottom: 0;
-    border-top: 2rpx solid #F78637;
+    border: 2rpx solid #F78637;
+    border-bottom: none;
 }
 
 .rewardLeft{
+    width: 390rpx;
     background: #FFF6EF;
     padding: 20rpx 40rpx 10rpx 22rpx;
     border: 2rpx solid #F78637;
@@ -110,6 +112,8 @@
     background: linear-gradient(to bottom,#EE9657,#FE7B1F);
 }
 .rewardRight button{
+    padding: 0;
+    margin: 0;
     width: 98rpx;
     height: 38rpx;
     color: #FC7E27;
@@ -122,20 +126,24 @@
 }
 .rewardLRs{
     display: flex;
-    margin: 58rpx;
+    margin: 0 58rpx 58rpx 58rpx;
     background: #FFF6EF;
     border: 2rpx solid #9B9B9B;
     border-radius: 10rpx;
     position: relative;
 }
 .rewardLefts{
+    width: 390rpx;
     box-sizing: border-box;
     padding: 20rpx 40rpx 10rpx 22rpx;
 }
 .rewardRights{
+    width: 148rpx;
     font-size: 28rpx;
+    padding-top: 28rpx;
     color: #9B9B9B;
-    padding: 35rpx;
+    text-align: center;
+    font-weight: bold;
 }
 .circle3{
     position: absolute;
@@ -143,9 +151,10 @@
     height: 15rpx;
     background: #fff;
     border-radius:0 0 30rpx 30rpx;
-    left: 69%;
+    left: 72.5%;
     top: -2rpx;
-    border-bottom: 2rpx solid #9B9B9B;
+    border: 2rpx solid #9B9B9B;
+    border-top: none;
 }
 .circle4{
     position: absolute;
@@ -153,7 +162,8 @@
     height: 15rpx;
     background: #fff;
     border-radius: 30rpx 30rpx  0 0;
-    left: 69%;
+    left: 72.5%;
     bottom: -2rpx;
-    border-top: 2rpx solid #9B9B9B;
+    border: 2rpx solid #9B9B9B;
+    border-bottom: none;
 }

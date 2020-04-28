@@ -61,3 +61,6 @@
     border-radius: 16rpx;
     background: linear-gradient(to right,#3377FE,#3377FE)
 }
+.canvas-code{
+    margin: 100rpx auto 20rpx auto;
+}

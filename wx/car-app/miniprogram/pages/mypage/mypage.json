@@ -2,7 +2,7 @@
   "navigationStyle": "custom",
   "navigationBarTextStyle": "white",
   "navigationBarTitleText": "",
-  "backgroundColorTop":"#286CF3",
+  "backgroundColorTop":"#4482FF",
   "backgroundColorBottom": "#FFFFFF",
   "usingComponents": {
     "my-call": "/components/call/call",

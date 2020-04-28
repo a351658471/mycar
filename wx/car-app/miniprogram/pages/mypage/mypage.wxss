@@ -59,7 +59,6 @@
 .header .head .noregist button {
   width: 140rpx;
   padding: 5rpx;
-  border: 1rpx solid #fff;
   border-radius: 15rpx;
   color: #333;
   font-size: 25rpx;
@@ -101,7 +100,8 @@
   border-radius: 30rpx;
 }
 .header .head .signpart button[disabled]{
-  background: grey!important;
+  background: #EAF1FB!important;
+  color: #8A9EC8!important;
 }
 .middleline {
   width: 100%;
@@ -147,7 +147,7 @@
 .call{
   position: fixed;
   right: 28rpx;
-  bottom: 100rpx;
+  bottom: 20rpx;
 }
 .usecouponbg{
   width: 100vw;

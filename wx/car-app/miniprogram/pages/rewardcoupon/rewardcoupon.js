@@ -1,5 +1,6 @@
 // miniprogram/pages/coupon/coupon.js
 const app = getApp()
+const PAGECOUNT = 5
 Page({
 
   /**
@@ -17,7 +18,8 @@ Page({
     couponCount: [],
     page: 1,
     noMore: false,
-    isLoading: false
+    isLoading: false, 
+    tabflag: 0,
   },
 
   /**
@@ -28,10 +30,10 @@ Page({
     this.setData({
       [status]: 0
     })
-    this.getCard([this.data.tabCurrents])
+    this.getCard(this.data.page)
     this.couponCounts()
   },
-  // 添加新车
+  // 添加卡券
   jumpToAddcoupon() {
     wx.redirectTo({
       url: '/pages/rewardAddCoupon/rewardAddCoupon',
@@ -53,32 +55,48 @@ Page({
   },
   //里层tab
   tabClicks: function (e) {
-    console.log(e)
+    this.data.page = 1
+    this.data.tabflag++ 
     this.data.tabCurrents = e.detail.tabCurrents
     this.setData(this.data)
     this.getCard()
   },
   //是否启用
-  couponUse(){
-    // let id = e.currentTarget.dataset.id
-    // wx.cloud.callFunction({
-    //   name: 'card',
-    //   data: {
-    //     action: 'getCardTemplate',
-    //     shopid: app.globalData.shop._id,
-    //     _id: id,
-    //     item:{
-    //       status:status
-    //     }
-    //   },
-    //   success: res => {
-    //     console.log(res)
-    //     this.getCard()
-    //   }
-    // })
+  couponUse(e){
+    let id = e.currentTarget.dataset.id
+    let status 
+    if(this.data.isStar){
+      status = 0
+    }else{
+      status = 1
+    }
+    wx.cloud.callFunction({
+      name: 'card',
+      data: {
+        action: 'editCard',
+        shopid: app.globalData.shop._id,
+        _id: id,
+        item:{
+          status:status
+        }
+      },
+      success: res => {
+        let index = e.currentTarget.dataset.index
+        this.data.couponData.splice(index, 1)
+        this.getCard()
+        this.couponCounts()
+      }
+    })
   },
   //获取卡片数据
-  getCard() {
+  getCard(page = 1) {
+    this.setData({
+      isLoading: true
+    })
+    if (page == 1) {
+      this.data.couponData = []
+      this.setData(this.data)
+    }
     let status
     if (this.data.tabCurrents == 0) {
       status = 0
@@ -90,20 +108,39 @@ Page({
       this.data.isStar = true
       this.setData(this.data)
     }
+    let tabflag = this.data.tabflag
     wx.cloud.callFunction({
       name: 'card',
       data: {
         action: 'getCardTemplate',
-        page: 1,
-        pageCount: 5,
+        page:page,
+        pageCount: PAGECOUNT,
         status: status
       },
       success: res => {
-        this.data.couponData = res.result.data
-        this.setData(this.data)
-        console.log(res)
+        if (tabflag != this.data.tabflag) {
+          return
+        }
+        if (res.result.data.length < PAGECOUNT) {
+          this.data.noMore = true
+        } else {
+          this.data.noMore = false
+        }
+        this.setData({
+          noMore: this.data.noMore,
+          isLoading: false,
+        })
+        res.result.data.forEach(item=>{
+          this.data.couponData.push(item)
+          item.validity = new Date(item.validity).toLocaleDateString()
+          this.setData(this.data)
+        })
       }
     })
+  },
+  loadMore() {
+    this.data.page++
+    this.getCard(this.data.page)
   },
   //删除卡片
   couponDelete(e) {
