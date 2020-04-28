@@ -82,7 +82,8 @@ Page({
       data: {
         page: page,
         pageCount: PAGECOUNT,
-        type: type
+        type: type,
+        content_type:'0'
       },
       success: (res) => {
         // console.log(res)

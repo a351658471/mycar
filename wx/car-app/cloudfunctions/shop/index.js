@@ -166,15 +166,9 @@ async function infoEdit(event) {
       return { errMsg: "permission denied" }
     }
     let data = {}
-    if(name){
       data.name = name
-    }
-    if(phone){
       data.phone = phone
-    }
-    if(wechat){
       data.wechat = wechat
-    }
     if(address){
       data.address = address
     }

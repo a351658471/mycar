@@ -16,7 +16,6 @@ exports.main = async (event, context) => {
     case 'removeCard':
        return cardManage(event);
     case 'editCard':
-        console.log(1)
       return cardManage(event)
   }
 }
@@ -26,6 +25,7 @@ async function cardManage(event){
   if (item != null) {
     item.shopId = shopid
   }
+  console.log(shopid)
   return db.collection('shop').doc(shopid).get().then(res => {
     let shop = res.data
     if (shop.owner != wxContext.OPENID
@@ -39,7 +39,6 @@ async function cardManage(event){
       case 'removeCard':
         return removeCard(event)
       case 'editCard':
-        console.log(2)
         return editCard(event)
       default: {
         return
@@ -49,10 +48,17 @@ async function cardManage(event){
 }
 //获取卡券模板
 async function getCardTemplate(event){
-  let page = event.page - 1;
-  let pageCount = event.pageCount;
-  let status = event.status
-  return await db.collection('card').where({status:status}).skip(page*pageCount).limit(pageCount).get()
+  let page = 0;
+  let pageCount = 0;
+  let idx = 0;
+  event.page !=null? page = event.page :''
+  event.pageCount!=null? pageCount = event.pageCount:''
+  event.page !=null? idx = page -1 : ''
+  if(event.status != null) return await db.collection('card').where({status:event.status}).skip(idx*pageCount).limit(pageCount).get().then(res=>{
+   return res
+  })
+  if(event._id) return await db.collection('card').where({_id:event._id}).get()
+  
 }
 //添加卡券
 async function addCardTemplate(event){
@@ -80,7 +86,6 @@ async function editCard(event){
     // }
   return db.collection('card').doc(_id).update({
     data:item
-
   })
 }
 // 删除卡券
@@ -93,11 +98,11 @@ async function getCount(){
   let list = [0,1];
   let rul = []
   for(let i=0;i<list.length;i++){
-    db.collection('card').where({
+   await db.collection('card').where({
       status:list[i]
     }).count().then(res=>{
       rul.push(res.total)
     })
   } 
-  return rel
+  return rul
 }
