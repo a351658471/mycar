@@ -435,5 +435,5 @@ async function share(record, type) {
 }
 //根据id获取用户数据
 async function getInfoById(event) {
-  return db.collection('user').doc(event._id).field({nickName:true,phone:true}).get()
+  return db.collection('user').doc(event._id).field({ nickName: true, phone: true }).get()
 }
