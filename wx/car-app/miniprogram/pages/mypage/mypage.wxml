@@ -59,3 +59,4 @@
 <view class="call">
   <my-call class="callIcon" bind:call="call" phoneNumber="{{shop.phone}}"></my-call>
 </view>
+<button bindtap="test">11111</button>

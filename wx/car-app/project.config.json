@@ -117,8 +117,8 @@
 				},
 				{
 					"id": 7,
-					"name": "pages/information/detail/detail",
-					"pathName": "pages/information/detail/detail",
+					"name": "pages/test/test",
+					"pathName": "pages/test/test",
 					"query": "",
 					"scene": null
 				},
@@ -217,6 +217,7 @@
 					"id": -1,
 					"name": "pages/rewardMyCoupon/rewardMyCoupon",
 					"pathName": "pages/rewardMyCoupon/rewardMyCoupon",
+					"query": "",
 					"scene": null
 				}
 			]

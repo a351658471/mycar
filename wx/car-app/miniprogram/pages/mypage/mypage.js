@@ -283,4 +283,15 @@ Page({
       }
     })
   },
+  test(){
+    wx.cloud.callFunction({
+      name:'user',
+      data:{
+        action:'getInfoById',  //函数名 照这写
+        _id:'b7ef76b45ea7fb460063a12f6435f4bf',
+      }
+    }).then(res=>{
+      console.log(res)
+    })
+  }
 })
