@@ -125,6 +125,8 @@ async function addCardVoucher(event, record, cardTem) {
     }
   })
   async function createDoc(event, number, Count, record, cardTem) {
+    console.log('----')
+    console.log(cardTem)
     return db.collection('cardvoucher').add({
       data: {
         count: Count,
@@ -141,20 +143,11 @@ async function addCardVoucher(event, record, cardTem) {
         tel: record.phone, //手机号
         nickName: record.nickName, //昵称
         userId: record._id, //用户id
-        type: cardTem.type,//类型  付费或积分
+        type: cardTem.data.type,//类型  付费或积分
         temID: event.temID, //使用的模板的id
       }
     })
       .then(res2 => {
-        if(event.type == 1){
-         return db.collection('cardvoucher').doc(res2._id).get().then(res3=>{
-            return{
-              data:res3,
-              code:0,
-              msg:'购买成功'
-            }
-          })
-        }
         return {
           code: 0,
           msg: '兑换成功',
