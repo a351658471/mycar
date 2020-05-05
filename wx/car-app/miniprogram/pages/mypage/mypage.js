@@ -178,7 +178,9 @@ Page({
         this.data.signNum = this.data.userInfo.integral.score
         this.onUpdateShop()
         console.log(app.globalData.user)
-        if (this.data.userInfo.integral.signTime > Date.parse(new Date())) {
+        let lastDate = new Date(this.data.userInfo.integral.signTime).toLocaleDateString()
+        let nowDate = new Date().toLocaleDateString()
+        if (lastDate == nowDate) {
           this.setData({
             control: true,
             change: false

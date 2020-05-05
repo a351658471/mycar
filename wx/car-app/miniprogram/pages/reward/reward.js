@@ -11,7 +11,8 @@ Page({
     integral:'',
     avatarUrl:'',
     nickName:'',
-    integral:''
+    integral:'',
+    isNeed:false
   },
 
   /**
@@ -59,9 +60,11 @@ Page({
       url: '/pages/rewardRule/rewardRule' 
     })
   },
-  toCheckAll(){
+  toCheckAll(e){
+    console.log(e)
+    let selecttype = e.currentTarget.dataset.selecttype
     wx.redirectTo({
-      url: '/pages/rewardCheckAll/rewardCheckAll' 
+      url: '/pages/rewardCheckAll/rewardCheckAll?selecttype='+ selecttype
     })
   }
 })

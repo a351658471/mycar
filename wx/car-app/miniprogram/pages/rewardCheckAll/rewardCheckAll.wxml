@@ -5,7 +5,7 @@
   
   <!-- 奖励中心 -->
   <view class="rewardCenter">
-    <coupon couponData="{{couponData}}" bind:jumpToDetail="jumpToDetail"/>
+    <coupon couponData="{{couponData}}" bind:jumpToDetail="jumpToDetail" btnContent="{{btnContent}}" toShopBuy="{{toShopBuy}}" isNeed="{{isNeed}}"/>
   </view>
 </view>
 <view class="load">

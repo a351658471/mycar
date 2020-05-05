@@ -12,13 +12,27 @@ Page({
     page: 1,
     noMore: false,
     isLoading: false,
-    tabCurrent: 0
+    tabCurrent: 0,
+    btnContent:'兑换',
+    toShopBuy:false,
+    isNeed:true
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(options.selecttype)
+    if(options.selecttype == 'selectCoupon'){
+      this.setData({
+        tabCurrent:0
+      })
+    }
+    if(options.selecttype == 'selectPurchase'){
+      this.setData({
+        tabCurrent:1
+      })
+    }
     this.getCard(this.data.page)
   },
   tabClick: function (e){
@@ -65,6 +79,16 @@ Page({
             this.setData(this.data)
           }
         })
+        if(this.data.tabCurrent == 1){
+          this.data.btnContent='查看'
+          this.data.toShopBuy = true
+          this.data.isNeed = false
+        }else{
+          this.data.btnContent='兑换'
+          this.data.toShopBuy = false
+          this.data.isNeed = true
+        }
+        this.setData(this.data)
       }
     })
   },

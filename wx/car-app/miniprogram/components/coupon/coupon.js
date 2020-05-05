@@ -39,6 +39,14 @@ Component({
     isUsedCard:{
       type:Boolean,
       value:true
+    },
+    purchase:{
+      type:Boolean,
+      value:false
+    },
+    toShopBuy:{
+      type:Boolean,
+      value:false
     }
   },
   /**

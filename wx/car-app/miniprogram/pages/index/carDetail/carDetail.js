@@ -120,11 +120,16 @@ Page({
       name: 'user',
       data: {
         action: 'userShare',
-        shareCarTime: Date.parse(new Date()),
-        integral:10
+        type:0
       },
       success: (res) => {
         console.log(res)
+        if(res.result.code == 0){
+          wx.showToast({
+            icon: 'none',
+            title: '+10积分',
+          })
+        }
       }
     })
   },

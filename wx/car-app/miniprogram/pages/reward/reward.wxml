@@ -25,7 +25,7 @@
       <view class="rewardTitle">购买卡券</view>
       <view class="all" bindtap="toCheckAll" data-selectType="selectPurchase">全部 <image src="../../assets/rightall.png"></image></view>
     </view>
-    <coupon couponData="{{purchaseData}}" bind:jumpToDetail="jumpToDetail" btnContent="查看" />
+    <coupon couponData="{{purchaseData}}" bind:jumpToDetail="jumpToDetail" btnContent="查看"  toShopBuy="true" isNeed="{{isNeed}}"/>
   </view>
 </view>
 
