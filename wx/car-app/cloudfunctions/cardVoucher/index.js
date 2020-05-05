@@ -84,10 +84,18 @@ async function exchange(event) {
 
           })
         }
-        case 1: {
-          return db.collection('card').doc(event.temID).get().then(res1 => {
-            return addCardVoucher(event, record, res1)
+        case 1: {  //type为1 时候 需要传用户id获取用户信息
+          return db.collection('user').doc(event.userId).get().then(userRes=>{
+            return db.collection('card').doc(event.temID).get().then(res1 => {
+            return addCardVoucher(event, userRes.data, res1)
           })
+          }).catch(err=>{
+            return{
+              code:1,
+              data:err
+            }
+          })
+          
         }
       }
 
@@ -138,7 +146,15 @@ async function addCardVoucher(event, record, cardTem) {
       }
     })
       .then(res2 => {
-        console.log(res2)
+        if(event.type == 1){
+         return db.collection('cardvoucher').doc(res2._id).get().then(res3=>{
+            return{
+              data:res3,
+              code:0,
+              msg:'购买成功'
+            }
+          })
+        }
         return {
           code: 0,
           msg: '兑换成功',
