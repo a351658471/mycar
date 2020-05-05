@@ -1,6 +1,5 @@
 // miniprogram/pages/reward/reward.js
 const app = getApp()
-const PAGECOUNT = 6
 Page({
 
   /**
@@ -8,8 +7,11 @@ Page({
    */
   data: {
     couponData:[],
-    showCouponData:[],
-    integral:0
+    purchaseData:[],
+    integral:'',
+    avatarUrl:'',
+    nickName:'',
+    integral:''
   },
 
   /**
@@ -17,36 +19,49 @@ Page({
    */
   onLoad: function (options) {
     console.log(app.globalData.user)
-    // this.data.integral = app.globalData.user.integral.score
+    this.data.integral = app.globalData.user.integral.score
+    this.data.avatarUrl = app.globalData.user.avatarUrl
+    this.data.nickName = app.globalData.user.nickName
     this.setData(this.data)
     this.getCard()
   },
   //获取卡券数据
   getCard() {
-    let status = 0
     wx.cloud.callFunction({
       name: 'card',
       data: {
         action: 'getCardTemplate',
-        page:1,
-        pageCount: PAGECOUNT,
-        status: status
+        getType:'userPage',
+        shopid: app.globalData.shop._id
       },
       success: res => {
-        this.data.couponData = res.result.data
+        this.data.couponData = res.result.type0
+        this.data.purchaseData = res.result.type1
         this.setData(this.data)
       }
     })
   },
   jumpToDetail(e) {
-    let id = e.currentTarget.dataset.id
+    console.log(e)
+    let id = e.detail.id
+    let type = e.detail.type
     wx.redirectTo({
-      url: '/pages/rewardDetail/rewardDetail?cardId=' + id,
+      url: '/pages/rewardDetail/rewardDetail?cardId=' + id+'&type='+type,
     })
   },
   toMyCoupon(){
     wx.redirectTo({
       url: '/pages/rewardMyCoupon/rewardMyCoupon' 
+    })
+  },
+  toCouponRule(){
+    wx.redirectTo({
+      url: '/pages/rewardRule/rewardRule' 
+    })
+  },
+  toCheckAll(){
+    wx.redirectTo({
+      url: '/pages/rewardCheckAll/rewardCheckAll' 
     })
   }
 })

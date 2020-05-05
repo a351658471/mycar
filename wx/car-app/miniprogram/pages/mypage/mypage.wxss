@@ -155,3 +155,32 @@
   background: rgba(0,0,0,0.4);
   position: fixed;
 }
+.bg{
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.4);
+  position: fixed;
+}
+.code{
+  background: #FFFFFF;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  padding: 48rpx 60rpx 40rpx 60rpx;
+  border-radius: 26rpx;
+  border: 2rpx solid #979797;
+}
+.code .title{
+  text-align: center;
+  font-size: 32rpx;
+  color: #4A4A4A;
+}
+.canvas-code{
+  padding: 42rpx 20rpx;
+  margin: 20rpx auto;
+}
+.code button{
+  margin: 0 auto;
+  color: #FFFFFF;
+}

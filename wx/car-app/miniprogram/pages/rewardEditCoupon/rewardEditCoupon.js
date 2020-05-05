@@ -7,36 +7,45 @@ Page({
    */
   data: {
     couponName: '',  //卡券名称
-    couponIntegral: 0,  //需要积分
-    date: 0,  //到期时间
+    couponIntegral: '',  //需要积分
+    date: '',  //到期时间
     couponContent: '',  //特点描述
     couponActive: '' ,//活动规则
+    couponNumber:'',
     cardId:'',
-    localdate: 0 //添加卡券开始时间
+    localdate: 0 ,//添加卡券开始时间
+    isPurchase:true
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(options)
     this.data.localdate = new Date().toLocaleDateString()
     let id = options.id
+    if(options.type == 1){
+      this.data.isPurchase = false
+      this.setData(this.data)
+    }
     this.data.cardId = id
     this.setData(this.data) 
     wx.cloud.callFunction({
       name: 'card',
       data: {
         action: 'getCardTemplate',
+        getType:'findById',
         shopid: app.globalData.shop._id,
-        _id: id
+        temID: id
       },
       success: res => {
         console.log(res)
         this.data.couponName = res.result.data[0].name
         this.data.couponIntegral = res.result.data[0].integral
-        this.data.date = new Date(res.result.data[0].validity).toLocaleDateString()
+        this.data.date = this.formatTime(res.result.data[0].validity, 'yyyy-mm-dd')
         this.data.couponContent = res.result.data[0].describe
         this.data.couponActive = res.result.data[0].rule
+        this.data.couponNumber = res.result.data[0].canUsedCount
         this.setData(this.data)
       }
     })
@@ -131,5 +140,18 @@ Page({
     let id = e.currentTarget.dataset.id
     let status = 0
     this.setCouponData(status,id)
+  },
+   formatTime (time, format) {
+    var ftime = 0
+    if (('' + time).length === 10) {
+      ftime = parseInt(time) * 1000
+    } else {
+      ftime = time
+    }
+    var d = new Date(ftime)
+    var nowYear = d.getFullYear()
+    var Month = parseInt(d.getMonth()) + 1
+    if (format == 'yyyy-mm-dd') return (d.getFullYear() + '-' + Month + '-' + d.getDate())
+    if (format == 'yyyy.mm.dd') return (d.getFullYear() + '.' + Month + '.' + d.getDate())
   }
 })

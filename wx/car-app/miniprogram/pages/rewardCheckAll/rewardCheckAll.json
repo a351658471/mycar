@@ -1,0 +1,9 @@
+{
+  "navigationBarBackgroundColor": "#f6f6f6",
+  "navigationBarTextStyle": "black",
+  "navigationBarTitleText": "兑换卡券",
+  "usingComponents": {
+    "coupon":"/components/coupon/coupon",
+    "my-tab":"./components/leftTab/leftTab"
+  }
+}

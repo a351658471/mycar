@@ -1,0 +1,29 @@
+<!-- miniprogram/pages/rewardChoose/rewardChoose.wxml -->
+<wxs src="../../utils/filter.wxs" module="formatTime"></wxs>
+<view class="userMsg">
+  <view class="username">昵称：{{nickName}}</view>
+  <view class="userphone">手机：{{phone}}</view>
+</view>
+<view class="chooseContent">
+  <view class="choosePurchase" wx:for="{{couponPurchase}}" wx:key="index">
+    <view class="purchaseLeft">
+      <view class="purchaseName">{{item.name}}</view>
+      <view class="purchaseContent">
+        <view class="price">金额{{item.integral}}元</view>
+        <view class="time">到期时间:{{formatTime.formatTime(item.validity,'yyyy.mm.dd')}}</view>
+      </view>
+    </view>
+    <view class="purchaseRight">
+      <button bindtap="toPurchase" data-id="{{item._id}}">购买</button>
+    </view>
+  </view>
+  <view class="load">
+    <view class="loading" wx:if="{{!noMore}}" bindtap="loadMore">{{isLoading?'加载中...':'点击加载更多'}}</view>
+  </view>
+</view>
+<view class="backBtn" bindtap="exitBuy">
+  <button style="width:680rpx" class="btn">退出购买</button>
+</view>
+<view class="usecouponbg" wx:if="{{toUse}}">
+  <my-coupon myCouponData="{{myCouponData}}" cancel="true" bind:couponCancle="couponCancle" bind:couponConfirm="couponConfirm" isPurchase="true" useCondition="确定购买"></my-coupon>
+</view>

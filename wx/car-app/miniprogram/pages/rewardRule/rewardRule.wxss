@@ -1,0 +1,34 @@
+/* miniprogram/pages/rewardRule/rewardRule.wxss */
+page{
+    background-color: #FFFFFF;
+}
+.ruleContent{
+    font-size: 28rpx;
+    color: #4A4A4A;
+    box-sizing: border-box;
+    padding: 80rpx 64rpx;
+}
+.title{
+    margin-bottom: 20rpx;
+}
+.rule{
+    margin-bottom: 40rpx;
+}
+.title2{
+    margin-top: 80rpx;
+}
+.use{
+    margin-top: 28rpx;
+}
+.knowBtn{
+    width: 100%;
+    position: absolute;
+    bottom: 44rpx;
+}
+.btn{
+    height: 88rpx;
+    color: #FFFFFF;
+    font-size: 36rpx;
+    font-weight: normal;
+    background: linear-gradient(to right,#3377FE,#3377FE);
+}

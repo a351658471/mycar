@@ -217,6 +217,34 @@
 					"id": -1,
 					"name": "pages/rewardMyCoupon/rewardMyCoupon",
 					"pathName": "pages/rewardMyCoupon/rewardMyCoupon",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/rewardRule/rewardRule",
+					"pathName": "pages/rewardRule/rewardRule",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "components/coupon/coupon",
+					"pathName": "components/coupon/coupon",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/rewardChoose/rewardChoose",
+					"pathName": "pages/rewardChoose/rewardChoose",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/rewardCheckAll/rewardCheckAll",
+					"pathName": "pages/rewardCheckAll/rewardCheckAll",
 					"scene": null
 				}
 			]

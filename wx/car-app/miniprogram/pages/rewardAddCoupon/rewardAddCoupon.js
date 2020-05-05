@@ -7,11 +7,17 @@ Page({
    */
   data: {
     couponName:'',  //卡券名称
-    couponIntegral:0,  //需要积分
-    date:0,  //到期时间
+    couponIntegral:'',  //需要积分
+    date:'',  //到期时间
     couponContent:'',  //特点描述
     couponActive:'', //活动规则
-    localdate:0 //添加卡券开始时间
+    localdate:'', //添加卡券开始时间
+    couponNumber:'',
+    isPurchase:true,
+    items: [
+      { name: 'coupon', value: '兑换券',checked: 'true'},
+      { name:'purchase',value:'购买券'}
+    ]
   },
 
   /**
@@ -20,6 +26,18 @@ Page({
   onLoad: function (options) {
     this.data.localdate = new Date().toLocaleDateString()
     this.setData(this.data)
+  },
+  radioChange(e) {
+    if (e.detail.value == 'purchase'){
+      this.setData({
+        isPurchase:false
+      })
+    }else{
+      this.setData({
+        isPurchase: true
+      })
+    }
+    
   },
   couponName(e){
     this.setData({
@@ -46,8 +64,22 @@ Page({
       couponActive: e.detail.value
     })
   },
+  couponNumber(e) {
+    this.setData({
+      couponNumber: e.detail.value
+    })
+  },
+
   //调用添加卡片接口
   setCouponData(status){  
+
+    let type
+    if (this.data.isPurchase == false){
+      type = 1
+    }else{
+      type = 0
+    }
+    this.setData(this.data)
     wx.cloud.callFunction({
       name: 'card',
       data: {
@@ -58,7 +90,9 @@ Page({
         validity: Date.parse(new Date(this.data.date)),
         describe:this.data.couponContent,
         rule:this.data.couponActive,
-        status:status // 状态 0启用 1停用
+        status:status, // 状态 0启用 1停用
+        type:type,
+        canUsedCount: this.data.couponNumber
       },
       success: res => {
         console.log('[云函数] [card] : ', res)
@@ -100,5 +134,5 @@ Page({
   couponStar(e){
     let status = 0
     this.setCouponData(status)
-  }
+  },
 })

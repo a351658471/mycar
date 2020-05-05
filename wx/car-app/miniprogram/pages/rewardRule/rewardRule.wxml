@@ -1,0 +1,13 @@
+<!--miniprogram/pages/rewardRule/rewardRule.wxml-->
+<view class="ruleContent">
+    <view class="title">积分获取规则</view>
+    <view class="rule">1.转发资讯获得10积分，每日转发三次有效积分。</view>
+    <view class="rule"> 2.转发车辆获得10积分,每日转发三次有效积分。</view>
+    <view class="rule"> 3.每日签到获得15积分，每日只能签到一次。</view>
+    <view class="title2">积分用途</view>
+    <view class="use">1.积分可在积分兑换中心换取优惠券等。</view>
+    <view class="use">以上为最新的积分规则，在法律允许范围内，最终解释权归车之居所有。</view>
+</view>
+<view class="knowBtn">
+    <button style="width:680rpx" class="btn" bindtap="knowTap">知道了</button>
+</view>

@@ -1,168 +1,117 @@
 /* miniprogram/pages/reward/reward.wxss */
-.reward{
-    box-sizing: border-box;
-    padding: 12rpx 48rpx 20rpx 48rpx;
-}
-.rewardContent{
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    color: #3377FE;
-    font-weight: bold;
-}
-.rewardNum{
-    display: flex;
-    align-items: flex-end;
-    font-size: 96rpx;
-}
-.rewards{
-    font-size: 40rpx;
-    margin-left: 52rpx;
-}
-.rewardWarns{
-    display: flex;
-    justify-content: space-between;
-    margin-top: 48rpx;
-}
-.rewardWarn{
-    font-size: 20rpx;
-    color: #4A4A4A;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.rewardCenter{
-    background: #FFFFFF;
-    padding: 12rpx 48rpx 20rpx 48rpx;
-}
-.rewardTitle{
-    font-size: 30rpx;
-    color: #333333;
-    font-weight: bold;
-    padding: 28rpx 28rpx 16rpx 28rpx;
-}
-.rewardLR{
-    display: flex;
-    margin: 0 58rpx 58rpx 58rpx;
-    position: relative;
-}
-.circle{
-    position: absolute;
-    width: 30rpx;
-    height: 15rpx;
-    background: #fff;
-    border-radius:  0 0 30rpx 30rpx;
-    left: 72.5%;
-    top: 0;
-    border: 2rpx solid #F78637;
-    border-top: none;
-}
-.circle2{
-    position: absolute;
-    width: 30rpx;
-    height: 15rpx;
-    background: #fff;
-    border-radius: 30rpx 30rpx  0 0;
-    left: 72.5%;
-    bottom: 0;
-    border: 2rpx solid #F78637;
-    border-bottom: none;
+
+.rewardcontain {
+  box-sizing: border-box;
+  padding: 12rpx 48rpx 20rpx 48rpx;
 }
 
-.rewardLeft{
-    width: 390rpx;
-    background: #FFF6EF;
-    padding: 20rpx 40rpx 10rpx 22rpx;
-    border: 2rpx solid #F78637;
-    border-right: none;
-    border-radius: 10rpx 0 0 10rpx;
+.reward {
+  box-sizing: border-box;
+  padding: 26rpx 28rpx 22rpx 20rpx;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(to bottom, #6899fb, #3377fe);
+  border-radius: 22rpx;
+  box-shadow: 0px 3px 20px -8px rgba(0, 0, 0, 0.32);
 }
-.rewardName{
-    font-size: 26rpx;
-    color: #131E33;
-    font-weight: bold;
+
+.rewardhead {
+  width: 88rpx;
+  height: 88rpx;
+  border-radius: 50%;
 }
-.rewardMsg{
-    font-size: 24rpx;
-    color: #333333;
+
+.rewardhead image {
+  width: 82rpx;
+  height: 82rpx;
+  border-radius: 50%;
+  border: 3rpx solid #fff;
 }
-.rewardTime{
-    display: flex;
-    align-items: flex-end;
+
+.rewardContent {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin-left: 18rpx;
 }
-.rewardExpire{
-    font-size: 20rpx;
-    color: #7E7C81;
-    margin-top: 42rpx;
+
+.rewardNum {
+  display: flex;
+  align-items: flex-end;
+  font-size: 40rpx;
+  color: #fff;
+  margin-top: 10rpx;
 }
-.rewardDetail{
-    font-size: 24rpx;
-    color: #FF7B00;
-    margin-left: 37rpx;
+
+.nickName {
+  font-size: 28rpx;
+  color: #fff;
 }
-.rewardRight{
-    width: 148rpx;
-    text-align: center;
-    font-size: 24rpx;
-    color: #FFF8F8;
-    padding-top: 40rpx;
-    border-radius: 0 10rpx 10rpx 0;
-    border: 2rpx solid #F78637;
-    border-left: none;
-    background: linear-gradient(to bottom,#EE9657,#FE7B1F);
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
-.rewardRight button{
-    padding: 0;
-    width: 98rpx;
-    height: 38rpx;
-    color: #FC7E27;
-    font-size: 20rpx;
-    background: #FFF6EF;
-    border-radius: 20rpx;
-    text-align: center;
-    line-height: 38rpx;
-    margin: 26rpx auto;
+
+.content .rule {
+  font-size: 24rpx;
+  color: #fff;
+  display: flex;
+  align-items: center;
 }
-.rewardLRs{
-    display: flex;
-    margin: 0 58rpx 58rpx 58rpx;
-    background: #FFF6EF;
-    border: 2rpx solid #9B9B9B;
-    border-radius: 10rpx;
-    position: relative;
+
+.content .rule image {
+  width: 14rpx;
+  height: 16rpx;
+  margin-left: 10rpx;
 }
-.rewardLefts{
-    width: 390rpx;
-    box-sizing: border-box;
-    padding: 20rpx 40rpx 10rpx 22rpx;
+
+.content .mycoupon {
+  padding: 0;
+  width: 142rpx;
+  height: 50rpx;
+  background: #fff6ef;
+  border-radius: 28rpx;
+  font-size: 24rpx;
+  color: #3377fe;
+  line-height: 50rpx;
+  margin-top: 50rpx;
 }
-.rewardRights{
-    width: 148rpx;
-    font-size: 28rpx;
-    padding-top: 28rpx;
-    color: #9B9B9B;
-    text-align: center;
-    font-weight: bold;
+
+.content .mycoupon image {
+  width: 10rpx;
+  height: 12rpx;
+  line-height: 50rpx;
 }
-.circle3{
-    position: absolute;
-    width: 30rpx;
-    height: 15rpx;
-    background: #fff;
-    border-radius:0 0 30rpx 30rpx;
-    left: 72.5%;
-    top: -2rpx;
-    border: 2rpx solid #9B9B9B;
-    border-top: none;
+
+.rewardCenter {
+  width: 100%;
 }
-.circle4{
-    position: absolute;
-    width: 30rpx;
-    height: 15rpx;
-    background: #fff;
-    border-radius: 30rpx 30rpx  0 0;
-    left: 72.5%;
-    bottom: -2rpx;
-    border: 2rpx solid #9B9B9B;
-    border-bottom: none;
+
+.toCouponAll {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 10rpx;
+}
+
+.all {
+  font-size: 24rpx;
+  color: #4a4a4a;
+  display: flex;
+  align-items: center;
+}
+
+.all image {
+  width: 12rpx;
+  height: 24rpx;
+  margin-left: 10rpx;
+}
+
+.rewardTitle {
+  font-size: 36rpx;
+  color: #333;
+  font-weight: bold;
+  margin-top: 52rpx;
 }

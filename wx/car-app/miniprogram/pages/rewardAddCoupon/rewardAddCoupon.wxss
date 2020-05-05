@@ -57,3 +57,21 @@ textarea{
     color: #7B7575;
     font-weight: bold;
 }
+.radio-group{
+  margin-left: 74rpx;
+  font-size: 28rpx;
+  color: #7B7575;
+}
+radio .wx-radio-input{
+  width: 26rpx;
+  height: 26rpx;
+  border: 2rpx solid #979797;
+  margin-left: 32rpx;
+}
+radio .wx-radio-input.wx-radio-input-checked{
+  border: 2rpx solid #979797!important;
+  background: #3377FE!important;
+}
+radio .wx-radio-input.wx-radio-input-checked::before{
+  color:#3377FE!important;
+}

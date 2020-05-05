@@ -7,16 +7,13 @@ Page({
    * 页面的初始数据
    */
   data: {
-    couponName: '',  //卡券名称
-    date: '',  //到期时间
-    couponIntegral:'',//所需积分
-    couponContent: '',  //特点描述
-    couponActive: '' ,//活动规则
+    couponData:[],
     address:'',
     latitude:0,
     longitude:0,
     isExchange:true,
-    couponId:''
+    couponId:'',
+    couponType:0
   },
 
   /**
@@ -25,21 +22,21 @@ Page({
   onLoad: function (options) {
     console.log(options)
     let id = options.cardId
+    let type = options.type
+    this.data.couponId = id
+    this.data.couponType = type
     this.setData(this.data)
     wx.cloud.callFunction({
       name: 'card',
       data: {
         action: 'getCardTemplate',
+        getType:'findById',
         shopid: app.globalData.shop._id,
-        _id: id
+        temID: id
       },
       success: res => {
         console.log(res)
-        this.data.couponName = res.result.data[0].name
-        this.data.couponIntegral = res.result.data[0].integral
-        this.data.date = res.result.data[0].validity
-        this.data.couponContent = res.result.data[0].describe
-        this.data.couponActive = res.result.data[0].rule
+        this.data.couponData = res.result.data
         this.setData(this.data)
       }
     })
@@ -49,77 +46,37 @@ Page({
     wx.cloud.callFunction({
       name: 'cardVoucher',
       data: {
-        action: 'addCardVoucher',
+        action: 'exchange',
         shopid: app.globalData.shop._id,
-        name: this.data.couponName,
-        integral: this.data.couponIntegral,
-        validity: Date.parse(new Date(this.data.date)),
-        describe: this.data.couponContent,
-        rule: this.data.couponActive,
-        tel: app.globalData.user.phone,
-        nickName: app.globalData.user.nickName,
         userId: app.globalData.user._id,
-        userTime: 0,
-        used: 0
+        temID: this.data.couponId,
+        type: Number(this.data.couponType)
       },
       success: (res) => {
         console.log(res)
-        this.data.couponId = res.result.data
-      }
-    })
-  },
-  //获取积分
-  useCoupon(){
-    wx.cloud.callFunction({
-      name: 'user',
-      data: {
-        action: 'payScore',
-        integral: 50
-      },
-      success: (res) => {
-        console.log(res)
-        if (res.result.succuss == false) {
-          wx.showToast({
-            title: '积分不足',
-            icon: 'none'
-          })
-          return
-        }
-      }
-    })
-  },
-  // 生成二维码
-  toCoupon(){
-    wx.cloud.callFunction({
-      name: 'user',
-      data: {
-        action: 'payScore',
-        integral: 50
-      },
-      success: (res) => {
-        console.log(res)
-        if (res.result.succuss == false) {
-          wx.showToast({
-            title: '积分不足',
-            icon: 'none'
-          })
-          return
-        }else{
-          this.myCoupon()
+        if(res.result.code == 0){
           this.data.isExchange = false
           this.setData(this.data)
           new QRCode('myQrcode', {
-            text: this.data.couponId,
+            text: 'cardId=' + res.result._id,
             width: 150,
             height: 150,
             correctLevel: QRCode.CorrectLevel.L,
             callback: (res) => {
-              console.log(res.path)
+              console.log(res)
             }
+          })
+        }else{
+          wx.showToast({
+            title: '积分不足',
+            icon: 'none'
           })
         }
       }
     })
+  },
+  toCoupon(e){
+    this.myCoupon()
   },
   
 })
