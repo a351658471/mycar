@@ -54,9 +54,9 @@ async function getCardTemplate(event) {
   switch (event.getType) {
     case 'userPage': {
       //用户推荐卡券页
-      return db.collection('card').where({ validity: _.gte(nowTime), type: 0 }).limit(2).get().then(res0 => {
+      return db.collection('card').where({ validity: _.gte(nowTime), type: 0 ,status:0}).limit(2).get().then(res0 => {
         console.log(res0)
-        return db.collection('card').where({ validity: _.gte(nowTime), type: 1 }).limit(1).get().then(res1 => {
+        return db.collection('card').where({ validity: _.gte(nowTime), type: 1,status:0 }).limit(1).get().then(res1 => {
           return {
             type0: res0.data,
             type1: res1.data
