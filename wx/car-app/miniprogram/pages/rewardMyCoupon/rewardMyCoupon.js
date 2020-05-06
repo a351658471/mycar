@@ -67,7 +67,7 @@ Page({
   jumpToDetail(e) {
     console.log(e)
     let id = e.detail.id
-    wx.redirectTo({
+    wx.navigateTo({
       url: '/pages/rewardMyDetail/rewardMyDetail?cardId=' + id,
     })
   },

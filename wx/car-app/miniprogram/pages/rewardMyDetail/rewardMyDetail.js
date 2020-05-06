@@ -9,6 +9,10 @@ Page({
   data: {
     couponData:{},
     isExchange:false,
+    address: '',
+    latitude: 0,
+    longitude: 0,
+    location: null,
   },
 
   /**
@@ -16,6 +20,13 @@ Page({
    */
   onLoad: function (options) {
     console.log(options)
+    let shop = app.globalData.shop
+    this.data.address = shop.address
+    if (shop.location != null) {
+      this.data.latitude = shop.location.latitude
+      this.data.longitude = shop.location.longitude
+    }
+    this.setData(this.data)
   // 生成二维码
     wx.cloud.callFunction({
       name: 'cardVoucher',
@@ -40,6 +51,36 @@ Page({
         })
       }
     })
-
   }, 
+  addAddress() {
+    wx.chooseLocation({
+      success: res => {
+        let longitude = res.longitude;
+        let latitude = res.latitude;
+        let address = ''
+        if (res.name != '') {
+          address = res.name
+        } else if (res.address != '') {
+          address = res.address
+        }
+        this.setData({
+          longitude: longitude,
+          latitude: latitude,
+          address
+        })
+      }
+    })
+  },
+  navigation() {
+    console.log(this.data.latitude)
+    console.log(this.data.longitude)
+    wx.openLocation({
+      latitude: this.data.latitude,
+      longitude: this.data.longitude,
+      name: this.data.address,
+      success: res => {
+        // console.log(res)
+      }
+    })
+  }
 })

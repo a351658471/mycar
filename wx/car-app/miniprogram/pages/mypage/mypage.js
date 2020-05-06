@@ -312,7 +312,7 @@ Page({
         if (id.substr(0, 6) == 'userId') {
           let index = id.lastIndexOf("=")
           id = id.substring(index + 1, id.length)
-          wx.redirectTo({
+          wx.navigateTo({
             url: '/pages/rewardChoose/rewardChoose?userId=' + id,
           })
         }

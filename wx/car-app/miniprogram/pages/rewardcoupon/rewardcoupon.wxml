@@ -18,7 +18,7 @@
     </view>
     <view class="couponMsg">
       <view class="couponIntegral">{{item.type==0?'积分':'金额'}}{{item.integral}}{{item.type==0?'':'元'}}</view>
-      <view class="couponLastTime">到期时间:{{formatTime.formatTime(item.validity,'yyyy.mm.dd')}}</view>
+      <view class="couponLastTime" style="color:{{(item.validity)/1000 < mdate?'red':'#7E7C81'}}">到期时间:{{formatTime.formatTime(item.validity,'yyyy.mm.dd')}}</view>
     </view>
   </view>
   <view class="couponControl">
