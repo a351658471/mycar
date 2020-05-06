@@ -17,6 +17,7 @@
     font-size: 28rpx;
     color: #131E33;
     font-weight: bold;
+    padding-bottom: 20rpx;
 }
 .couponEdit{
     font-size: 24rpx;
@@ -32,15 +33,24 @@
     color: #7B7575;
     text-align: right;
     font-weight: bold;
+    flex: 1;
+}
+.coupondegree{
+  font-size: 28rpx;
+  color: #7B7575;
+  font-weight: bold;
 }
 .couponMsg{
-    display: flex;
-    justify-content: space-between;
+    display: flex;   
     margin-top: 18rpx;
+}
+.msgTop{
+    margin-top: 40rpx;
 }
 .couponIntegral{
     font-size: 24rpx;
     color: #3377FE;
+    flex: 1;
 }
 .couponLastTime{
     font-size: 20rpx;
@@ -98,26 +108,25 @@
 .couponone,.coupontwo{
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     font-size: 20rpx;
 }
 .coupontwo{
-    margin-right: 30rpx;
+    margin-right: 10rpx;
+    align-items: flex-end;
 }
 .coupons{
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-.couponphone{
-    margin-top: 6rpx;
+.couponBuy,.couponBuyCount{
+  margin-top: 15rpx;
 }
-.couponQueryTime{
-    margin-top: 10rpx;
+.couponName,.couponphone,.couponNumber,.couponQueryTime{
+  margin-top: 6rpx;
 }
-.couponone{
-    margin-top: 20rpx;   
-}
-.couponNumber,.couponQueryTime{
+.couponNumber,.couponQueryTime,.couponBuyCount{
     color: #7E7C81;
 }
 .historyInput{

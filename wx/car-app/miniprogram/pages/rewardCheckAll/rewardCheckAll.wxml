@@ -1,0 +1,13 @@
+<!--miniprogram/pages/rewardCheckAll/rewardCheckAll.wxml-->
+<wxs src="../../utils/filter.wxs" module="formatTime"></wxs>
+<my-tab tabList="{{tabList}}" bind:tabClick="tabClick" tabCurrent="{{tabCurrent}}" />
+<view class="rewardcontain">
+  
+  <!-- 奖励中心 -->
+  <view class="rewardCenter">
+    <coupon couponData="{{couponData}}" bind:jumpToDetail="jumpToDetail"/>
+  </view>
+</view>
+<view class="load">
+    <view class="loading" wx:if="{{!noMore}}" bindtap="loadMore">{{isLoading?'加载中...':'点击加载更多'}}</view>
+</view>

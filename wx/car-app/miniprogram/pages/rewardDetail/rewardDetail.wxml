@@ -1,12 +1,13 @@
 <!--miniprogram/pages/rewardDetail/rewardDetail.wxml-->
 <wxs src="../../utils/filter.wxs" module="formatTime"></wxs>
 <view class="rewardDetail">
-    <view class="detailTitle">{{couponName}}</view>
-    <view class="detailTime">{{formatTime.formatTime(date,'yyyy-mm-dd')}}</view>
-    <view class="detailcontent">{{couponContent}}</view>
+    <view class="detailTitle">兑换券·{{couponData[0].name}}</view>
+    <view class="detailTime">到期时间：{{formatTime.formatTime(couponData[0].validity,'yyyy-mm-dd')}}</view>
+    <view class="smallTitle">详情描述</view>
+    <view class="detailcontent">{{couponData[0].describe}}</view>
     <view class="smallTitle">权益规则</view>
-    <view class="details">{{couponActive}}</view>
-    <button wx:if="{{isExchange}}" bindtap="toCoupon">兑换</button>
+    <view class="details">{{couponData[0].rule}}</view>
+    <button wx:if="{{isExchange}}" bindtap="toCoupon" data-code="{{couponId}}">兑换</button>
     <view wx:if="{{!isExchange}}" class="code">
       <canvas class="canvas-code"canvas-id="myQrcode" style="background:#fff;width: 150px;height: 150px;"/>
     </view>

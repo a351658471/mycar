@@ -1,0 +1,30 @@
+/* components/leftTab/leftTab.wxss */
+.tab{
+   width: 100%;
+   display: flex;
+   justify-content: space-between;
+   align-items: center
+}
+.leftTab{
+  margin: 20rpx auto 0 auto;
+  display: flex;
+  text-align: center;
+}
+.tabItem{
+  background: #ffffff;
+  color: #3377FE;
+  border: 2rpx solid #3377FE;
+  box-sizing: border-box;
+  padding: 8rpx 112rpx;
+  font-size: 28rpx;
+  border-radius: 14rpx 0 0 14rpx;
+}
+.tabItem:last-child{
+  border-radius: 0 14rpx 14rpx 0;
+}
+
+.active{
+  background: #3377FE;
+  color: #ffffff;
+}
+

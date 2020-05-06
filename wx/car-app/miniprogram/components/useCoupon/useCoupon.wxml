@@ -1,17 +1,21 @@
 <!-- components/useCoupon/useCoupon.wxml -->
+<wxs src="../../utils/filter.wxs" module="formatTime"></wxs>
 <view class="usecoupon">
-  <view wx:if="{{use}}" class="useTitle">有效</view>
-  <view wx:if="{{!use}}" class="useTitle used">{{isUse?'已使用':'已过期'}}</view>
+  <view class="useTitle" style="color:{{conditionColor}}">{{useCondition}}</view>
   <view class="useContent">{{myCouponData.name}}</view>
-  <view class="useTime">到期时间:{{myCouponData.validity}}</view>
+  <view class="purchaseNum" wx:if="{{isPurchase}}">购买{{myCouponData.canUsedCount}}次</view>
+  <view class="times">
+    <view class="useTime">到期时间:{{formatTime.formatTime(myCouponData.validity,'yyyy.mm.dd')}}</view>
+    <view class="residueDegree" wx:if="{{isDegree}}">剩余{{myCouponData.canUsedCount-myCouponData.usedCount}}次</view>
+  </view>
   <view class="useName">昵称：{{myCouponData.nickName}}</view>
-  <view class="usePhone">手机：{{myCouponData.tel}}</view>
-  <view class="useNumber">卡券号：{{myCouponData.card_id}}</view>
+  <view class="usePhone">手机：{{myCouponData.phone}}{{myCouponData.tel}}</view>
+  <view class="useNumber" wx:if="{{!isPurchase}}">卡券号：{{myCouponData.number}}</view>
   <view class="btn" wx:if="{{cancel}}">
-    <button>确定</button>
-    <button class="cancle">取消</button>
+    <button catchtap="couponConfirm">确定</button>
+    <button class="cancle" catchtap="couponCancle">取消</button>
   </view>
   <view class="btns" wx:if="{{!cancel}}">
-    <button>确定</button>
+    <button catchtap="couponPast">确定</button>
   </view>
 </view>

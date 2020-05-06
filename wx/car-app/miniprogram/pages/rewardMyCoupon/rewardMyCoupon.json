@@ -1,3 +1,6 @@
 {
-  "usingComponents": {}
+  "navigationBarTitleText": "我的卡券",
+  "usingComponents": {
+    "coupon":"/components/coupon/coupon"
+  }
 }

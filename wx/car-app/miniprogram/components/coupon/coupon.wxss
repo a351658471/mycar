@@ -1,0 +1,87 @@
+/* components/coupon/coupon.wxss */
+.rewardLR{
+    display: flex;
+    position: relative;
+    margin: 18rpx 0 22rpx 0;
+}
+.circle{
+    position: absolute;
+    width: 30rpx;
+    height: 15rpx;
+    background: #F5F5F5;
+    border-radius:  0 0 30rpx 30rpx;
+    left: 70%;
+    top: 0;
+    border-top: none;
+}
+.circle2{
+    position: absolute;
+    width: 30rpx;
+    height: 15rpx;
+    background: #F5F5F5;
+    border-radius: 30rpx 30rpx  0 0;
+    left: 70%;
+    bottom: 0;
+    border-bottom: none;
+}
+
+.rewardLeft{
+    width: 476rpx;
+    background: #FFFFFF;
+    box-sizing: border-box;
+    padding: 22rpx 60rpx 22rpx 26rpx;
+    border-right: none;
+    border-radius: 10rpx 0 0 10rpx;
+}
+.rewardName{
+    font-size: 30rpx;
+    color: #131E33;
+    font-weight: bold;
+}
+.rewardMsg{
+    font-size: 26rpx;
+    color: #333333;
+    margin-top: 12rpx;
+}
+.rewardTime{
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+.rewardExpire{
+    font-size: 20rpx;
+    color: #7E7C81;
+    margin-top: 42rpx;
+}
+.rewardDetail{
+    font-size: 24rpx;
+    color: #8B572A;
+}
+.rewardRight{
+    width: 180rpx;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+    font-size: 34rpx;
+    color: #A87243;
+    padding-top: 40rpx;
+    border-radius: 0 10rpx 10rpx 0;
+    border-left: none;
+    background: linear-gradient(to bottom,#FFE4A7,#FBCE67);
+}
+.rewardnum{
+    font-weight: bold;
+}
+.rewardRight button{
+    padding: 0;
+    width: 126rpx;
+    height: 44rpx;
+    color: #AE7543;
+    font-size: 24rpx;
+    background: #FFF6EF;
+    border-radius: 22rpx;
+    text-align: center;
+    line-height: 44rpx;
+    margin: 26rpx auto;
+}

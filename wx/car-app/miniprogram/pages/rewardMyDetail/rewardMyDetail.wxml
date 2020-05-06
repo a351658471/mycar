@@ -1,0 +1,23 @@
+<!--miniprogram/pages/rewardDetail/rewardDetail.wxml-->
+<wxs src="../../utils/filter.wxs" module="formatTime"></wxs>
+<view class="rewardDetail">
+    <view class="detailTitle">{{couponData.type==0?'兑换券':'购买券'}}·{{couponData.name}}</view>
+    <view class="detailTime">到期时间：{{formatTime.formatTime(couponData.validity,'yyyy-mm-dd')}}</view>
+    <view class="useCount" hidden="{{couponData.type==0}}">购买{{couponData.canUsedCount}}次/剩余{{couponData.canUsedCount-couponData.usedCount}}次</view>
+    <view class="smallTitle">详情描述</view>
+    <view class="detailcontent">{{couponData.describe}}</view>
+    <view class="smallTitle">权益规则</view>
+    <view class="details">{{couponData.rule}}</view>
+    <button wx:if="{{isExchange}}" bindtap="toCoupon" data-code="{{couponId}}">兑换</button>
+    <view wx:if="{{!isExchange}}" class="code">
+      <canvas class="canvas-code"canvas-id="myQrcode" style="background:#fff;width: 150px;height: 150px;"/>
+    </view>
+    <view class="cardNumber">卡券号：{{couponData.number}}</view>
+</view>
+ 
+<view class="shopMessageBtn">
+  <button style="width:680rpx" class="btn" bindtap="navigation">到店导航</button>
+</view>
+<view class="call">
+  <my-call class="callIcon" bind:call="call" phoneNumber="{{shop.phone}}"></my-call>
+</view>

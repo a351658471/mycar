@@ -1,168 +1,109 @@
 /* miniprogram/pages/rewardCode/rewardCode.wxss */
-.reward{
+.rewardcontain{
     box-sizing: border-box;
     padding: 12rpx 48rpx 20rpx 48rpx;
 }
-.rewardContent{
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    color: #3377FE;
-    font-weight: bold;
-}
-.rewardNum{
-    display: flex;
-    align-items: flex-end;
-    font-size: 96rpx;
-}
-.rewards{
-    font-size: 40rpx;
-    margin-left: 52rpx;
-}
-.rewardWarns{
-    display: flex;
-    justify-content: space-between;
-    margin-top: 48rpx;
-}
-.rewardWarn{
-    font-size: 20rpx;
-    color: #4A4A4A;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
 .rewardCenter{
-    background: #FFFFFF;
-    padding: 12rpx 48rpx 20rpx 48rpx;
+    width: 100%;
 }
 .rewardTitle{
-    font-size: 30rpx;
+    font-size: 36rpx;
     color: #333333;
     font-weight: bold;
-    padding: 28rpx 28rpx 16rpx 28rpx;
+    margin-top: 32rpx;
+}
+.xuxian{
+    border-bottom:2rpx dashed #979797;
+    padding-top: 20rpx;
+    margin-bottom: 40rpx;
 }
 .rewardLR{
     display: flex;
-    margin: 0 58rpx 58rpx 58rpx;
     position: relative;
+    margin: 18rpx 0 22rpx 0;
+    border: 2rpx solid #F0F0F0;
 }
 .circle{
     position: absolute;
     width: 30rpx;
     height: 15rpx;
-    background: #fff;
+    background: #F5F5F5;
     border-radius:  0 0 30rpx 30rpx;
-    left: 72.5%;
+    left: 70%;
     top: 0;
-    border: 2rpx solid #F78637;
     border-top: none;
 }
 .circle2{
     position: absolute;
     width: 30rpx;
     height: 15rpx;
-    background: #fff;
+    background: #F5F5F5;
     border-radius: 30rpx 30rpx  0 0;
-    left: 72.5%;
+    left: 70%;
     bottom: 0;
-    border: 2rpx solid #F78637;
     border-bottom: none;
 }
 
 .rewardLeft{
-    width: 390rpx;
-    background: #FFF6EF;
-    padding: 20rpx 40rpx 10rpx 22rpx;
-    border: 2rpx solid #F78637;
+    width: 476rpx;
+    background: #FFFFFF;
+    box-sizing: border-box;
+    padding: 22rpx 60rpx 22rpx 26rpx;
     border-right: none;
     border-radius: 10rpx 0 0 10rpx;
 }
 .rewardName{
-    font-size: 26rpx;
-    color: #131E33;
+    font-size: 30rpx;
+    color: #9B9B9B;
     font-weight: bold;
 }
 .rewardMsg{
-    font-size: 24rpx;
-    color: #333333;
+    font-size: 26rpx;
+    color: #9B9B9B;
+    margin-top: 12rpx;
 }
 .rewardTime{
     display: flex;
     align-items: flex-end;
+    justify-content: space-between;
 }
 .rewardExpire{
     font-size: 20rpx;
-    color: #7E7C81;
+    color: #9B9B9B;
     margin-top: 42rpx;
 }
 .rewardDetail{
     font-size: 24rpx;
-    color: #FF7B00;
-    margin-left: 37rpx;
+    color: #9B9B9B;
 }
 .rewardRight{
-    width: 148rpx;
+    width: 180rpx;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     text-align: center;
-    font-size: 24rpx;
-    color: #FFF8F8;
+    font-size: 36rpx;
+    color: #9B9B9B;
     padding-top: 40rpx;
     border-radius: 0 10rpx 10rpx 0;
-    border: 2rpx solid #F78637;
     border-left: none;
-    background: linear-gradient(to bottom,#EE9657,#FE7B1F);
+    background: #FFFFFF;
+}
+.pass{
+    font-weight: bold;
+}
+.rewardnum{
+    font-weight: bold;
 }
 .rewardRight button{
     padding: 0;
-    width: 98rpx;
-    height: 38rpx;
-    color: #FC7E27;
-    font-size: 20rpx;
-    background: #FFF6EF;
-    border-radius: 20rpx;
-    text-align: center;
-    line-height: 38rpx;
-    margin: 26rpx auto;
-}
-.rewardLRs{
-    display: flex;
-    margin: 0 58rpx 58rpx 58rpx;
-    background: #FFF6EF;
-    border: 2rpx solid #9B9B9B;
-    border-radius: 10rpx;
-    position: relative;
-}
-.rewardLefts{
-    width: 390rpx;
-    box-sizing: border-box;
-    padding: 20rpx 40rpx 10rpx 22rpx;
-}
-.rewardRights{
-    width: 148rpx;
-    font-size: 28rpx;
-    padding-top: 28rpx;
+    width: 126rpx;
+    height: 44rpx;
     color: #9B9B9B;
+    font-size: 24rpx;
+    background: #FDDA8B;
+    border-radius: 22rpx;
     text-align: center;
-    font-weight: bold;
-}
-.circle3{
-    position: absolute;
-    width: 30rpx;
-    height: 15rpx;
-    background: #fff;
-    border-radius:0 0 30rpx 30rpx;
-    left: 72.5%;
-    top: -2rpx;
-    border: 2rpx solid #9B9B9B;
-    border-top: none;
-}
-.circle4{
-    position: absolute;
-    width: 30rpx;
-    height: 15rpx;
-    background: #fff;
-    border-radius: 30rpx 30rpx  0 0;
-    left: 72.5%;
-    bottom: -2rpx;
-    border: 2rpx solid #9B9B9B;
-    border-bottom: none;
+    line-height: 44rpx;
+    margin: 26rpx auto;
 }

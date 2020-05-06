@@ -20,8 +20,13 @@ Component({
     couponCount: {
       type: Array,
       value: [0]
+    },
+    isShowNumber:{
+      type:Boolean,
+      value:false
     }
   },
+
   data:{
   },
   /**

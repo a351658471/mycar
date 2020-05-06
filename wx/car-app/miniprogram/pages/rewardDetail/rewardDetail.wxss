@@ -36,11 +36,11 @@
     padding: 0;
     width: 288rpx;
     height: 72rpx;
-    border: 2rpx solid #F68739;
-    color: #FA822E;
+    border: 2rpx solid #FBD06D;
+    color: #A87243;
     border-radius: 36rpx;
     line-height: 72rpx;
-    background: #FFF6EF;
+    background: #FFFDF4;
     font-size: 28rpx;
 }
 .call{

@@ -1,4 +1,5 @@
 // pages/home/home.js
+import QRCode from '../../utils/weapp-qrcode'
 const app = getApp()
 
 Page({
@@ -7,7 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    background:'/assets/mypage/mypage-head.png',
+    background: '/assets/mypage/mypage-head.png',
     shop: {},
     userInfo: {},
     logged: false,
@@ -15,13 +16,16 @@ Page({
     control: false,
     isregist: false,
     hideShare: false,
-    adminhide:false,
-    toUse:false,
-    change:true,
-    coupondId:'',
-    use:true,
-    isUse:true,
-    myCouponData:[],
+    adminhide: false,
+    toUse: false,
+    change: true,
+    coupondId: '',
+    cancel: true,
+    isDegree:false,
+    myCodeHide: false,
+    myCouponData: {},
+    useCondition:'',
+    conditionColor:'',
     menu_reward: {
       name: "积分奖励",
       icon: "mypage-reward.png",
@@ -63,51 +67,18 @@ Page({
       link: "/pages/userFeedbackQuery/userFeedbackQuery"
     },
     menus: [],
-    adminMenus:[]
-  },
-
-
-  signButton: function () {
-    // wx.showToast({
-    //   icon:"none",
-    //   title: '该功能暂未开放',
-    // })
-    // return
-    if (!this.data.userInfo._id) {
-      wx.showToast({
-        icon: "none",
-        title: '您还未登录',
-      })
-      return
-    }
-    wx.cloud.callFunction({
-      name:'user',
-      data:{
-        action:'userSignIn',
-        signTime: Date.parse(new Date()),
-        integral:15
-      },
-      success:(res)=>{
-        console.log(res)
-        
-        this.setData({
-          signNum: this.data.signNum + 15,
-          control: true,
-          change: false
-        })
-      }
-    })
+    adminMenus: []
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
-    let base64 = 'data:image/png;base64,'+wx.getFileSystemManager().readFileSync(this.data.background,'base64');   
+
+    let base64 = 'data:image/png;base64,' + wx.getFileSystemManager().readFileSync(this.data.background, 'base64');
     this.setData({
-      background:base64,
+      background: base64,
     })
-    
+
     this.data.menus = [
       this.data.menu_reward, this.data.menu_shopMessage, this.data.menu_back
     ]
@@ -150,7 +121,7 @@ Page({
         this.data.menu_reward,
         this.data.menu_back,
       ];
-      this.data.adminMenus =[
+      this.data.adminMenus = [
         this.data.menu_car,
         this.data.menu_shopMessage,
         this.data.menu_picture,
@@ -204,9 +175,20 @@ Page({
         this.data.logged = true
         this.data.isregist = true
         this.data.control = false
-        this.data.signNum = 0
+        this.data.signNum = this.data.userInfo.integral.score
         this.onUpdateShop()
         console.log(app.globalData.user)
+        if (this.data.userInfo.integral.signTime > Date.parse(new Date())) {
+          this.setData({
+            control: true,
+            change: false
+          })
+        }else{
+          this.setData({
+            control: false,
+            change: true
+          })
+        }
       },
       fail: err => {
         console.error('[云函数] [user.userLogin] 调用失败', err)
@@ -222,17 +204,17 @@ Page({
       })
       return
     }
-    if(src.link ){
+    if (src.link) {
       wx.navigateTo({ url: src.link })
     }
-    else{
+    else {
       wx.showToast({
-        icon:"none",
+        icon: "none",
         title: '该功能暂未开放',
       })
     }
   },
-  modified(){
+  modified() {
     if (!this.data.userInfo._id) {
       wx.showToast({
         icon: "none",
@@ -240,47 +222,151 @@ Page({
       })
       return
     }
-    else{
+    else {
       wx.navigateTo({
         url: '/pages/personal/personal',
       })
     }
   },
-  //获取我的卡券
-  getMyCoupon(){
-    let used
-    if(this.data.use){
-      used = 0
-    }else{
-      used = 1
+  //签到
+  signButton: function () {
+    // wx.showToast({
+    //   icon:"none",
+    //   title: '该功能暂未开放',
+    // })
+    // return
+    if (!this.data.userInfo._id) {
+      wx.showToast({
+        icon: "none",
+        title: '您还未登录',
+      })
+      return
     }
     wx.cloud.callFunction({
-      name:'',
-      data:{
-        action:'',
-        id:this.data.coupondId
-        
+      name: 'user',
+      data: {
+        action: 'userSignIn'
       },
-      success:res=>{
+      success: (res) => {
         console.log(res)
-        this.data.myCouponData = res.result.data
-        this.setData(this.data)
+        if (res.result.code == 0) {
+          wx.showToast({
+            icon: "none",
+            title: '签到成功',
+          })
+          this.setData({
+            control: true,
+            change: false
+          })
+        }
       }
     })
   },
-  //扫码
-  scancode(){
+  //扫码获取卡券
+  scancode() {
     wx.scanCode({
-      success:(res)=>{
-        console.log(res)
-        this.data.coupondId = res.result
-        this.data.toUse = true
-        this.setData(this.data)
-        this.getMyCoupon()
+      success: (res) => {
+        let id = res.result
+        if (id.substr(0, 6) == 'cardId') {
+          let index = res.result.lastIndexOf("=")
+          id = id.substring(index + 1, id.length)
+          this.data.coupondId = id
+          this.data.toUse = true
+          this.setData(this.data)
+          wx.cloud.callFunction({
+            name: 'cardVoucher',
+            data: {
+              action: 'showCard',
+              shopid: app.globalData.shop._id,
+              _id: id,
+            },
+            success: res => {
+              console.log(res)
+              if(res.result.data.used==0 && res.result.data.validity > Date.parse(new Date())){
+                this.data.useCondition = '有效'
+                this.data.myCouponData = res.result.data
+                if (res.result.data.type==1){
+                  this.data.isDegree = true
+                }else{
+                  this.data.isDegree = false
+                }
+              }
+              if (res.result.data.used == 0 && res.result.data.validity < Date.parse(new Date())){
+                this.data.useCondition = '已过期'
+                this.data.cancel = false,
+                this.data.conditionColor = '#9B9B9B'
+                this.data.myCouponData = res.result.data
+              }
+              if (res.result.data.used == 1){
+                this.data.useCondition = '已使用'
+                this.data.cancel = false
+                this.data.conditionColor = '#9B9B9B'
+                this.data.myCouponData = res.result.data
+              }
+              this.setData(this.data)
+            }
+          })
+        }
+        if (id.substr(0, 6) == 'userId') {
+          let index = id.lastIndexOf("=")
+          id = id.substring(index + 1, id.length)
+          wx.redirectTo({
+            url: '/pages/rewardChoose/rewardChoose?userId=' + id,
+          })
+        }
       },
-      fail:(res)=>{
+      fail: (res) => {
         console.log(res);
       }
     })
-  }
+  },
+  //卡券取消使用
+  couponCancle(e) {
+    this.data.toUse = false
+    this.setData(this.data)
+  },
+  //卡券确认使用
+  couponConfirm(e) {
+    wx.cloud.callFunction({
+      name: 'cardVoucher',
+      data: {
+        action: 'userMyCard',
+        shopid: app.globalData.shop._id,
+        _id: this.data.coupondId,
+        temID: this.data.myCouponData.temID
+      },
+      success: (res) => {
+        this.data.toUse = false
+        this.setData(this.data)
+        wx.showToast({
+          title: '已使用',
+          icon: 'none'
+        })
+      }
+    })
+  },
+  //过期卡券关闭
+  couponPast(e) {
+    this.data.toUse = false
+    this.setData(this.data)
+  },
+  // 用户二维码
+  beScanCode() {
+    this.data.myCodeHide = true
+    this.setData(this.data)
+    new QRCode('myQrcode', {
+      text: 'userId=' + this.data.userInfo._id,
+      width: 180,
+      height: 180,
+      correctLevel: QRCode.CorrectLevel.L,
+      callback: (res) => {
+        console.log(res)
+      }
+    })
+  },
+  // 关闭二维码
+  closeMyCode() {
+    this.data.myCodeHide = false
+    this.setData(this.data)
+  },
 })

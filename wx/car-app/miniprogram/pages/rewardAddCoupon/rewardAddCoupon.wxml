@@ -1,4 +1,4 @@
-<!--miniprogram/pages/rewardAddCoupon/rewardAddCoupon.wxml-->
+<!-- miniprogram/pages/rewardAddCoupon/rewardAddCoupon.wxml -->
 <wxs src="../../utils/filter.wxs" module="formatTime"></wxs>
 <view class="addCouponContent">
   <view class="addCouponTitle">基本信息</view>
@@ -8,22 +8,38 @@
   </view>
   <view class="addDetail">
     <view class="coupon">
-      <text>卡券名称</text>
-      <input type="text" placeholder-style="color: #3377FE;" placeholder="必填" value="{{couponName}}"  bindinput="couponName"/>
+      <text>卡券类型</text>
+      <radio-group class="radio-group" bindchange="radioChange">
+        <radio class="radio" wx:for-items="{{items}}" wx:key="name" value="{{item.name}}" checked="{{item.checked}}">
+          <text>{{item.value}}</text>
+        </radio>
+      </radio-group>
     </view>
     <view class="coupon">
+      <text>卡券名称</text>
+      <input type="text" placeholder-style="color: #3377FE;" placeholder="必填" value="{{couponName}}" bindinput="couponName" />
+    </view>
+    <view class="coupon" wx:if="{{isPurchase}}">
       <text>需要积分</text>
+      <input type="text" placeholder-style="color: #3377FE;" placeholder="必填" value="{{couponIntegral}}" bindinput="couponIntegral" />
+    </view>
+    <view class="coupon" wx:if="{{!isPurchase}}">
+      <text>所需金额</text>
       <input type="text" placeholder-style="color: #3377FE;" placeholder="必填" value="{{couponIntegral}}" bindinput="couponIntegral" />
     </view>
     <view class="coupon">
       <text>到期时间</text>
       <picker mode="date" value="{{date}}" start="{{formatTime.formatTime(localdate,'yyyy-mm-dd')}}" bindchange="bindDateChange">
-        <input type="text" placeholder-style="color: #3377FE;" placeholder="必填" value="{{date}}"/>
+        <input type="text" placeholder-style="color: #3377FE;" placeholder="必填" value="{{date}}" />
       </picker>
     </view>
     <view class="coupon">
       <text>特点描述</text>
-      <input type="text" placeholder-style="color: #3377FE;" placeholder="必填" value="{{couponContent}}" bindinput="couponContent"/>
+      <input type="text" placeholder-style="color: #3377FE;" placeholder="必填" value="{{couponContent}}" bindinput="couponContent" />
+    </view>
+    <view class="coupon" wx:if="{{!isPurchase}}">
+      <text>使用次数</text>
+      <input type="text" placeholder-style="color: #3377FE;" value="{{couponNumber}}" bindinput="couponNumber" />
     </view>
     <view class="couponActive">
       <text>活动规则</text>

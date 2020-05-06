@@ -1,0 +1,85 @@
+/* miniprogram/pages/rewardChoose/rewardChoose.wxss */
+.userMsg{
+    box-sizing: border-box;
+    padding: 18rpx 54rpx;
+    background: #FFFFFF;
+    font-size: 32rpx;
+    color: #131E33;
+}
+.userphone{
+    margin-top: 10rpx;
+}
+.chooseContent{
+    box-sizing: border-box;
+    padding: 56rpx 36rpx;
+}
+.choosePurchase{
+    box-sizing: border-box;
+    padding: 22rpx 26rpx 32rpx 26rpx;
+    background: #FFFFFF;
+    border: 1rpx solid #E1E1E1;
+    border-radius: 6rpx;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 16rpx 0;
+}
+.purchaseLeft{
+    flex: 1;
+}
+.purchaseName{
+    font-size: 28rpx;
+    color: #131E33;
+    font-weight: bold;
+}
+.purchaseContent{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20rpx;
+}
+.price{
+    font-size: 24rpx;
+    color: #3377FE;
+}
+.time{
+    font-size: 20rpx;
+    color: #7E7C81;
+    margin: 10rpx 62rpx 0 0;
+}
+.purchaseRight button{
+    margin: 0;
+    padding: 0;
+    width: 126rpx;
+    height: 54rpx;
+    border-radius: 28rpx;
+    background: #3377FE;
+    font-size: 32rpx;
+    color: #FFFFFF;
+    line-height: 54rpx;
+}
+.backBtn{
+    width: 100%;
+    padding: 0;
+    position: fixed;
+    bottom: 44rpx;
+}
+.btn{
+    margin: 0 auto;
+    height: 88rpx;
+    color: #FFFFFF;
+    font-size: 36rpx;
+    font-weight: normal;
+    border-radius: 16rpx;
+    background: linear-gradient(to right,#3377FE,#3377FE);
+    line-height: 88rpx;
+}
+.load{
+  width: 100%;
+  padding: 0 0 100rpx 0;
+}
+.loading{
+  text-align: center;
+  font-size: 28rpx;
+  color: #555;
+  padding: 20rpx;
+}
