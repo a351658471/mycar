@@ -122,7 +122,7 @@ Page({
     this.setData(this.data)
   },
   exitBuy(){
-    wx.redirectTo({
+    wx.navigateTo({
       url: '/pages/mypage/mypage',
     })
   }
