@@ -252,6 +252,7 @@ Page({
             title: '签到成功',
           })
           this.setData({
+            signNum:this.data.signNum + 15,
             control: true,
             change: false
           })

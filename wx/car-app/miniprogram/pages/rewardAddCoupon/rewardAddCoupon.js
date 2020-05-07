@@ -90,7 +90,7 @@ Page({
         shopid:app.globalData.shop._id,
         name:this.data.couponName,
         integral:this.data.couponIntegral,
-        validity: Date.parse(new Date(this.data.date)),
+        validity: Date.parse(new Date(this.data.date))+57600000,
         describe:this.data.couponContent,
         rule:this.data.couponActive,
         status:status, // 状态 0启用 1停用

@@ -41,7 +41,7 @@ Page({
       success: res => {
         console.log(res)
         res.result.data.forEach(item => {
-          if (item.used == 0 && item.validity >= Date.parse(new Date())) {
+          if (item.used == 0 && item.validity/1000 >= Date.parse(new Date())/1000) {
             if (item.type == 0) {
               this.data.completeCoupon.push(item)
             } else {
@@ -53,7 +53,7 @@ Page({
             }    
             this.setData(this.data)
           }
-          if(item.used == 0 && item.validity < Date.parse(new Date())){
+          if(item.used == 0 && item.validity/1000 < Date.parse(new Date())/1000){
             this.data.passCoupon.push(item)
           }
           if(item.used == 1){

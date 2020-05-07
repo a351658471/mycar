@@ -74,10 +74,11 @@ Page({
           isLoading: false,
         })
         res.result.data.forEach((item)=>{
-          if(item.validity>Date.parse(new Date())){
-            this.data.couponData.push(item)
-            this.setData(this.data)
-          }
+          // if(item.validity/1000>Date.parse(new Date())/1000){
+            
+          // }
+          this.data.couponData.push(item)
+          this.setData(this.data)
         })
         if(this.data.tabCurrent == 1){
           this.data.btnContent='查看'

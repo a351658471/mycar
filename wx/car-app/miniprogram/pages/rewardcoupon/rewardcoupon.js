@@ -39,7 +39,7 @@ Page({
     this.couponCounts()
   },
   onShow(){
-    let date = new Date().getTime()/1000
+    let date =  Date.parse(new Date())/1000
     console.log(date)
     this.setData({
       mdate:date
