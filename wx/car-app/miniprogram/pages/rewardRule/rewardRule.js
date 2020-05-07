@@ -16,8 +16,8 @@ Page({
   },
 
   knowTap(){
-    wx.redirectTo({
-      url: '/pages/reward/reward',
+    wx.navigateBack({
+      delta: 1
     })
   }
 })

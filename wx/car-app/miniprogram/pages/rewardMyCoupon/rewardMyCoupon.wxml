@@ -5,30 +5,61 @@
   <view class="rewardCenter">
     <!-- 我的卡券 -->
     <view class="rewardTitle" bindtap="toMyCoupon">兑换卡券</view>
-    <!-- 已兑换/已购买 -->
+    <!-- 已兑换 -->
     <coupon couponData="{{completeCoupon}}"  
     rightBcg="#FFFFFF" 
     btnBcg="#FDDA8B" 
     btnContent="去使用" 
     isIntegral="{{isIntegral}}" 
     bind:jumpToDetail="jumpToDetail"
-    rewardnum="{{rewardnum}}"
-    conditionColor="{{conditionColor}}"
-    isUsedCard="{{isBtn}}"
+    rewardnum="已兑换"
+    />
+    <!-- 已购买 -->
+    <coupon couponData="{{purchaseCoupon}}"  
+    rightBcg="#FFFFFF" 
+    btnBcg="#FDDA8B" 
+    btnContent="去使用" 
+    isIntegral="{{isIntegral}}" 
+    bind:jumpToDetail="jumpToDetail"
+    rewardnum="已购买"
+    purchase="true"
     />
 
     <view class="xuxian"></view>
 
-    <!-- 已使用/已过期/已使用 -->
+    <!-- 已使用 -->
+    <coupon couponData="{{useCoupon}}"  
+    rightBcg="#FFFFFF" 
+    btnBcg="#FDDA8B" 
+    btnContent="去使用" 
+    isIntegral="{{isIntegral}}" 
+    bind:jumpToDetail="jumpToDetail"
+    rewardnum="已使用"
+    conditionColor="#9B9B9B"
+    isUsedCard="{{isBtn}}"
+    />
+    <!-- 已过期 -->
     <coupon couponData="{{passCoupon}}"  
     rightBcg="#FFFFFF" 
     btnBcg="#FDDA8B" 
     btnContent="去使用" 
     isIntegral="{{isIntegral}}" 
     bind:jumpToDetail="jumpToDetail"
-    rewardnum="{{rewardnum}}"
-    conditionColor="{{conditionColor}}"
+    rewardnum="已过期"
+    conditionColor="#9B9B9B"
     isUsedCard="{{isBtn}}"
+    />
+    <!-- 已用完 -->
+    <coupon couponData="{{useOutCoupon}}"  
+    rightBcg="#FFFFFF" 
+    btnBcg="#FDDA8B" 
+    btnContent="去使用" 
+    isIntegral="{{isIntegral}}" 
+    bind:jumpToDetail="jumpToDetail"
+    rewardnum="已用完"
+    conditionColor="#9B9B9B"
+    isUsedCard="{{isBtn}}"
+    purchase="true"
     />
   </view>
 </view>

@@ -35,8 +35,8 @@
     </view>
     <view class="couponActive">
       <text>活动规则</text>
-      <textarea value="{{couponActive}}" maxlength="150" bindinput="couponActive"></textarea>
-      <view class="num">0/150</view>
+      <textarea value="{{couponActive}}" maxlength="{{maxlength}}" bindinput="couponActive"></textarea>
+      <view class="num">{{textlength}}/{{maxlength}}</view>
     </view>
   </view>
 </view>

@@ -14,6 +14,8 @@ Page({
     localdate:'', //添加卡券开始时间
     couponNumber:'',
     isPurchase:true,
+    maxlength:150,
+    textlength:0,
     items: [
       { name: 'coupon', value: '兑换券',checked: 'true'},
       { name:'purchase',value:'购买券'}
@@ -61,7 +63,8 @@ Page({
   },
   couponActive(e){
     this.setData({
-      couponActive: e.detail.value
+      couponActive: e.detail.value,
+      textlength:this.data.couponActive.length
     })
   },
   couponNumber(e) {
@@ -103,7 +106,9 @@ Page({
             duration: 3000,
             success: res => {
               setTimeout(() => {
-                wx.navigateBack()
+                wx.redirectTo({
+                  url: '/pages/rewardcoupon/rewardcoupon',
+                })
               }, 500)
             }
           })
@@ -114,7 +119,9 @@ Page({
             duration: 3000,
             success: res => {
               setTimeout(() => {
-                wx.navigateBack()
+                wx.redirectTo({
+                  url: '/pages/rewardcoupon/rewardcoupon',
+                })
               }, 500)
             }
           })

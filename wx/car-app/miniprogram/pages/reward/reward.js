@@ -11,7 +11,8 @@ Page({
     integral:'',
     avatarUrl:'',
     nickName:'',
-    integral:''
+    integral:'',
+    isNeed:false
   },
 
   /**
@@ -42,26 +43,26 @@ Page({
     })
   },
   jumpToDetail(e) {
-    console.log(e)
     let id = e.detail.id
     let type = e.detail.type
-    wx.redirectTo({
+    wx.navigateTo({
       url: '/pages/rewardDetail/rewardDetail?cardId=' + id+'&type='+type,
     })
   },
   toMyCoupon(){
-    wx.redirectTo({
+    wx.navigateTo({
       url: '/pages/rewardMyCoupon/rewardMyCoupon' 
     })
   },
   toCouponRule(){
-    wx.redirectTo({
+    wx.navigateTo({
       url: '/pages/rewardRule/rewardRule' 
     })
   },
-  toCheckAll(){
-    wx.redirectTo({
-      url: '/pages/rewardCheckAll/rewardCheckAll' 
+  toCheckAll(e){
+    let selecttype = e.currentTarget.dataset.selecttype
+    wx.navigateTo({
+      url: '/pages/rewardCheckAll/rewardCheckAll?selecttype='+ selecttype
     })
   }
 })

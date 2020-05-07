@@ -8,11 +8,14 @@ Page({
    */
   data: {
     completeCoupon: [], //已兑换
+    purchaseCoupon:[],//已购买
     passCoupon: [], //过期
+    useCoupon:[],//已使用
+    useOutCoupon:[],//已用完
     showCouponData: [],
     isBuy: false,
     isIntegral: false,
-    isBtn: true,
+    isBtn: false,
     conditionColor: '',
     rewardnum: ''
   },
@@ -39,30 +42,24 @@ Page({
         console.log(res)
         res.result.data.forEach(item => {
           if (item.used == 0 && item.validity >= Date.parse(new Date())) {
-
             if (item.type == 0) {
-              this.data.rewardnum = '已兑换'
               this.data.completeCoupon.push(item)
             } else {
-              this.data.rewardnum = '已购买'
-              this.data.completeCoupon.push(item)
-            }
+              if(item.canUsedCount-item.usedCount == 0){
+                this.data.useOutCoupon.push(item)
+              }else{
+                this.data.purchaseCoupon.push(item)
+              }
+            }    
             this.setData(this.data)
           }
-          // if (item.used == 0 && item.validity < Date.parse(new Date())) {
-          //   this.data.rewardnum = '已过期'
-          //   this.data.isBtn = false
-          //   this.data.conditionColor = '#9B9B9B'
-          //   this.data.passCoupon.push(item)
-          // }
-          // if (item.used == 1) {
-          //   this.data.rewardnum = '已使用'
-          //   this.data.isBtn = false
-          //   this.data.conditionColor = '#9B9B9B'
-          //   this.data.passCoupon.push(item)
-          // }
-          // this.setData(this.data)
-
+          if(item.used == 0 && item.validity < Date.parse(new Date())){
+            this.data.passCoupon.push(item)
+          }
+          if(item.used == 1){
+            this.data.useCoupon.push(item)
+          }
+          this.setData(this.data)
         });
       }
     })
@@ -70,7 +67,7 @@ Page({
   jumpToDetail(e) {
     console.log(e)
     let id = e.detail.id
-    wx.redirectTo({
+    wx.navigateTo({
       url: '/pages/rewardMyDetail/rewardMyDetail?cardId=' + id,
     })
   },

@@ -11,9 +11,11 @@ Page({
     address:'',
     latitude:0,
     longitude:0,
+    location: null,
     isExchange:true,
     couponId:'',
-    couponType:0
+    couponType:0,
+    canCoupon:false
   },
 
   /**
@@ -21,6 +23,13 @@ Page({
    */
   onLoad: function (options) {
     console.log(options)
+    let shop = app.globalData.shop
+    this.data.address = shop.address
+    if (shop.location != null) {
+      this.data.latitude = shop.location.latitude
+      this.data.longitude = shop.location.longitude
+    }
+
     let id = options.cardId
     let type = options.type
     this.data.couponId = id
@@ -36,6 +45,11 @@ Page({
       },
       success: res => {
         console.log(res)
+        if(res.result.data[0].type == 1){
+          this.data.canCoupon = true
+        }else{
+          this.data.canCoupon = false
+        }
         this.data.couponData = res.result.data
         this.setData(this.data)
       }
@@ -78,5 +92,35 @@ Page({
   toCoupon(e){
     this.myCoupon()
   },
-  
+  addAddress() {
+    wx.chooseLocation({
+      success: res => {
+        let longitude = res.longitude;
+        let latitude = res.latitude;
+        let address = ''
+        if (res.name != '') {
+          address = res.name
+        } else if (res.address != '') {
+          address = res.address
+        }
+        this.setData({
+          longitude: longitude,
+          latitude: latitude,
+          address
+        })
+      }
+    })
+  },
+  navigation() {
+    console.log(this.data.latitude)
+    console.log(this.data.longitude)
+    wx.openLocation({
+      latitude: this.data.latitude,
+      longitude: this.data.longitude,
+      name: this.data.address,
+      success: res => {
+        // console.log(res)
+      }
+    })
+  }
 })

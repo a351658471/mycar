@@ -7,22 +7,24 @@ Page({
    * 页面的初始数据
    */
   data: {
+    mdate:0,
     tabList: ['卡券', '历史'],
     tabLists: ['启用中', '停用中'],
     tabCurrent: 0,
     tabCurrents: 0,
     history: false,
     couponData: [],
-    oldCardDate:[],
+    oldCardDate: [],
     isTab: true,
     isStar: false,
     couponCount: [],
     page: 1,
     noMore: false,
-    isLoading: false, 
+    isLoading: false,
     tabflag: 0,
-    searchCoupon:'',
-    isShowNumber:false
+    searchCoupon: '',
+    isShowNumber: false,
+    passTimeColor: ''
   },
 
   /**
@@ -36,16 +38,23 @@ Page({
     this.getCard(this.data.page)
     this.couponCounts()
   },
+  onShow(){
+    let date = new Date().getTime()/1000
+    console.log(date)
+    this.setData({
+      mdate:date
+    })
+  },
   //搜索历史卡券
-  searchCoupon(e){
+  searchCoupon(e) {
     this.data.searchCoupon = e.detail.value
     this.setData(this.data)
   },
-  confirmCoupon(){
+  confirmCoupon() {
     let type
-    if(this.data.tabCurrents==0){
+    if (this.data.tabCurrents == 0) {
       type = 0
-    }else{
+    } else {
       type = 1
     }
     wx.cloud.callFunction({
@@ -53,10 +62,10 @@ Page({
       data: {
         action: 'queryCard',
         shopid: app.globalData.shop._id,
-        page:1,
-        pageCount:10,
+        page: 1,
+        pageCount: 10,
         keyWord: this.data.searchCoupon,
-        type:type
+        type: type
       },
       success: (res) => {
         console.log(res)
@@ -67,7 +76,7 @@ Page({
   },
   // 添加卡券
   jumpToAddcoupon() {
-    wx.redirectTo({
+    wx.navigateTo({
       url: '/pages/rewardAddCoupon/rewardAddCoupon',
     })
   },
@@ -82,8 +91,7 @@ Page({
       this.data.isShowNumber = true
       this.data.page = 1
       this.getOldCard()
-    }
-    else {
+    } else {
       this.data.tabLists = ['启用中', '停用中']
       this.data.isTab = true
       this.data.history = false
@@ -94,22 +102,22 @@ Page({
   //里层tab
   tabClicks: function (e) {
     this.data.page = 1
-    this.data.tabflag++ 
+    this.data.tabflag++
     this.data.tabCurrents = e.detail.tabCurrents
-    if(this.data.tabCurrent==0){
+    if (this.data.tabCurrent == 0) {
       this.getCard()
-    }else{
+    } else {
       this.getOldCard()
     }
     this.setData(this.data)
   },
   //是否启用
-  couponUse(e){
+  couponUse(e) {
     let id = e.currentTarget.dataset.id
-    let status 
-    if(this.data.isStar){
+    let status
+    if (this.data.isStar) {
       status = 0
-    }else{
+    } else {
       status = 1
     }
     wx.cloud.callFunction({
@@ -118,12 +126,18 @@ Page({
         action: 'editCard',
         shopid: app.globalData.shop._id,
         _id: id,
-        item:{
-          status:status
+        item: {
+          status: status
         }
       },
       success: res => {
         let index = e.currentTarget.dataset.index
+        if((this.data.couponData[index].validity/1000) < this.data.mdate){
+          wx.showToast({
+            title: '过期请编辑',
+            icon:'none'
+          })
+        }
         this.data.couponData.splice(index, 1)
         this.getCard()
         this.couponCounts()
@@ -131,7 +145,7 @@ Page({
     })
   },
   // 获取历史卡券数据
-  getOldCard(page = 1){
+  getOldCard(page = 1) {
     this.setData({
       isLoading: true
     })
@@ -140,22 +154,22 @@ Page({
       this.setData(this.data)
     }
     let type
-    if(this.data.tabCurrents == 0){
+    if (this.data.tabCurrents == 0) {
       type = 0
-    }else{
+    } else {
       type = 1
     }
     let tabflag = this.data.tabflag
     wx.cloud.callFunction({
-      name:'cardVoucher',
-      data:{
-        action:'queryCard',
+      name: 'cardVoucher',
+      data: {
+        action: 'queryCard',
         shopid: app.globalData.shop._id,
-        page:page,
-        pageCount:PAGECOUNT,
-        type:type
+        page: page,
+        pageCount: PAGECOUNT,
+        type: type
       },
-      success:(res)=>{
+      success: (res) => {
         if (tabflag != this.data.tabflag) {
           return
         }
@@ -168,7 +182,7 @@ Page({
           noMore: this.data.noMore,
           isLoading: false,
         })
-        res.result.data.forEach((item)=>{
+        res.result.data.forEach((item) => {
           this.data.oldCardDate.push(item)
           this.setData(this.data)
         })
@@ -189,8 +203,7 @@ Page({
       status = 0
       this.data.isStar = false
       this.setData(this.data)
-    }
-    else if (this.data.tabCurrents == 1) {
+    } else if (this.data.tabCurrents == 1) {
       status = 1
       this.data.isStar = true
       this.setData(this.data)
@@ -200,9 +213,9 @@ Page({
       name: 'card',
       data: {
         action: 'getCardTemplate',
-        getType:'shopPage',
+        getType: 'shopPage',
         shopid: app.globalData.shop._id,
-        page:page,
+        page: page,
         pageCount: PAGECOUNT,
         status: status
       },
@@ -220,18 +233,18 @@ Page({
           noMore: this.data.noMore,
           isLoading: false,
         })
-        res.result.data.forEach((item)=>{
-          this.data.couponData.push(item)
-          this.setData(this.data)
+        res.result.data.forEach((item) => {
+            this.data.couponData.push(item)
+            this.setData(this.data)
         })
       }
     })
   },
   loadMore() {
     this.data.page++
-    if(this.data.tabCurrent==0){
+    if (this.data.tabCurrent == 0) {
       this.getCard(this.data.page)
-    }else{
+    } else {
       this.getOldCard(this.data.page)
     }
   },
@@ -274,8 +287,8 @@ Page({
     console.log(e)
     let id = e.currentTarget.dataset.id
     let type = e.currentTarget.dataset.type
-    wx.redirectTo({
-      url: '/pages/rewardEditCoupon/rewardEditCoupon?id=' + id+'&type='+type,
+    wx.navigateTo({
+      url: '/pages/rewardEditCoupon/rewardEditCoupon?id=' + id + '&type=' + type,
     })
   },
   //获取总数
@@ -293,7 +306,7 @@ Page({
     })
   },
   //删除订单
-  deleteOrder(e){
+  deleteOrder(e) {
     console.log(e)
     let id = e.currentTarget.dataset.id
     wx.showModal({

@@ -14,7 +14,9 @@ Page({
     couponNumber:'',
     cardId:'',
     localdate: 0 ,//添加卡券开始时间
-    isPurchase:true
+    isPurchase:true,
+    maxlength:150,
+    textlength:0,
   },
 
   /**
@@ -46,6 +48,7 @@ Page({
         this.data.couponContent = res.result.data[0].describe
         this.data.couponActive = res.result.data[0].rule
         this.data.couponNumber = res.result.data[0].canUsedCount
+        this.data.textlength = res.result.data[0].rule.length
         this.setData(this.data)
       }
     })
@@ -61,7 +64,6 @@ Page({
     })
   },
   bindDateChange(e) {
-    console.log(e)
     this.setData({
       date: e.detail.value
     })
@@ -73,7 +75,8 @@ Page({
   },
   couponActive(e) {
     this.setData({
-      couponActive: e.detail.value
+      couponActive: e.detail.value,
+      textlength:this.data.couponActive.length
     })
   },
   //调用编辑卡片接口
@@ -102,7 +105,7 @@ Page({
             duration: 3000,
             success: res => {
               setTimeout(() => {
-                wx.navigateTo({
+                wx.redirectTo({
                   url: '/pages/rewardcoupon/rewardcoupon',
                 })
               }, 500)
@@ -115,7 +118,7 @@ Page({
             duration: 3000,
             success: res => {
               setTimeout(() => {
-                wx.navigateTo({
+                wx.redirectTo({
                   url: '/pages/rewardcoupon/rewardcoupon',
                 })
               }, 500)

@@ -178,7 +178,9 @@ Page({
         this.data.signNum = this.data.userInfo.integral.score
         this.onUpdateShop()
         console.log(app.globalData.user)
-        if (this.data.userInfo.integral.signTime > Date.parse(new Date())) {
+        let lastDate = new Date(this.data.userInfo.integral.signTime).toLocaleDateString()
+        let nowDate = new Date().toLocaleDateString()
+        if (lastDate == nowDate) {
           this.setData({
             control: true,
             change: false
@@ -230,11 +232,6 @@ Page({
   },
   //签到
   signButton: function () {
-    // wx.showToast({
-    //   icon:"none",
-    //   title: '该功能暂未开放',
-    // })
-    // return
     if (!this.data.userInfo._id) {
       wx.showToast({
         icon: "none",
@@ -282,8 +279,9 @@ Page({
             },
             success: res => {
               console.log(res)
-              if(res.result.data.used==0 && res.result.data.validity > Date.parse(new Date())){
+              if(res.result.data.used==0 && res.result.data.validity/1000 > Date.parse(new Date())/1000){
                 this.data.useCondition = '有效'
+                this.data.conditionColor = '#4A4A4A'
                 this.data.myCouponData = res.result.data
                 if (res.result.data.type==1){
                   this.data.isDegree = true
@@ -291,15 +289,17 @@ Page({
                   this.data.isDegree = false
                 }
               }
-              if (res.result.data.used == 0 && res.result.data.validity < Date.parse(new Date())){
+              if (res.result.data.used == 0 && res.result.data.validity/1000 < Date.parse(new Date())/1000){
                 this.data.useCondition = '已过期'
                 this.data.cancel = false,
+                this.data.isDegree = false
                 this.data.conditionColor = '#9B9B9B'
                 this.data.myCouponData = res.result.data
               }
               if (res.result.data.used == 1){
                 this.data.useCondition = '已使用'
                 this.data.cancel = false
+                this.data.isDegree = false
                 this.data.conditionColor = '#9B9B9B'
                 this.data.myCouponData = res.result.data
               }
@@ -310,7 +310,7 @@ Page({
         if (id.substr(0, 6) == 'userId') {
           let index = id.lastIndexOf("=")
           id = id.substring(index + 1, id.length)
-          wx.redirectTo({
+          wx.navigateTo({
             url: '/pages/rewardChoose/rewardChoose?userId=' + id,
           })
         }
