@@ -1,21 +1,21 @@
 <!--miniprogram/pages/rewardDetail/rewardDetail.wxml-->
 <wxs src="../../utils/filter.wxs" module="formatTime"></wxs>
 <view class="rewardDetail">
-    <view class="detailTitle">兑换券·{{couponData[0].name}}</view>
-    <view class="detailTime">到期时间：{{formatTime.formatTime(couponData[0].validity,'yyyy-mm-dd')}}</view>
-    <view class="smallTitle">详情描述</view>
-    <view class="detailcontent">{{couponData[0].describe}}</view>
-    <view class="smallTitle">权益规则</view>
-    <view class="details">{{couponData[0].rule}}</view>
-    <button wx:if="{{isExchange}}" bindtap="toCoupon" data-code="{{couponId}}">兑换</button>
-    <view wx:if="{{!isExchange}}" class="code">
-      <canvas class="canvas-code"canvas-id="myQrcode" style="background:#fff;width: 150px;height: 150px;"/>
-    </view>
+	<view class="detailTitle">{{couponData.type==0?'兑换券':'购买券'}}·{{couponData[0].name}}</view>
+	<view class="detailTime">到期时间：{{formatTime.formatTime(couponData[0].validity,'yyyy-mm-dd')}}</view>
+	<view class="smallTitle">详情描述</view>
+	<view class="detailcontent">{{couponData[0].describe}}</view>
+	<view class="smallTitle">权益规则</view>
+	<view class="details">{{couponData[0].rule}}</view>
+	<button wx:if="{{isExchange}}" bindtap="toCoupon" data-code="{{couponId}}" disabled="{{canCoupon}}">{{canCoupon?'到店购买':'兑换'}}</button>
+	<view wx:if="{{!isExchange}}" class="code">
+		<canvas class="canvas-code" canvas-id="myQrcode" style="background:#fff;width: 150px;height: 150px;" />
+	</view>
 </view>
- 
+
 <view class="shopMessageBtn">
-  <button style="width:680rpx" class="btn" bindtap="navigation">到店导航</button>
+	<button style="width:680rpx" class="btn" bindtap="navigation">到店导航</button>
 </view>
 <view class="call">
-  <my-call class="callIcon" bind:call="call" phoneNumber="{{shop.phone}}"></my-call>
+	<my-call class="callIcon" bind:call="call" phoneNumber="{{shop.phone}}"></my-call>
 </view>

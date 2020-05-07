@@ -115,3 +115,9 @@
   font-weight: bold;
   margin-top: 52rpx;
 }
+.noData{
+  font-size: 30rpx;
+  color: #4A4A4A;
+  text-align: center;
+  margin: 30rpx;
+}

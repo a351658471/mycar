@@ -14,7 +14,8 @@ Page({
     location: null,
     isExchange:true,
     couponId:'',
-    couponType:0
+    couponType:0,
+    canCoupon:false
   },
 
   /**
@@ -44,6 +45,11 @@ Page({
       },
       success: res => {
         console.log(res)
+        if(res.result.data[0].type == 1){
+          this.data.canCoupon = true
+        }else{
+          this.data.canCoupon = false
+        }
         this.data.couponData = res.result.data
         this.setData(this.data)
       }

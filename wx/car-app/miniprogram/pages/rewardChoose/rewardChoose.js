@@ -122,8 +122,6 @@ Page({
     this.setData(this.data)
   },
   exitBuy(){
-    wx.navigateTo({
-      url: '/pages/mypage/mypage',
-    })
+    wx.navigateBack()
   }
 })

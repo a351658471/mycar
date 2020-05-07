@@ -20,12 +20,14 @@
       <view class="all" bindtap="toCheckAll" data-selectType="selectCoupon">全部 <image src="../../assets/rightall.png"></image></view>
     </view>
     <coupon couponData="{{couponData}}" bind:jumpToDetail="jumpToDetail" />
+    <view class="noData">{{couponData.length == 0?'暂无卡券':''}}</view>
 
     <view class="toCouponAll">
       <view class="rewardTitle">购买卡券</view>
       <view class="all" bindtap="toCheckAll" data-selectType="selectPurchase">全部 <image src="../../assets/rightall.png"></image></view>
     </view>
     <coupon couponData="{{purchaseData}}" bind:jumpToDetail="jumpToDetail" btnContent="查看"  toShopBuy="true" isNeed="{{isNeed}}"/>
+    <view class="noData">{{couponData.length == 0?'暂无卡券':''}}</view>
   </view>
 </view>
 
